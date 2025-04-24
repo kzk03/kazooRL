@@ -1,0 +1,58 @@
+# ═ Python キャッシュ ════════════════════════
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ═ 仮想環境 ════════════════════════════════
+.venv/
+venv/
+env/
+ENV/
+
+# ═ テスト／ビルド成果物 ════════════════════════
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+.cache/
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# ═ データ・モデル・ログ ════════════════════════
+models/
+checkpoints/
+logs/
+# 大きな実験出力が experiments/ にあれば
+# experiments/**/results/
+# experiments/**/tensorboard/
+
+# ═ Jupyter ════════════════════════════════════
+.ipynb_checkpoints/
+
+# ═ ドキュメント ════════════════════════════════
+docs/_build/
+
+# ═ OS／エディタ固有ファイル ════════════════════
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ═ 環境変数ファイル ═════════════════════════════
+.env
+.env.*.local
+
+# ═ 型チェックキャッシュ ════════════════════════
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# ═ その他 ═════════════════════════════════════
+# uv.lock は再現性のためコミットする
+# pyproject.toml もコミット
+
