@@ -9,6 +9,8 @@ dependencies = [
   "pettingzoo>=1.25",
   "numpy>=1.26",
   "pyyaml>=6.0.2",
+  "shimmy>=2.0.0",
+  "supersuit>=3.10.0",
 ]
 
 [tool.uv]             
