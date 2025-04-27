@@ -1,10 +1,20 @@
 # scripts/check_oss_env.py
 from pprint import pprint
+
+import yaml
+
 from kazoo.envs.oss_simple import env as make_oss_env  # 直接インポート
 
+
 def main():
-    # gym.make は使わず、ファクトリ関数を直接呼ぶ
-    env = make_oss_env(n_agents=3, backlog_size=6, seed=0, render_mode=None)
+    with open("experiments/base.yaml") as f:
+        cfg = yaml.safe_load(f)
+
+    env = make_oss_env(
+        n_agents     = cfg["n_agents"],
+        backlog_size = cfg["backlog_size"],
+        seed         = cfg["seed"]
+    )
     obs, infos = env.reset()
     pprint(obs)
     for _ in range(5):

@@ -1,4 +1,6 @@
 # scripts/train.py
+#動作チェック用
+
 import gymnasium as gym
 from kazoo.learners.indep_ppo import IndependentPPO, PPOConfig
 
