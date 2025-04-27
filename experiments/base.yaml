@@ -1,0 +1,30 @@
+# experiments/base.yaml
+
+# ─── 環境設定 (Environment) ───
+env_name: OSSSimple-v0         # 環境ID。gym.make で使う
+n_agents: 3                    # エージェント数
+backlog_size: 6                 # 初期タスク数
+seed: 0                         # 乱数シード
+render_mode: null               # レンダリング（今は使わないので null）
+
+# ─── アルゴリズム設定 (Algorithm Hyperparameters) ───
+algo_name: IPPO                 # 使用する手法の名前（IPPO固定）
+lr: 0.0003                      # 学習率 (learning rate)
+gamma: 0.99                     # 割引率 (discount factor)
+gae_lambda: 0.95                # GAEのλパラメータ
+clip_eps: 0.2                   # PPOクリップ幅
+vf_coef: 0.5                    # 価値関数損失項の重み
+ent_coef: 0.01                  # エントロピー正則化項の重み
+rollout_len: 128                # 1回のrolloutで収集するステップ数
+mini_batch: 4                   # ミニバッチの分割数
+epochs: 4                       # 1 rolloutあたり何回optimizerを回すか
+device: cpu                     # 計算デバイス（cpu または cuda）
+
+# ─── 学習設定 (Training Schedule) ───
+total_steps: 50000              # 総ステップ数
+log_interval: 1000              # ログを出力する間隔（ステップ単位）
+
+# ─── ログ・モデル保存設定 (Logging & Saving) ───
+save_dir: models                # モデル保存ディレクトリ
+log_dir: logs                   # ログ保存ディレクトリ
+checkpoint_interval: 5000       # モデルを保存する間隔（ステップ単位）
