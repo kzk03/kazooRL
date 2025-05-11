@@ -1,6 +1,7 @@
 #「OSS開発」を模したマルチエージェント環境を定義するファイル
 
 import random
+
 import numpy as np
 from gymnasium import spaces
 from pettingzoo.utils import ParallelEnv
@@ -18,13 +19,14 @@ def env(n_agents: int = 3,
 class OSSDevEnv(ParallelEnv):
     metadata = {"render_modes": []}
 
-    def __init__(self, n_agents: int, backlog_size: int, seed=None):
+    def __init__(self, n_agents, backlog_size, seed=None, profiles=None):
         super().__init__()
         self.n_agents = n_agents
         self.agents = [f"dev_{i}" for i in range(n_agents)]
         self.possible_agents = self.agents[:]
         self.backlog_init = backlog_size
         self.np_random = np.random.default_rng(seed)
+        self.profiles = profiles or self._default_profiles()
         self.skills = {
             a: {
                 "review": np.random.uniform(0.5, 1.0),
@@ -35,12 +37,26 @@ class OSSDevEnv(ParallelEnv):
 
         # spaces
         self.observation_spaces = {
-            a: spaces.Box(0, 10, shape=(5,), dtype=np.int32)
+            a: spaces.Box(low=0, high=10, shape=(11,), dtype=np.float32)
             for a in self.agents
         }
         self.action_spaces = {a: spaces.Discrete(4) for a in self.agents}
 
         self.reset(seed=seed)
+
+
+    def _default_profiles(self):
+        return {
+            a: {
+                "skill": {
+                    "code": np.random.uniform(0.5, 1.0),
+                    "review": np.random.uniform(0.5, 1.0)
+                },
+                "lang_emb": [1.0, 0.0, 0.0],
+                "task_types": [5, 2, 1]
+            }
+            for a in self.agents
+        }
 
     def reset(self, seed=None, options=None):
         self.backlog = [self.np_random.integers(1, 4) for _ in range(self.backlog_init)]
@@ -77,12 +93,17 @@ class OSSDevEnv(ParallelEnv):
                 author = self.pending[a].pop(0)  # FIFOで処理
                 reviewer_skill = self.skills[a]["review"]
                 self._reward_contribution(a, author, reviewer_skill)
-
+    
     def _reward_contribution(self, reviewer, author, skill):
-        reward_author = 10.0 * skill
-        reward_reviewer = 2.0 + 3.0 * (skill - 0.5)
+        reviewer_skill = self.profiles[reviewer]["skill"]["review"]
+        author_skill = self.profiles[author]["skill"]["code"]
+
+        reward_author = 10.0 * reviewer_skill * author_skill
+        reward_reviewer = 2.0 + 3.0 * (reviewer_skill - 0.5) * author_skill
+
         self.rewards[author] += reward_author
         self.rewards[reviewer] += reward_reviewer
+
         print(f"[REVIEW] {reviewer} reviewed {author} → A:{reward_author:.2f}, R:{reward_reviewer:.2f}")
 
     def _apply_time_penalty(self):
@@ -102,10 +123,13 @@ class OSSDevEnv(ParallelEnv):
         return terminations, truncations
 
     def _obs(self, a):
+        p = self.profiles[a]
         return np.array([
             len(self.backlog),
             self.progress[a],
             len(self.pending[a]),
-            self.skills[a]["code"],
-            self.skills[a]["review"]
-        ], dtype=np.int32)
+            p["skill"]["code"],
+            p["skill"]["review"],
+            *p["lang_emb"],
+            *p["task_types"]
+        ], dtype=np.float32)
