@@ -1,24 +1,396 @@
-dev_0:
+swanson:
   skill:
-    code: 0.8
-    review: 0.4
-  lang_emb: [1.0, 0.0, 0.0]
-  task_types: [10, 2, 1]
-dev_1:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+mattd:
   skill:
-    code: 0.5
-    review: 0.9
-  lang_emb: [0.8, 0.3, 0.1]
-  task_types: [4, 7, 2]
-dev_2:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+akavlie:
   skill:
-    code: 0.6
-    review: 0.7
-  lang_emb: [0.5, 0.5, 0.5]
-  task_types: [3, 5, 4]
-dev_3:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+RonnyPfannschmidt:
   skill:
-    code: 0.7
-    review: 0.6
-  lang_emb: [0.2, 0.8, 0.2]
-  task_types: [5, 3, 6]
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+sharoonthomas:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+SimonSapin:
+  skill:
+    code: 0.09
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+kennethreitz:
+  skill:
+    code: 0.03
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+petermanser:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+wilsaj:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+jfinkels:
+  skill:
+    code: 0.02
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+Luit:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+hadleyrich:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+bastianh:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+ThomasWaldmann:
+  skill:
+    code: 0.02
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+vreon:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+dotslashdash:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+embe:
+  skill:
+    code: 0.03
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+ustun:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+callahad:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+pingswept:
+  skill:
+    code: 0.02
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+almet:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+plaes:
+  skill:
+    code: 0.02
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+s0undt3ch:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+DasIch:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+christophercurrie:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+jarus:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+jperras:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+kracekumar:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+rozza:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+Cixelyn:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+jimrollenhagen:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+FND:
+  skill:
+    code: 0.02
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2
+awsum:
+  skill:
+    code: 0.01
+    review: 0.0
+  lang_emb:
+  - 1.0
+  - 0.0
+  - 0.0
+  task_types:
+  - 10
+  - 3
+  - 2

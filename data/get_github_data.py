@@ -12,8 +12,7 @@ load_dotenv(dotenv_path=env_path)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 token = os.getenv("GITHUB_TOKEN")
-print("✅ GITHUB_TOKEN:", token)
-print("✅ ASCII only?:", all(ord(c) < 128 for c in token))
+# トークンが設定されていない場合はエラー
 if not GITHUB_TOKEN:
     raise ValueError("❌ .env に GITHUB_TOKEN が設定されていません")
 
