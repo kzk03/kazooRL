@@ -33,7 +33,7 @@ class OSSDevEnv(ParallelEnv):
 
         # spaces
         self.observation_spaces = {
-            a: spaces.Box(0, 10, shape=(3,), dtype=np.int32)
+            a: spaces.Box(0, 10, shape=(5,), dtype=np.int32)
             for a in self.agents
         }
         self.action_spaces = {a: spaces.Discrete(4) for a in self.agents}
