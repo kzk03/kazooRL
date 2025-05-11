@@ -1,3 +1,5 @@
+#IPPOの中身（ニューラルネット，報酬計算，学習処理）などを実装
+
 from __future__ import annotations
 
 """Independent-PPO (IPPO) — minimalベースライン実装

@@ -1,4 +1,6 @@
-# scripts/check_oss_env.py
+# 仮想OSS環境の動作確認
+
+
 from pprint import pprint
 
 import yaml

@@ -1,3 +1,5 @@
+#学習モデルを評価するスクリプト
+
 import csv
 import os
 

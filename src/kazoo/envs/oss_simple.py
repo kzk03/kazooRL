@@ -1,3 +1,5 @@
+#「OSS開発」を模したマルチエージェント環境を定義するファイル
+
 import random
 
 import numpy as np
@@ -21,6 +23,13 @@ class OSSDevEnv(ParallelEnv):
         self.possible_agents = self.agents[:]
         self.backlog_init = backlog_size
         self.np_random = np.random.default_rng(seed)
+        self.skills = {
+            a: {
+                "review": np.random.uniform(0.5, 1.0),
+                "code": np.random.uniform(0.5, 1.0)
+            }
+            for a in self.agents
+        }
 
         # spaces
         self.observation_spaces = {
@@ -64,9 +73,10 @@ class OSSDevEnv(ParallelEnv):
                 self.pending[a] -= 1                      # review
                 author = random.choice([
                     x for x in self.agents if x != a])
-                rewards[author] += 1.0                    # merge reward
-                rewards[a]    += 0.2                      # review reward
-            # idle or invalid acts do nothing
+                # skill に基づく報酬調整
+                reviewer_skill = self.skills[a]["review"]
+                rewards[author] += 1.0 * reviewer_skill  # 良いレビューなら貢献大
+                rewards[a] += 0.2 + 0.3 * (reviewer_skill - 0.5)  # スキルに応じてボーナス
 
         # Phase 2: time penalty
         for a in self.agents:
@@ -91,4 +101,7 @@ class OSSDevEnv(ParallelEnv):
     def _obs(self, a):
         return np.array([len(self.backlog),
                          self.progress[a],
-                         self.pending[a]], dtype=np.int32)
+                         self.pending[a],
+                         self.skills[a]["code"],
+                         self.skills[a]["review"]
+                         ], dtype=np.int32)

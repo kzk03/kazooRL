@@ -1,4 +1,6 @@
-import os  # ★ 追記
+#本番用スクリプト
+
+import os
 
 import yaml
 

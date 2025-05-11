@@ -1,4 +1,6 @@
+# OSSDevEnv 環境を、Gym形式（単一の観測と行動空間）で扱えるように変換するラッパー
 # src/kazoo/envs/oss_gym_wrapper.py
+
 from gymnasium import Env, spaces
 from kazoo.envs.oss_simple import OSSDevEnv
 
