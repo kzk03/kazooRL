@@ -9,7 +9,7 @@ from kazoo.envs.oss_simple import env as make_oss_env  # 直接インポート
 
 
 def main():
-    with open("experiments/base.yaml") as f:
+    with open("config/base.yaml") as f:
         cfg = yaml.safe_load(f)
 
     env = make_oss_env(
