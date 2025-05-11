@@ -56,7 +56,7 @@ def run_episode(env, agent, cfg, writer=None, log=False):
 
 def main():
     # ① 設定ファイルを読み込む -----------------------------------
-    with open("config/base.yaml") as f:
+    with open("configs/base.yaml") as f:
         cfg = yaml.safe_load(f)
 
     # ② モデルと環境の初期化 -----------------------------------
