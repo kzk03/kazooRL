@@ -1,10 +1,11 @@
 #「OSS開発」を模したマルチエージェント環境を定義するファイル
 
 import random
-
 import numpy as np
 from gymnasium import spaces
 from pettingzoo.utils import ParallelEnv
+
+from kazoo.consts.actions import Action
 
 
 def env(n_agents: int = 3,
@@ -12,6 +13,7 @@ def env(n_agents: int = 3,
         seed: int | None = None,
         **kwargs):
     return OSSDevEnv(n_agents, backlog_size, seed)
+
 
 class OSSDevEnv(ParallelEnv):
     metadata = {"render_modes": []}
@@ -40,12 +42,10 @@ class OSSDevEnv(ParallelEnv):
 
         self.reset(seed=seed)
 
-    # ---------------- core API ----------------
     def reset(self, seed=None, options=None):
-        self.backlog = [self.np_random.integers(1, 4)  # complexity 1-3
-                        for _ in range(self.backlog_init)]
+        self.backlog = [self.np_random.integers(1, 4) for _ in range(self.backlog_init)]
         self.progress = {a: 0 for a in self.agents}
-        self.pending = {a: 0 for a in self.agents}
+        self.pending = {a: [] for a in self.agents}  # reviewer: list of authors
         self.steps = 0
 
         obs = {a: self._obs(a) for a in self.agents}
@@ -53,55 +53,59 @@ class OSSDevEnv(ParallelEnv):
         return obs, infos
 
     def step(self, actions):
-        rewards = {a: 0.0 for a in self.agents}
-        terminations = {a: False for a in self.agents}
-        truncations = {a: False for a in self.agents}
-        infos = {a: {} for a in self.agents}
+        self.rewards = {a: 0.0 for a in self.agents}
 
-        # Phase 1: apply actions
-        for a, act in actions.items():
-            if act == 1 and self.progress[a] == 0 and self.backlog:
-                self.progress[a] = self.backlog.pop()     # pickup
-            elif act == 2 and self.progress[a] > 0:
-                self.progress[a] -= 1                     # coding
-                if self.progress[a] == 0:
-                    # create PR to be reviewed by someone else
-                    reviewer = random.choice([
-                        x for x in self.agents if x != a])
-                    self.pending[reviewer] += 1
-            elif act == 3 and self.pending[a] > 0:
-                self.pending[a] -= 1                      # review
-                author = random.choice([
-                    x for x in self.agents if x != a])
-                # skill に基づく報酬調整
-                reviewer_skill = self.skills[a]["review"]
-                rewards[author] += 1.0 * reviewer_skill  # 良いレビューなら貢献大
-                rewards[a] += 0.2 + 0.3 * (reviewer_skill - 0.5)  # スキルに応じてボーナス
-
-        # Phase 2: time penalty
-        for a in self.agents:
-            rewards[a] -= 0.01
-
-        self.steps += 1
-
-        # done?
-        done_all = (not self.backlog and
-                    all(v == 0 for v in self.progress.values()) and
-                    all(v == 0 for v in self.pending.values()))
-        timeout = self.steps >= 100
-
-        for a in self.agents:
-            terminations[a] = done_all
-            truncations[a] = timeout
-
+        self._apply_actions(actions)
+        self._apply_time_penalty()
+        terminations, truncations = self._check_termination()
         observations = {a: self._obs(a) for a in self.agents}
-        return observations, rewards, terminations, truncations, infos
+        infos = {a: {} for a in self.agents}
+        return observations, self.rewards, terminations, truncations, infos
 
-    # ---------------- helpers ----------------
+    def _apply_actions(self, actions):
+        for a, act in actions.items():
+            if act == Action.PICKUP and self.progress[a] == 0 and self.backlog:
+                self.progress[a] = self.backlog.pop()
+
+            elif act == Action.CODE and self.progress[a] > 0:
+                self.progress[a] -= 1
+                if self.progress[a] == 0:
+                    reviewer = random.choice([x for x in self.agents if x != a])
+                    self.pending[reviewer].append(a)  # 保存：誰のコードか
+
+            elif act == Action.REVIEW and self.pending[a]:
+                author = self.pending[a].pop(0)  # FIFOで処理
+                reviewer_skill = self.skills[a]["review"]
+                self._reward_contribution(a, author, reviewer_skill)
+
+    def _reward_contribution(self, reviewer, author, skill):
+        reward_author = 10.0 * skill
+        reward_reviewer = 2.0 + 3.0 * (skill - 0.5)
+        self.rewards[author] += reward_author
+        self.rewards[reviewer] += reward_reviewer
+        print(f"[REVIEW] {reviewer} reviewed {author} → A:{reward_author:.2f}, R:{reward_reviewer:.2f}")
+
+    def _apply_time_penalty(self):
+        for a in self.agents:
+            self.rewards[a] -= 0.01
+
+    def _check_termination(self):
+        self.steps += 1
+        done_all = (
+            not self.backlog and
+            all(v == 0 for v in self.progress.values()) and
+            all(len(v) == 0 for v in self.pending.values())
+        )
+        timeout = self.steps >= 100
+        terminations = {a: done_all for a in self.agents}
+        truncations = {a: timeout for a in self.agents}
+        return terminations, truncations
+
     def _obs(self, a):
-        return np.array([len(self.backlog),
-                         self.progress[a],
-                         self.pending[a],
-                         self.skills[a]["code"],
-                         self.skills[a]["review"]
-                         ], dtype=np.int32)
+        return np.array([
+            len(self.backlog),
+            self.progress[a],
+            len(self.pending[a]),
+            self.skills[a]["code"],
+            self.skills[a]["review"]
+        ], dtype=np.int32)
