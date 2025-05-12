@@ -3,6 +3,7 @@ import os
 import numpy as np
 import torch
 import yaml
+import json
 
 from kazoo.envs.oss_simple import env as make_oss_env
 from kazoo.learners.indep_ppo import IndependentPPO, PPOConfig
@@ -16,13 +17,17 @@ def main():
     # ---------- ② 開発者プロフィールも読み込み ----------
     with open("configs/dev_profiles.yaml", "r") as f:
         dev_profiles = yaml.safe_load(f)
+    
+    with open("data/backlog.json") as f:
+        backlog = json.load(f)
 
     # ---------- ③ 環境を生成（プロフィール付き） ----------
     env = make_oss_env(
         n_agents=cfg["n_agents"],
         backlog_size=cfg["backlog_size"],
         seed=cfg["seed"],
-        profiles=dev_profiles  # ← これが環境へ渡る
+        profiles=dev_profiles,
+        backlog_data=backlog
     )
 
     # ---------- ④ PPOエージェントを初期化 ----------

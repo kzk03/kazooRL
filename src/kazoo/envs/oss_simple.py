@@ -19,7 +19,7 @@ def env(n_agents: int = 3,
 class OSSDevEnv(ParallelEnv):
     metadata = {"render_modes": []}
 
-    def __init__(self, n_agents, backlog_size, seed=None, profiles=None):
+    def __init__(self, n_agents, backlog_size, seed=None, profiles=None, backlog_data=None):
         super().__init__()
         self.n_agents = n_agents
         self.agents = [f"dev_{i}" for i in range(n_agents)]
@@ -27,6 +27,7 @@ class OSSDevEnv(ParallelEnv):
         self.backlog_init = backlog_size
         self.np_random = np.random.default_rng(seed)
         self.profiles = profiles or self._default_profiles()
+        self.backlog = backlog_data
         self.skills = {
             a: {
                 "review": np.random.uniform(0.5, 1.0),
