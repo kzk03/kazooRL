@@ -12,7 +12,13 @@ dependencies = [
   "shimmy>=2.0.0",
   "supersuit>=3.10.0",
   "python-dotenv>=1.0.0",
-  "requests>=2.31.0" 
+  "requests>=2.31.0",
+
+  "torch-geometric>=2.5.0",
+  "torch-scatter>=2.1.2",
+  "torch-sparse>=0.6.18",
+  "torch-cluster>=1.6.1",
+  "torch-spline-conv>=1.2.2"
 ]
 
 [tool.uv]             
