@@ -25,7 +25,8 @@ def main():
     print("✅ グラフ読み込み成功")
 
     # === GNNモデル構築 ===
-    model = GNNModel(in_channels=5, out_channels=32)
+    model = GNNModel(in_channels_dict={"dev": 8, "task": 8}, out_channels=32)
+
     model.eval()
 
     # === 推論実行 ===

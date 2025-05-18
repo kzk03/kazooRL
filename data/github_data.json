@@ -4,551 +4,1192 @@
       "pullRequests": {
         "nodes": [
           {
-            "number": 196,
-            "title": "Fix crossref links in docs",
+            "number": 5737,
+            "title": "Fix global CONTRIBUTING link",
             "author": {
-              "login": "swanson"
+              "login": "strugee"
             },
-            "mergedAt": "2011-03-14T01:10:44Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 204,
-            "title": "Extensions docs modifications.",
+            "number": 5736,
+            "title": "feat: support call template_filter without parens",
             "author": {
-              "login": "mattd"
+              "login": "kadai0308"
             },
-            "mergedAt": "2011-03-15T16:20:33Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 228,
-            "title": "Corrections to fabfile example",
+            "number": 5735,
+            "title": "fix #5729: raise TypeError when @app.template_filter is used without parenthesis",
             "author": {
-              "login": "akavlie"
+              "login": "Gable-github"
             },
-            "mergedAt": "2011-05-07T22:28:05Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 230,
-            "title": "the import order note was meant to be bold, not cursive",
+            "number": 5734,
+            "title": "Fix template_filter decorator to support usage without parentheses",
             "author": {
-              "login": "RonnyPfannschmidt"
+              "login": "Akshay9715"
             },
-            "mergedAt": "2011-05-08T10:32:31Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 232,
-            "title": "Fixes Issue #227 where pop causes the session to be modified.",
+            "number": 5733,
+            "title": "Zadanie 14 - merge dev1",
             "author": {
-              "login": "sharoonthomas"
+              "login": "hatmic0101"
             },
-            "mergedAt": "2011-05-24T14:41:27Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 236,
-            "title": "Add Frozen-Flask to the extension registry",
+            "number": 5732,
+            "title": "Dev0",
             "author": {
-              "login": "SimonSapin"
+              "login": "Wiczka03"
             },
-            "mergedAt": "2011-05-29T08:23:57Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 237,
-            "title": "A fix for send_file with unicode filenames.",
+            "number": 5731,
+            "title": "drop end of life python versions",
             "author": {
-              "login": "SimonSapin"
+              "login": "davidism"
             },
-            "mergedAt": "2011-06-24T14:30:56Z",
+            "mergedAt": "2025-05-13T15:35:41Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 238,
-            "title": "Clarify in docs that the SERVER_NAME config can also take a port number.",
+            "number": 5730,
+            "title": "release version 3.1.1",
             "author": {
-              "login": "SimonSapin"
+              "login": "davidism"
             },
-            "mergedAt": "2011-05-30T19:45:08Z",
+            "mergedAt": "2025-05-13T15:01:42Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 243,
-            "title": "fixed minor typo",
+            "number": 5727,
+            "title": "use uv",
             "author": {
-              "login": "kennethreitz"
+              "login": "davidism"
             },
-            "mergedAt": "2011-06-16T12:06:29Z",
+            "mergedAt": "2025-05-12T01:04:35Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 249,
-            "title": "jQuery Documentation Update",
+            "number": 5724,
+            "title": "Update errorhandling.rst",
             "author": {
-              "login": "petermanser"
+              "login": "Zephyr0071"
             },
-            "mergedAt": "2011-06-20T22:16:35Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 250,
-            "title": "Deploying with Fabric fabfile bugfix",
+            "number": 5723,
+            "title": "Update macOS UI reference to \u201cSystem Settings\u201d",
             "author": {
-              "login": "wilsaj"
+              "login": "abhiramk6"
             },
-            "mergedAt": "2011-06-21T15:12:44Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 252,
-            "title": "Added HTTPBin to Apps List",
+            "number": 5722,
+            "title": "docs: add warning and best practices for url_for(..., _external=True)\u2026",
             "author": {
-              "login": "kennethreitz"
+              "login": "ranveer9"
             },
-            "mergedAt": "2011-06-23T17:29:12Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 257,
-            "title": "Pronoun gender fixes in documentation",
+            "number": 5717,
+            "title": "Improve README.md structure and clarity for better onboarding",
             "author": {
-              "login": "jfinkels"
+              "login": "Wowieee4"
             },
-            "mergedAt": "2011-06-27T05:58:10Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 259,
-            "title": "Fix a link in the changelog.",
+            "number": 5715,
+            "title": "Fix Doc",
             "author": {
-              "login": "SimonSapin"
+              "login": "EdgarPrueba"
             },
-            "mergedAt": "2011-06-27T22:59:22Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 262,
-            "title": "Typo fix in code samples for Pluggable Views doc.",
+            "number": 5714,
+            "title": "Doc sphinx",
             "author": {
-              "login": "SimonSapin"
+              "login": "EdgarPrueba"
             },
-            "mergedAt": "2011-06-28T14:09:21Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 263,
-            "title": "Add a link to pluggable views docs in the changelog.",
+            "number": 5713,
+            "title": "try 3",
             "author": {
-              "login": "SimonSapin"
+              "login": "EdgarPrueba"
             },
-            "mergedAt": "2011-06-28T14:09:03Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 267,
-            "title": "Missed the -w option in uWSGI deployment docs. ",
+            "number": 5712,
+            "title": "Doc sphinx",
             "author": {
-              "login": "Luit"
+              "login": "EdgarPrueba"
             },
-            "mergedAt": "2011-08-24T22:57:33Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 269,
-            "title": "Doc fix",
+            "number": 5710,
+            "title": "fix for 5709: explicitly delete error references to prevent memory leaks",
             "author": {
-              "login": "hadleyrich"
+              "login": "tomasz-pankowski"
             },
-            "mergedAt": "2011-07-06T08:25:40Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 271,
-            "title": "small error in tutorial",
+            "number": 5708,
+            "title": "Update README.md",
             "author": {
-              "login": "bastianh"
+              "login": "aswindevsp"
             },
-            "mergedAt": "2011-07-07T11:21:39Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 273,
-            "title": "fixed typo",
+            "number": 5706,
+            "title": "Add PR trigger to workflow",
             "author": {
-              "login": "ThomasWaldmann"
+              "login": "Merida39"
             },
-            "mergedAt": "2011-07-10T18:20:41Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 274,
-            "title": "fixed typo",
+            "number": 5705,
+            "title": "Merge app and request contexts into a single context (#5639)",
             "author": {
-              "login": "ThomasWaldmann"
+              "login": "ascender1729"
             },
-            "mergedAt": "2011-07-10T18:21:09Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 275,
-            "title": "typo fix: flask -> flag",
+            "number": 5703,
+            "title": "Fix misleading docstring for teardown_request (closes #5102)",
             "author": {
-              "login": "vreon"
+              "login": "cureprotocols"
             },
-            "mergedAt": "2011-07-12T00:41:16Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 276,
-            "title": "Corrected decorators to remove duplicate teardown_request() and add after",
+            "number": 5702,
+            "title": "remove tests about deprecated pkgutil.get_loader",
             "author": {
-              "login": "dotslashdash"
+              "login": "davidism"
             },
-            "mergedAt": "2011-07-11T22:32:56Z",
+            "mergedAt": "2025-03-29T22:45:11Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 277,
-            "title": "Don't use deprecated flask.session in flask.ctx.",
+            "number": 5701,
+            "title": "add endpoint name in favicon example",
             "author": {
-              "login": "embe"
+              "login": "davidism"
             },
-            "mergedAt": "2011-07-12T20:54:55Z",
+            "mergedAt": "2025-03-29T22:32:30Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 281,
-            "title": "Typo: developped -> developed",
+            "number": 5700,
+            "title": "better type checking during deprecation",
             "author": {
-              "login": "ustun"
+              "login": "davidism"
             },
-            "mergedAt": "2011-07-18T14:04:32Z",
+            "mergedAt": "2025-03-29T22:28:27Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 282,
-            "title": "Minor documentation grammar / typo fixes",
+            "number": 5698,
+            "title": "remove extra logic",
             "author": {
-              "login": "callahad"
+              "login": "moon548834"
             },
-            "mergedAt": "2011-07-19T23:20:28Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 284,
-            "title": "Intersphinx link fixes.",
+            "number": 5697,
+            "title": "Stable",
             "author": {
-              "login": "SimonSapin"
+              "login": "degerahmet"
             },
-            "mergedAt": "2011-07-23T18:15:01Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 288,
-            "title": "Consistent quotes",
+            "number": 5696,
+            "title": "add fixture to mock importlib.util.find_spec for custom loaders in tests",
             "author": {
-              "login": "kennethreitz"
+              "login": "degerahmet"
             },
-            "mergedAt": "2011-07-29T12:55:50Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 293,
-            "title": "Add runserver.py filename to match earlier section of example",
+            "number": 5695,
+            "title": "Remove HTTP Public Key Pinning from docs",
             "author": {
-              "login": "pingswept"
+              "login": "s-hamann"
             },
-            "mergedAt": "2011-08-05T01:34:31Z",
+            "mergedAt": "2025-03-29T22:17:48Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 297,
-            "title": "Fix typos",
+            "number": 5693,
+            "title": "add fixture to mock importlib.util.find_spec for custom loaders in tests",
             "author": {
-              "login": "pingswept"
+              "login": "degerahmet"
             },
-            "mergedAt": "2011-08-05T14:16:28Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 303,
-            "title": "typo",
+            "number": 5687,
+            "title": "Fix inaccurate documentation for adding a favicon redirect",
             "author": {
-              "login": "almet"
+              "login": "AluminumAngel"
             },
-            "mergedAt": "2011-09-07T09:44:52Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 304,
-            "title": "Improve configuration docs a bit",
+            "number": 5685,
+            "title": "Improve invalid response error messages",
             "author": {
-              "login": "plaes"
+              "login": "kavasg"
             },
-            "mergedAt": "2011-08-17T13:05:58Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 307,
-            "title": "route decorators custom enpoints",
+            "number": 5682,
+            "title": "Use SPDX license identifier",
             "author": {
-              "login": "s0undt3ch"
+              "login": "cdce8p"
             },
-            "mergedAt": "2011-08-31T15:33:17Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 308,
-            "title": "Typo in documentation",
+            "number": 5681,
+            "title": "This closes #3 will act as a coverage tracker, to our functions",
             "author": {
-              "login": "DasIch"
+              "login": "Arbmani"
             },
-            "mergedAt": "2011-08-25T20:15:31Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 309,
-            "title": "Fix session loading in flask.testing.TestClient.session_transaction()",
+            "number": 5678,
+            "title": "Enable PDF and ePub offline documentation downloads",
             "author": {
-              "login": "embe"
+              "login": "HackingGate"
             },
-            "mergedAt": "2011-09-07T09:44:08Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 311,
-            "title": "Fix for d5cd4f8 which broke install on Windows ",
+            "number": 5677,
+            "title": "[Edited] Fix minor bug in the main function",
             "author": {
-              "login": "christophercurrie"
+              "login": "MayureshMore"
             },
-            "mergedAt": "2011-08-31T13:17:10Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 320,
-            "title": "Flask-MongoKit to GitHub",
+            "number": 5674,
+            "title": "Handle help arg by itself the same as no args",
             "author": {
-              "login": "jarus"
+              "login": "dunkmann00"
             },
-            "mergedAt": "2011-09-13T19:30:47Z",
+            "mergedAt": "2025-03-29T22:15:04Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 322,
-            "title": "Fixed typo in docstring of dispatch_request method of flask.views.View",
+            "number": 5672,
+            "title": "Fixes typo in `globals`",
             "author": {
-              "login": "jperras"
+              "login": "danielvdao"
             },
-            "mergedAt": "2011-09-18T19:20:40Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 324,
-            "title": "Blueprint.app_url_value_preprocessor doesn't work correctly.",
+            "number": 5671,
+            "title": "Update app factory docs",
             "author": {
-              "login": "embe"
+              "login": "kotvkvante"
             },
-            "mergedAt": "2011-09-17T20:20:31Z",
+            "mergedAt": "2025-03-29T22:10:56Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 327,
-            "title": "Add to sys.path, not sys.path_info",
+            "number": 5665,
+            "title": "Workflow",
             "author": {
-              "login": "SimonSapin"
+              "login": "pgjones"
             },
-            "mergedAt": "2011-09-23T13:02:37Z",
+            "mergedAt": null,
+            "reviews": {
+              "nodes": [
+                {
+                  "author": {
+                    "login": "pamelafox"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "samuelpondugala"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "number": 5660,
+            "title": "Move parts of the session code to sansio",
+            "author": {
+              "login": "pgjones"
+            },
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 333,
-            "title": "Added PasswordField in docs/patterns/wtforms.rst",
+            "number": 5659,
+            "title": "Async Iterable Response",
             "author": {
-              "login": "kracekumar"
+              "login": "CoolCat467"
             },
-            "mergedAt": "2011-10-06T19:27:09Z",
+            "mergedAt": "2025-03-30T20:15:54Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 334,
-            "title": "Typo fix",
+            "number": 5650,
+            "title": "Fix typo in the docs",
             "author": {
-              "login": "SimonSapin"
+              "login": "zhuangzhuang"
             },
-            "mergedAt": "2011-10-13T11:34:13Z",
+            "mergedAt": "2025-03-29T21:49:06Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 337,
-            "title": "Updated docs - for Response class status_code => status",
+            "number": 5649,
+            "title": "update `__version__` deprecation",
             "author": {
-              "login": "rozza"
+              "login": "davidism"
             },
-            "mergedAt": "2011-10-17T13:30:42Z",
+            "mergedAt": "2024-11-24T00:06:37Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 342,
-            "title": "Config documentation \"instance_root\" -> \"instance_path\"",
+            "number": 5648,
+            "title": "remove previously deprecated code",
             "author": {
-              "login": "Cixelyn"
+              "login": "davidism"
             },
-            "mergedAt": "2011-11-02T13:13:14Z",
+            "mergedAt": "2024-11-23T23:59:30Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 345,
-            "title": "Fix issue #338",
+            "number": 5647,
+            "title": "fix type hint for `cli_runner.invoke`",
             "author": {
-              "login": "jimrollenhagen"
+              "login": "kurtatter"
             },
-            "mergedAt": "2011-11-20T16:00:14Z",
+            "mergedAt": "2024-11-24T01:52:56Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 347,
-            "title": "Session information is not kept around in test_client after redirect",
+            "number": 5643,
+            "title": "Use SPDX license identifier",
             "author": {
-              "login": "plaes"
+              "login": "cdce8p"
             },
-            "mergedAt": "2011-11-27T03:26:17Z",
+            "mergedAt": null,
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 369,
-            "title": "documentation: stylistic adjustments",
+            "number": 5640,
+            "title": "release version 3.1.0",
             "author": {
-              "login": "FND"
+              "login": "davidism"
             },
-            "mergedAt": "2012-01-04T23:05:16Z",
+            "mergedAt": "2024-11-13T18:27:38Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 375,
-            "title": "typo fix",
+            "number": 5638,
+            "title": "use generic bases for session",
             "author": {
-              "login": "awsum"
+              "login": "davidism"
             },
-            "mergedAt": "2012-01-07T19:20:29Z",
+            "mergedAt": "2024-11-13T16:27:13Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 387,
-            "title": "documentation: minor stylistic adjustments",
+            "number": 5637,
+            "title": "configure and check `request.trusted_hosts`",
             "author": {
-              "login": "FND"
+              "login": "davidism"
             },
-            "mergedAt": "2012-01-23T19:51:15Z",
+            "mergedAt": "2024-11-13T05:03:23Z",
             "reviews": {
               "nodes": []
             }
           },
           {
-            "number": 390,
-            "title": "Added PATCH method to the list of HTTP method functions for MethodView",
+            "number": 5634,
+            "title": "setting `SERVER_NAME` does not restrict routing for both `subdomain_matching` and `host_matching`",
             "author": {
-              "login": "jfinkels"
+              "login": "davidism"
             },
-            "mergedAt": "2012-01-24T22:01:27Z",
+            "mergedAt": "2024-11-12T18:13:39Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5633,
+            "title": "update min blinker version",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-11-08T17:55:00Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5632,
+            "title": "enable secret key rotation",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-11-08T16:16:04Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5630,
+            "title": "update env file precedence",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-11-07T19:56:27Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5629,
+            "title": "give priority to '-e/--env-file' option over default files (#5628)",
+            "author": {
+              "login": "jalaj711"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5627,
+            "title": "fix example and tutorial compatibility and update metadata",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-11-02T01:06:12Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5626,
+            "title": "add config and docs for limits",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-11-01T20:21:36Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5624,
+            "title": "update minimum dependencies",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-10-31T20:15:30Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5623,
+            "title": "drop support for Python 3.8",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-10-31T19:32:11Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5620,
+            "title": "fix pyright type errors",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-10-24T21:54:53Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5618,
+            "title": "Fix the issue link in the Flask 3.0.1 Changelog in the send_file argu\u2026",
+            "author": {
+              "login": "CatarinaPBressan"
+            },
+            "mergedAt": "2024-10-22T21:16:56Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5617,
+            "title": "Update CHANGES.rst",
+            "author": {
+              "login": "CatarinaPBressan"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5615,
+            "title": "use python 3.9 to test dev versions",
+            "author": {
+              "login": "davidism"
+            },
+            "mergedAt": "2024-10-18T20:22:45Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5614,
+            "title": "Drop Python 3.8 support",
+            "author": {
+              "login": "kurtmckee"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5613,
+            "title": "Address a mypy failure in CI",
+            "author": {
+              "login": "kurtmckee"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5611,
+            "title": "Update README.md",
+            "author": {
+              "login": "Vrusharth"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5610,
+            "title": "helpers.py",
+            "author": {
+              "login": "Kartikeya-Kotkar"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5609,
+            "title": "Fix typo in the changelog",
+            "author": {
+              "login": "greyli"
+            },
+            "mergedAt": "2024-10-18T19:59:21Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5608,
+            "title": "adding documentation",
+            "author": {
+              "login": "sanjaytaylor2012"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5607,
+            "title": "repo_path",
+            "author": {
+              "login": "girishonweb"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5603,
+            "title": "Pagination",
+            "author": {
+              "login": "palako"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5602,
+            "title": "Sept 6th demo",
+            "author": {
+              "login": "palako"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5601,
+            "title": "Updated deploy.rst for better clarity",
+            "author": {
+              "login": "najasnake12"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5599,
+            "title": "update helpers.send_from_directory docstring",
+            "author": {
+              "login": "CheeseCake87"
+            },
+            "mergedAt": "2024-11-06T17:47:58Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5555,
+            "title": "Refactor helpers.py to Move Hard-Coded List to globals.py",
+            "author": {
+              "login": "40gilad"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": [
+                {
+                  "author": {
+                    "login": "ThiefMaster"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "RonnyPfannschmidt"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "40gilad"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "number": 5552,
+            "title": "git add tox.ini requirements/typing.txt",
+            "author": {
+              "login": "ComputerScienceGirl12"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5551,
+            "title": "Provide more clear flask -e, --env-file flag desription",
+            "author": {
+              "login": "chakib401"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5550,
+            "title": "Pyright types fixes",
+            "author": {
+              "login": "brendon-codes"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": [
+                {
+                  "author": {
+                    "login": "brendon-codes"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "number": 5548,
+            "title": "Fixes Pyright type errors for `src/flask/helpers.py`",
+            "author": {
+              "login": "brendon-codes"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5546,
+            "title": "Fixes Pyright type errors for `src/flask/blueprint.py`",
+            "author": {
+              "login": "brendon-codes"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5544,
+            "title": "Fixes Pyright type errors for `src/flask/app.py`",
+            "author": {
+              "login": "brendon-codes"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": [
+                {
+                  "author": {
+                    "login": "davidism"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "davidism"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "brendon-codes"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "brendon-codes"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "davidism"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "davidism"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "brendon-codes"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "davidism"
+                  }
+                },
+                {
+                  "author": {
+                    "login": "brendon-codes"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "number": 5541,
+            "title": "[pre-commit.ci] pre-commit autoupdate",
+            "author": {
+              "login": "pre-commit-ci"
+            },
+            "mergedAt": "2024-08-06T15:31:01Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5539,
+            "title": "Bump the github-actions group with 3 updates",
+            "author": {
+              "login": "dependabot"
+            },
+            "mergedAt": "2024-08-03T14:28:46Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5538,
+            "title": "Bump the python-requirements group in /requirements with 6 updates",
+            "author": {
+              "login": "dependabot"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5535,
+            "title": "Add contact section",
+            "author": {
+              "login": "01DarshanPatni"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5532,
+            "title": "Provide more clear flask -e, --env-file flag desription",
+            "author": {
+              "login": "differencialx"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5526,
+            "title": "Add encoding parameter to open resource",
+            "author": {
+              "login": "markparonyan"
+            },
+            "mergedAt": "2024-07-11T02:16:46Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5525,
+            "title": "Add unit tests to show, that encoding parameter in open_resource method is required",
+            "author": {
+              "login": "markparonyan"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": [
+                {
+                  "author": {
+                    "login": "ThiefMaster"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "number": 5524,
+            "title": "bumping werkzueg version to 3.0.3",
+            "author": {
+              "login": "gaburn"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5522,
+            "title": "Update waitress.rst",
+            "author": {
+              "login": "amrear"
+            },
+            "mergedAt": "2024-07-11T01:08:49Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5517,
+            "title": "[pre-commit.ci] pre-commit autoupdate",
+            "author": {
+              "login": "pre-commit-ci"
+            },
+            "mergedAt": "2024-07-02T11:17:59Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5516,
+            "title": "Bump the github-actions group with 2 updates",
+            "author": {
+              "login": "dependabot"
+            },
+            "mergedAt": "2024-07-01T19:47:02Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5514,
+            "title": "Bump the python-requirements group in /requirements with 5 updates",
+            "author": {
+              "login": "dependabot"
+            },
+            "mergedAt": "2024-07-01T23:14:08Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5511,
+            "title": "Dev test jannes",
+            "author": {
+              "login": "JannesvandenBogert"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5499,
+            "title": "add SESSION_COOKIE_PARTITIONED config",
+            "author": {
+              "login": "Josecespedesant"
+            },
+            "mergedAt": "2024-11-01T23:26:38Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5498,
+            "title": "Added return type hinting ",
+            "author": {
+              "login": "ThisIzAli2"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5497,
+            "title": "Update README.md - Add badges",
+            "author": {
+              "login": "ayushjain01"
+            },
+            "mergedAt": null,
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5496,
+            "title": "Provide a configuration option to control automatic option responses",
+            "author": {
+              "login": "pgjones"
+            },
+            "mergedAt": "2024-06-07T19:04:18Z",
+            "reviews": {
+              "nodes": [
+                {
+                  "author": {
+                    "login": "davidism"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "number": 5495,
+            "title": "[pre-commit.ci] pre-commit autoupdate",
+            "author": {
+              "login": "pre-commit-ci"
+            },
+            "mergedAt": "2024-06-03T22:25:32Z",
+            "reviews": {
+              "nodes": []
+            }
+          },
+          {
+            "number": 5493,
+            "title": "Bump actions/checkout from 4.1.4 to 4.1.6 in the github-actions group",
+            "author": {
+              "login": "dependabot"
+            },
+            "mergedAt": "2024-06-01T16:01:47Z",
             "reviews": {
               "nodes": []
             }
