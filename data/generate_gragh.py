@@ -41,22 +41,29 @@ task2idx = {task: i for i, task in enumerate(task_list)}
 # === PyGのグラフ構造 ===
 data = HeteroData()
 
-# ダミーのノード特徴（必要に応じて dev_profiles.yaml を使って置き換えてもOK）
+# ダミー特徴（必要なら dev_profiles.yaml 等から生成可能）
 data["dev"].x = torch.ones((len(dev_list), 5))
 data["task"].x = torch.ones((len(task_list), 5))
 
-# エッジ（author: dev → task）
-data["dev", "writes", "task"].edge_index = torch.tensor([
+# === エッジ定義（dev → task）
+author_edges = torch.tensor([
     [dev2idx[d] for d, t in edges_authors],
     [task2idx[t] for d, t in edges_authors]
 ], dtype=torch.long)
 
-# エッジ（review: dev → task）
-data["dev", "reviews", "task"].edge_index = torch.tensor([
+review_edges = torch.tensor([
     [dev2idx[d] for d, t in edges_reviewers],
     [task2idx[t] for d, t in edges_reviewers]
 ], dtype=torch.long)
 
+data["dev", "writes", "task"].edge_index = author_edges
+data["dev", "reviews", "task"].edge_index = review_edges
+
+# === エッジ定義（task → dev）← 双方向追加！！
+data["task", "written_by", "dev"].edge_index = author_edges.flip(0)
+data["task", "reviewed_by", "dev"].edge_index = review_edges.flip(0)
+
 # 保存
 torch.save(data, output_path)
-print(f"✅ グラフデータを保存しました → {output_path}")
+print(f"✅ グラフを保存しました → {output_path}")
+print(f"🧠 dev数: {len(dev_list)}, task数: {len(task_list)}")
