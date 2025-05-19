@@ -106,3 +106,24 @@ data["task", "reviewed_by", "dev"].edge_index = torch.tensor([dst_r, src_r], dty
 torch.save(data, graph_out)
 print(f"✅ graph.pt を保存しました → {graph_out}")
 print(f"👤 devノード数: {len(dev_list)}, 🧩 taskノード数: {len(task_list)}")
+
+
+# import networkx as nx
+
+# G = nx.DiGraph()
+# for node_type in data.node_types:
+#     for i in range(data[node_type].num_nodes):
+#         G.add_node(f"{node_type}_{i}", node_type=node_type)
+
+# for edge_type in data.edge_types:
+#     src, rel, dst = edge_type
+#     edge_index = data[edge_type].edge_index
+#     for i in range(edge_index.size(1)):
+#         src_node = f"{src}_{edge_index[0, i].item()}"
+#         dst_node = f"{dst}_{edge_index[1, i].item()}"
+#         G.add_edge(src_node, dst_node)
+
+# isolated_tasks = [n for n in G.nodes if n.startswith("task_") and G.degree[n] == 0]
+# print(f"🟡 孤立した task ノード数: {len(isolated_tasks)}")
+# if isolated_tasks:
+#     print("🔍 例:", isolated_tasks[:5])
