@@ -2,128 +2,125 @@ import json
 from pathlib import Path
 
 import torch
-import yaml
 from torch_geometric.data import HeteroData
 
-# === パス設定
+# === パス設定 ===
 root = Path(__file__).resolve().parents[1]
-graph_out = root / "data/graph.pt"
-github_path = root / "data/github_data.json"
+data_path = root / "data/github_data_2023_05_to_2024_04.json"
 profile_path = root / "configs/dev_profiles.yaml"
 backlog_path = root / "data/backlog.json"
+graph_out = root / "data/graph_2023_05_to_2024_04.pt"
 
-# === データ読み込み
-with open(github_path) as f:
-    pr_data = json.load(f)["data"]["repository"]["pullRequests"]["nodes"]
-with open(profile_path) as f:
+# === データ読み込み ===
+with data_path.open() as f:
+    raw = json.load(f)
+prs = raw.get("prs", [])
+issues = raw.get("issues", [])
+
+# プロフィール読み込み
+import yaml
+
+with profile_path.open() as f:
     profiles = yaml.safe_load(f)
-with open(backlog_path) as f:
-    backlog = json.load(f)
 
-# dev_list を GitHubデータから自動抽出
-dev_list = sorted(set(
-    pr["author"]["login"] for pr in pr_data
-    if pr.get("author")
-).union(*[
-    {r["author"]["login"] for r in pr.get("reviews", {}).get("nodes", []) if r.get("author")}
-    for pr in pr_data
-]))
+# バックログ読み込み（task_idのリスト）
+if backlog_path.exists():
+    with backlog_path.open() as f:
+        backlog = set(json.load(f))
+else:
+    backlog = set()
 
-task_list = sorted([f"task_{pr['number']}" for pr in pr_data])
-dev2idx = {dev: i for i, dev in enumerate(dev_list)}
-task2idx = {task: i for i, task in enumerate(task_list)}
-
-# === エッジ構築
-edges_author = []
-edges_review = []
-
-for pr in pr_data:
-    task_id = f"task_{pr['number']}"
-    author = pr["author"]["login"]
-    if author in dev2idx:
-        edges_author.append((author, task_id))
-    for review in pr.get("reviews", {}).get("nodes", []):
-        reviewer = review["author"]["login"]
-        if reviewer in dev2idx:
-            edges_review.append((reviewer, task_id))
-
-# === devノード特徴量
-dev_feats = []
-for dev in dev_list:
-    p = profiles[dev]
-    feat = [
-        p["skill"]["code"],
-        p["skill"]["review"],
-        *p["lang_emb"],
-        *p["task_types"],
-    ]
-    dev_feats.append(feat)
-
-# === taskノード特徴量（+6次元パディングで8次元に統一）
-tag_map = {"bugfix": 0, "feature": 1, "refactor": 2, "docs": 3, "test": 4, "misc": 5}
-import hashlib
-
-# 疑似的に complexity & tag を生成（ランダム性ありだが再現性も保つ）
-tag_map = {"bug": 0, "feature": 1, "refactor": 2, "docs": 3, "test": 4, "misc": 5}
-task_feats = []
-
-for pr in pr_data:
-    title = pr["title"].lower()
-    pr_id = pr["number"]
-
-    # 疑似 complexity（1〜3）
-    complexity = (hash(title) % 3) + 1
-
-    # 疑似 tag 判定
-    tag_idx = 5  # default to 'misc'
-    for keyword, idx in tag_map.items():
-        if keyword in title:
-            tag_idx = idx
-            break
-
-    feat = [complexity, tag_idx] + [0.0] * 6
-    task_feats.append(feat)
-# === グラフ構築
+# === ノード構築 ===
 data = HeteroData()
-data["dev"].x = torch.tensor(dev_feats, dtype=torch.float)
-data["dev"].node_id = dev_list  # 🔥 GitHub login名を保存
-data["task"].x = torch.tensor(task_feats, dtype=torch.float)
+dev_set = set()
+task_ids = []
+task_features = []
+task_meta = []  # (id, author, kind, object)
 
-# === エッジ定義（dev → task）
-src_a = [dev2idx[d] for d, t in edges_author]
-dst_a = [task2idx[t] for d, t in edges_author]
-data["dev", "writes", "task"].edge_index = torch.tensor([src_a, dst_a], dtype=torch.long)
+# PRノード構築
+for pr in prs:
+    author = pr.get("author", {}).get("login")
+    if not author:
+        continue
+    task_id = f"pr_{pr['number']}"
+    task_ids.append(task_id)
+    task_meta.append((task_id, author, "pr", pr))
+    dev_set.add(author)
+    task_features.append([1.0, 0.0] + [0.0] * 6)  # PR特徴量例
 
-src_r = [dev2idx[d] for d, t in edges_review]
-dst_r = [task2idx[t] for d, t in edges_review]
-data["dev", "reviews", "task"].edge_index = torch.tensor([src_r, dst_r], dtype=torch.long)
+# Issueノード構築
+for issue in issues:
+    author = issue.get("author", {}).get("login")
+    if not author:
+        continue
+    task_id = f"issue_{issue['number']}"
+    task_ids.append(task_id)
+    task_meta.append((task_id, author, "issue", issue))
+    dev_set.add(author)
+    task_features.append([0.0, 1.0] + [0.0] * 6)  # Issue特徴量例
 
-# === 双方向エッジ（task → dev）
-data["task", "written_by", "dev"].edge_index = torch.tensor([dst_a, src_a], dtype=torch.long)
-data["task", "reviewed_by", "dev"].edge_index = torch.tensor([dst_r, src_r], dtype=torch.long)
+# 開発者ノード
+from collections import defaultdict
 
-# === 保存
+import numpy as np
+
+dev_names = sorted(list(dev_set))
+dev2idx = {name: i for i, name in enumerate(dev_names)}
+skill_features = []
+
+for name in dev_names:
+    p = profiles.get(name, {})
+    skill = [
+        float(p.get("skill", {}).get("code", 0.0)),
+        float(p.get("skill", {}).get("review", 0.0)),
+    ]
+    langs = p.get("lang_emb", [0.0, 0.0, 0.0])
+    task_types = p.get("task_types", [0.0, 0.0, 0.0])
+    feat = skill + langs + task_types
+    skill_features.append(feat)
+
+data["dev"].x = torch.tensor(skill_features, dtype=torch.float)
+data["dev"].node_id = dev_names
+
+# タスクノード
+x = torch.tensor(task_features, dtype=torch.float)
+node_id = task_ids
+is_open = torch.tensor([1.0 if tid in backlog else 0.0 for tid in node_id], dtype=torch.float).unsqueeze(1)
+data["task"].x = torch.cat([x, is_open], dim=1)
+data["task"].node_id = node_id
+
+# === エッジ構築 ===
+pr_edges = []
+review_edges = []
+issue_edges = []
+task2idx = {tid: i for i, tid in enumerate(task_ids)}
+
+for task_id, author, kind, obj in task_meta:
+    t_idx = task2idx[task_id]
+    if author in dev2idx:
+        d_idx = dev2idx[author]
+        pr_edges.append((d_idx, t_idx))
+
+    if kind == "pr":
+        for review in obj.get("reviews", {}).get("nodes", []):
+            r = review.get("author")
+            if r and r.get("login") in dev2idx:
+                review_edges.append((dev2idx[r["login"]], t_idx))
+    elif kind == "issue":
+        for a in obj.get("assignees", {}).get("nodes", []):
+            if a.get("login") in dev2idx:
+                issue_edges.append((dev2idx[a["login"]], t_idx))
+
+# エッジテンソル変換
+def to_edge_index(edge_list):
+    if not edge_list:
+        return torch.empty((2, 0), dtype=torch.long)
+    return torch.tensor(edge_list, dtype=torch.long).t().contiguous()
+
+data["dev", "writes", "task"].edge_index = to_edge_index(pr_edges)
+data["dev", "reviews", "task"].edge_index = to_edge_index(review_edges)
+data["dev", "assigned", "task"].edge_index = to_edge_index(issue_edges)
+
+# === 保存 ===
 torch.save(data, graph_out)
-print(f"✅ graph.pt を保存しました → {graph_out}")
-print(f"👤 devノード数: {len(dev_list)}, 🧩 taskノード数: {len(task_list)}")
-
-
-# import networkx as nx
-
-# G = nx.DiGraph()
-# for node_type in data.node_types:
-#     for i in range(data[node_type].num_nodes):
-#         G.add_node(f"{node_type}_{i}", node_type=node_type)
-
-# for edge_type in data.edge_types:
-#     src, rel, dst = edge_type
-#     edge_index = data[edge_type].edge_index
-#     for i in range(edge_index.size(1)):
-#         src_node = f"{src}_{edge_index[0, i].item()}"
-#         dst_node = f"{dst}_{edge_index[1, i].item()}"
-#         G.add_edge(src_node, dst_node)
-
-# isolated_tasks = [n for n in G.nodes if n.startswith("task_") and G.degree[n] == 0]
-# print(f"🟡 孤立した task ノード数: {len(isolated_tasks)}")
-# if isolated_tasks:
-#     print("🔍 例:", isolated_tasks[:5])
+print(f"✅ GNNグラフを保存しました → {graph_out}")
