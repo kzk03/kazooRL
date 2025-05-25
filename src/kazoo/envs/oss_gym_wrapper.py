@@ -1,21 +1,38 @@
-# OSSDevEnv 環境を、Gym形式（単一の観測と行動空間）で扱えるように変換するラッパー
-# src/kazoo/envs/oss_gym_wrapper.py
+import numpy as np
+from gymnasium import spaces
 
-from gymnasium import Env, spaces
-from kazoo.envs.oss_simple import OSSDevEnv
 
-class OSSGymWrapper(Env):
-    metadata = {"render_modes":[]}
-    def __init__(self, n_agents=3, backlog_size=6, **kwargs):
-        self._pe = OSSDevEnv(n_agents, backlog_size, seed=kwargs.get("seed"))
-        # Dict でまとめる
-        self.observation_space = spaces.Dict({
-            a: self._pe.observation_spaces[a] for a in self._pe.agents
-        })
-        self.action_space = spaces.Dict({
-            a: self._pe.action_spaces[a] for a in self._pe.agents
-        })
-    def reset(self, **kw):
-        return self._pe.reset(seed=kw.get("seed"))
-    def step(self, acts):
-        return self._pe.step(acts)
+class OSSGymWrapper:
+    def __init__(self, env):
+        self.env = env
+        self.agents = env.agents
+
+        # Dict形式のobservation/action spaceを保持
+        self.observation_spaces = {
+            agent: env.observation_spaces[agent] for agent in self.agents
+        }
+        self.action_spaces = {
+            agent: env.action_spaces[agent] for agent in self.agents
+        }
+
+    def reset(self):
+        obs = self.env.reset()
+        return {
+            agent: obs for agent in self.agents
+        }
+
+    def step(self, actions):
+        # actions: Dict[agent_id, action]
+        rewards = {}
+        observations = {}
+        terminations = {}
+        infos = {}
+
+        for agent_id, action in actions.items():
+            obs, reward, done, info = self.env.step(action)
+            observations[agent_id] = obs
+            rewards[agent_id] = reward
+            terminations[agent_id] = done
+            infos[agent_id] = info
+
+        return observations, rewards, terminations, infos

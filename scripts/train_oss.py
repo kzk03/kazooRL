@@ -1,61 +1,76 @@
-import os
+from pathlib import Path
+from types import SimpleNamespace
 
-import numpy as np
-import torch
 import yaml
-import json
 
-from kazoo.envs.oss_simple import env as make_oss_env
+from kazoo.envs.oss_gym_wrapper import OSSGymWrapper
+from kazoo.envs.oss_simple import make_oss_env
 from kazoo.learners.indep_ppo import IndependentPPO, PPOConfig
 
 
 def main():
-    # ---------- ① YAML設定ファイルを読み込み ----------
-    with open("configs/base.yaml", "r") as f:
+    ROOT = Path(__file__).resolve().parent.parent
+    CONFIGS = ROOT / "configs"
+    DATA = ROOT / "data"
+
+    # Load base config
+    with (CONFIGS / "base.yaml").open() as f:
         cfg = yaml.safe_load(f)
 
-    # ---------- ② 開発者プロフィールも読み込み ----------
-    with open("configs/dev_profiles.yaml", "r") as f:
-        dev_profiles = yaml.safe_load(f)
+    # dev_profiles.yaml から人数を動的取得
+    with (CONFIGS / "dev_profiles.yaml").open() as f:
+        profiles = yaml.safe_load(f)
+    cfg["n_agents"] = len(profiles)
     
-    with open("data/backlog.json") as f:
-        backlog = json.load(f)
 
-    # ---------- ③ 環境を生成（プロフィール付き） ----------
-    env = make_oss_env(
+    # Create env and wrap
+    raw_env = make_oss_env(
+        task_file=str(DATA / "github_data.json"),
+        profile_file=str(CONFIGS / "dev_profiles.yaml"),
         n_agents=cfg["n_agents"],
-        backlog_size=cfg["backlog_size"],
-        seed=cfg["seed"],
-        profiles=dev_profiles,
-        backlog_data=backlog
+    )
+    env = OSSGymWrapper(raw_env)
+
+    # Select agent
+    agent_id = env.agents[0]
+    act_space = env.action_spaces[agent_id]
+    obs_space = env.observation_spaces[agent_id]
+
+    print(f"DEBUG: agent = {agent_id}")
+    print(f"DEBUG: action_space = {act_space}")
+    print(f"DEBUG: action_space type = {type(act_space)}")
+
+    # Set PPO config
+    ppo_cfg = PPOConfig(
+        lr=cfg["lr"],
+        gamma=cfg["gamma"],
+        gae_lambda=cfg["gae_lambda"],
+        clip_eps=cfg["clip_eps"],
+        vf_coef=cfg["vf_coef"],
+        ent_coef=cfg["ent_coef"],
+        rollout_len=cfg["rollout_len"],
+        mini_batch=cfg["mini_batch"],
+        epochs=cfg["epochs"],
+        device=cfg.get("device", "cpu"),
     )
 
-    # ---------- ④ PPOエージェントを初期化 ----------
-    first = env.agents[0]
     agent = IndependentPPO(
-        obs_space=env.observation_spaces[first],
-        act_space=env.action_spaces[first],
-        n_agents=cfg["n_agents"],
-        cfg=PPOConfig(
-            lr=cfg["lr"],
-            gamma=cfg["gamma"],
-            gae_lambda=cfg["gae_lambda"],
-            clip_eps=cfg["clip_eps"],
-            vf_coef=cfg["vf_coef"],
-            ent_coef=cfg["ent_coef"],
-            rollout_len=cfg["rollout_len"],
-            mini_batch=cfg["mini_batch"],
-            epochs=cfg["epochs"],
-            device=cfg["device"],
-        )
+        obs_space=obs_space,
+        act_space=act_space,
+        lr=cfg["lr"],
+        gamma=cfg["gamma"],
+        gae_lambda=cfg["gae_lambda"],
+        clip_eps=cfg["clip_eps"],
+        vf_coef=cfg["vf_coef"],
+        ent_coef=cfg["ent_coef"],
+        rollout_len=cfg["rollout_len"],
+        mini_batch=cfg["mini_batch"],
+        epochs=cfg["epochs"],
+        device=cfg.get("device", "cpu"),
     )
 
-    # ---------- ⑤ 学習開始 ----------
     agent.train(env, total_steps=cfg["total_steps"])
 
-    # ---------- ⑥ モデルを保存 ----------
-    os.makedirs(cfg["save_dir"], exist_ok=True)
-    agent.save(f"{cfg['save_dir']}/indep_ppo_oss.pth")
 
 if __name__ == "__main__":
     main()

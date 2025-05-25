@@ -1,100 +1,97 @@
-import csv
-import os
-
-import numpy as np
 import torch
+from pathlib import Path
 import yaml
 
 from kazoo.envs.oss_simple import env as make_oss_env
+from kazoo.envs.oss_gym_wrapper import OSSGymWrapper
 from kazoo.learners.indep_ppo import IndependentPPO, PPOConfig
 
-ACTION_NAMES = ["idle", "pickup", "code", "review"]  # 行動の名前
+def main():
+    ROOT = Path(__file__).resolve().parent.parent
+    CONFIGS = ROOT / "configs"
+    DATA = ROOT / "data"
+    MODEL_PATH = ROOT / "models" / "ppo_agent.pt"
 
-def to_tensor(obs_dict, agents, device):
-    """観測辞書をTensorに変換"""
-    arr = np.array([obs_dict[a] for a in agents])
-    return torch.as_tensor(arr, dtype=torch.float32, device=device)
+    with (CONFIGS / "base.yaml").open() as f:
+        cfg = yaml.safe_load(f)
 
-def run_episode(env, agent, cfg, writer=None, log=False):
-    """1エピソード分を実行して報酬を返す"""
-    obs_dict, _ = env.reset()
-    obs = to_tensor(obs_dict, env.agents, cfg["device"])
-    done = {a: False for a in env.agents}
-    total_reward = {a: 0.0 for a in env.agents}
+    # dev_profiles.yaml から人数を動的取得
+    with (CONFIGS / "dev_profiles.yaml").open() as f:
+        profiles = yaml.safe_load(f)
+    cfg["n_agents"] = len(profiles)
+
+    # 環境生成
+    raw_env = make_oss_env(
+        task_file=str(DATA / "github_data.json"),
+        profile_file=str(CONFIGS / "dev_profiles.yaml"),
+        n_agents=cfg["n_agents"],
+    )
+    env = OSSGymWrapper(raw_env)
+
+    # モデル構築
+    agent_id = env.agents[0]
+    obs_space = env.observation_spaces[agent_id]
+    act_space = env.action_spaces[agent_id]
+
+    agent = IndependentPPO(
+        obs_space=obs_space,
+        act_space=act_space,
+        lr=cfg["lr"],
+        gamma=cfg["gamma"],
+        gae_lambda=cfg["gae_lambda"],
+        clip_eps=cfg["clip_eps"],
+        vf_coef=cfg["vf_coef"],
+        ent_coef=cfg["ent_coef"],
+        rollout_len=cfg["rollout_len"],
+        mini_batch=cfg["mini_batch"],
+        epochs=cfg["epochs"],
+        device=cfg.get("device", "cpu"),
+    )
+
+    agent_model = agent
+
+
+    # 重み読み込み
+    checkpoint = torch.load(MODEL_PATH, map_location=agent.device)
+    agent.net.load_state_dict(checkpoint["net"])
+    agent.policy_head.load_state_dict(checkpoint["pi"])
+    agent.value_head.load_state_dict(checkpoint["vf"])
+    print("✅ モデル読み込み完了")
+
+    obs = env.reset()
+    done = {agent: False for agent in env.agents}
+    total_reward = {agent: 0.0 for agent in env.agents}
     step = 0
 
     while not all(done.values()):
-        with torch.no_grad():
-            logits, _ = agent.net(obs)
-            dist = torch.distributions.Categorical(logits=logits)
-            actions = dist.sample().cpu().numpy()  # 方策に従って行動を選択
+        actions = {}
+        for agent in env.agents:
+            if not done[agent]:
+                action, logp, value = agent_model.act(obs[agent])
+                actions[agent] = action
 
-        # 辞書形式の行動に変換
-        action_dict = {a: int(actions[i]) for i, a in enumerate(env.agents)}
+        next_obs, rewards, terminations, infos = env.step(actions)
 
-        if log:
-            printable = {a: ACTION_NAMES[action_dict[a]] for a in env.agents}
-            print(f"[step {step:02d}] actions: {printable}")
+        row = f"[step {step}]"
+        for agent in env.agents:
+            if not done[agent]:
+                a = actions[agent]
+                r = rewards[agent]
+                row += f" {agent}: a={a} r={r:.2f} |"
+                total_reward[agent] += r
+                done[agent] = terminations[agent]
+            else:
+                row += f" {agent}: ---        |"
+        print(row.rstrip(" |"))
 
-        # 環境を1ステップ進める
-        obs_dict, reward, term, trunc, _ = env.step(action_dict)
-
-        # 報酬を累積
-        for a in env.agents:
-            total_reward[a] += reward[a]
-            done[a] = term[a] or trunc[a]
-
-        # ログが有効な場合はCSVにも書き込む
-        if writer:
-            writer.writerow([step] + [action_dict[a] for a in env.agents] + [sum(total_reward.values())])
-
-        # 次の観測へ
+        obs = next_obs
         step += 1
-        obs = to_tensor(obs_dict, env.agents, cfg["device"])
 
-    return total_reward
+    print("🎯 Evaluation complete!")
+    for agent in env.agents:
+        print(f"  → {agent}: total reward = {total_reward[agent]:.2f}")
 
-def main():
-    # ① 設定ファイルを読み込む -----------------------------------
-    with open("configs/base.yaml") as f:
-        cfg = yaml.safe_load(f)
 
-    # ② モデルと環境の初期化 -----------------------------------
-    env = make_oss_env(
-        n_agents=cfg["n_agents"], backlog_size=cfg["backlog_size"], seed=cfg["seed"]
-    )
-    obs_space = env.observation_spaces[env.agents[0]]
-    act_space = env.action_spaces[env.agents[0]]
-    agent = IndependentPPO(obs_space, act_space, n_agents=cfg["n_agents"], cfg=PPOConfig(device=cfg["device"]))
-    agent.load(f"{cfg['save_dir']}/indep_ppo_oss.pth")
-
-    # ③ CSV ログ設定（最初の1エピソードだけ記録） ----------------
-    os.makedirs("logs", exist_ok=True)
-    csv_path = "logs/episode_log.csv"
-    csv_f = open(csv_path, "w", newline="")
-    writer = csv.writer(csv_f)
-    writer.writerow(["step"] + env.agents + ["reward_sum"])
-
-    # ④ 複数エピソードを評価 -------------------------------------
-    n_episodes = 10
-    all_rewards = {a: [] for a in env.agents}
-
-    for ep in range(n_episodes):
-        print(f"\n▶ Evaluating episode {ep + 1}/{n_episodes}...")
-        writer_ = writer if ep == 0 else None  # 最初の1回だけCSVに記録
-        rewards = run_episode(env, agent, cfg, writer=writer_, log=(ep == 0))
-        for a in env.agents:
-            all_rewards[a].append(rewards[a])
-
-    csv_f.close()
-
-    # ⑤ 平均報酬の出力 -------------------------------------------
-    print("\n◆ average total reward over", n_episodes, "episodes")
-    for a in env.agents:
-        avg = np.mean(all_rewards[a])
-        std = np.std(all_rewards[a])
-        print(f"  {a}: {avg:.2f} ± {std:.2f}")
-    print(f"▶ 行動ログ CSV: {csv_path}（※エピソード1のみ記録）")
 
 if __name__ == "__main__":
     main()

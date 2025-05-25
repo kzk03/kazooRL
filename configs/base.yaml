@@ -2,7 +2,7 @@
 
 # ─── 環境設定 (Environment) ───
 env_name: OSSSimple-v0         # 環境ID。gym.make で使う
-n_agents: 3                    # エージェント数
+n_agents:                     # エージェント数
 backlog_size: 6                 # 初期タスク数
 seed: 0                         # 乱数シード
 render_mode: null               # レンダリング（今は使わないので null）
