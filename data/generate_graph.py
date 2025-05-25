@@ -6,10 +6,10 @@ from torch_geometric.data import HeteroData
 
 # === パス設定 ===
 root = Path(__file__).resolve().parents[1]
-data_path = root / "data/github_data_2023_05_to_2024_04.json"
+data_path = root / "data/github_data.json"
 profile_path = root / "configs/dev_profiles.yaml"
 backlog_path = root / "data/backlog.json"
-graph_out = root / "data/graph_2023_05_to_2024_04.pt"
+graph_out = root / "data/graph.pt"
 
 # === データ読み込み ===
 with data_path.open() as f:
@@ -25,8 +25,9 @@ with profile_path.open() as f:
 
 # バックログ読み込み（task_idのリスト）
 if backlog_path.exists():
-    with backlog_path.open() as f:
-        backlog = set(json.load(f))
+    with open(backlog_path) as f:
+        backlog_data = json.load(f)
+        backlog = set(x["id"] for x in backlog_data)
 else:
     backlog = set()
 

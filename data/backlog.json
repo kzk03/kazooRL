@@ -1,454 +1,185 @@
 [
   {
-    "id": 196,
-    "title": "Fix crossref links in docs",
-    "complexity": 3,
-    "tags": [
-      "bugfix"
+    "id": 12164,
+    "title": "move fixture finalizing to pytest_fixture_teardown hook",
+    "labels": [
+      "status: needs information",
+      "bot:chronographer:provided"
     ],
-    "author": "swanson"
-  },
-  {
-    "id": 204,
-    "title": "Extensions docs modifications.",
+    "author": "ShurikMen",
     "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "mattd"
+    "createdAt": "2024-03-26T04:20:23Z"
   },
   {
-    "id": 228,
-    "title": "Corrections to fabfile example",
+    "id": 12129,
+    "title": "improve(fixtures-per-test): exclude pseudo fixtures from output #11295 ",
+    "labels": [],
+    "author": "WarrenTheRabbit",
+    "complexity": 5,
+    "createdAt": "2024-03-17T13:43:36Z"
+  },
+  {
+    "id": 12110,
+    "title": "fix overridden/extended fixtures",
+    "labels": [],
+    "author": "andresliszt",
+    "complexity": 5,
+    "createdAt": "2024-03-11T17:38:55Z"
+  },
+  {
+    "id": 12082,
+    "title": "change param_index if param is pseudofixturedef",
+    "labels": [],
+    "author": "ShurikMen",
     "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "akavlie"
+    "createdAt": "2024-03-06T08:24:07Z"
   },
   {
-    "id": 230,
-    "title": "the import order note was meant to be bold, not cursive",
+    "id": 11812,
+    "title": "terminal: include markers in `--collect-only` output",
+    "labels": [],
+    "author": "cj-timothy-sampson",
+    "complexity": 5,
+    "createdAt": "2024-01-14T09:42:56Z"
+  },
+  {
+    "id": 11696,
+    "title": "Adding whitespace escaping on difference display",
+    "labels": [],
+    "author": "OlegP-andrew",
+    "complexity": 5,
+    "createdAt": "2023-12-11T22:33:26Z"
+  },
+  {
+    "id": 11688,
+    "title": "Full diff issue",
+    "labels": [],
+    "author": "JamieC2002",
+    "complexity": 5,
+    "createdAt": "2023-12-08T00:59:25Z"
+  },
+  {
+    "id": 11682,
+    "title": "Make use of `-I` in all Python invocations",
+    "labels": [],
+    "author": "webknjaz",
     "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "RonnyPfannschmidt"
+    "createdAt": "2023-12-07T01:12:53Z"
   },
   {
-    "id": 232,
-    "title": "Fixes Issue #227 where pop causes the session to be modified.",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "sharoonthomas"
+    "id": 11679,
+    "title": "Adding stdio option for show-capture",
+    "labels": [],
+    "author": "ihindi1111",
+    "complexity": 5,
+    "createdAt": "2023-12-07T00:16:02Z"
   },
   {
-    "id": 236,
-    "title": "Add Frozen-Flask to the extension registry",
+    "id": 11669,
+    "title": "Resolving Issue #11457",
+    "labels": [],
+    "author": "seanpourgoutzidis",
+    "complexity": 5,
+    "createdAt": "2023-12-05T03:37:39Z"
+  },
+  {
+    "id": 11635,
+    "title": "docs changes about limitations with hook function ordering",
+    "labels": [
+      "status: needs information"
+    ],
+    "author": "jack-zj-liu",
+    "complexity": 4,
+    "createdAt": "2023-11-24T16:09:42Z"
+  },
+  {
+    "id": 11614,
+    "title": "type-ify nodes",
+    "labels": [],
+    "author": "RonnyPfannschmidt",
     "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "SimonSapin"
+    "createdAt": "2023-11-14T09:32:04Z"
   },
   {
-    "id": 237,
-    "title": "A fix for send_file with unicode filenames.",
-    "complexity": 2,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "SimonSapin"
+    "id": 11533,
+    "title": "WIP: Rework fixture dependency graph calculation",
+    "labels": [],
+    "author": "jgersti",
+    "complexity": 5,
+    "createdAt": "2023-10-21T19:59:59Z"
   },
   {
-    "id": 238,
-    "title": "Clarify in docs that the SERVER_NAME config can also take a port number.",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "SimonSapin"
+    "id": 11524,
+    "title": "gh-11523: add importorskip(exc=...) kwarg",
+    "labels": [],
+    "author": "graingert",
+    "complexity": 5,
+    "createdAt": "2023-10-19T17:10:52Z"
   },
   {
-    "id": 243,
-    "title": "fixed minor typo",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "kennethreitz"
+    "id": 11418,
+    "title": "Add hash comparison for pyc cache files",
+    "labels": [],
+    "author": "cdce8p",
+    "complexity": 5,
+    "createdAt": "2023-09-08T23:23:44Z"
   },
   {
-    "id": 249,
-    "title": "jQuery Documentation Update",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "petermanser"
-  },
-  {
-    "id": 250,
-    "title": "Deploying with Fabric fabfile bugfix",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "wilsaj"
-  },
-  {
-    "id": 252,
-    "title": "Added HTTPBin to Apps List",
+    "id": 11284,
+    "title": "Feed a test only with initialnames, not the whole fixture closure",
+    "labels": [],
+    "author": "sadra-barikbin",
     "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "kennethreitz"
+    "createdAt": "2023-08-04T20:29:19Z"
   },
   {
-    "id": 257,
-    "title": "Pronoun gender fixes in documentation",
+    "id": 11271,
+    "title": "Improvement: Base `FixtureArgKey`s on param values if possible, not param indices",
+    "labels": [],
+    "author": "sadra-barikbin",
     "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "jfinkels"
+    "createdAt": "2023-08-01T22:23:56Z"
   },
   {
-    "id": 259,
-    "title": "Fix a link in the changelog.",
-    "complexity": 2,
-    "tags": [
-      "bugfix"
+    "id": 11257,
+    "title": "Resolve param indices using param values, not parameterset index",
+    "labels": [
+      "bot:chronographer:provided"
     ],
-    "author": "SimonSapin"
+    "author": "sadra-barikbin",
+    "complexity": 5,
+    "createdAt": "2023-07-28T23:40:09Z"
   },
   {
-    "id": 262,
-    "title": "Typo fix in code samples for Pluggable Views doc.",
-    "complexity": 2,
-    "tags": [
-      "bugfix",
-      "docs"
-    ],
-    "author": "SimonSapin"
+    "id": 11243,
+    "title": "Remove `prune_dependency_tree` and reuse `getfixtureclosure` logic",
+    "labels": [],
+    "author": "sadra-barikbin",
+    "complexity": 5,
+    "createdAt": "2023-07-22T23:45:19Z"
   },
   {
-    "id": 263,
-    "title": "Add a link to pluggable views docs in the changelog.",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "SimonSapin"
+    "id": 10996,
+    "title": "[RFC] split up _pytest.python",
+    "labels": [],
+    "author": "RonnyPfannschmidt",
+    "complexity": 5,
+    "createdAt": "2023-05-13T10:36:36Z"
   },
   {
-    "id": 267,
-    "title": "Missed the -w option in uWSGI deployment docs. ",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "Luit"
+    "id": 10969,
+    "title": "Multiline string issue",
+    "labels": [],
+    "author": "HomieOmie",
+    "complexity": 5,
+    "createdAt": "2023-05-07T00:23:37Z"
   },
   {
-    "id": 269,
-    "title": "Doc fix",
-    "complexity": 2,
-    "tags": [
-      "bugfix",
-      "docs"
-    ],
-    "author": "hadleyrich"
-  },
-  {
-    "id": 271,
-    "title": "small error in tutorial",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "bastianh"
-  },
-  {
-    "id": 273,
-    "title": "fixed typo",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "ThomasWaldmann"
-  },
-  {
-    "id": 274,
-    "title": "fixed typo",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "ThomasWaldmann"
-  },
-  {
-    "id": 275,
-    "title": "typo fix: flask -> flag",
-    "complexity": 3,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "vreon"
-  },
-  {
-    "id": 276,
-    "title": "Corrected decorators to remove duplicate teardown_request() and add after",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "dotslashdash"
-  },
-  {
-    "id": 277,
-    "title": "Don't use deprecated flask.session in flask.ctx.",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "embe"
-  },
-  {
-    "id": 281,
-    "title": "Typo: developped -> developed",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "ustun"
-  },
-  {
-    "id": 282,
-    "title": "Minor documentation grammar / typo fixes",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "callahad"
-  },
-  {
-    "id": 284,
-    "title": "Intersphinx link fixes.",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "SimonSapin"
-  },
-  {
-    "id": 288,
-    "title": "Consistent quotes",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "kennethreitz"
-  },
-  {
-    "id": 293,
-    "title": "Add runserver.py filename to match earlier section of example",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "pingswept"
-  },
-  {
-    "id": 297,
-    "title": "Fix typos",
-    "complexity": 1,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "pingswept"
-  },
-  {
-    "id": 303,
-    "title": "typo",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "almet"
-  },
-  {
-    "id": 304,
-    "title": "Improve configuration docs a bit",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "plaes"
-  },
-  {
-    "id": 307,
-    "title": "route decorators custom enpoints",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "s0undt3ch"
-  },
-  {
-    "id": 308,
-    "title": "Typo in documentation",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "DasIch"
-  },
-  {
-    "id": 309,
-    "title": "Fix session loading in flask.testing.TestClient.session_transaction()",
-    "complexity": 1,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "embe"
-  },
-  {
-    "id": 311,
-    "title": "Fix for d5cd4f8 which broke install on Windows ",
-    "complexity": 3,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "christophercurrie"
-  },
-  {
-    "id": 320,
-    "title": "Flask-MongoKit to GitHub",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "jarus"
-  },
-  {
-    "id": 322,
-    "title": "Fixed typo in docstring of dispatch_request method of flask.views.View",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "jperras"
-  },
-  {
-    "id": 324,
-    "title": "Blueprint.app_url_value_preprocessor doesn't work correctly.",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "embe"
-  },
-  {
-    "id": 327,
-    "title": "Add to sys.path, not sys.path_info",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "SimonSapin"
-  },
-  {
-    "id": 333,
-    "title": "Added PasswordField in docs/patterns/wtforms.rst",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "kracekumar"
-  },
-  {
-    "id": 334,
-    "title": "Typo fix",
-    "complexity": 3,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "SimonSapin"
-  },
-  {
-    "id": 337,
-    "title": "Updated docs - for Response class status_code => status",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "rozza"
-  },
-  {
-    "id": 342,
-    "title": "Config documentation \"instance_root\" -> \"instance_path\"",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "Cixelyn"
-  },
-  {
-    "id": 345,
-    "title": "Fix issue #338",
-    "complexity": 3,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "jimrollenhagen"
-  },
-  {
-    "id": 347,
-    "title": "Session information is not kept around in test_client after redirect",
-    "complexity": 3,
-    "tags": [
-      "misc"
-    ],
-    "author": "plaes"
-  },
-  {
-    "id": 369,
-    "title": "documentation: stylistic adjustments",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "FND"
-  },
-  {
-    "id": 375,
-    "title": "typo fix",
-    "complexity": 3,
-    "tags": [
-      "bugfix"
-    ],
-    "author": "awsum"
-  },
-  {
-    "id": 387,
-    "title": "documentation: minor stylistic adjustments",
-    "complexity": 1,
-    "tags": [
-      "misc"
-    ],
-    "author": "FND"
-  },
-  {
-    "id": 390,
-    "title": "Added PATCH method to the list of HTTP method functions for MethodView",
-    "complexity": 2,
-    "tags": [
-      "misc"
-    ],
-    "author": "jfinkels"
+    "id": 10961,
+    "title": "Updated diff to show \\t in string comparison assertions",
+    "labels": [],
+    "author": "mthaitan",
+    "complexity": 5,
+    "createdAt": "2023-05-03T15:25:39Z"
   }
 ]
