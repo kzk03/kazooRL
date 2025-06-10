@@ -1,9 +1,10 @@
-import json
+import datetime
+from kazoo.envs.task import Task
 from pathlib import Path
-
+import json
 
 def load_tasks(path):
-    """github_data.json から OPENなPRを抽出し、整形されたタスクリストを返す"""
+    """github_data.json から OPENなPRを抽出し、Taskインスタンスのリストを返す"""
     path = Path(path)
 
     with path.open() as f:
@@ -15,13 +16,17 @@ def load_tasks(path):
         if pr.get("state") != "OPEN":
             continue
 
-        backlog.append({
-            "id": pr["number"],
-            "title": pr.get("title", ""),
-            "labels": [l["name"] for l in pr.get("labels", {}).get("nodes", [])],
-            "author": pr.get("author", {}).get("login"),
-            "complexity": min(len(pr.get("body", "")) // 100 + 1, 5),
-            "createdAt": pr.get("createdAt")
-        })
+        created_at = datetime.datetime.strptime(pr.get("createdAt"), "%Y-%m-%dT%H:%M:%SZ")
+
+        task = Task(
+            id=pr["number"],
+            title=pr.get("title", ""),
+            author=pr.get("author", {}).get("login"),
+            complexity=min(len(pr.get("body", "")) // 100 + 1, 5),
+            created_at=created_at,
+            labels=[l["name"] for l in pr.get("labels", {}).get("nodes", [])]
+        )
+
+        backlog.append(task)
 
     return backlog

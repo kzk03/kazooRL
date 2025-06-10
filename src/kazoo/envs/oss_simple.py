@@ -12,17 +12,8 @@ import yaml
 from gym import spaces
 from gym.spaces import Discrete
 from data.generate_backlog import load_tasks
+from kazoo.envs.task import Task
 
-
-class Task:
-    def __init__(self, id, title, author, complexity, created_at, labels):
-        self.id = id
-        self.title = title
-        self.author = author
-        self.complexity = complexity
-        self.created_at = created_at
-        self.labels = labels
-        self.state = None
 
 class OSSSimpleEnv:
     def __init__(self, tasks: List[Task], profile_file: str, *args, **kwargs):
@@ -34,6 +25,7 @@ class OSSSimpleEnv:
         self.n_agents = len(self.dev_ids)  # エージェント数を設定
         self.tasks = tasks
         self.current_task = None
+        self.backlog_size = len(tasks)  # ← これを追加
         self.index = 0
         self.n_agents = kwargs.get("n_agents", len(self.dev_ids)) 
         self.agents = [f"agent_{i}" for i in range(self.n_agents)]
@@ -46,8 +38,9 @@ class OSSSimpleEnv:
             ) for agent in self.agents
         }
         self.action_spaces = {
-            agent: Discrete(self.n_agents) for agent in self.agents
+            agent: Discrete(self.backlog_size) for agent in self.agents
         }
+
 
     def reset(self):
         self.index = 0
@@ -58,23 +51,43 @@ class OSSSimpleEnv:
         return random.choice(range(3))
 
     def step(self, action):
+        # 選んだタスクを処理したとみなす
+        task = self.tasks[action]
+        task.state = "MERGED"  # 仮に成功処理とする（報酬が出るように）
+
         self.index += 1
         terminated = self.index >= len(self.tasks)
         if not terminated:
             self.current_task = self.tasks[self.index]
-        return self._get_obs(), 0.0, terminated, {}
+
+        obs = self._get_obs()
+
+        # 報酬計算（今は task.state = "MERGED" にしたので 1.0 が返る）
+        if task.state == "MERGED":
+            reward = 1.0
+        elif task.state == "CLOSED":
+            reward = -0.5
+        else:
+            reward = 0.0
+
+        return obs, reward, terminated, {}
+
 
     def _get_obs(self):
         # 現在タスクの複雑度と経過日数をベクトルで返す
-        created = parser.isoparse(self.current_task["createdAt"])
+        created = self.current_task.created_at
+        if created.tzinfo is None:  # naiveならUTCをつける
+            created = created.replace(tzinfo=datetime.timezone.utc)
+
         now = datetime.datetime.now(datetime.timezone.utc)
         days = (now - created).days
         days = min(days, 365)
         obs_vector = np.array([
-            self.current_task["complexity"],
+            self.current_task.complexity,
             days
         ], dtype=np.float32)
         return obs_vector
+
 
 class OSSDevEnv(OSSSimpleEnv):
     def __init__(self,

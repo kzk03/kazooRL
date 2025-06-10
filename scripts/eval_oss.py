@@ -2,7 +2,7 @@ import torch
 from pathlib import Path
 import yaml
 
-from kazoo.envs.oss_simple import env as make_oss_env
+from kazoo.envs.oss_simple import make_oss_env
 from kazoo.envs.oss_gym_wrapper import OSSGymWrapper
 from kazoo.learners.indep_ppo import IndependentPPO, PPOConfig
 
