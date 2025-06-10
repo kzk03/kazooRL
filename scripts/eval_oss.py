@@ -1,10 +1,12 @@
-import torch
 from pathlib import Path
+
+import torch
 import yaml
 
-from kazoo.envs.oss_simple import make_oss_env
 from kazoo.envs.oss_gym_wrapper import OSSGymWrapper
+from kazoo.envs.oss_simple import make_oss_env
 from kazoo.learners.indep_ppo import IndependentPPO, PPOConfig
+
 
 def main():
     ROOT = Path(__file__).resolve().parent.parent
@@ -50,7 +52,6 @@ def main():
 
     agent_model = agent
 
-
     # 重み読み込み
     checkpoint = torch.load(MODEL_PATH, map_location=agent.device)
     agent.net.load_state_dict(checkpoint["net"])
@@ -90,7 +91,6 @@ def main():
     print("🎯 Evaluation complete!")
     for agent in env.agents:
         print(f"  → {agent}: total reward = {total_reward[agent]:.2f}")
-
 
 
 if __name__ == "__main__":

@@ -22,6 +22,7 @@ class PPOConfig:
     epochs: int = 4
     device: str = "cpu"
 
+
 class IndependentPPO:
     def __init__(
         self,
@@ -36,7 +37,7 @@ class IndependentPPO:
         rollout_len,
         mini_batch,
         epochs,
-        device="cpu"
+        device="cpu",
     ):
         self.device = torch.device(device)
         self.obs_space = obs_space
@@ -112,11 +113,13 @@ class IndependentPPO:
         print("Training completed!")
         self.save("models/ppo_agent.pt")
         print("Model saved!")
-    
 
     def save(self, path: str):
-        torch.save({
-            "net": self.net.state_dict(),
-            "pi": self.policy_head.state_dict(),
-            "vf": self.value_head.state_dict(),
-        }, path)
+        torch.save(
+            {
+                "net": self.net.state_dict(),
+                "pi": self.policy_head.state_dict(),
+                "vf": self.value_head.state_dict(),
+            },
+            path,
+        )

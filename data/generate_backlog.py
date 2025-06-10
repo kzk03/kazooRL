@@ -1,7 +1,9 @@
 import datetime
-from kazoo.envs.task import Task
-from pathlib import Path
 import json
+from pathlib import Path
+
+from kazoo.envs.task import Task
+
 
 def load_tasks(path):
     """github_data.json から OPENなPRを抽出し、Taskインスタンスのリストを返す"""
@@ -16,7 +18,9 @@ def load_tasks(path):
         if pr.get("state") != "OPEN":
             continue
 
-        created_at = datetime.datetime.strptime(pr.get("createdAt"), "%Y-%m-%dT%H:%M:%SZ")
+        created_at = datetime.datetime.strptime(
+            pr.get("createdAt"), "%Y-%m-%dT%H:%M:%SZ"
+        )
 
         task = Task(
             id=pr["number"],
@@ -24,7 +28,7 @@ def load_tasks(path):
             author=pr.get("author", {}).get("login"),
             complexity=min(len(pr.get("body", "")) // 100 + 1, 5),
             created_at=created_at,
-            labels=[l["name"] for l in pr.get("labels", {}).get("nodes", [])]
+            labels=[l["name"] for l in pr.get("labels", {}).get("nodes", [])],
         )
 
         backlog.append(task)

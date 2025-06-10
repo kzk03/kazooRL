@@ -30,6 +30,7 @@ with torch.no_grad():
     task_emb = embeddings["task"][pairs[:, 1]]
     scores = (dev_emb * task_emb).sum(dim=1)  # dot product
 
+
 # === 評価：Hit@1, Hit@3, Hit@5（ランキングベース）
 def hit_at_k(scores, labels, k=5):
     scores = scores.cpu().numpy()
@@ -50,6 +51,7 @@ def hit_at_k(scores, labels, k=5):
         total += 1
 
     return hits / total
+
 
 # === 実行
 for k in [1, 3, 5]:

@@ -6,12 +6,14 @@ import yaml
 
 
 def extract_profiles(github_data):
-    profiles = defaultdict(lambda: {
-        "code": 0.1,
-        "review": 0.1,
-        "lang_emb": [1.0, 0.0, 0.0],
-        "task_types": [0, 0, 0]
-    })
+    profiles = defaultdict(
+        lambda: {
+            "code": 0.1,
+            "review": 0.1,
+            "lang_emb": [1.0, 0.0, 0.0],
+            "task_types": [0, 0, 0],
+        }
+    )
 
     for pr in github_data.get("prs", []):
         author = pr.get("author", {}).get("login")
@@ -35,6 +37,7 @@ def extract_profiles(github_data):
 
     return profiles
 
+
 def main():
     # スクリプトから見て相対的に data/ フォルダ内にあると想定
     data_dir = Path(__file__).resolve().parent.parent
@@ -48,6 +51,7 @@ def main():
 
     with output_path.open("w") as f:
         yaml.dump(dict(profiles), f)
+
 
 if __name__ == "__main__":
     main()

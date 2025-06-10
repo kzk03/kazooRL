@@ -5,12 +5,14 @@ import random
 import sys
 from pathlib import Path
 from typing import List
-from dateutil import parser
+
 import gym
 import numpy as np
 import yaml
+from dateutil import parser
 from gym import spaces
 from gym.spaces import Discrete
+
 from data.generate_backlog import load_tasks
 from kazoo.envs.task import Task
 
@@ -27,20 +29,20 @@ class OSSSimpleEnv:
         self.current_task = None
         self.backlog_size = len(tasks)  # ← これを追加
         self.index = 0
-        self.n_agents = kwargs.get("n_agents", len(self.dev_ids)) 
+        self.n_agents = kwargs.get("n_agents", len(self.dev_ids))
         self.agents = [f"agent_{i}" for i in range(self.n_agents)]
         # 各エージェントの観測空間を Box 形式で定義 (複雑度と経過日数)
         self.observation_spaces = {
             agent: spaces.Box(
                 low=np.array([0, 0], dtype=np.float32),
                 high=np.array([5, 365], dtype=np.float32),
-                dtype=np.float32
-            ) for agent in self.agents
+                dtype=np.float32,
+            )
+            for agent in self.agents
         }
         self.action_spaces = {
             agent: Discrete(self.backlog_size) for agent in self.agents
         }
-
 
     def reset(self):
         self.index = 0
@@ -72,7 +74,6 @@ class OSSSimpleEnv:
 
         return obs, reward, terminated, {}
 
-
     def _get_obs(self):
         # 現在タスクの複雑度と経過日数をベクトルで返す
         created = self.current_task.created_at
@@ -82,18 +83,18 @@ class OSSSimpleEnv:
         now = datetime.datetime.now(datetime.timezone.utc)
         days = (now - created).days
         days = min(days, 365)
-        obs_vector = np.array([
-            self.current_task.complexity,
-            days
-        ], dtype=np.float32)
+        obs_vector = np.array([self.current_task.complexity, days], dtype=np.float32)
         return obs_vector
 
 
 class OSSDevEnv(OSSSimpleEnv):
-    def __init__(self,
-                 task_file: str = "data/github_data.json",
-                 profile_file: str = "configs/dev_profiles.yaml",
-                 *args, **kwargs):
+    def __init__(
+        self,
+        task_file: str = "data/github_data.json",
+        profile_file: str = "configs/dev_profiles.yaml",
+        *args,
+        **kwargs,
+    ):
         self.task_file = Path(task_file)
         self.profile_file = Path(profile_file)
         self.update_dev_profiles()
@@ -118,7 +119,11 @@ class OSSDevEnv(OSSSimpleEnv):
                 author=pr["author"]["login"],
                 complexity=self.estimate_complexity(pr),
                 created_at=created,
-                labels=[l["name"] for l in pr.get("labels", {}).get("nodes", [])] if pr.get("labels") else []
+                labels=(
+                    [l["name"] for l in pr.get("labels", {}).get("nodes", [])]
+                    if pr.get("labels")
+                    else []
+                ),
             )
             if pr.get("mergedAt"):
                 task.state = "MERGED"
@@ -173,12 +178,14 @@ class OSSDevEnv(OSSSimpleEnv):
             reward = 0.0
         return obs, reward, terminated, info
 
+
 # 環境生成用関数
 def make_oss_env(task_file, profile_file, **kwargs):
     tasks = load_tasks(task_file)  # タスクの読み込み（あなたの実装に合わせて）
     return OSSSimpleEnv(tasks, profile_file=profile_file, **kwargs)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     env_instance = make_oss_env()
     obs = env_instance.reset()
     done = False

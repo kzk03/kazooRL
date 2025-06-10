@@ -11,15 +11,11 @@ class OSSGymWrapper:
         self.observation_spaces = {
             agent: env.observation_spaces[agent] for agent in self.agents
         }
-        self.action_spaces = {
-            agent: env.action_spaces[agent] for agent in self.agents
-        }
+        self.action_spaces = {agent: env.action_spaces[agent] for agent in self.agents}
 
     def reset(self):
         obs = self.env.reset()
-        return {
-            agent: obs for agent in self.agents
-        }
+        return {agent: obs for agent in self.agents}
 
     def step(self, actions):
         # actions: Dict[agent_id, action]

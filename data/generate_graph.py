@@ -86,7 +86,9 @@ data["dev"].node_id = dev_names
 # タスクノード
 x = torch.tensor(task_features, dtype=torch.float)
 node_id = task_ids
-is_open = torch.tensor([1.0 if tid in backlog else 0.0 for tid in node_id], dtype=torch.float).unsqueeze(1)
+is_open = torch.tensor(
+    [1.0 if tid in backlog else 0.0 for tid in node_id], dtype=torch.float
+).unsqueeze(1)
 data["task"].x = torch.cat([x, is_open], dim=1)
 data["task"].node_id = node_id
 
@@ -112,11 +114,13 @@ for task_id, author, kind, obj in task_meta:
             if a.get("login") in dev2idx:
                 issue_edges.append((dev2idx[a["login"]], t_idx))
 
+
 # エッジテンソル変換
 def to_edge_index(edge_list):
     if not edge_list:
         return torch.empty((2, 0), dtype=torch.long)
     return torch.tensor(edge_list, dtype=torch.long).t().contiguous()
+
 
 data["dev", "writes", "task"].edge_index = to_edge_index(pr_edges)
 data["dev", "reviews", "task"].edge_index = to_edge_index(review_edges)

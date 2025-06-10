@@ -25,10 +25,7 @@ for i in range(num_tasks):
     G.add_node(f"task_{i}", label=f"task_{i}", node_type="task")
 
 # === エッジ追加（種類で色分けのため記録） ===
-color_map = {
-    "writes": "cornflowerblue",
-    "reviews": "mediumseagreen"
-}
+color_map = {"writes": "cornflowerblue", "reviews": "mediumseagreen"}
 
 for edge_type in data.edge_types:
     src_type, rel_type, dst_type = edge_type
@@ -42,15 +39,19 @@ for edge_type in data.edge_types:
 
 # === 部分グラフ（dev 50人 + task 50件） ===
 sub_nodes = [
-    n for n in G.nodes if
-    (n.startswith("dev_") and int(n.split("_")[1]) < 50) or
-    (n.startswith("task_") and int(n.split("_")[1]) < 50)
+    n
+    for n in G.nodes
+    if (n.startswith("dev_") and int(n.split("_")[1]) < 50)
+    or (n.startswith("task_") and int(n.split("_")[1]) < 50)
 ]
 sub_G = G.subgraph(sub_nodes).copy()
 
 # === 可視化 ===
 pos = nx.spring_layout(sub_G, seed=42, k=0.8)
-node_colors = ["skyblue" if sub_G.nodes[n]["node_type"] == "dev" else "lightgreen" for n in sub_G.nodes]
+node_colors = [
+    "skyblue" if sub_G.nodes[n]["node_type"] == "dev" else "lightgreen"
+    for n in sub_G.nodes
+]
 labels = {n: sub_G.nodes[n]["label"] for n in sub_G.nodes}
 
 plt.figure(figsize=(16, 12))
@@ -60,8 +61,18 @@ nx.draw_networkx_labels(sub_G, pos, labels=labels, font_size=8)
 # エッジの rel_type に応じて色分け描画
 legend_elements = []
 for rel_type, color in color_map.items():
-    rel_edges = [(u, v) for u, v, d in sub_G.edges(data=True) if d["rel_type"] == rel_type]
-    nx.draw_networkx_edges(sub_G, pos, edgelist=rel_edges, edge_color=color, arrows=True, alpha=0.8, width=1.5)
+    rel_edges = [
+        (u, v) for u, v, d in sub_G.edges(data=True) if d["rel_type"] == rel_type
+    ]
+    nx.draw_networkx_edges(
+        sub_G,
+        pos,
+        edgelist=rel_edges,
+        edge_color=color,
+        arrows=True,
+        alpha=0.8,
+        width=1.5,
+    )
     legend_elements.append(Line2D([0], [0], color=color, lw=2, label=rel_type))
 
 # 凡例

@@ -54,5 +54,6 @@ def main():
     for i, idx in enumerate(topk.indices):
         print(f"  #{i+1}: task_{idx.item()}（スコア: {topk.values[i]:.4f})")
 
+
 if __name__ == "__main__":
     main()

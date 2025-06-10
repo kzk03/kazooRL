@@ -21,7 +21,6 @@ def main():
     with (CONFIGS / "dev_profiles.yaml").open() as f:
         profiles = yaml.safe_load(f)
     cfg["n_agents"] = len(profiles)
-    
 
     # Create env and wrap
     raw_env = make_oss_env(
