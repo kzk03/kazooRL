@@ -1,185 +1,177 @@
 [
-  {
-    "id": 12164,
-    "title": "move fixture finalizing to pytest_fixture_teardown hook",
-    "labels": [
-      "status: needs information",
-      "bot:chronographer:provided"
-    ],
-    "author": "ShurikMen",
-    "complexity": 1,
-    "createdAt": "2024-03-26T04:20:23Z"
-  },
-  {
-    "id": 12129,
-    "title": "improve(fixtures-per-test): exclude pseudo fixtures from output #11295 ",
-    "labels": [],
-    "author": "WarrenTheRabbit",
-    "complexity": 5,
-    "createdAt": "2024-03-17T13:43:36Z"
-  },
-  {
-    "id": 12110,
-    "title": "fix overridden/extended fixtures",
-    "labels": [],
-    "author": "andresliszt",
-    "complexity": 5,
-    "createdAt": "2024-03-11T17:38:55Z"
-  },
-  {
-    "id": 12082,
-    "title": "change param_index if param is pseudofixturedef",
-    "labels": [],
-    "author": "ShurikMen",
-    "complexity": 1,
-    "createdAt": "2024-03-06T08:24:07Z"
-  },
-  {
-    "id": 11812,
-    "title": "terminal: include markers in `--collect-only` output",
-    "labels": [],
-    "author": "cj-timothy-sampson",
-    "complexity": 5,
-    "createdAt": "2024-01-14T09:42:56Z"
-  },
-  {
-    "id": 11696,
-    "title": "Adding whitespace escaping on difference display",
-    "labels": [],
-    "author": "OlegP-andrew",
-    "complexity": 5,
-    "createdAt": "2023-12-11T22:33:26Z"
-  },
-  {
-    "id": 11688,
-    "title": "Full diff issue",
-    "labels": [],
-    "author": "JamieC2002",
-    "complexity": 5,
-    "createdAt": "2023-12-08T00:59:25Z"
-  },
-  {
-    "id": 11682,
-    "title": "Make use of `-I` in all Python invocations",
-    "labels": [],
-    "author": "webknjaz",
-    "complexity": 2,
-    "createdAt": "2023-12-07T01:12:53Z"
-  },
-  {
-    "id": 11679,
-    "title": "Adding stdio option for show-capture",
-    "labels": [],
-    "author": "ihindi1111",
-    "complexity": 5,
-    "createdAt": "2023-12-07T00:16:02Z"
-  },
-  {
-    "id": 11669,
-    "title": "Resolving Issue #11457",
-    "labels": [],
-    "author": "seanpourgoutzidis",
-    "complexity": 5,
-    "createdAt": "2023-12-05T03:37:39Z"
-  },
-  {
-    "id": 11635,
-    "title": "docs changes about limitations with hook function ordering",
-    "labels": [
-      "status: needs information"
-    ],
-    "author": "jack-zj-liu",
-    "complexity": 4,
-    "createdAt": "2023-11-24T16:09:42Z"
-  },
-  {
-    "id": 11614,
-    "title": "type-ify nodes",
-    "labels": [],
-    "author": "RonnyPfannschmidt",
-    "complexity": 1,
-    "createdAt": "2023-11-14T09:32:04Z"
-  },
-  {
-    "id": 11533,
-    "title": "WIP: Rework fixture dependency graph calculation",
-    "labels": [],
-    "author": "jgersti",
-    "complexity": 5,
-    "createdAt": "2023-10-21T19:59:59Z"
-  },
-  {
-    "id": 11524,
-    "title": "gh-11523: add importorskip(exc=...) kwarg",
-    "labels": [],
-    "author": "graingert",
-    "complexity": 5,
-    "createdAt": "2023-10-19T17:10:52Z"
-  },
-  {
-    "id": 11418,
-    "title": "Add hash comparison for pyc cache files",
-    "labels": [],
-    "author": "cdce8p",
-    "complexity": 5,
-    "createdAt": "2023-09-08T23:23:44Z"
-  },
-  {
-    "id": 11284,
-    "title": "Feed a test only with initialnames, not the whole fixture closure",
-    "labels": [],
-    "author": "sadra-barikbin",
-    "complexity": 3,
-    "createdAt": "2023-08-04T20:29:19Z"
-  },
-  {
-    "id": 11271,
-    "title": "Improvement: Base `FixtureArgKey`s on param values if possible, not param indices",
-    "labels": [],
-    "author": "sadra-barikbin",
-    "complexity": 2,
-    "createdAt": "2023-08-01T22:23:56Z"
-  },
-  {
-    "id": 11257,
-    "title": "Resolve param indices using param values, not parameterset index",
-    "labels": [
-      "bot:chronographer:provided"
-    ],
-    "author": "sadra-barikbin",
-    "complexity": 5,
-    "createdAt": "2023-07-28T23:40:09Z"
-  },
-  {
-    "id": 11243,
-    "title": "Remove `prune_dependency_tree` and reuse `getfixtureclosure` logic",
-    "labels": [],
-    "author": "sadra-barikbin",
-    "complexity": 5,
-    "createdAt": "2023-07-22T23:45:19Z"
-  },
-  {
-    "id": 10996,
-    "title": "[RFC] split up _pytest.python",
-    "labels": [],
-    "author": "RonnyPfannschmidt",
-    "complexity": 5,
-    "createdAt": "2023-05-13T10:36:36Z"
-  },
-  {
-    "id": 10969,
-    "title": "Multiline string issue",
-    "labels": [],
-    "author": "HomieOmie",
-    "complexity": 5,
-    "createdAt": "2023-05-07T00:23:37Z"
-  },
-  {
-    "id": 10961,
-    "title": "Updated diff to show \\t in string comparison assertions",
-    "labels": [],
-    "author": "mthaitan",
-    "complexity": 5,
-    "createdAt": "2023-05-03T15:25:39Z"
-  }
+    {
+        "id": "TASK-0",
+        "name": "Task number 0",
+        "required_skills": [
+            "go",
+            "rust"
+        ],
+        "complexity": 6
+    },
+    {
+        "id": "TASK-1",
+        "name": "Task number 1",
+        "required_skills": [
+            "javascript"
+        ],
+        "complexity": 5
+    },
+    {
+        "id": "TASK-2",
+        "name": "Task number 2",
+        "required_skills": [
+            "go",
+            "java"
+        ],
+        "complexity": 6
+    },
+    {
+        "id": "TASK-3",
+        "name": "Task number 3",
+        "required_skills": [
+            "go"
+        ],
+        "complexity": 3
+    },
+    {
+        "id": "TASK-4",
+        "name": "Task number 4",
+        "required_skills": [
+            "javascript",
+            "c++"
+        ],
+        "complexity": 10
+    },
+    {
+        "id": "TASK-5",
+        "name": "Task number 5",
+        "required_skills": [
+            "go",
+            "java"
+        ],
+        "complexity": 4
+    },
+    {
+        "id": "TASK-6",
+        "name": "Task number 6",
+        "required_skills": [
+            "rust",
+            "c++"
+        ],
+        "complexity": 8
+    },
+    {
+        "id": "TASK-7",
+        "name": "Task number 7",
+        "required_skills": [
+            "rust"
+        ],
+        "complexity": 1
+    },
+    {
+        "id": "TASK-8",
+        "name": "Task number 8",
+        "required_skills": [
+            "go",
+            "c++"
+        ],
+        "complexity": 4
+    },
+    {
+        "id": "TASK-9",
+        "name": "Task number 9",
+        "required_skills": [
+            "go",
+            "python"
+        ],
+        "complexity": 5
+    },
+    {
+        "id": "TASK-10",
+        "name": "Task number 10",
+        "required_skills": [
+            "c++",
+            "go"
+        ],
+        "complexity": 4
+    },
+    {
+        "id": "TASK-11",
+        "name": "Task number 11",
+        "required_skills": [
+            "python",
+            "javascript"
+        ],
+        "complexity": 2
+    },
+    {
+        "id": "TASK-12",
+        "name": "Task number 12",
+        "required_skills": [
+            "c++",
+            "python"
+        ],
+        "complexity": 4
+    },
+    {
+        "id": "TASK-13",
+        "name": "Task number 13",
+        "required_skills": [
+            "c++",
+            "rust"
+        ],
+        "complexity": 4
+    },
+    {
+        "id": "TASK-14",
+        "name": "Task number 14",
+        "required_skills": [
+            "c++",
+            "javascript"
+        ],
+        "complexity": 2
+    },
+    {
+        "id": "TASK-15",
+        "name": "Task number 15",
+        "required_skills": [
+            "rust"
+        ],
+        "complexity": 5
+    },
+    {
+        "id": "TASK-16",
+        "name": "Task number 16",
+        "required_skills": [
+            "python"
+        ],
+        "complexity": 6
+    },
+    {
+        "id": "TASK-17",
+        "name": "Task number 17",
+        "required_skills": [
+            "c++",
+            "go"
+        ],
+        "complexity": 8
+    },
+    {
+        "id": "TASK-18",
+        "name": "Task number 18",
+        "required_skills": [
+            "rust",
+            "javascript"
+        ],
+        "complexity": 4
+    },
+    {
+        "id": "TASK-19",
+        "name": "Task number 19",
+        "required_skills": [
+            "go",
+            "javascript"
+        ],
+        "complexity": 9
+    }
 ]

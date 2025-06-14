@@ -1,195 +1,196 @@
-import datetime
-import json
-import math
-import random
-import sys
-from pathlib import Path
-from typing import List
+import os
 
-import gym
+import gymnasium as gym
 import numpy as np
-import yaml
-from dateutil import parser
-from gym import spaces
-from gym.spaces import Discrete
+from gymnasium import spaces
 
-from data.generate_backlog import load_tasks
 from kazoo.envs.task import Task
+from kazoo.features.feature_extractor import get_features
 
+# from kazoo.envs.developer import Developer # Developerクラスがある場合はインポート
 
-class OSSSimpleEnv:
-    def __init__(self, tasks: List[Task], profile_file: str, *args, **kwargs):
+# OSSSimpleEnv クラスの定義
+class OSSSimpleEnv(gym.Env):
+    def __init__(self, config, backlog, dev_profiles, reward_weights_path=None):
+        super().__init__() # gym.Envの初期化を呼び出すことが推奨されます
+        
+        self.config = config
+        self.dev_profiles = dev_profiles
+        self.initial_backlog = backlog
 
-        with open(profile_file) as f:
-            profiles = yaml.safe_load(f)
-
-        self.dev_ids = list(profiles.keys())  # すべての開発者ID（user名）を取得
-        self.n_agents = len(self.dev_ids)  # エージェント数を設定
-        self.tasks = tasks
-        self.current_task = None
-        self.backlog_size = len(tasks)  # ← これを追加
-        self.index = 0
-        self.n_agents = kwargs.get("n_agents", len(self.dev_ids))
-        self.agents = [f"agent_{i}" for i in range(self.n_agents)]
-        # 各エージェントの観測空間を Box 形式で定義 (複雑度と経過日数)
-        self.observation_spaces = {
-            agent: spaces.Box(
-                low=np.array([0, 0], dtype=np.float32),
-                high=np.array([5, 365], dtype=np.float32),
-                dtype=np.float32,
-            )
-            for agent in self.agents
-        }
-        self.action_spaces = {
-            agent: Discrete(self.backlog_size) for agent in self.agents
-        }
-
-    def reset(self):
-        self.index = 0
-        self.current_task = self.tasks[self.index]
-        return self._get_obs()
-
-    def sample_action(self):
-        return random.choice(range(3))
-
-    def step(self, action):
-        # 選んだタスクを処理したとみなす
-        task = self.tasks[action]
-        task.state = "MERGED"  # 仮に成功処理とする（報酬が出るように）
-
-        self.index += 1
-        terminated = self.index >= len(self.tasks)
-        if not terminated:
-            self.current_task = self.tasks[self.index]
-
-        obs = self._get_obs()
-
-        # 報酬計算（今は task.state = "MERGED" にしたので 1.0 が返る）
-        if task.state == "MERGED":
-            reward = 1.0
-        elif task.state == "CLOSED":
-            reward = -0.5
+        # ===エージェント(開発者)とIDリストの作成 ===
+        self.num_developers = self.config.get("num_developers", 5)
+        self.developers = self._create_developers()
+        self.agent_ids = list(self.developers.keys())
+        
+        # ===行動空間・観測空間の正しい定義 ===
+        # agent_ids を使って、各エージェントの空間を定義します。
+        self.action_space = spaces.Dict(
+            {
+                agent_id: spaces.Discrete(len(self.initial_backlog) + 1)
+                for agent_id in self.agent_ids
+            }
+        )
+        self.observation_space = spaces.Dict(
+            # このshapeは環境の状態表現に合わせて調整が必要です
+            {
+                agent_id: spaces.Box(low=0, high=np.inf, shape=(len(self.initial_backlog) * 3,), dtype=np.float32)
+                for agent_id in self.agent_ids
+            }
+        )
+        
+        # ===IRL報酬の重み読み込み処理 ===
+        # この部分はご自身のコードをそのまま活かしています。
+        self.use_learned_reward = False
+        if reward_weights_path and os.path.exists(reward_weights_path):
+            self.reward_weights = np.load(reward_weights_path)
+            self.use_learned_reward = True
+            print(f"[OSSSimpleEnv] Loaded learned reward weights from {reward_weights_path}")
         else:
-            reward = 0.0
+            print("[OSSSimpleEnv] Using default hard-coded reward.")
 
-        return obs, reward, terminated, {}
+    """
+    __init__メソッドの後 (インデントをクラスに合わせる) に、
+    以下のヘルパーメソッドを追加してください。
+    """
+    def _create_developers(self):
+        developers = {}
+        # dev_profiles.yaml から開発者の情報を読み込む
+        for i, (dev_id, profile) in enumerate(self.dev_profiles.items()):
+            if i >= self.num_developers:
+                break
+            # Developerクラスがあればそれを使うのが望ましいですが、
+            # ない場合は辞書として情報を保持します。
+            developers[dev_id] = {
+                "id": dev_id,
+                "skills": profile.get("skills", []),
+                "efficiency": profile.get("efficiency", 1.0)
+            }
+        return developers
 
-    def _get_obs(self):
-        # 現在タスクの複雑度と経過日数をベクトルで返す
-        created = self.current_task.created_at
-        if created.tzinfo is None:  # naiveならUTCをつける
-            created = created.replace(tzinfo=datetime.timezone.utc)
-
-        now = datetime.datetime.now(datetime.timezone.utc)
-        days = (now - created).days
-        days = min(days, 365)
-        obs_vector = np.array([self.current_task.complexity, days], dtype=np.float32)
-        return obs_vector
-
-
-class OSSDevEnv(OSSSimpleEnv):
-    def __init__(
-        self,
-        task_file: str = "data/github_data.json",
-        profile_file: str = "configs/dev_profiles.yaml",
-        *args,
-        **kwargs,
-    ):
-        self.task_file = Path(task_file)
-        self.profile_file = Path(profile_file)
-        self.update_dev_profiles()
-        tasks = load_tasks(task_file)
-        super().__init__(tasks=tasks, *args, **kwargs)
-        self._original_step = super().step
-        return OSSSimpleEnv(tasks, profile_file=profile_file, **kwargs)
-
-    def estimate_complexity(self, pr: dict) -> float:
-        msg_len = len(pr.get("body", ""))
-        return min(5, max(1, msg_len // 200))
-
-    def load_tasks(self) -> List[Task]:
-        with self.task_file.open("r") as f:
-            data = json.load(f)
-        tasks: List[Task] = []
-        for pr in data["prs"]:
-            created = datetime.datetime.strptime(pr["createdAt"], "%Y-%m-%dT%H:%M:%SZ")
-            task = Task(
-                id=pr["number"],
-                title=pr["title"],
-                author=pr["author"]["login"],
-                complexity=self.estimate_complexity(pr),
-                created_at=created,
-                labels=(
-                    [l["name"] for l in pr.get("labels", {}).get("nodes", [])]
-                    if pr.get("labels")
-                    else []
-                ),
-            )
-            if pr.get("mergedAt"):
-                task.state = "MERGED"
-            elif pr.get("state") == "CLOSED":
-                task.state = "CLOSED"
-            tasks.append(task)
-        return tasks
-
-    def update_dev_profiles(self):
-        with self.task_file.open("r") as f:
-            data = json.load(f)
-        try:
-            with self.profile_file.open("r") as f:
-                profiles = f.read()
-        except FileNotFoundError:
-            profiles = ""
-
-        existing = set()
-        for line in profiles.splitlines():
-            if line and not line.startswith(" ") and ":" in line:
-                existing.add(line.strip(":"))
-
-        new_profiles = []
-        for pr in data["prs"]:
-            login = pr["author"]["login"]
-            if login not in existing:
-                block = (
-                    f"{login}:\n"
-                    "  lang_emb: [1.0, 0.0, 0.0]\n"
-                    "  skill:\n"
-                    "    code: 0.5\n"
-                    "    review: 0.3\n"
-                    "  task_types: [0, 0, 0]\n"
-                )
-                new_profiles.append(block)
-                existing.add(login)
-
-        if new_profiles:
-            with self.profile_file.open("a") as f:
-                f.write("\n" + "\n".join(new_profiles))
-
-    def step(self, action):
-        obs, _, terminated, info = self._original_step(action)
-        task = self.current_task
-        if task.state == "MERGED":
-            reward = 1.0
-        elif task.state == "CLOSED":
-            reward = -0.5
-        elif (datetime.datetime.utcnow() - task.created_at).days > 30:
-            reward = -0.2
+    """
+    以下は、ご自身で実装された _calculate_reward メソッドです。
+    このままお使いください。
+    """
+    def _calculate_reward(self, agent_id, action_enum, action_details):
+        # action_detailsなどの引数は、step関数から渡せるように調整が必要
+        if self.use_learned_reward:
+            # 特徴量ベクトルを取得し、重みとの内積を報酬として返す
+            # self.state は step メソッド内で更新される現在の状態を渡す想定
+            features = get_features(self.state, action_enum, action_details, agent_id)
+            return np.dot(self.reward_weights, features)
         else:
-            reward = 0.0
-        return obs, reward, terminated, info
+            # from kazoo.consts.actions import Action # 必要に応じてインポート
+            # 以下は、従来のハードコーディングされた報酬計算
+            # return 1.0 if action_enum == Action.MERGE_PULL_REQUEST else 0.0
+            return 0.0 # 仮のデフォルト報酬
+        
+
+    def step(self, actions):
+        """
+        行動を受け取り、環境を1ステップ進める。
+        戻り値は gymnasium のルールに従う必要がある。
+        """
+        self.time += 1
+        
+        # このステップでの各エージェントの報酬を初期化
+        rewards = {agent_id: 0.0 for agent_id in self.agent_ids}
+        
+        # --- 1. 各エージェントの行動を処理 ---
+        for agent_id, action_val in actions.items():
+            developer = self.developers[agent_id]
+            
+            # action_val は、選択したタスクのインデックスを想定
+            # 現状の実装では、エージェントは1つのタスクしか持てないと仮定
+            # TODO: developerオブジェクトに現在のタスクを保持する属性が必要
+            # if developer.get("current_task") is None and action_val < len(self.backlog):
+            if action_val < len(self.backlog): # 仮の割当ロジック
+                # 選択されたタスクを取得
+                selected_task = self.backlog[action_val]
+                
+                # タスクを進行中に移動
+                if selected_task.id not in self.tasks_in_progress:
+                    self.tasks_in_progress[selected_task.id] = selected_task
+                    selected_task.status = "in_progress"
+                    # TODO: 開発者にタスクを割り当てる処理
+                    # developer["current_task"] = selected_task.id
+                    print(f"Time {self.time}: {agent_id} started {selected_task.name}")
 
 
-# 環境生成用関数
-def make_oss_env(task_file, profile_file, **kwargs):
-    tasks = load_tasks(task_file)  # タスクの読み込み（あなたの実装に合わせて）
-    return OSSSimpleEnv(tasks, profile_file=profile_file, **kwargs)
+        # --- 2. 時間経過によるタスクの進行と完了をシミュレート ---
+        # この部分は簡略化されています。本来は開発者のスキルや効率を考慮します。
+        completed_this_step = []
+        for task in self.tasks_in_progress.values():
+            # 仮のロジック：各ステップで一定の確率でタスクが完了する
+            if np.random.rand() < 0.1: # 10%の確率で完了
+                task.status = "done"
+                self.completed_tasks.append(task)
+                completed_this_step.append(task.id)
+                # TODO: 完了させたエージェントに報酬を与える
+                # rewards[task.assigned_to] += 1.0 
+                print(f"Time {self.time}: {task.name} completed!")
+
+        # 完了したタスクを進行中リストから削除
+        for task_id in completed_this_step:
+            del self.tasks_in_progress[task_id]
+
+        # --- 3. gymnasiumのルールに従った戻り値を準備 ---
+        
+        # 次の観測を取得
+        observations = self._get_observations()
+        
+        # 終了判定
+        # ここでは単純に最大ステップに達したかどうかで判定
+        is_done = self.time >= self.config.get("max_steps", 1000)
+        terminateds = {agent_id: is_done for agent_id in self.agent_ids}
+        truncateds = {agent_id: is_done for agent_id in self.agent_ids}
+
+        # 補助情報を取得
+        infos = self._get_infos()
+        
+        # 戻り値は (観測, 報酬, 終了フラグ(terminated), 打ち切りフラグ(truncated), 情報) の5つ組
+        return observations, rewards, terminateds, truncateds, infos
 
 
-if __name__ == "__main__":
-    env_instance = make_oss_env()
-    obs = env_instance.reset()
-    done = False
-    while not done:
-        action = env_instance.sample_action()
-        obs, reward, done, info = env_instance.step(action)
-        print(f"Reward: {reward}")
+    def reset(self, seed=None, options=None):
+        super().reset(seed=seed)
+        self.time = 0
+        self.backlog = [Task.from_dict(t) for t in self.initial_backlog]
+        self.tasks_in_progress = {}
+        self.completed_tasks = []
+
+        # Developerのリセット処理（もしあれば）
+        # for dev in self.developers.values():
+        #     dev.reset()
+            
+        # ★★★ ここからが修正箇所 ★★★
+        observations = self._get_observations()
+        infos = self._get_infos()
+        
+        return observations, infos # ★★★ 初期観測と情報を返す
+
+    # === 以下のヘルパーメソッドをクラス内に追加してください ===
+
+    def _get_observations(self):
+        """全エージェントの観測を辞書として返す"""
+        
+        task_states = []
+        for task in self.backlog:  # ★★★ ここを self.backlog に修正 ★★★
+            # これで task は Task オブジェクトになる
+            status_val = 0 
+            if task.id in self.tasks_in_progress:
+                status_val = 1
+            elif task.status == "done": # Taskオブジェクトの属性を参照するように変更
+                status_val = 2
+            
+            task_states.extend([status_val, task.complexity, task.deadline])
+
+        obs_vector = np.array(task_states, dtype=np.float32)
+
+        return {agent_id: obs_vector for agent_id in self.agent_ids}
+    
+
+    def _get_infos(self):
+        """全エージェントの補助情報を辞書として返す"""
+        # 現状は空の辞書で問題ありません
+        return {agent_id: {} for agent_id in self.agent_ids}

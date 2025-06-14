@@ -1,36 +1,24 @@
-import datetime
 import json
-from pathlib import Path
-
-from kazoo.envs.task import Task
+import random
 
 
-def load_tasks(path):
-    """github_data.json から OPENなPRを抽出し、Taskインスタンスのリストを返す"""
-    path = Path(path)
-
-    with path.open() as f:
-        raw = json.load(f)
-    prs = raw.get("prs", [])
-
+def generate_backlog(num_tasks=20, output_path="data/backlog.json"):
     backlog = []
-    for pr in prs:
-        if pr.get("state") != "OPEN":
-            continue
+    all_skills = ["python", "java", "c++", "javascript", "go", "rust"]
 
-        created_at = datetime.datetime.strptime(
-            pr.get("createdAt"), "%Y-%m-%dT%H:%M:%SZ"
-        )
-
-        task = Task(
-            id=pr["number"],
-            title=pr.get("title", ""),
-            author=pr.get("author", {}).get("login"),
-            complexity=min(len(pr.get("body", "")) // 100 + 1, 5),
-            created_at=created_at,
-            labels=[l["name"] for l in pr.get("labels", {}).get("nodes", [])],
-        )
-
+    for i in range(num_tasks):
+        task = {
+            "id": f"TASK-{i}",
+            "name": f"Task number {i}", 
+            "required_skills": random.sample(all_skills, k=random.randint(1, 2)),
+            "complexity": random.randint(1, 10),
+        }
         backlog.append(task)
 
-    return backlog
+    with open(output_path, "w") as f:
+        json.dump(backlog, f, indent=4)
+        
+    print(f"Generated {num_tasks} tasks in {output_path}")
+
+if __name__ == "__main__":
+    generate_backlog()
