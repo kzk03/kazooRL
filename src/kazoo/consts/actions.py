@@ -9,8 +9,8 @@ class Action(Enum):
     # PR-related
     SUBMIT_PULL_REQUEST = auto()
     REQUEST_REVIEW = auto()
-    APPROVE_PULL_REQUEST = auto() # レビューでのApprove
-    MERGE_PULL_REQUEST = auto() # マージ行為
+    APPROVE_PULL_REQUEST = auto()  # レビューでのApprove
+    MERGE_PULL_REQUEST = auto()  # マージ行為
 
     # General
     DO_NOTHING = auto()

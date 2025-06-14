@@ -1,7 +1,8 @@
 # scripts/train_oss.py
+import json
+
 import hydra
 from omegaconf import DictConfig, OmegaConf
-import json
 
 from kazoo.envs.oss_simple import OSSSimpleEnv
 # ★★★ インポートするクラスを新しい司令塔クラスに変更 ★★★
@@ -19,7 +20,7 @@ def main(cfg: DictConfig) -> None:
 
     # ★★★ 学習器をIndependentPPOControllerに変更 ★★★
     learner = IndependentPPOController(env=env, config=cfg)
-    
+
     learner.learn(total_timesteps=cfg.total_steps)
 
     print("Training finished.")

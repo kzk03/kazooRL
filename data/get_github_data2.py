@@ -10,14 +10,16 @@ from dotenv import load_dotenv
 load_dotenv()
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 if not GITHUB_TOKEN:
-    raise ValueError("GITHUB_TOKENが設定されていません。.envファイルを確認してください。")
+    raise ValueError(
+        "GITHUB_TOKENが設定されていません。.envファイルを確認してください。"
+    )
 
 HEADERS = {"Authorization": f"bearer {GITHUB_TOKEN}"}
 API_URL = "https://api.github.com/graphql"
 
 REPO_OWNER = "numpy"  # リポジトリの所有者
-REPO_NAME = "numpy"   # リポジトリ名
-DAYS_AGO = 30         # 収集する期間（日数）
+REPO_NAME = "numpy"  # リポジトリ名
+DAYS_AGO = 30  # 収集する期間（日数）
 
 # --- GraphQL クエリ ---
 # このクエリがリクエストの心臓部。必要な情報を一度に定義する。
@@ -62,23 +64,30 @@ query($owner: String!, $name: String!, $since: DateTime!, $cursor: String) {
 }
 """
 
+
 def run_query(query, variables):
     """GraphQLクエリを実行し、レート制限を考慮する関数"""
-    for _ in range(5): # 5回までリトライ
-        response = requests.post(API_URL, json={"query": query, "variables": variables}, headers=HEADERS)
-        if response.status_code == 200 and 'data' in response.json():
+    for _ in range(5):  # 5回までリトライ
+        response = requests.post(
+            API_URL, json={"query": query, "variables": variables}, headers=HEADERS
+        )
+        if response.status_code == 200 and "data" in response.json():
             # レート制限情報を表示
-            rate_limit = response.headers.get('x-ratelimit-remaining')
+            rate_limit = response.headers.get("x-ratelimit-remaining")
             if rate_limit:
                 print(f"Rate limit remaining: {rate_limit}")
             return response.json()
-        
-        print(f"Query failed to run by returning code of {response.status_code}. Retrying...")
+
+        print(
+            f"Query failed to run by returning code of {response.status_code}. Retrying..."
+        )
         time.sleep(5)
     raise Exception(f"GraphQL query failed multiple times. Response: {response.text}")
 
 
-print(f"Fetching data from {REPO_OWNER}/{REPO_NAME} for the last {DAYS_AGO} days using GraphQL...")
+print(
+    f"Fetching data from {REPO_OWNER}/{REPO_NAME} for the last {DAYS_AGO} days using GraphQL..."
+)
 since_date_iso = (datetime.now() - timedelta(days=DAYS_AGO)).isoformat()
 all_events = []
 has_next_page = True
@@ -90,39 +99,67 @@ while has_next_page:
         "owner": REPO_OWNER,
         "name": REPO_NAME,
         "since": since_date_iso,
-        "cursor": cursor
+        "cursor": cursor,
     }
-    
+
     result = run_query(GRAPHQL_QUERY, variables)
     data = result["data"]["repository"]["pullRequests"]
-    
+
     for pr in data["nodes"]:
         # 収集期間外になったらループを終了
-        if datetime.fromisoformat(pr["updatedAt"].replace("Z", "+00:00")) < (datetime.now() - timedelta(days=DAYS_AGO)):
+        if datetime.fromisoformat(pr["updatedAt"].replace("Z", "+00:00")) < (
+            datetime.now() - timedelta(days=DAYS_AGO)
+        ):
             has_next_page = False
             break
 
         print(f"  - Processing PR #{pr['number']}")
 
         # PRオープンイベント
-        all_events.append({"type": "pr_opened", "number": pr["number"], "actor": pr["author"]["login"] if pr["author"] else None, "created_at": pr["createdAt"], "data": {"title": pr["title"], "additions": pr["additions"], "deletions": pr.get("deletions", 0)}})
-        
+        all_events.append(
+            {
+                "type": "pr_opened",
+                "number": pr["number"],
+                "actor": pr["author"]["login"] if pr["author"] else None,
+                "created_at": pr["createdAt"],
+                "data": {
+                    "title": pr["title"],
+                    "additions": pr["additions"],
+                    "deletions": pr.get("deletions", 0),
+                },
+            }
+        )
+
         # PRのマージイベント
         if pr["merged"]:
-            all_events.append({"type": "pr_merged", "number": pr["number"], "actor": pr["mergedBy"]["login"] if pr["mergedBy"] else None, "created_at": pr["mergedAt"]})
-            
+            all_events.append(
+                {
+                    "type": "pr_merged",
+                    "number": pr["number"],
+                    "actor": pr["mergedBy"]["login"] if pr["mergedBy"] else None,
+                    "created_at": pr["mergedAt"],
+                }
+            )
+
         # タイムラインアイテム（レビューなど）をパース
         for item in pr["timelineItems"]["nodes"]:
             event_type = item["__typename"]
             if event_type == "PullRequestReview":
-                all_events.append({"type": f"pr_review_{item['state'].lower()}", "number": pr["number"], "actor": item["author"]["login"] if item["author"] else None, "created_at": item["submittedAt"]})
+                all_events.append(
+                    {
+                        "type": f"pr_review_{item['state'].lower()}",
+                        "number": pr["number"],
+                        "actor": item["author"]["login"] if item["author"] else None,
+                        "created_at": item["submittedAt"],
+                    }
+                )
 
     # 次のページがあるかチェック
     if has_next_page:
-      page_info = data["pageInfo"]
-      has_next_page = page_info["hasNextPage"]
-      cursor = page_info["endCursor"]
-    
+        page_info = data["pageInfo"]
+        has_next_page = page_info["hasNextPage"]
+        cursor = page_info["endCursor"]
+
     if not has_next_page:
         print("No more pages.")
 
@@ -130,7 +167,7 @@ while has_next_page:
 all_events.sort(key=lambda x: x["created_at"])
 
 # ファイルに保存
-output_path = 'data/expert_events_graphql.json'
-with open(output_path, 'w') as f:
+output_path = "data/expert_events_graphql.json"
+with open(output_path, "w") as f:
     json.dump(all_events, f, indent=2)
 print(f"\nDetailed expert events saved to {output_path}")
