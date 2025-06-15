@@ -13,8 +13,8 @@ from dateutil import parser
 from gym import spaces
 from gym.spaces import Discrete
 
-from tools.data_processing.generate_backlog import load_tasks
 from kazoo.envs.task import Task
+from tools.data_processing.generate_backlog import load_tasks
 
 
 class OSSSimpleEnv:
