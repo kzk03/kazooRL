@@ -18,17 +18,16 @@ class OSSGymWrapper:
         return {agent: obs for agent in self.agents}
 
     def step(self, actions):
-        # actions: Dict[agent_id, action]
-        rewards = {}
-        observations = {}
-        terminations = {}
-        infos = {}
+        action_list = [actions[agent] for agent in self.agents]
+        
+        # 2. 全エージェントの行動リストを一度に渡して、stepを1回だけ実行
+        observations, rewards, terminations, infos = self.env.step(action_list)
 
-        for agent_id, action in actions.items():
-            obs, reward, done, info = self.env.step(action)
-            observations[agent_id] = obs
-            rewards[agent_id] = reward
-            terminations[agent_id] = done
-            infos[agent_id] = info
+        # 3. 必要に応じて、返り値を辞書形式に変換して返す
+        #    (もしself.env.stepの返り値が既に辞書なら、この処理は不要)
+        obs_dict = {agent: observations[i] for i, agent in enumerate(self.agents)}
+        rew_dict = {agent: rewards[i] for i, agent in enumerate(self.agents)}
+        term_dict = {agent: terminations[i] for i, agent in enumerate(self.agents)}
+        info_dict = {agent: infos[i] for i, agent in enumerate(self.agents)}
 
-        return observations, rewards, terminations, infos
+        return obs_dict, rew_dict, term_dict, info_dict

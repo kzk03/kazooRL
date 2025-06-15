@@ -4,7 +4,7 @@ import torch
 import yaml
 
 from kazoo.envs.oss_gym_wrapper import OSSGymWrapper
-from kazoo.envs.oss_simple import make_oss_env
+from kazoo.envs.oss_simple import OSSSimpleEnv
 from kazoo.learners.indep_ppo import IndependentPPO, PPOConfig
 
 
@@ -23,7 +23,7 @@ def main():
     cfg["n_agents"] = len(profiles)
 
     # 環境生成
-    raw_env = make_oss_env(
+    raw_env = OSSSimpleEnv(
         task_file=str(DATA / "github_data.json"),
         profile_file=str(CONFIGS / "dev_profiles.yaml"),
         n_agents=cfg["n_agents"],
