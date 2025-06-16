@@ -2,8 +2,7 @@ import pickle
 
 import numpy as np
 
-from src.kazoo.features.feature_extractor import (FEATURE_DIM, FEATURE_NAMES,
-                                                  get_features)
+from kazoo.features.feature_extractor import FEATURE_DIM, FEATURE_NAMES, get_features
 
 
 def calculate_feature_expectations(trajectories):
@@ -30,7 +29,7 @@ def run_rl_and_get_trajectories(reward_weights):
     # この関数は、本研究の技術的な核心部分です。
 
     # 現状は、ダミーの軌跡を返す仮実装です。
-    from src.kazoo.consts.actions import Action
+    from kazoo.consts.actions import Action
 
     dummy_trajectory = [
         {

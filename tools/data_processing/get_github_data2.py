@@ -1,7 +1,7 @@
 import json
 import os
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone  # timezone をインポート
 
 import requests
 from dotenv import load_dotenv
@@ -19,11 +19,9 @@ API_URL = "https://api.github.com/graphql"
 
 REPO_OWNER = "numpy"  # リポジトリの所有者
 REPO_NAME = "numpy"  # リポジトリ名
-DAYS_AGO = 30  # 収集する期間（日数）
+DAYS_AGO = 5  # 収集する期間（日数）
 
 # --- GraphQL クエリ ---
-# このクエリがリクエストの心臓部。必要な情報を一度に定義する。
-# Pull Requestとそのタイムラインアイテム（レビュー、マージなど）を取得
 GRAPHQL_QUERY = """
 query($owner: String!, $name: String!, $since: DateTime!, $cursor: String) {
   repository(owner: $owner, name: $name) {
@@ -72,7 +70,6 @@ def run_query(query, variables):
             API_URL, json={"query": query, "variables": variables}, headers=HEADERS
         )
         if response.status_code == 200 and "data" in response.json():
-            # レート制限情報を表示
             rate_limit = response.headers.get("x-ratelimit-remaining")
             if rate_limit:
                 print(f"Rate limit remaining: {rate_limit}")
@@ -88,7 +85,10 @@ def run_query(query, variables):
 print(
     f"Fetching data from {REPO_OWNER}/{REPO_NAME} for the last {DAYS_AGO} days using GraphQL..."
 )
-since_date_iso = (datetime.now() - timedelta(days=DAYS_AGO)).isoformat()
+
+# --- 変更点 1 ---
+# タイムゾーンをUTCに指定して日付を生成
+since_date_iso = (datetime.now(timezone.utc) - timedelta(days=DAYS_AGO)).isoformat()
 all_events = []
 has_next_page = True
 cursor = None
@@ -106,9 +106,10 @@ while has_next_page:
     data = result["data"]["repository"]["pullRequests"]
 
     for pr in data["nodes"]:
-        # 収集期間外になったらループを終了
+        # --- 変更点 2 ---
+        # 比較する両方の日付をタイムゾーンアウェア(UTC)に統一
         if datetime.fromisoformat(pr["updatedAt"].replace("Z", "+00:00")) < (
-            datetime.now() - timedelta(days=DAYS_AGO)
+            datetime.now(timezone.utc) - timedelta(days=DAYS_AGO)
         ):
             has_next_page = False
             break
@@ -154,7 +155,6 @@ while has_next_page:
                     }
                 )
 
-    # 次のページがあるかチェック
     if has_next_page:
         page_info = data["pageInfo"]
         has_next_page = page_info["hasNextPage"]
@@ -163,11 +163,9 @@ while has_next_page:
     if not has_next_page:
         print("No more pages.")
 
-# 全イベントを時系列でソート
 all_events.sort(key=lambda x: x["created_at"])
 
-# ファイルに保存
-output_path = "data/expert_events_graphql.json"
+output_path = "data/expert_events.json"
 with open(output_path, "w") as f:
     json.dump(all_events, f, indent=2)
 print(f"\nDetailed expert events saved to {output_path}")

@@ -1,15 +1,16 @@
 import json
+from collections import defaultdict
 from pathlib import Path
 
+import numpy as np
 import torch
+import yaml
 from torch_geometric.data import HeteroData
 
-# === パス設定 ===
-root = Path(__file__).resolve().parents[1]
-data_path = root / "data/github_data.json"
-profile_path = root / "configs/dev_profiles.yaml"
-backlog_path = root / "data/backlog.json"
-graph_out = root / "data/graph.pt"
+data_path = Path("data/github_data.json")
+profile_path = Path("configs/dev_profiles.yaml")
+backlog_path = Path("data/backlog.json")
+graph_out = Path("data/graph.pt")
 
 # === データ読み込み ===
 with data_path.open() as f:
@@ -18,8 +19,6 @@ prs = raw.get("prs", [])
 issues = raw.get("issues", [])
 
 # プロフィール読み込み
-import yaml
-
 with profile_path.open() as f:
     profiles = yaml.safe_load(f)
 
@@ -61,19 +60,17 @@ for issue in issues:
     task_features.append([0.0, 1.0] + [0.0] * 6)  # Issue特徴量例
 
 # 開発者ノード
-from collections import defaultdict
-
-import numpy as np
-
 dev_names = sorted(list(dev_set))
 dev2idx = {name: i for i, name in enumerate(dev_names)}
 skill_features = []
 
 for name in dev_names:
     p = profiles.get(name, {})
+    # 'skill' キーが存在しない場合のデフォルト値を設定
+    skill_p = p.get("skill", {})
     skill = [
-        float(p.get("skill", {}).get("code", 0.0)),
-        float(p.get("skill", {}).get("review", 0.0)),
+        float(skill_p.get("code", 0.0)),
+        float(skill_p.get("review", 0.0)),
     ]
     langs = p.get("lang_emb", [0.0, 0.0, 0.0])
     task_types = p.get("task_types", [0.0, 0.0, 0.0])
@@ -127,5 +124,7 @@ data["dev", "reviews", "task"].edge_index = to_edge_index(review_edges)
 data["dev", "assigned", "task"].edge_index = to_edge_index(issue_edges)
 
 # === 保存 ===
+# 出力先のディレクトリが存在しない場合に作成
+graph_out.parent.mkdir(parents=True, exist_ok=True)
 torch.save(data, graph_out)
 print(f"✅ GNNグラフを保存しました → {graph_out}")

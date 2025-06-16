@@ -1,7 +1,7 @@
 import json
 import pickle
 
-from src.kazoo.consts.actions import Action
+from kazoo.consts.actions import Action
 
 
 def map_event_to_action(event):
@@ -32,7 +32,7 @@ def map_event_to_action(event):
 
 
 def main():
-    with open("data/expert_events_detailed.json", "r") as f:
+    with open("data/expert_events.json", "r") as f:
         events = json.load(f)
 
     trajectories = []

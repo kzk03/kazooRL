@@ -3,16 +3,16 @@
         "id": "TASK-0",
         "name": "Task number 0",
         "required_skills": [
-            "go",
             "rust"
         ],
-        "complexity": 6
+        "complexity": 1
     },
     {
         "id": "TASK-1",
         "name": "Task number 1",
         "required_skills": [
-            "javascript"
+            "javascript",
+            "rust"
         ],
         "complexity": 5
     },
@@ -21,104 +21,102 @@
         "name": "Task number 2",
         "required_skills": [
             "go",
-            "java"
+            "c++"
         ],
-        "complexity": 6
+        "complexity": 3
     },
     {
         "id": "TASK-3",
         "name": "Task number 3",
         "required_skills": [
-            "go"
+            "c++"
         ],
-        "complexity": 3
+        "complexity": 4
     },
     {
         "id": "TASK-4",
         "name": "Task number 4",
         "required_skills": [
-            "javascript",
+            "rust",
             "c++"
         ],
-        "complexity": 10
+        "complexity": 5
     },
     {
         "id": "TASK-5",
         "name": "Task number 5",
         "required_skills": [
-            "go",
-            "java"
+            "python",
+            "c++"
         ],
-        "complexity": 4
+        "complexity": 2
     },
     {
         "id": "TASK-6",
         "name": "Task number 6",
         "required_skills": [
             "rust",
-            "c++"
+            "javascript"
         ],
-        "complexity": 8
+        "complexity": 7
     },
     {
         "id": "TASK-7",
         "name": "Task number 7",
         "required_skills": [
-            "rust"
+            "rust",
+            "python"
         ],
-        "complexity": 1
+        "complexity": 6
     },
     {
         "id": "TASK-8",
         "name": "Task number 8",
         "required_skills": [
-            "go",
-            "c++"
+            "c++",
+            "rust"
         ],
-        "complexity": 4
+        "complexity": 2
     },
     {
         "id": "TASK-9",
         "name": "Task number 9",
         "required_skills": [
-            "go",
-            "python"
+            "java",
+            "c++"
         ],
-        "complexity": 5
+        "complexity": 8
     },
     {
         "id": "TASK-10",
         "name": "Task number 10",
         "required_skills": [
-            "c++",
+            "java",
             "go"
         ],
-        "complexity": 4
+        "complexity": 8
     },
     {
         "id": "TASK-11",
         "name": "Task number 11",
         "required_skills": [
-            "python",
-            "javascript"
+            "c++"
         ],
-        "complexity": 2
+        "complexity": 7
     },
     {
         "id": "TASK-12",
         "name": "Task number 12",
         "required_skills": [
-            "c++",
-            "python"
+            "c++"
         ],
-        "complexity": 4
+        "complexity": 3
     },
     {
         "id": "TASK-13",
         "name": "Task number 13",
         "required_skills": [
-            "c++",
-            "rust"
+            "go"
         ],
         "complexity": 4
     },
@@ -126,8 +124,8 @@
         "id": "TASK-14",
         "name": "Task number 14",
         "required_skills": [
-            "c++",
-            "javascript"
+            "javascript",
+            "rust"
         ],
         "complexity": 2
     },
@@ -137,41 +135,41 @@
         "required_skills": [
             "rust"
         ],
-        "complexity": 5
+        "complexity": 9
     },
     {
         "id": "TASK-16",
         "name": "Task number 16",
         "required_skills": [
-            "python"
+            "javascript"
         ],
-        "complexity": 6
+        "complexity": 9
     },
     {
         "id": "TASK-17",
         "name": "Task number 17",
         "required_skills": [
-            "c++",
-            "go"
+            "javascript",
+            "python"
         ],
-        "complexity": 8
+        "complexity": 3
     },
     {
         "id": "TASK-18",
         "name": "Task number 18",
         "required_skills": [
-            "rust",
+            "python",
             "javascript"
         ],
-        "complexity": 4
+        "complexity": 7
     },
     {
         "id": "TASK-19",
         "name": "Task number 19",
         "required_skills": [
             "go",
-            "javascript"
+            "python"
         ],
-        "complexity": 9
+        "complexity": 3
     }
 ]

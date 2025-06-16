@@ -6,6 +6,7 @@ import yaml
 
 
 def extract_profiles(github_data):
+    # (extract_profiles関数の中身は変更なし)
     profiles = defaultdict(
         lambda: {
             "code": 0.1,
@@ -39,15 +40,16 @@ def extract_profiles(github_data):
 
 
 def main():
-    # スクリプトから見て相対的に data/ フォルダ内にあると想定
-    data_dir = Path(__file__).resolve().parent.parent
-    input_path = data_dir / "data" / "github_data.json"
-    output_path = data_dir / "configs" / "dev_profiles.yaml"
+    input_path = Path("data/github_data.json")
+    output_path = Path("configs/dev_profiles.yaml")
 
     with input_path.open() as f:
         github_data = json.load(f)
 
     profiles = extract_profiles(github_data)
+
+    # 出力先のディレクトリが存在しない場合に作成する
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     with output_path.open("w") as f:
         yaml.dump(dict(profiles), f)

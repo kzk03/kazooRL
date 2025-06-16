@@ -1,0 +1,1183 @@
+[
+  {
+    "type": "pr_opened",
+    "number": 15992,
+    "actor": "seiko2plus",
+    "created_at": "2020-04-15T19:30:23Z",
+    "data": {
+      "title": "ENH: Provides a deep benchmark for universal functions",
+      "additions": 69,
+      "deletions": 0
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 16115,
+    "actor": "panpiort8",
+    "created_at": "2020-04-30T07:13:15Z",
+    "data": {
+      "title": "Propositions of test_umath_accuracy improvements",
+      "additions": 2053,
+      "deletions": 1864
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 16458,
+    "actor": "seberg",
+    "created_at": "2020-05-31T21:07:55Z",
+    "data": {
+      "title": "ENH: Implement divmod and remainder for timedelta and int",
+      "additions": 137,
+      "deletions": 79
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 16825,
+    "actor": "seberg",
+    "created_at": "2020-07-12T20:54:04Z",
+    "data": {
+      "title": "API: Allow zero length strings to result in zero length dtypes",
+      "additions": 77,
+      "deletions": 41
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 21057,
+    "actor": "seiko2plus",
+    "created_at": "2022-02-14T05:48:10Z",
+    "data": {
+      "title": "ENH, SIMD: Add C++ wrapper for universal intrinsics",
+      "additions": 5211,
+      "deletions": 482
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 21800,
+    "actor": "WarrenWeckesser",
+    "created_at": "2022-06-20T06:35:36Z",
+    "data": {
+      "title": "ENH: lib: Allow usecols to be a callable in loadtxt().",
+      "additions": 479,
+      "deletions": 186
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 22568,
+    "actor": "seberg",
+    "created_at": "2022-11-10T15:47:29Z",
+    "data": {
+      "title": "API: No timedelta/datetimes are not integers and do not promote",
+      "additions": 93,
+      "deletions": 70
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 22770,
+    "actor": "tylerjereddy",
+    "created_at": "2022-12-10T22:13:50Z",
+    "data": {
+      "title": "BUG: assert_array_almost_equal_nulp longdouble",
+      "additions": 27,
+      "deletions": 0
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 23205,
+    "actor": "jbrockmendel",
+    "created_at": "2023-02-13T23:10:34Z",
+    "data": {
+      "title": "BUG/API: dt64.astype(object), dt64.item()",
+      "additions": 59,
+      "deletions": 160
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 23823,
+    "actor": "ganesh-k13",
+    "created_at": "2023-05-28T06:42:00Z",
+    "data": {
+      "title": "ENH: Add mmap support for `NpzFile`",
+      "additions": 73,
+      "deletions": 38
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 24069,
+    "actor": "seiko2plus",
+    "created_at": "2023-06-28T16:15:52Z",
+    "data": {
+      "title": "SIMD, TST: Reimplment _simd unit testing in C++",
+      "additions": 3720,
+      "deletions": 3836
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 24952,
+    "actor": "lysnikolaou",
+    "created_at": "2023-10-18T18:37:38Z",
+    "data": {
+      "title": "ENH: Add lower/upper ufuncs for unicode and bytes dtypes",
+      "additions": 228,
+      "deletions": 6
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 25245,
+    "actor": "seiko2plus",
+    "created_at": "2023-11-24T09:20:55Z",
+    "data": {
+      "title": "ENH: Enable native half-precision scalar conversion operations on ARM",
+      "additions": 35,
+      "deletions": 92
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 25252,
+    "actor": "HaoZeke",
+    "created_at": "2023-11-25T14:02:28Z",
+    "data": {
+      "title": "TST: Fixture based tests for ``f2py``",
+      "additions": 2762,
+      "deletions": 2369
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 25260,
+    "actor": "Pranavchiku",
+    "created_at": "2023-11-27T17:20:09Z",
+    "data": {
+      "title": "ENH: Add templates for f2py c functions and handle more C types",
+      "additions": 347,
+      "deletions": 31
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 25358,
+    "actor": "koubaa",
+    "created_at": "2023-12-09T19:56:42Z",
+    "data": {
+      "title": "DRAFT - Change API to prepare for heap types.",
+      "additions": 59,
+      "deletions": 13
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 25390,
+    "actor": "lysnikolaou",
+    "created_at": "2023-12-13T20:06:15Z",
+    "data": {
+      "title": "MAINT: Add stand-alone libnpymath and remove dependency to numpy from npyrandom",
+      "additions": 1178,
+      "deletions": 6409
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 25655,
+    "actor": "seiko2plus",
+    "created_at": "2024-01-22T14:35:41Z",
+    "data": {
+      "title": "MAINT: Refactor C++ Sort Operations",
+      "additions": 1504,
+      "deletions": 1227
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 27004,
+    "actor": "jorenham",
+    "created_at": "2024-07-21T20:13:25Z",
+    "data": {
+      "title": "ENH: Improved performance of ``numpy.mgrid`` and ``numpy.ogrid``",
+      "additions": 74,
+      "deletions": 59
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 27357,
+    "actor": "AnandPolamarasetti",
+    "created_at": "2024-09-07T19:41:23Z",
+    "data": {
+      "title": "ENH: Improve Release Notes with AI-functionalities and Bug Fixes ",
+      "additions": 132,
+      "deletions": 0
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 27402,
+    "actor": "abhishek-iitmadras",
+    "created_at": "2024-09-16T16:36:17Z",
+    "data": {
+      "title": "ENH: Convert arithmetic from C universal intrinsics to C++ using Highway",
+      "additions": 376,
+      "deletions": 522
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 27544,
+    "actor": "r-devulap",
+    "created_at": "2024-10-11T21:00:10Z",
+    "data": {
+      "title": "CI: Build using Intel compiler",
+      "additions": 51,
+      "deletions": 0
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28158,
+    "actor": "speco29",
+    "created_at": "2025-01-15T16:51:27Z",
+    "data": {
+      "title": "DOC: Update CONTRIBUTING.rst",
+      "additions": 2,
+      "deletions": 1
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28248,
+    "actor": "MaanasArora",
+    "created_at": "2025-01-29T14:02:45Z",
+    "data": {
+      "title": "ENH: AXV512 SIMD optimizations for float power fast paths",
+      "additions": 93,
+      "deletions": 25
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28416,
+    "actor": "Mugundanmcw",
+    "created_at": "2025-03-03T13:45:00Z",
+    "data": {
+      "title": "ENH: Vectorize argsort using Highway's VQSort on ARM",
+      "additions": 0,
+      "deletions": 0
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28490,
+    "actor": "ixgbe",
+    "created_at": "2025-03-13T01:15:26Z",
+    "data": {
+      "title": "ENH: Convert comparison from C universal intrinsics to C++ using Highway",
+      "additions": 582,
+      "deletions": 452
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28566,
+    "actor": "Alfred-Gitchcock",
+    "created_at": "2025-03-21T10:43:59Z",
+    "data": {
+      "title": "DOC: numpy.concat version added",
+      "additions": 3,
+      "deletions": 0
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28590,
+    "actor": "lysnikolaou",
+    "created_at": "2025-03-26T10:19:05Z",
+    "data": {
+      "title": "ENH: Use array indexing preparation routines for flatiter objects",
+      "additions": 499,
+      "deletions": 353
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28608,
+    "actor": "ixgbe",
+    "created_at": "2025-03-31T08:37:32Z",
+    "data": {
+      "title": "ENH: Convert unary from C universal intrinsics to C++ using Highway",
+      "additions": 331,
+      "deletions": 360
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28669,
+    "actor": "jorenham",
+    "created_at": "2025-04-07T20:25:40Z",
+    "data": {
+      "title": "TYP: default to `dtype[Any]`",
+      "additions": 4,
+      "deletions": 1
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 28669,
+    "actor": "charris",
+    "created_at": "2025-04-09T22:23:31Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 28718,
+    "actor": "amane-ame",
+    "created_at": "2025-04-15T16:39:29Z",
+    "data": {
+      "title": "ENH: Convert unary_fp from C universal intrinsics to C++ using Highway",
+      "additions": 400,
+      "deletions": 250
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28759,
+    "actor": "freakboy3742",
+    "created_at": "2025-04-18T02:01:53Z",
+    "data": {
+      "title": "BLD: Add support for building iOS wheels",
+      "additions": 122,
+      "deletions": 28
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28815,
+    "actor": "amane-ame",
+    "created_at": "2025-04-24T14:54:03Z",
+    "data": {
+      "title": "ENH: Convert unary_complex from C universal intrinsics to C++ using Highway",
+      "additions": 161,
+      "deletions": 133
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28896,
+    "actor": "seiko2plus",
+    "created_at": "2025-05-04T02:46:13Z",
+    "data": {
+      "title": "ENH: Modulate dispatched x86 CPU features",
+      "additions": 978,
+      "deletions": 991
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28911,
+    "actor": "sim0es",
+    "created_at": "2025-05-06T12:23:08Z",
+    "data": {
+      "title": "BUG: Fix unwrap function for object arrays with large numbers.",
+      "additions": 42,
+      "deletions": 11
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 28919,
+    "actor": "amane-ame",
+    "created_at": "2025-05-07T13:43:12Z",
+    "data": {
+      "title": "ENH: Convert unary_fp_le from C universal intrinsics to C++ using Highway",
+      "additions": 294,
+      "deletions": 556
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29001,
+    "actor": "amane-ame",
+    "created_at": "2025-05-18T13:01:06Z",
+    "data": {
+      "title": "ENH: Convert minmax from C universal intrinsics to C++ using Highway",
+      "additions": 527,
+      "deletions": 477
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29007,
+    "actor": "ngoldbaum",
+    "created_at": "2025-05-20T01:56:53Z",
+    "data": {
+      "title": "CI: update cibuildwheel to 3.0.0b1 and enable cp314 and cp314t nightlies",
+      "additions": 8,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29023,
+    "actor": "AA-Turner",
+    "created_at": "2025-05-21T19:30:59Z",
+    "data": {
+      "title": "MAINT: Convert umath to multi-phase init (PEP 489)",
+      "additions": 115,
+      "deletions": 128
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29007,
+    "actor": "charris",
+    "created_at": "2025-05-23T18:35:14Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29102,
+    "actor": "amane-ame",
+    "created_at": "2025-05-31T15:38:55Z",
+    "data": {
+      "title": "ENH: Convert arithm_fp from C universal intrinsics to C++ using Highway",
+      "additions": 617,
+      "deletions": 653
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29129,
+    "actor": "mattip",
+    "created_at": "2025-06-05T09:24:22Z",
+    "data": {
+      "title": "ENH: add a casting option 'same_value' and use it in np.astype",
+      "additions": 396,
+      "deletions": 133
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29145,
+    "actor": "jorenham",
+    "created_at": "2025-06-08T00:42:15Z",
+    "data": {
+      "title": "TYP: add missing ``numpy.lib`` exports",
+      "additions": 25,
+      "deletions": 9
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29146,
+    "actor": "jorenham",
+    "created_at": "2025-06-08T01:39:24Z",
+    "data": {
+      "title": "TYP: fix minor ``f2py`` stub inconsistencies",
+      "additions": 2,
+      "deletions": 4
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29147,
+    "actor": "jorenham",
+    "created_at": "2025-06-08T02:14:52Z",
+    "data": {
+      "title": "BUG: Missing array-api ``capabilities()`` key",
+      "additions": 3,
+      "deletions": 3
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29145,
+    "actor": "rgommers",
+    "created_at": "2025-06-08T05:32:38Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29146,
+    "actor": "rgommers",
+    "created_at": "2025-06-08T05:35:36Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29148,
+    "actor": "V-R-S",
+    "created_at": "2025-06-08T17:29:49Z",
+    "data": {
+      "title": "TST: migrating from pytz to zoneinfo + tzdata (where needed)",
+      "additions": 31,
+      "deletions": 39
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29147,
+    "actor": "charris",
+    "created_at": "2025-06-08T20:25:14Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29149,
+    "actor": "jorenham",
+    "created_at": "2025-06-08T23:42:49Z",
+    "data": {
+      "title": "CI: Bump `array-api-tests` to `v2025.05.23`",
+      "additions": 20,
+      "deletions": 5
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29155,
+    "actor": "jorenham",
+    "created_at": "2025-06-09T15:07:01Z",
+    "data": {
+      "title": "TYP: ``double = float64`` and ``cdouble = complex128``",
+      "additions": 7,
+      "deletions": 7
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29160,
+    "actor": "bmwoodruff",
+    "created_at": "2025-06-09T23:15:17Z",
+    "data": {
+      "title": "DOC: Suppress distutils doc build warnings for python 3.12+",
+      "additions": 20,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29163,
+    "actor": "waqarahmed6095",
+    "created_at": "2025-06-10T14:20:16Z",
+    "data": {
+      "title": "ENH: Add polynomial eigenvalue solver `polyeig` to `numpy.linalg` ",
+      "additions": 436,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29165,
+    "actor": "samruddhibaviskar11",
+    "created_at": "2025-06-10T21:51:09Z",
+    "data": {
+      "title": "ENH: Use itertools.product for ndindex to improve performance",
+      "additions": 178,
+      "deletions": 6
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29166,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T01:03:28Z",
+    "data": {
+      "title": "TYP: Fix missing ``_core.numeric`` (re-)exports",
+      "additions": 661,
+      "deletions": 210
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29168,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T02:37:28Z",
+    "data": {
+      "title": "TYP: Simplified ``dtype.__new__`` overloads",
+      "additions": 151,
+      "deletions": 139
+    }
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29163,
+    "actor": "tylerjereddy",
+    "created_at": "2025-06-11T03:29:21Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29169,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T03:41:57Z",
+    "data": {
+      "title": "TYP: ``out=...`` in ufuncs",
+      "additions": 99,
+      "deletions": 80
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29170,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T04:16:32Z",
+    "data": {
+      "title": "TYP: ``numpy._NoValue``",
+      "additions": 2,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29171,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T04:38:20Z",
+    "data": {
+      "title": "TYP: Accept dispatcher function with optional returns in ``_core.overrides``",
+      "additions": 10,
+      "deletions": 13
+    }
+  },
+  {
+    "type": "pr_review_approved",
+    "number": 29171,
+    "actor": "seberg",
+    "created_at": "2025-06-11T11:57:16Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29148,
+    "actor": "mattip",
+    "created_at": "2025-06-11T14:03:36Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29175,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T14:20:28Z",
+    "data": {
+      "title": "TYP: Fix invalid inline annotations in ``lib._function_base_impl``",
+      "additions": 15,
+      "deletions": 15
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29176,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T14:33:22Z",
+    "data": {
+      "title": "TYP: ``any(None)`` and ``all(None)``",
+      "additions": 11,
+      "deletions": 8
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29177,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T14:57:27Z",
+    "data": {
+      "title": "TYP: ``lib._iotools`` annotation improvements",
+      "additions": 11,
+      "deletions": 9
+    }
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29171,
+    "actor": "seberg",
+    "created_at": "2025-06-11T16:01:51Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29179,
+    "actor": "mattip",
+    "created_at": "2025-06-11T16:47:13Z",
+    "data": {
+      "title": "BUG: fix matmul with transposed out arg",
+      "additions": 17,
+      "deletions": 1
+    }
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29179,
+    "actor": "seberg",
+    "created_at": "2025-06-11T16:52:46Z"
+  },
+  {
+    "type": "pr_review_approved",
+    "number": 29179,
+    "actor": "seberg",
+    "created_at": "2025-06-11T16:56:31Z"
+  },
+  {
+    "type": "pr_review_approved",
+    "number": 25245,
+    "actor": "seberg",
+    "created_at": "2025-06-11T17:39:43Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29180,
+    "actor": "dependabot",
+    "created_at": "2025-06-11T17:49:01Z",
+    "data": {
+      "title": "MAINT: Bump pypa/cibuildwheel from 3.0.0b4 to 3.0.0",
+      "additions": 2,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29181,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T17:52:55Z",
+    "data": {
+      "title": "TYP: fix and improve ``numpy.lib._utils_impl``",
+      "additions": 11,
+      "deletions": 4
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29171,
+    "actor": "seberg",
+    "created_at": "2025-06-11T17:58:40Z"
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 25245,
+    "actor": "copilot-pull-request-reviewer",
+    "created_at": "2025-06-11T18:10:47Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29177,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:23:20Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29176,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:27:11Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29175,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:28:32Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29170,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:31:11Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29169,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:33:36Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29168,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:36:46Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29181,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:44:30Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29155,
+    "actor": "charris",
+    "created_at": "2025-06-11T18:47:23Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29166,
+    "actor": "charris",
+    "created_at": "2025-06-11T19:25:53Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29183,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T19:43:54Z",
+    "data": {
+      "title": "STY: ruff/isort config tweaks",
+      "additions": 80,
+      "deletions": 104
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29180,
+    "actor": "charris",
+    "created_at": "2025-06-11T19:56:42Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29184,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T20:17:19Z",
+    "data": {
+      "title": "TYP: fix ``ravel_multi_index`` false rejections",
+      "additions": 16,
+      "deletions": 22
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29149,
+    "actor": "charris",
+    "created_at": "2025-06-11T20:29:37Z"
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29179,
+    "actor": "xor2k",
+    "created_at": "2025-06-11T20:42:00Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29184,
+    "actor": "charris",
+    "created_at": "2025-06-11T20:53:25Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29183,
+    "actor": "charris",
+    "created_at": "2025-06-11T21:07:11Z"
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29163,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T22:29:01Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29185,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T23:17:30Z",
+    "data": {
+      "title": "STY: ruff/isort config tweaks - episode 2",
+      "additions": 352,
+      "deletions": 601
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29186,
+    "actor": "jorenham",
+    "created_at": "2025-06-11T23:26:35Z",
+    "data": {
+      "title": "MAINT: bump ``ruff`` to ``0.11.13``",
+      "additions": 2,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29186,
+    "actor": "charris",
+    "created_at": "2025-06-12T00:25:09Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29187,
+    "actor": "jorenham",
+    "created_at": "2025-06-12T01:04:24Z",
+    "data": {
+      "title": "TYP: add ``__all__`` in ``numpy._core.__init__``",
+      "additions": 666,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29179,
+    "actor": "seberg",
+    "created_at": "2025-06-12T06:21:18Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29188,
+    "actor": "xor2k",
+    "created_at": "2025-06-12T07:08:08Z",
+    "data": {
+      "title": "strides comparison performance fix, compare discussion #29179",
+      "additions": 5,
+      "deletions": 3
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29187,
+    "actor": "charris",
+    "created_at": "2025-06-12T12:36:00Z"
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 28590,
+    "actor": "seberg",
+    "created_at": "2025-06-12T13:36:37Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29191,
+    "actor": "charris",
+    "created_at": "2025-06-12T14:10:13Z",
+    "data": {
+      "title": "BUG: fix matmul with transposed out arg (#29179)",
+      "additions": 17,
+      "deletions": 1
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29192,
+    "actor": "charris",
+    "created_at": "2025-06-12T14:36:34Z",
+    "data": {
+      "title": "TYP: Backport typing fixes and improvements.",
+      "additions": 57,
+      "deletions": 46
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29191,
+    "actor": "charris",
+    "created_at": "2025-06-12T14:44:04Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29192,
+    "actor": "charris",
+    "created_at": "2025-06-12T15:06:00Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29195,
+    "actor": "dependabot",
+    "created_at": "2025-06-12T17:36:24Z",
+    "data": {
+      "title": "MAINT: Bump github/codeql-action from 3.28.19 to 3.29.0",
+      "additions": 4,
+      "deletions": 4
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29196,
+    "actor": "francois-rozet",
+    "created_at": "2025-06-12T18:10:22Z",
+    "data": {
+      "title": "BUG: Revert `np.vectorize` casting to legacy behavior",
+      "additions": 12,
+      "deletions": 1
+    }
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29196,
+    "actor": "seberg",
+    "created_at": "2025-06-12T18:44:26Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29197,
+    "actor": "xor2k",
+    "created_at": "2025-06-12T19:28:19Z",
+    "data": {
+      "title": "TST: additional tests for matmul with non-contiguous input and output",
+      "additions": 27,
+      "deletions": 5
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29199,
+    "actor": "Mousius",
+    "created_at": "2025-06-12T21:58:20Z",
+    "data": {
+      "title": "BUG: Fix NEON_FP16 check for MSVC",
+      "additions": 4,
+      "deletions": 4
+    }
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29196,
+    "actor": "seberg",
+    "created_at": "2025-06-13T08:55:50Z"
+  },
+  {
+    "type": "pr_review_approved",
+    "number": 29196,
+    "actor": "seberg",
+    "created_at": "2025-06-13T08:56:27Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29196,
+    "actor": "seberg",
+    "created_at": "2025-06-13T09:44:29Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29195,
+    "actor": "charris",
+    "created_at": "2025-06-13T13:57:33Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29160,
+    "actor": "charris",
+    "created_at": "2025-06-13T14:07:53Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29204,
+    "actor": "jorenham",
+    "created_at": "2025-06-13T14:10:35Z",
+    "data": {
+      "title": "TYP: fix ``ndarray.__array__`` annotation for ``copy``",
+      "additions": 2,
+      "deletions": 6
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29205,
+    "actor": "charris",
+    "created_at": "2025-06-13T14:20:37Z",
+    "data": {
+      "title": "BUG: Revert `np.vectorize` casting to legacy behavior (#29196)",
+      "additions": 12,
+      "deletions": 1
+    }
+  },
+  {
+    "type": "pr_opened",
+    "number": 29206,
+    "actor": "proenca555",
+    "created_at": "2025-06-13T14:55:23Z",
+    "data": {
+      "title": "ENH: add np.array_info utility for quick array summaries",
+      "additions": 374,
+      "deletions": 1
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29205,
+    "actor": "charris",
+    "created_at": "2025-06-13T15:00:53Z"
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 28718,
+    "actor": "copilot-pull-request-reviewer",
+    "created_at": "2025-06-13T18:06:04Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29204,
+    "actor": "seberg",
+    "created_at": "2025-06-13T19:04:39Z"
+  },
+  {
+    "type": "pr_review_approved",
+    "number": 29197,
+    "actor": "seberg",
+    "created_at": "2025-06-13T19:10:33Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 29197,
+    "actor": "seberg",
+    "created_at": "2025-06-13T19:11:29Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29208,
+    "actor": "moritz-gross",
+    "created_at": "2025-06-13T19:16:38Z",
+    "data": {
+      "title": "ENH: improve Timsort with powersort merge-policy",
+      "additions": 51,
+      "deletions": 59
+    }
+  },
+  {
+    "type": "pr_review_approved",
+    "number": 25245,
+    "actor": "r-devulap",
+    "created_at": "2025-06-13T20:19:11Z"
+  },
+  {
+    "type": "pr_merged",
+    "number": 25245,
+    "actor": "r-devulap",
+    "created_at": "2025-06-13T20:19:26Z"
+  },
+  {
+    "type": "pr_review_changes_requested",
+    "number": 28896,
+    "actor": "r-devulap",
+    "created_at": "2025-06-13T20:41:12Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29209,
+    "actor": "sap-ai",
+    "created_at": "2025-06-14T20:57:07Z",
+    "data": {
+      "title": "I tried to add a prime number function to numpy",
+      "additions": 5,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29165,
+    "actor": "eendebakpt",
+    "created_at": "2025-06-14T22:40:15Z"
+  },
+  {
+    "type": "pr_opened",
+    "number": 29210,
+    "actor": "mattip",
+    "created_at": "2025-06-15T10:13:26Z",
+    "data": {
+      "title": "BUG: fix linting",
+      "additions": 2,
+      "deletions": 2
+    }
+  },
+  {
+    "type": "pr_merged",
+    "number": 29210,
+    "actor": "charris",
+    "created_at": "2025-06-15T12:21:03Z"
+  },
+  {
+    "type": "pr_review_commented",
+    "number": 29165,
+    "actor": "jorenham",
+    "created_at": "2025-06-15T23:19:51Z"
+  }
+]
