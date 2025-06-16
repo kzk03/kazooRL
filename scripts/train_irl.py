@@ -2,7 +2,8 @@ import pickle
 
 import numpy as np
 
-from kazoo.features.feature_extractor import FEATURE_DIM, FEATURE_NAMES, get_features
+from kazoo.features.feature_extractor import (FEATURE_DIM, FEATURE_NAMES,
+                                              get_features)
 
 
 def calculate_feature_expectations(trajectories):
