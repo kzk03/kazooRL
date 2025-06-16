@@ -19,7 +19,7 @@ class OSSGymWrapper:
 
     def step(self, actions):
         action_list = [actions[agent] for agent in self.agents]
-        
+
         # 2. 全エージェントの行動リストを一度に渡して、stepを1回だけ実行
         observations, rewards, terminations, infos = self.env.step(action_list)
 
