@@ -3,13 +3,13 @@ import numpy as np
 from kazoo.consts.actions import Action
 
 # 特徴量の次元数。増減させたら、下の関数とtrain_irl.pyの定義も変更する。
-FEATURE_DIM = 5
+FEATURE_DIM = 3
 FEATURE_NAMES = [
-    "Task Completion",
-    "PR Size (Additions)",
+    "Task Completion(dummy)",  # TODO: タスク完了への貢献度を実装する
+    "PR Size (dummy)",  # TODO: PRのサイズを実装する
     "Skill Match (dummy)",
-    "Review Cost",
-    "Action Cost",
+    # "Review Cost",
+    # "Action Cost",
 ]
 
 
@@ -36,12 +36,12 @@ def get_features(state, action_enum, action_details, actor_id):
     # features[2] = calculate_skill_match(state, actor_id, action_details)
     features[2] = np.random.rand()  # 現状はダミー
 
-    # 特徴量3: レビュー負荷 - レビュー行為はコストか？ (負の報酬が期待される)
-    if action_enum == Action.APPROVE_PULL_REQUEST:
-        features[3] = 1.0  # コストは学習される重みが負になることで表現
+    # # 特徴量3: レビュー負荷 - レビュー行為はコストか？ (負の報酬が期待される)
+    # if action_enum == Action.APPROVE_PULL_REQUEST:
+    #     features[3] = 1.0  # コストは学習される重みが負になることで表現
 
-    # 特徴量4: 行動あたりの基本コスト (負の報酬が期待される)
-    if action_enum != Action.DO_NOTHING:
-        features[4] = 1.0
+    # # 特徴量4: 行動あたりの基本コスト (負の報酬が期待される)
+    # if action_enum != Action.DO_NOTHING:
+    #     features[4] = 1.0
 
     return features
