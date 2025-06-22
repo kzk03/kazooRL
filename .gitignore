@@ -25,6 +25,7 @@ models/
 checkpoints/
 logs/
 outputs/
+data/
 # 大きな実験出力が experiments/ にあれば
 # experiments/**/results/
 # experiments/**/tensorboard/
