@@ -7,7 +7,7 @@ env:
 
   # シミュレーションの詳細設定
   simulation:
-    time_step_hours: 8 # 1ステップで進む時間
+    time_step_hours: 1 # 1ステップで進む時間
     max_days: 365 # シミュレーションの最大日数
 
 # --- 特徴量計算の設定 (Features) ---

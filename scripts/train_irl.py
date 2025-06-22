@@ -70,8 +70,6 @@ def main():
             optimizer.zero_grad()
             env.reset()
 
-            # ▼▼▼【ここがエラーの修正箇所】▼▼▼
-            # キーを 'developer_id' から 'developer' に修正します。
             developer_id = expert_event.get("developer")
             task_id = expert_event.get("task_id")
 
@@ -88,7 +86,6 @@ def main():
                 "name": developer_id,
                 "profile": developer_profile,
             }
-            # ▲▲▲【ここまでがエラーの修正箇所】▲▲▲
 
             expert_features = feature_extractor.get_features(
                 expert_task, developer_obj_for_feature, env
