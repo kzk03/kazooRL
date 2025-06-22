@@ -1,64 +1,103 @@
+import glob
 import json
+import os
 from collections import defaultdict
 
 import yaml
 
 
-def generate_developer_profiles(github_data_path, output_path):
+def generate_developer_profiles(data_dir, output_path):
     """
-    生データから開発者のプロフィール（専門性、編集経験）を生成し、YAMLファイルに出力する。
-    """
-    with open(github_data_path, 'r') as f:
-        data = json.load(f)
+    指定されたディレクトリにある全ての .jsonl ファイルを読み込み、
+    開発者ごとの静的な特徴量を事前計算して、dev_profiles.yamlとして出力する。
 
-    # 開発者ごとの情報を集約する辞書
-    # defaultdictを使うとキーが存在しない場合に自動で初期化してくれるので便利
+    計算する特徴量:
+    - label_affinity: どのラベルのタスクをどれくらいの割合で完了させたか
+    - touched_files: これまでに編集したことのあるファイルの一覧
+    - total_merged_prs: マージされたPRの総数
+    """
+    print(f"Starting to generate developer profiles from directory: {data_dir}")
+
+    # data_dir内の全ての .jsonl ファイルを取得
+    # 例: "results/gharchive_docker_compose_events_2020-08.jsonl"
+    jsonl_files = glob.glob(os.path.join(data_dir, "*.jsonl"))
+    if not jsonl_files:
+        print(f"Error: No .jsonl files found in directory: {data_dir}")
+        return
+
+    print(f"Found {len(jsonl_files)} files to process.")
+
     dev_stats = defaultdict(lambda: {
         'label_counts': defaultdict(int),
-        'touched_files': set()
+        'touched_files': set(),
+        'merged_pr_count': 0
     })
 
-    # 生データをループして情報を集計
-    for event in data:
-        # PRがマージされたイベントを対象とする
-        if event.get('type') == 'PullRequestEvent' and event['payload'].get('action') == 'closed' and event['payload']['pull_request'].get('merged'):
-            pr = event['payload']['pull_request']
-            developer = pr['user']['login']
-            
-            # ラベルのカウント
-            for label in pr.get('labels', []):
-                dev_stats[developer]['label_counts'][label['name']] += 1
-            
-            # 編集ファイルの追加 (このデータが取得できている前提)
-            # changed_filesは例です。実際のキーはデータ構造に合わせてください。
-            # この情報を取得するにはget_github_data.pyでPRのファイルリストを取得する必要があります。
-            for file_info in pr.get('files', []): # 仮に 'files' というキーにファイルリストが入っているとする
-                dev_stats[developer]['touched_files'].add(file_info['filename'])
+    for file_path in sorted(jsonl_files):
+        print(f"Processing file: {file_path}...")
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    
+                    try:
+                        event = json.loads(line)
+                    except json.JSONDecodeError:
+                        # 壊れた行はスキップ
+                        continue
+                    
+                    # # 【検証のための変更後】
+                    # if event.get('type') == 'PullRequestEvent' and \
+                    # event.get('payload', {}).get('action') == 'closed':
+                    #     # PRがクローズされたイベントを処理
+                    #     continue
 
-    # 集計結果を最終的なプロフィール形式に変換
+                    if event.get('type') == 'PullRequestEvent' and \
+                       event.get('payload', {}).get('action') == 'closed' and \
+                       event.get('payload', {}).get('pull_request', {}).get('merged'):
+                        
+                        pr = event['payload']['pull_request']
+                        developer = pr.get('user', {}).get('login')
+                        if not developer:
+                            continue
+
+                        dev_stats[developer]['merged_pr_count'] += 1
+
+                        for label in pr.get('labels', []):
+                            if 'name' in label:
+                                dev_stats[developer]['label_counts'][label['name']] += 1
+                        
+                        # ファイルリストの取得 (get_github_data.pyでの取得が前提)
+                        for file_info in pr.get('files', []):
+                             if 'filename' in file_info:
+                                dev_stats[developer]['touched_files'].add(file_info['filename'])
+        except Exception as e:
+            print(f"Error processing file {file_path}: {e}")
+
+
     final_profiles = {}
     for dev, stats in dev_stats.items():
         total_labels = sum(stats['label_counts'].values())
-        
-        # ラベルの親和性（割合）を計算
         label_affinity = {
             label: count / total_labels for label, count in stats['label_counts'].items()
         } if total_labels > 0 else {}
         
         final_profiles[dev] = {
-            'skills': [], # スキルは別途手動で定義することを想定
+            'skills': ['python'], 
             'label_affinity': label_affinity,
-            'touched_files': sorted(list(stats['touched_files'])) # setをリストに変換
+            'touched_files': sorted(list(stats['touched_files'])),
+            'total_merged_prs': stats['merged_pr_count']
         }
 
-    # YAMLファイルに出力
-    with open(output_path, 'w') as f:
-        yaml.dump(final_profiles, f, default_flow_style=False)
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        yaml.dump(final_profiles, f, default_flow_style=False, allow_unicode=True)
         
-    print(f"Developer profiles generated at: {output_path}")
+    print(f"✅ Successfully generated developer profiles for {len(final_profiles)} developers at: {output_path}")
 
-# --- 実行部分 ---
 if __name__ == '__main__':
-    GITHUB_DATA_PATH = 'data/github_data.json'
+    # データ取得スクリプトが出力したディレクトリを指定
+    INPUT_DATA_DIR = './data/2019' 
     OUTPUT_YAML_PATH = 'configs/dev_profiles.yaml'
-    generate_developer_profiles(GITHUB_DATA_PATH, OUTPUT_YAML_PATH)
+    generate_developer_profiles(INPUT_DATA_DIR, OUTPUT_YAML_PATH)

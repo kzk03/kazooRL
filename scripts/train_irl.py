@@ -1,79 +1,117 @@
-import pickle
+import json
 
 import numpy as np
+import torch
+import torch.optim as optim
+import yaml
+from omegaconf import OmegaConf
 
-from kazoo.features.feature_extractor import (FEATURE_DIM, FEATURE_NAMES,
-                                              get_features)
-
-
-def calculate_feature_expectations(trajectories):
-    """軌跡データから平均的な特徴量ベクトル（特徴量期待値）を計算する"""
-    total_features = np.zeros(FEATURE_DIM)
-    num_steps = 0
-    for trajectory in trajectories:
-        for step in trajectory:
-            features = get_features(
-                step["state"], step["action"], step["action_details"], step["actor"]
-            )
-            total_features += features
-            num_steps += 1
-    return total_features / num_steps if num_steps > 0 else total_features
+from kazoo.envs.oss_simple import OSSSimpleEnv
+from kazoo.features.feature_extractor import FeatureExtractor
 
 
-def run_rl_and_get_trajectories(reward_weights):
-    """【最重要】現在の報酬重みの下でRLを実行し、エージェントが生成した軌跡を返す"""
-    print(f"  - Running RL sub-problem with weights: {np.round(reward_weights, 2)}")
-    # ここに、`kazooRL`のPPO学習機能を呼び出すロジックを実装します。
-    # 1. `OSSSimpleEnv`を、現在の`reward_weights`で報酬を計算するように初期化
-    # 2. `indep_ppo`でエージェントを一定期間学習
-    # 3. 学習したポリシーでシミュレーションを実行し、その軌跡を収集して返す
-    # この関数は、本研究の技術的な核心部分です。
-
-    # 現状は、ダミーの軌跡を返す仮実装です。
-    from kazoo.consts.actions import Action
-
-    dummy_trajectory = [
-        {
-            "state": {},
-            "action": np.random.choice(list(Action)),
-            "action_details": {},
-            "actor": "dummy_agent",
-        }
-    ]
-    return [dummy_trajectory]
-
+def load_expert_trajectories(filepath):
+    """エキスパートの行動データをJSONファイルから読み込む。"""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        print(f"Error loading expert trajectories from {filepath}: {e}")
+        return []
 
 def main():
-    print("Loading expert trajectories...")
-    with open("data/expert_trajectories.pkl", "rb") as f:
-        expert_trajectories = pickle.load(f)
+    """逆強化学習のメイン処理."""
+    
+    print("1. Loading configuration...")
+    try:
+        cfg = OmegaConf.load("configs/base.yaml")
+    except FileNotFoundError:
+        print("Error: `configs/base.yaml` not found. Please ensure the config file exists.")
+        return
 
-    expert_feature_expectations = calculate_feature_expectations(expert_trajectories)
-    print(f"Expert Feature Expectations: {np.round(expert_feature_expectations, 2)}")
+    print("2. Loading data...")
+    try:
+        with open(cfg.env.backlog_path, 'r', encoding='utf-8') as f:
+            backlog_data = json.load(f)
+        with open(cfg.env.dev_profiles_path, 'r', encoding='utf-8') as f:
+            dev_profiles_data = yaml.safe_load(f)
+    except FileNotFoundError as e:
+        print(f"Error: Data file not found. {e}. Please run pre-processing scripts first.")
+        return
+    except Exception as e:
+        print(f"An error occurred while loading data: {e}")
+        return
 
-    reward_weights = np.zeros(FEATURE_DIM)
-    learning_rate = 0.1
+    expert_trajectories = load_expert_trajectories(cfg.irl.expert_path)
+    if not expert_trajectories:
+        print(f"No expert trajectories found at {cfg.irl.expert_path}. Exiting.")
+        return
+        
+    print("3. Initializing environment and feature extractor...")
+    env = OSSSimpleEnv(cfg, backlog_data, dev_profiles_data)
+    feature_extractor = FeatureExtractor(cfg)
+    
+    feature_dim = len(feature_extractor.feature_names)
 
-    print("\nStarting IRL training loop...")
-    for i in range(20):  # IRLのイテレーション回数
-        print(f"\n--- IRL Iteration {i+1}/20 ---")
-        agent_trajectories = run_rl_and_get_trajectories(reward_weights)
-        agent_feature_expectations = calculate_feature_expectations(agent_trajectories)
-        print(
-            f"  - Agent Feature Expectations: {np.round(agent_feature_expectations, 2)}"
-        )
+    print(f"4. Setting up IRL model with {feature_dim} features...")
+    reward_weights = torch.randn(feature_dim, requires_grad=True)
+    optimizer = optim.Adam([reward_weights], lr=cfg.irl.learning_rate)
 
-        gradient = expert_feature_expectations - agent_feature_expectations
-        reward_weights += learning_rate * gradient
-        print(f"  - Updated Reward Weights: {np.round(reward_weights, 2)}")
+    print("5. Starting training loop...")
+    for epoch in range(cfg.irl.epochs):
+        total_loss = 0
+        
+        for expert_event in expert_trajectories:
+            optimizer.zero_grad()
+            env.reset()
 
-    output_path = "data/learned_reward_weights.npy"
-    np.save(output_path, reward_weights)
-    print(f"\nIRL training complete. Learned weights saved to {output_path}")
+            # ▼▼▼【ここがエラーの修正箇所】▼▼▼
+            # キーを 'developer_id' から 'developer' に修正します。
+            developer_id = expert_event.get('developer')
+            task_id = expert_event.get('task_id')
 
-    print("\n--- Motivation Analysis (Learned Weights) ---")
-    for name, weight in zip(FEATURE_NAMES, reward_weights):
-        print(f"{name:>20}: {weight:.4f}")
+            if not developer_id or not task_id:
+                continue
+
+            developer_profile = env.developers.get(developer_id)
+            expert_task = next((t for t in env.backlog if t.id == task_id), None)
+            
+            if not developer_profile or not expert_task:
+                continue
+            
+            developer_obj_for_feature = {"name": developer_id, "profile": developer_profile}
+            # ▲▲▲【ここまでがエラーの修正箇所】▲▲▲
+
+            expert_features = feature_extractor.get_features(expert_task, developer_obj_for_feature, env)
+            expert_features = torch.from_numpy(expert_features).float()
+
+            other_features_list = []
+            for other_task in env.backlog:
+                if other_task.id != expert_task.id:
+                    features = feature_extractor.get_features(other_task, developer_obj_for_feature, env)
+                    other_features_list.append(torch.from_numpy(features).float())
+            
+            if not other_features_list:
+                continue
+
+            expert_reward = torch.dot(reward_weights, expert_features)
+            other_rewards = torch.stack([torch.dot(reward_weights, f) for f in other_features_list])
+            log_sum_exp_other_rewards = torch.logsumexp(other_rewards, dim=0)
+
+            loss = -(expert_reward - log_sum_exp_other_rewards)
+            total_loss += loss.item()
+
+            loss.backward()
+            optimizer.step()
+
+        if len(expert_trajectories) > 0:
+            avg_loss = total_loss / len(expert_trajectories)
+            print(f"Epoch {epoch + 1}/{cfg.irl.epochs}, Average Loss: {avg_loss:.4f}")
+
+    print("6. Training finished. Saving learned weights...")
+    learned_weights = reward_weights.detach().numpy()
+    np.save(cfg.irl.output_weights_path, learned_weights)
+    print(f"✅ Learned reward weights saved to: {cfg.irl.output_weights_path}")
 
 
 if __name__ == "__main__":
