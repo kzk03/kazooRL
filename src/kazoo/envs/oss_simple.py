@@ -15,7 +15,10 @@ class OSSSimpleEnv(gym.Env):
     OSS開発プロセスをシミュレートする、Gymnasium互換の環境。
     時間の進行、タスクの割り当て、開発者の動的な状態を管理する。
     """
-    def __init__(self, config, backlog_data, dev_profiles_data, reward_weights_path=None):
+
+    def __init__(
+        self, config, backlog_data, dev_profiles_data, reward_weights_path=None
+    ):
         super().__init__()
 
         self.config = config
@@ -28,7 +31,7 @@ class OSSSimpleEnv(gym.Env):
         self.agent_ids = list(self.developers.keys())
 
         # ▼▼▼【ここからが修正・拡張箇所】▼▼▼
-        
+
         # --- 状態変数の初期化 ---
         # Taskオブジェクトのリストを生成
         self.backlog = [Task.from_dict(t) for t in self.initial_backlog_data]
@@ -41,11 +44,15 @@ class OSSSimpleEnv(gym.Env):
         # 有効な日付がある場合のみmin()を呼び出し、なければ現在時刻を使う
         self.start_time = min(valid_dates) if valid_dates else datetime.now()
         self.current_time = self.start_time
-        self.time_step = timedelta(hours=self.config.env.simulation.get("time_step_hours", 8))
+        self.time_step = timedelta(
+            hours=self.config.env.simulation.get("time_step_hours", 8)
+        )
 
         # --- 特徴量計算のための動的状態 ---
         self.dev_action_history = defaultdict(list)
-        self.activity_window = timedelta(days=self.config.features.get("recent_activity_window_days", 30))
+        self.activity_window = timedelta(
+            days=self.config.features.get("recent_activity_window_days", 30)
+        )
         self.assignments = defaultdict(set)
 
         # ▲▲▲【ここまでが修正・拡張箇所】▲▲▲
@@ -55,7 +62,9 @@ class OSSSimpleEnv(gym.Env):
         # ここでは簡単のため、初期バックログサイズで定義。
         self.action_space = spaces.Dict(
             {
-                agent_id: spaces.Discrete(len(self.initial_backlog_data) + 1) # +1 for NO_OP
+                agent_id: spaces.Discrete(
+                    len(self.initial_backlog_data) + 1
+                )  # +1 for NO_OP
                 for agent_id in self.agent_ids
             }
         )
@@ -63,8 +72,9 @@ class OSSSimpleEnv(gym.Env):
         self.observation_space = spaces.Dict(
             {
                 agent_id: spaces.Box(
-                    low=-np.inf, high=np.inf,
-                    shape=(len(self.initial_backlog_data) * 3,), # 仮のshape
+                    low=-np.inf,
+                    high=np.inf,
+                    shape=(len(self.initial_backlog_data) * 3,),  # 仮のshape
                     dtype=np.float32,
                 )
                 for agent_id in self.agent_ids
@@ -76,10 +86,11 @@ class OSSSimpleEnv(gym.Env):
         if reward_weights_path and os.path.exists(reward_weights_path):
             self.reward_weights = np.load(reward_weights_path)
             self.use_learned_reward = True
-            print(f"[OSSSimpleEnv] Loaded learned reward weights from {reward_weights_path}")
+            print(
+                f"[OSSSimpleEnv] Loaded learned reward weights from {reward_weights_path}"
+            )
         else:
             print("[OSSSimpleEnv] Using default hard-coded reward.")
-
 
     def _create_developers(self):
         """開発者プロファイルから開発者辞書を作成する。"""
@@ -104,16 +115,16 @@ class OSSSimpleEnv(gym.Env):
         """行動を受け取り、環境を1ステップ進める。"""
         self.current_time += self.time_step
         rewards = {agent_id: 0.0 for agent_id in self.agent_ids}
-        
+
         # --- 1. 各エージェントの行動を処理 ---
         for agent_id, action_val in actions.items():
             # action_val は、バックログのタスクインデックス。NO_OPも考慮。
             NO_OP_ACTION = len(self.initial_backlog_data)
             if action_val == NO_OP_ACTION or action_val >= len(self.backlog):
-                continue # 何もしない
+                continue  # 何もしない
 
             developer = self.developers[agent_id]
-            selected_task = self.backlog.pop(action_val) # バックログから削除
+            selected_task = self.backlog.pop(action_val)  # バックログから削除
 
             # 動的状態の更新
             self.assignments[agent_id].add(selected_task.id)
@@ -121,8 +132,10 @@ class OSSSimpleEnv(gym.Env):
             self.dev_action_history[agent_id].append(self.current_time)
             self.tasks_in_progress[selected_task.id] = selected_task
             selected_task.status = "in_progress"
-            
-            print(f"Time {self.current_time.date()}: {agent_id} started {selected_task.name}")
+
+            print(
+                f"Time {self.current_time.date()}: {agent_id} started {selected_task.name}"
+            )
 
         # --- 2. 時間経過によるタスクの進行と完了をシミュレート ---
         completed_this_step = []
@@ -131,14 +144,18 @@ class OSSSimpleEnv(gym.Env):
             if np.random.rand() < 0.1:
                 task.status = "done"
                 completed_this_step.append(task)
-                
-                completing_agent = getattr(task, 'assigned_to', None)
+
+                completing_agent = getattr(task, "assigned_to", None)
                 if completing_agent:
                     if task.id in self.assignments[completing_agent]:
                         self.assignments[completing_agent].remove(task.id)
-                    rewards[completing_agent] += self._calculate_reward(completing_agent, task, "COMPLETE")
-                
-                print(f"Time {self.current_time.date()}: {task.name} completed by {completing_agent}!")
+                    rewards[completing_agent] += self._calculate_reward(
+                        completing_agent, task, "COMPLETE"
+                    )
+
+                print(
+                    f"Time {self.current_time.date()}: {task.name} completed by {completing_agent}!"
+                )
 
         # 完了したタスクを進行中リストから削除
         for task in completed_this_step:
@@ -148,7 +165,8 @@ class OSSSimpleEnv(gym.Env):
         # --- 3. 古い活動履歴をクリーンアップ ---
         for dev_name in self.dev_action_history:
             self.dev_action_history[dev_name] = [
-                ts for ts in self.dev_action_history[dev_name]
+                ts
+                for ts in self.dev_action_history[dev_name]
                 if self.current_time - ts < self.activity_window
             ]
 
@@ -156,8 +174,12 @@ class OSSSimpleEnv(gym.Env):
         observations = self._get_observations()
         is_done = not self.backlog and not self.tasks_in_progress
         terminateds = {agent_id: is_done for agent_id in self.agent_ids}
-        max_steps = self.config.env.simulation.get("max_days", 365) * (24 // self.config.env.simulation.get("time_step_hours", 8))
-        is_truncated = (self.current_time - self.start_time).total_seconds() / self.time_step.total_seconds() >= max_steps
+        max_steps = self.config.env.simulation.get("max_days", 365) * (
+            24 // self.config.env.simulation.get("time_step_hours", 8)
+        )
+        is_truncated = (
+            self.current_time - self.start_time
+        ).total_seconds() / self.time_step.total_seconds() >= max_steps
         truncateds = {agent_id: is_truncated for agent_id in self.agent_ids}
         infos = self._get_infos()
 
@@ -165,11 +187,11 @@ class OSSSimpleEnv(gym.Env):
 
     def reset(self, seed=None, options=None):
         super().reset(seed=seed)
-        
+
         self.current_time = self.start_time
         self.dev_action_history = defaultdict(list)
         self.assignments = defaultdict(set)
-        
+
         self.backlog = [Task.from_dict(t) for t in self.initial_backlog_data]
         self.tasks_in_progress = {}
         self.completed_tasks = []
@@ -185,14 +207,14 @@ class OSSSimpleEnv(gym.Env):
         # IRLの特徴量抽出とは目的が異なる場合があるため、分離して考えるのが良い。
         # ここでは単純なタスクの状態リストを返す。
         task_states = []
-        initial_task_ids = {t['id'] for t in self.initial_backlog_data}
-        
+        initial_task_ids = {t["id"] for t in self.initial_backlog_data}
+
         for task_id in initial_task_ids:
-            status_val = 0 # 0: todo
+            status_val = 0  # 0: todo
             if task_id in self.tasks_in_progress:
-                status_val = 1 # 1: in_progress
+                status_val = 1  # 1: in_progress
             elif any(ct.id == task_id for ct in self.completed_tasks):
-                status_val = 2 # 2: done
+                status_val = 2  # 2: done
 
             # complexity, deadline は固定値と仮定
             task_states.extend([status_val, 0, 0])
@@ -208,6 +230,6 @@ class OSSSimpleEnv(gym.Env):
             "dev_action_history": self.dev_action_history,
             "backlog": self.backlog,
             "developers": self.developers,
-            "tasks_in_progress": self.tasks_in_progress
+            "tasks_in_progress": self.tasks_in_progress,
         }
         return {agent_id: full_state_info for agent_id in self.agent_ids}
