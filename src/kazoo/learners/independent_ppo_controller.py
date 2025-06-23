@@ -18,7 +18,6 @@ class RolloutStorage:
         self.rewards = torch.zeros(num_steps).to(device)
         self.dones = torch.zeros(num_steps).to(device)
         self.values = torch.zeros(num_steps).to(device)
-        # 以前の修正で追加したentropiesも忘れずに含めます
         self.entropies = torch.zeros(num_steps).to(device)
 
         self.step = 0

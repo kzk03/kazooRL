@@ -17,13 +17,13 @@ class OSSSimpleEnv(gym.Env):
     """
 
     def __init__(
-        self, config, backlog_data, dev_profiles_data, reward_weights_path=None
+        self, config, backlog, dev_profiles, reward_weights_path=None
     ):
         super().__init__()
 
         self.config = config
-        self.initial_backlog_data = backlog_data
-        self.dev_profiles = dev_profiles_data
+        self.initial_backlog = backlog
+        self.dev_profiles = dev_profiles
 
         # === エージェント(開発者)とIDリストの作成 ===
         self.num_developers = self.config.get("num_developers", len(self.dev_profiles))
@@ -34,7 +34,7 @@ class OSSSimpleEnv(gym.Env):
 
         # --- 状態変数の初期化 ---
         # Taskオブジェクトのリストを生成
-        self.backlog = [Task.from_dict(t) for t in self.initial_backlog_data]
+        self.backlog = [Task.from_dict(t) for t in self.initial_backlog]
         self.tasks_in_progress = {}
         self.completed_tasks = []
 
@@ -63,7 +63,7 @@ class OSSSimpleEnv(gym.Env):
         self.action_space = spaces.Dict(
             {
                 agent_id: spaces.Discrete(
-                    len(self.initial_backlog_data) + 1
+                    len(self.initial_backlog) + 1
                 )  # +1 for NO_OP
                 for agent_id in self.agent_ids
             }
@@ -74,7 +74,7 @@ class OSSSimpleEnv(gym.Env):
                 agent_id: spaces.Box(
                     low=-np.inf,
                     high=np.inf,
-                    shape=(len(self.initial_backlog_data) * 3,),  # 仮のshape
+                    shape=(len(self.initial_backlog) * 3,),  # 仮のshape
                     dtype=np.float32,
                 )
                 for agent_id in self.agent_ids
@@ -119,7 +119,7 @@ class OSSSimpleEnv(gym.Env):
         # --- 1. 各エージェントの行動を処理 ---
         for agent_id, action_val in actions.items():
             # action_val は、バックログのタスクインデックス。NO_OPも考慮。
-            NO_OP_ACTION = len(self.initial_backlog_data)
+            NO_OP_ACTION = len(self.initial_backlog)
             if action_val == NO_OP_ACTION or action_val >= len(self.backlog):
                 continue  # 何もしない
 
@@ -192,7 +192,7 @@ class OSSSimpleEnv(gym.Env):
         self.dev_action_history = defaultdict(list)
         self.assignments = defaultdict(set)
 
-        self.backlog = [Task.from_dict(t) for t in self.initial_backlog_data]
+        self.backlog = [Task.from_dict(t) for t in self.initial_backlog]
         self.tasks_in_progress = {}
         self.completed_tasks = []
 
@@ -207,7 +207,7 @@ class OSSSimpleEnv(gym.Env):
         # IRLの特徴量抽出とは目的が異なる場合があるため、分離して考えるのが良い。
         # ここでは単純なタスクの状態リストを返す。
         task_states = []
-        initial_task_ids = {t["id"] for t in self.initial_backlog_data}
+        initial_task_ids = {t["id"] for t in self.initial_backlog}
 
         for task_id in initial_task_ids:
             status_val = 0  # 0: todo

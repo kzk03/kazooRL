@@ -1,27 +1,22 @@
 # --- 環境設定 (Environment) ---
-# シミュレーション環境とデータファイルのパスを定義します。
 env:
-  # データファイルのパス
   backlog_path: "data/backlog.json"
   dev_profiles_path: "configs/dev_profiles.yaml"
-
-  # シミュレーションの詳細設定
   simulation:
-    time_step_hours: 1 # 1ステップで進む時間
-    max_days: 365 # シミュレーションの最大日数
+    time_step_hours: 8
+    max_days: 365
 
 # --- 特徴量計算の設定 (Features) ---
 features:
-  recent_activity_window_days: 30 # 「最近の活動」を何日間のウィンドウで見るか
+  recent_activity_window_days: 30
 
 # --- 逆強化学習の設定 (Inverse Reinforcement Learning) ---
 irl:
-  # エキスパートの行動履歴データ
-  expert_path: "data/expert_events.json"
+  # ▼▼▼【ここを修正】▼▼▼
+  # 読み込むお手本データを、最終成果物である .pkl ファイルに変更します。
+  expert_path: "data/expert_trajectories.pkl"
+  # ▲▲▲【ここまで修正】▲▲▲
 
-  # 学習のハイパーパラメータ
   learning_rate: 0.01
   epochs: 50
-
-  # 学習結果の重みを保存するファイルパス
   output_weights_path: "reward_weights.npy"
