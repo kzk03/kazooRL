@@ -66,6 +66,7 @@ class RolloutStorage:
             )
         self.returns = self.advantages + self.values
 
+
 class IndependentPPOController:
     """複数のPPOAgentを管理し、マルチエージェント学習を実行する司令塔"""
 
