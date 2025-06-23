@@ -28,27 +28,20 @@ class RolloutStorage:
     def add(self, obs, action, log_prob, reward, done, value):
         """
         ステップごとのデータを追加する。
-        全てのデータを、保存先の形状である[1, 1]に合わせる。
+        全てのデータを、保存先の形状である[1]に合わせる。
         """
         self.obs[self.step].copy_(torch.as_tensor(obs, device=self.device))
-
-        # ▼▼▼【ここからが修正箇所】▼▼▼
-        # .view(1, 1) がエラーの原因でした。
-        # action, reward, done はスカラー値、log_prob, value は0次元テンソルです。
-        # これらを保存先である (1, 1) の形状に正しく変形します。
         self.actions[self.step].copy_(
-            torch.as_tensor(action, device=self.device, dtype=torch.long).view(1, 1)
+            torch.as_tensor([action], device=self.device, dtype=torch.long)
         )
-        self.log_probs[self.step].copy_(log_prob.view(1, 1))
+        self.log_probs[self.step].copy_(log_prob.view(1))
         self.rewards[self.step].copy_(
-            torch.as_tensor(reward, device=self.device, dtype=torch.float32).view(1, 1)
+            torch.as_tensor([reward], device=self.device, dtype=torch.float32)
         )
         self.dones[self.step].copy_(
-            torch.as_tensor(done, device=self.device, dtype=torch.float32).view(1, 1)
+            torch.as_tensor([done], device=self.device, dtype=torch.float32)
         )
-        self.values[self.step].copy_(value.view(1, 1))
-        # ▲▲▲【ここまでが修正箇所】▲▲▲
-
+        self.values[self.step].copy_(value.view(1))
         self.step = (self.step + 1) % self.num_steps
 
     def compute_returns(self, next_value, gamma, gae_lambda):
@@ -72,7 +65,6 @@ class RolloutStorage:
                 delta + gamma * gae_lambda * next_non_terminal * last_gae_lam
             )
         self.returns = self.advantages + self.values
-
 
 class IndependentPPOController:
     """複数のPPOAgentを管理し、マルチエージェント学習を実行する司令塔"""
