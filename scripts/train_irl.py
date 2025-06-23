@@ -19,8 +19,6 @@ def main():
     print("1. Loading configuration and data...")
     cfg = OmegaConf.load("configs/base.yaml")
 
-    # ▼▼▼【ここからが修正箇所】▼▼▼
-    # expert_events.json の代わりに expert_trajectories.pkl を直接読み込む
     try:
         with open(cfg.irl.expert_path, "rb") as f:
             trajectories = pickle.load(f)
@@ -39,7 +37,6 @@ def main():
         backlog_data = json.load(f)
     with open(cfg.env.dev_profiles_path, "r", encoding="utf-8") as f:
         dev_profiles_data = yaml.safe_load(f)
-    # ▲▲▲【ここまでが修正箇所】▲▲▲
 
     print("2. Initializing environment and feature extractor...")
     env = OSSSimpleEnv(cfg, backlog_data, dev_profiles_data)
