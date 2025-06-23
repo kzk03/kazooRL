@@ -9,11 +9,12 @@ def parse_datetime(timestamp_str: str | None) -> datetime | None:
     if not timestamp_str:
         return None
     try:
-        if timestamp_str.endswith('Z'):
-            timestamp_str = timestamp_str[:-1] + '+00:00'
+        if timestamp_str.endswith("Z"):
+            timestamp_str = timestamp_str[:-1] + "+00:00"
         return datetime.fromisoformat(timestamp_str)
     except (ValueError, TypeError):
         return None
+
 
 def generate_full_backlog(data_dir, output_path):
     """
@@ -35,7 +36,7 @@ def generate_full_backlog(data_dir, output_path):
     for file_path in sorted(jsonl_files):
         print(f"Processing file: {file_path}...")
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, "r", encoding="utf-8") as f:
                 for line in f:
                     if not line.strip():
                         continue
@@ -43,18 +44,24 @@ def generate_full_backlog(data_dir, output_path):
                         event = json.loads(line)
                     except json.JSONDecodeError:
                         continue
-                    
+
                     # IssueまたはPRに関するイベントから情報を抽出
                     issue_data = None
-                    event_type = event.get('type')
-                    if event_type in ['IssuesEvent', 'IssueCommentEvent'] and 'issue' in event.get('payload', {}):
-                        issue_data = event['payload']['issue']
-                    elif event_type in ['PullRequestEvent', 'PullRequestReviewCommentEvent'] and 'pull_request' in event.get('payload', {}):
-                        issue_data = event['payload']['pull_request']
+                    event_type = event.get("type")
+                    if event_type in [
+                        "IssuesEvent",
+                        "IssueCommentEvent",
+                    ] and "issue" in event.get("payload", {}):
+                        issue_data = event["payload"]["issue"]
+                    elif event_type in [
+                        "PullRequestEvent",
+                        "PullRequestReviewCommentEvent",
+                    ] and "pull_request" in event.get("payload", {}):
+                        issue_data = event["payload"]["pull_request"]
 
-                    if issue_data and 'id' in issue_data:
-                        task_id = issue_data['id']
-                        
+                    if issue_data and "id" in issue_data:
+                        task_id = issue_data["id"]
+
                         # データベースにタスクがなければ新規作成
                         if task_id not in tasks_db:
                             tasks_db[task_id] = issue_data
@@ -70,12 +77,13 @@ def generate_full_backlog(data_dir, output_path):
     print(f"Generated a backlog with {len(final_backlog)} unique tasks.")
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, 'w', encoding='utf-8') as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         json.dump(final_backlog, f, indent=2)
-        
+
     print(f"✅ Successfully generated full backlog at: {output_path}")
 
-if __name__ == '__main__':
-    INPUT_DATA_DIR = './data/2019/' 
-    OUTPUT_JSON_PATH = 'data/backlog.json'
+
+if __name__ == "__main__":
+    INPUT_DATA_DIR = "./data/2019/"
+    OUTPUT_JSON_PATH = "data/backlog.json"
     generate_full_backlog(INPUT_DATA_DIR, OUTPUT_JSON_PATH)

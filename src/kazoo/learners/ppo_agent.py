@@ -17,7 +17,7 @@ class ActorCritic(nn.Module):
             nn.Linear(64, 64),
             nn.Tanh(),
             nn.Linear(64, action_dim),
-            nn.Softmax(dim=-1)
+            nn.Softmax(dim=-1),
         )
 
         # Critic（状態価値を学習）
@@ -26,7 +26,7 @@ class ActorCritic(nn.Module):
             nn.Tanh(),
             nn.Linear(64, 64),
             nn.Tanh(),
-            nn.Linear(64, 1)
+            nn.Linear(64, 1),
         )
 
     def forward(self):
@@ -71,7 +71,6 @@ class PPOAgent:
             value = self.policy.critic(state)
         return action.cpu().numpy(), log_prob.cpu(), None, value.cpu()
 
-
     def update(self, memory):
         # モンテカルロ法でのリターン計算 (GAEはControllerで計算済みの想定)
         rewards = memory.returns
@@ -84,11 +83,13 @@ class PPOAgent:
         old_states = memory.obs.detach().to(self.device)
         old_actions = memory.actions.detach().to(self.device).long()
         old_log_probs = memory.log_probs.detach().to(self.device)
-        
+
         # K epoch分、方策を最適化
         for _ in range(self.epochs):
             # 現在の方策での評価値を取得
-            log_probs, state_values, dist_entropy = self.policy.evaluate(old_states, old_actions.squeeze())
+            log_probs, state_values, dist_entropy = self.policy.evaluate(
+                old_states, old_actions.squeeze()
+            )
 
             # Policy Ratio (pi_theta / pi_theta_old)
             ratios = torch.exp(log_probs - old_log_probs.squeeze().detach())
@@ -97,24 +98,33 @@ class PPOAgent:
             surr1 = ratios * advantages
             # ▼▼▼【ここが修正箇所】▼▼▼
             # self.eps_clipを使ってクリッピング
-            surr2 = torch.clamp(ratios, 1 - self.eps_clip, 1 + self.eps_clip) * advantages
+            surr2 = (
+                torch.clamp(ratios, 1 - self.eps_clip, 1 + self.eps_clip) * advantages
+            )
             # ▲▲▲【ここまで修正箇所】▲▲▲
 
             # 最終的な損失
-            loss = -torch.min(surr1, surr2) + 0.5 * self.MseLoss(state_values, rewards) - 0.01 * dist_entropy
+            loss = (
+                -torch.min(surr1, surr2)
+                + 0.5 * self.MseLoss(state_values, rewards)
+                - 0.01 * dist_entropy
+            )
 
             # 勾配を計算して更新
             self.optimizer.zero_grad()
             loss.mean().backward()
             self.optimizer.step()
-            
+
         # 新しい重みを古い方策にコピー
         self.policy_old.load_state_dict(self.policy.state_dict())
-        
+
     def save(self, filepath):
         torch.save(self.policy.state_dict(), filepath)
 
     def load(self, filepath):
-        self.policy.load_state_dict(torch.load(filepath, map_location=lambda storage, loc: storage))
-        self.policy_old.load_state_dict(torch.load(filepath, map_location=lambda storage, loc: storage))
-
+        self.policy.load_state_dict(
+            torch.load(filepath, map_location=lambda storage, loc: storage)
+        )
+        self.policy_old.load_state_dict(
+            torch.load(filepath, map_location=lambda storage, loc: storage)
+        )

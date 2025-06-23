@@ -7,6 +7,7 @@ from collections import defaultdict
 # kazoo.consts.actions がENUM形式などで定義されていることを想定
 # from kazoo.consts.actions import Action
 
+
 # Actionの定義（仮）
 class Action:
     MERGE_PULL_REQUEST = "MERGE_PULL_REQUEST"
@@ -23,34 +24,38 @@ def map_event_to_action(event):
     PRのマージとIssueのクローズを「お手本」のアクションとして定義する。
     """
     event_type = event.get("type")
-    
+
     # 1. PRのマージイベントをアクションに変換
-    if event_type == 'PullRequestEvent' and \
-       event.get('payload', {}).get('action') == 'closed' and \
-       event.get('payload', {}).get('pull_request', {}).get('merged'):
-        
-        pr = event['payload']['pull_request']
+    if (
+        event_type == "PullRequestEvent"
+        and event.get("payload", {}).get("action") == "closed"
+        and event.get("payload", {}).get("pull_request", {}).get("merged")
+    ):
+
+        pr = event["payload"]["pull_request"]
         return Action.MERGE_PULL_REQUEST, {
             "task_id": pr.get("id"),
             "developer": pr.get("user", {}).get("login"),
-            "timestamp": pr.get("merged_at") # アクションが発生した正確な時刻
+            "timestamp": pr.get("merged_at"),  # アクションが発生した正確な時刻
         }
-    
+
     # 2. Issueのクローズイベントをアクションに変換
-    elif event_type == 'IssuesEvent' and \
-         event.get('payload', {}).get('action') == 'closed':
-         
-        issue = event['payload']['issue']
+    elif (
+        event_type == "IssuesEvent"
+        and event.get("payload", {}).get("action") == "closed"
+    ):
+
+        issue = event["payload"]["issue"]
         # PRに紐づくIssueは除外（重複を避けるため）
-        if 'pull_request' in issue:
+        if "pull_request" in issue:
             return None, None
 
         return Action.CLOSE_ISSUE, {
             "task_id": issue.get("id"),
-            "developer": event.get("actor", {}).get("login"), # Issueを閉じた人が実行者
-            "timestamp": issue.get("closed_at")
+            "developer": event.get("actor", {}).get("login"),  # Issueを閉じた人が実行者
+            "timestamp": issue.get("closed_at"),
         }
-    
+
     return None, None
 
 
@@ -65,21 +70,21 @@ def main(data_dir, backlog_path, output_path):
 
     all_events = []
     for file_path in sorted(jsonl_files):
-        with open(file_path, 'r', encoding='utf-8') as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             for line in f:
                 if line.strip():
                     all_events.append(json.loads(line))
-    
+
     # イベントをタイムスタンプでソートする
-    all_events.sort(key=lambda x: x.get('created_at') or '')
+    all_events.sort(key=lambda x: x.get("created_at") or "")
     print(f"Loaded and sorted {len(all_events)} total events.")
     # ▲▲▲【ここまでが修正箇所】▲▲▲
 
     # --- 状態をシミュレートするための準備 ---
     try:
-        with open(backlog_path, "r", encoding='utf-8') as f:
+        with open(backlog_path, "r", encoding="utf-8") as f:
             all_tasks_list = json.load(f)
-        all_tasks_db = {task['id']: task for task in all_tasks_list}
+        all_tasks_db = {task["id"]: task for task in all_tasks_list}
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"Error loading backlog file '{backlog_path}': {e}")
         return
@@ -88,11 +93,11 @@ def main(data_dir, backlog_path, output_path):
     trajectory = []
     for event in all_events:
         action_enum, action_details = map_event_to_action(event)
-        
+
         # マッピングされたアクションがなければスキップ
         if not action_enum:
             continue
-            
+
         event_timestamp = action_details.get("timestamp")
         developer = action_details.get("developer")
 
@@ -101,19 +106,28 @@ def main(data_dir, backlog_path, output_path):
 
         # --- イベント発生直前の「状態」を定義 ---
         open_tasks_at_event = {
-            task_id for task_id, task_data in all_tasks_db.items()
-            if (task_data.get('created_at') and task_data.get('created_at') <= event_timestamp) and \
-               (not task_data.get('closed_at') or task_data.get('closed_at') > event_timestamp)
+            task_id
+            for task_id, task_data in all_tasks_db.items()
+            if (
+                task_data.get("created_at")
+                and task_data.get("created_at") <= event_timestamp
+            )
+            and (
+                not task_data.get("closed_at")
+                or task_data.get("closed_at") > event_timestamp
+            )
         }
-        
+
         current_state = {"open_task_ids": list(open_tasks_at_event)}
 
         # --- (状態, 行動)のペアを軌跡に追加 ---
-        trajectory.append({
-            "state": current_state,
-            "action": action_enum,
-            "action_details": action_details, # task_id, developer, timestampを含む
-        })
+        trajectory.append(
+            {
+                "state": current_state,
+                "action": action_enum,
+                "action_details": action_details,  # task_id, developer, timestampを含む
+            }
+        )
 
     # 一本の長い軌跡として保存
     trajectories = [trajectory] if trajectory else []
@@ -127,8 +141,8 @@ def main(data_dir, backlog_path, output_path):
 
 if __name__ == "__main__":
     # 入力データディレクトリと、依存するファイルを指定
-    INPUT_DATA_DIR = './data/2019'
-    BACKLOG_FILE_PATH = 'data/backlog.json'
+    INPUT_DATA_DIR = "./data/2019"
+    BACKLOG_FILE_PATH = "data/backlog.json"
     OUTPUT_TRAJECTORY_PATH = "data/expert_trajectories.pkl"
-    
+
     main(INPUT_DATA_DIR, BACKLOG_FILE_PATH, OUTPUT_TRAJECTORY_PATH)
