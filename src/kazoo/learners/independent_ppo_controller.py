@@ -1,41 +1,64 @@
+import os
+
 import numpy as np
 import torch
+from gymnasium import spaces
 
 from kazoo.learners.ppo_agent import PPOAgent
 
 
 class RolloutStorage:
-    """経験データを一時的に保存するためのヘルパークラス"""
-
+    """
+    PPOのための経験データを一時的に保存し、リターンとアドバンテージを計算する。
+    """
     def __init__(self, num_steps, obs_space, act_space, device):
         self.device = device
         self.num_steps = num_steps
-
-        # データ保存用のTensorを適切なサイズで初期化
+        
+        # ストレージを(ステップ数, 次元)の形で初期化
         self.obs = torch.zeros((num_steps,) + obs_space.shape).to(device)
-        self.actions = torch.zeros((num_steps,) + act_space.shape).to(device)
-        self.log_probs = torch.zeros(num_steps).to(device)
-        self.rewards = torch.zeros(num_steps).to(device)
-        self.dones = torch.zeros(num_steps).to(device)
-        self.values = torch.zeros(num_steps).to(device)
-        self.entropies = torch.zeros(num_steps).to(device)
-
+        self.actions = torch.zeros(num_steps, 1, dtype=torch.long).to(device)
+        self.log_probs = torch.zeros(num_steps, 1).to(device)
+        self.rewards = torch.zeros(num_steps, 1).to(device)
+        self.dones = torch.zeros(num_steps, 1).to(device)
+        self.values = torch.zeros(num_steps, 1).to(device)
         self.step = 0
 
-    def add(self, obs, action, log_prob, reward, done, value, entropy):
-        """ステップごとのデータを追加する"""
-        self.obs[self.step] = torch.as_tensor(obs, dtype=torch.float32)
-        self.actions[self.step] = torch.as_tensor(action)
-        self.log_probs[self.step] = log_prob
-        self.rewards[self.step] = torch.as_tensor(reward)
-        self.dones[self.step] = torch.as_tensor(done)
-        self.values[self.step] = value
-        self.entropies[self.step] = entropy
+    def add(self, obs, action, log_prob, reward, done, value):
+        """
+        ステップごとのデータを追加する。
+        全てのデータを、保存先の形状である[1, 1]に合わせる。
+        """
+        self.obs[self.step].copy_(torch.as_tensor(obs, device=self.device))
+        
+        # ▼▼▼【ここからが修正箇所】▼▼▼
+        # .view(1, 1) がエラーの原因でした。
+        # action, reward, done はスカラー値、log_prob, value は0次元テンソルです。
+        # これらを保存先である (1, 1) の形状に正しく変形します。
+        self.actions[self.step].copy_(torch.as_tensor(action, device=self.device, dtype=torch.long).view(1, 1))
+        self.log_probs[self.step].copy_(log_prob.view(1, 1))
+        self.rewards[self.step].copy_(torch.as_tensor(reward, device=self.device, dtype=torch.float32).view(1, 1))
+        self.dones[self.step].copy_(torch.as_tensor(done, device=self.device, dtype=torch.float32).view(1, 1))
+        self.values[self.step].copy_(value.view(1, 1))
+        # ▲▲▲【ここまでが修正箇所】▲▲▲
+
         self.step = (self.step + 1) % self.num_steps
 
-    def get(self):
-        """学習に使うためのデータを返す"""
-        return self
+    def compute_returns(self, next_value, gamma, gae_lambda):
+        """GAE (Generalized Advantage Estimation) を使ってリターンとアドバンテージを計算"""
+        self.advantages = torch.zeros_like(self.rewards).to(self.device)
+        last_gae_lam = 0
+        for t in reversed(range(self.num_steps)):
+            if t == self.num_steps - 1:
+                next_non_terminal = 1.0 - self.dones[t]
+                next_values = next_value
+            else:
+                next_non_terminal = 1.0 - self.dones[t]
+                next_values = self.values[t + 1]
+            
+            delta = self.rewards[t] + gamma * next_values * next_non_terminal - self.values[t]
+            self.advantages[t] = last_gae_lam = delta + gamma * gae_lambda * next_non_terminal * last_gae_lam
+        self.returns = self.advantages + self.values
 
 
 class IndependentPPOController:
@@ -45,102 +68,82 @@ class IndependentPPOController:
         self.env = env
         self.agent_ids = env.agent_ids
         self.config = config
+        self.num_agents = len(self.agent_ids)
         self.device = torch.device(config.get("device", "cpu"))
 
-        # --- 各エージェントのエージェントとストレージを作成 ---
+        try:
+            self.rl_config = config.rl
+        except Exception:
+            raise ValueError("Configuration file must contain an 'rl' section.")
+
         self.agents = {}
         self.storages = {}
         for agent_id in self.agent_ids:
             obs_space = self.env.observation_space[agent_id]
             act_space = self.env.action_space[agent_id]
 
-            # エージェントを作成
             self.agents[agent_id] = PPOAgent(
-                obs_space=obs_space,
-                act_space=act_space,
-                lr=config.lr,
-                gamma=config.gamma,
-                # ...その他のPPOハイパーパラメータをconfigから渡す...
-                epochs=config.epochs,
-                device=self.device,
+                obs_space=obs_space, act_space=act_space,
+                lr=self.rl_config.learning_rate, gamma=self.rl_config.gamma,
+                epochs=self.rl_config.k_epochs, eps_clip=self.rl_config.eps_clip,
+                device=self.device
             )
-            # データ保存用のストレージを作成
             self.storages[agent_id] = RolloutStorage(
-                config.rollout_len, obs_space, act_space, self.device
+                self.rl_config.rollout_len, obs_space, act_space, self.device
             )
-
-    # src/kazoo/learners/independent_ppo_controller.py の learn メソッド
 
     def learn(self, total_timesteps):
         print("Starting Multi-Agent PPO Training...")
-
-        # 環境をリセットし、初期観測を取得
         obs, info = self.env.reset()
-
-        # ★★★ ここからが修正箇所 ★★★
-
         global_step = 0
-        num_updates = 0
 
-        # 全体の学習ステップ数が目標に達するまでループ
-        while global_step < total_timesteps:
-            num_updates += 1
-            print(
-                f"\n===== Update Cycle: {num_updates} | Global Step: {global_step}/{total_timesteps} ====="
-            )
+        num_updates = int(total_timesteps / self.rl_config.rollout_len / self.num_agents) if self.num_agents > 0 else 0
+        
+        for update in range(1, num_updates + 1):
+            for step in range(self.rl_config.rollout_len):
+                global_step += self.num_agents
+                actions_dict, log_probs_dict, values_dict = {}, {}, {}
+                
+                with torch.no_grad():
+                    for agent_id, agent_obs in obs.items():
+                        action, log_prob, _, value = self.agents[agent_id].get_action_and_value(agent_obs)
+                        actions_dict[agent_id] = action.item()
+                        log_probs_dict[agent_id] = log_prob
+                        values_dict[agent_id] = value
 
-            # --- データ収集 (Rollout) ---
-            # rollout_lenステップ分、データを収集する
-            for i in range(self.config.rollout_len):
-
-                actions_dict = {}
-                log_probs_dict = {}
-                values_dict = {}
-                entropies_dict = {}
-
-                # 1. 全てのエージェントから行動を取得
-                for agent_id, agent_obs in obs.items():
-                    action, log_prob, entropy, value = self.agents[
-                        agent_id
-                    ].get_action_and_value(agent_obs)
-                    actions_dict[agent_id] = action.item()
-                    log_probs_dict[agent_id] = log_prob.detach()
-                    values_dict[agent_id] = value.detach()
-                    entropies_dict[agent_id] = entropy.detach()
-
-                # 2. 環境を1ステップ進める
-                next_obs, rewards, terminateds, truncateds, infos = self.env.step(
-                    actions_dict
-                )
+                next_obs, rewards, terminateds, truncateds, infos = self.env.step(actions_dict)
                 dones = {
-                    agent_id: terminateds.get(agent_id, False)
-                    or truncateds.get(agent_id, False)
+                    agent_id: terminateds[agent_id] or truncateds[agent_id]
                     for agent_id in self.agent_ids
                 }
 
-                # 3. 各エージェントのデータをストレージに保存
                 for agent_id in self.agent_ids:
                     self.storages[agent_id].add(
-                        obs[agent_id],
-                        actions_dict[agent_id],
-                        log_probs_dict[agent_id],
-                        rewards[agent_id],
-                        dones[agent_id],
-                        values_dict[agent_id],
-                        entropies_dict[agent_id],
+                        obs[agent_id], actions_dict[agent_id], log_probs_dict[agent_id],
+                        rewards[agent_id], dones[agent_id], values_dict[agent_id]
                     )
-
-                # 観測を更新
                 obs = next_obs
-                global_step += 1  # 全体のステップ数をインクリメント
 
-            # --- 学習 (Update) ---
-            # 4. 全てのエージェントの更新メソッドを呼び出す
-            # with torch.no_grad(): # GAE計算中は勾配不要
-            #     # ... GAE計算 ...
-
+            with torch.no_grad():
+                next_values = {
+                    agent_id: self.agents[agent_id].get_action_and_value(obs[agent_id])[3]
+                    for agent_id in self.agent_ids
+                }
+            
             for agent_id in self.agent_ids:
-                rollout_data = self.storages[agent_id].get()
+                self.storages[agent_id].compute_returns(next_values[agent_id], self.rl_config.gamma, self.rl_config.gae_lambda)
+                rollout_data = self.storages[agent_id]
                 self.agents[agent_id].update(rollout_data)
+            
+            if self.storages:
+                avg_reward = np.mean([storage.rewards.mean().item() for storage in self.storages.values()])
+                print(f"Update {update}/{num_updates}, Global Step: {global_step}, Avg Reward: {avg_reward:.3f}")
 
         print("Training finished.")
+
+    def save_models(self, directory):
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        for agent_id, agent in self.agents.items():
+            agent.save(os.path.join(directory, f"ppo_agent_{agent_id}.pth"))
+

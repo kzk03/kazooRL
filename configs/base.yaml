@@ -9,14 +9,32 @@ env:
 # --- 特徴量計算の設定 (Features) ---
 features:
   recent_activity_window_days: 30
+  all_labels: ['bug', 'enhancement', 'documentation', 'question', 'help wanted']
+  label_to_skills:
+    bug: ['debugging', 'analysis']
+    enhancement: ['python', 'design']
+    documentation: ['writing']
+    question: ['communication']
+    help wanted: ['collaboration']
 
-# --- 逆強化学習の設定 (Inverse Reinforcement Learning) ---
+# --- 逆強化学習の設定 (IRL) ---
 irl:
-  # ▼▼▼【ここを修正】▼▼▼
-  # 読み込むお手本データを、最終成果物である .pkl ファイルに変更します。
   expert_path: "data/expert_trajectories.pkl"
-  # ▲▲▲【ここまで修正】▲▲▲
-
   learning_rate: 0.01
   epochs: 50
   output_weights_path: "reward_weights.npy"
+
+# --- 強化学習の設定 (RL) ---
+rl:
+  # ▼▼▼【ここを追加】▼▼▼
+  total_timesteps: 500000  # 学習を行う総ステップ数
+  # ▲▲▲【ここまで追加】▲▲▲
+  
+  learning_rate: 0.0003
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  k_epochs: 4
+  rollout_len: 2048
+  output_model_dir: "models/"
+
