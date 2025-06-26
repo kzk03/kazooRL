@@ -6,16 +6,23 @@ env:
     time_step_hours: 8
     max_days: 365
 
+num_developers: 10 # 開発者の数
+
 # --- 特徴量計算の設定 (Features) ---
 features:
   recent_activity_window_days: 30
-  all_labels: ['bug', 'enhancement', 'documentation', 'question', 'help wanted']
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
   label_to_skills:
-    bug: ['debugging', 'analysis']
-    enhancement: ['python', 'design']
-    documentation: ['writing']
-    question: ['communication']
-    help wanted: ['collaboration']
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- GNNモデルのパス (GNN) ---
+gnn:
+  model_path: "models/gnn_model.pt" # 学習済みGNNモデルのパス
+  graph_data_path: "data/graph_data.pt" # グラフデータのパス
 
 # --- 逆強化学習の設定 (IRL) ---
 irl:
@@ -23,13 +30,17 @@ irl:
   learning_rate: 0.01
   epochs: 50
   output_weights_path: "reward_weights.npy"
+  use_gnn: true
+  gnn_model_path: "models/gnn_model.pt" # GNNモデルのパス
+  gnn_graph_data_path: "data/graph_data.pt" # GNNのグラフデータのパス
+  gnn_weight : 0.5 # GNNの重み
 
 # --- 強化学習の設定 (RL) ---
 rl:
   # ▼▼▼【ここを追加】▼▼▼
-  total_timesteps: 500000  # 学習を行う総ステップ数
+  total_timesteps: 500000 # 学習を行う総ステップ数
   # ▲▲▲【ここまで追加】▲▲▲
-  
+
   learning_rate: 0.0003
   gamma: 0.99
   gae_lambda: 0.95
@@ -37,4 +48,3 @@ rl:
   k_epochs: 4
   rollout_len: 2048
   output_model_dir: "models/"
-
