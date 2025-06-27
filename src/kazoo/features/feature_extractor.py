@@ -8,6 +8,7 @@ except ImportError:
     print("Warning: GNN feature extractor not available")
     GNNFeatureExtractor = None
 
+
 class FeatureExtractor:
     def __init__(self, cfg):
         self.all_labels = cfg.features.get(
@@ -138,6 +139,7 @@ class GNNFeatureExtractor(BaseFeaturesExtractor):
     強化学習エージェントのポリシーネットワーク用。
     GNNの特徴量を含む辞書型の観測空間から、単一の特徴量ベクトルを生成する。
     """
+
     def __init__(self, observation_space: gym.spaces.Dict):
         """
         コンストラクタ。最終的に生成する特徴量ベクトルの次元数を計算して親クラスに渡す。
@@ -146,10 +148,10 @@ class GNNFeatureExtractor(BaseFeaturesExtractor):
         simple_obs_dim = observation_space["simple_obs"].shape[0]
         # gnn_embeddings は (ノード数, 特徴量次元数) なので、特徴量次元数を取得
         gnn_embedding_dim = observation_space["gnn_embeddings"].shape[1]
-        
+
         # 最終的な特徴量次元数 = simple_obsの次元 + gnn_embeddingsの次元（プーリング後）
         features_dim = simple_obs_dim + gnn_embedding_dim
-        
+
         # 親クラスのコンストラクタを呼び出す
         super().__init__(observation_space, features_dim=features_dim)
 
@@ -175,8 +177,8 @@ class GNNFeatureExtractor(BaseFeaturesExtractor):
         # 2つの特徴量テンソルを結合する
         # これにより、エージェントは両方の情報を同時に見ることができる
         combined_features = torch.cat([simple_obs, pooled_gnn_features], dim=1)
-        
+
         # もし線形層を定義した場合は、ここで通す
         # return self.linear(combined_features)
-        
+
         return combined_features

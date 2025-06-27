@@ -41,16 +41,24 @@ class OSSSimpleEnv(gym.Env):
             # self.gnn_model = GNN(...) # GNNモデルの初期化コードを追加
             # self.gnn_model.load.state_dict(torch.load(gnn_config.model_path))
             # self.gnn_model.eval()
-            print(f"[OSSSimpleEnv] GNN model path found but loading not implemented: {gnn_config['model_path']}")
+            print(
+                f"[OSSSimpleEnv] GNN model path found but loading not implemented: {gnn_config['model_path']}"
+            )
 
         # PyTorch Geometricのデータ形式を想定
-        self.graph_data = None 
-        if gnn_config.get("graph_data_path") and os.path.exists(gnn_config.graph_data_path):
+        self.graph_data = None
+        if gnn_config.get("graph_data_path") and os.path.exists(
+            gnn_config.graph_data_path
+        ):
             try:
                 self.graph_data = torch.load(gnn_config.graph_data_path)
-                print(f"[OSSSimpleEnv] Loaded graph data from {gnn_config.graph_data_path}")
+                print(
+                    f"[OSSSimpleEnv] Loaded graph data from {gnn_config.graph_data_path}"
+                )
             except Exception as e:
-                print(f"Warning: Failed to load graph data from {gnn_config.graph_data_path}: {e}")
+                print(
+                    f"Warning: Failed to load graph data from {gnn_config.graph_data_path}: {e}"
+                )
                 self.graph_data = None
 
         rl_config = self.config.get("rl", {})  # rlセクションがない場合も考慮
@@ -60,7 +68,6 @@ class OSSSimpleEnv(gym.Env):
         self.activity_window = timedelta(
             days=self.config.features.get("recent_activity_window_days", 30)
         )
-    
 
         self.reset()
 
@@ -74,18 +81,31 @@ class OSSSimpleEnv(gym.Env):
         # 元の観測空間の定義
         simple_obs_shape = (len(self.initial_backlog) * 3,)
         # GNNの出力特徴量の次元数 (仮に64とする)
-        gnn_embedding_dim = 64 
+        gnn_embedding_dim = 64
         # graph_dataがNoneの場合は空のグラフを想定
         num_nodes = self.graph_data.num_nodes if self.graph_data is not None else 0
-        
-        self.observation_space = spaces.Dict({
-            agent_id: spaces.Dict({
-                "simple_obs": spaces.Box(low=-np.inf, high=np.inf, shape=simple_obs_shape, dtype=np.float32),
-                "gnn_embeddings": spaces.Box(low=-np.inf, high=np.inf, shape=(num_nodes, gnn_embedding_dim), dtype=np.float32)
-            })
-            for agent_id in self.agent_ids
-        })
 
+        self.observation_space = spaces.Dict(
+            {
+                agent_id: spaces.Dict(
+                    {
+                        "simple_obs": spaces.Box(
+                            low=-np.inf,
+                            high=np.inf,
+                            shape=simple_obs_shape,
+                            dtype=np.float32,
+                        ),
+                        "gnn_embeddings": spaces.Box(
+                            low=-np.inf,
+                            high=np.inf,
+                            shape=(num_nodes, gnn_embedding_dim),
+                            dtype=np.float32,
+                        ),
+                    }
+                )
+                for agent_id in self.agent_ids
+            }
+        )
 
         self.reward_weights = None
         if reward_weights_path and os.path.exists(reward_weights_path):
@@ -220,19 +240,19 @@ class OSSSimpleEnv(gym.Env):
             if self.gnn_model and self.graph_data:
                 # 現在のタスクステータスなどをグラフデータに反映させる (ここは別途実装が必要)
                 # updated_graph_data = self._update_graph_features(self.graph_data)
-                
+
                 with torch.no_grad():
                     # GNNのフォワードパスを実行して最新のノード特徴量を取得
                     # gnn_embeddings = self.gnn_model(updated_graph_data).cpu().numpy()
                     pass  # 実装待ち
-        
+
         # --- 辞書形式で観測をまとめる ---
         observations = {}
 
         for agent_id in self.agent_ids:
             observations[agent_id] = {
                 "simple_obs": obs_vector,
-                "gnn_embeddings": gnn_embeddings
+                "gnn_embeddings": gnn_embeddings,
             }
         return observations
 
