@@ -27,9 +27,9 @@ gnn:
 # --- 逆強化学習の設定 (IRL) ---
 irl:
   expert_path: "data/expert_trajectories.pkl"
-  learning_rate: 0.01
-  epochs: 50
-  output_weights_path: "reward_weights.npy"
+  output_weights_path: "data/learned_weights.npy"
+  learning_rate: 0.001
+  epochs: 100
   use_gnn: true
   gnn_model_path: "models/gnn_model.pt" # GNNモデルのパス
   gnn_graph_data_path: "data/graph_data.pt" # GNNのグラフデータのパス
