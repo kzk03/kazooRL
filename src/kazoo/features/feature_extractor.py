@@ -2,17 +2,14 @@ from datetime import datetime
 
 import numpy as np
 
+try:
+    from kazoo.features.gnn_feature_extractor import GNNFeatureExtractor
+except ImportError:
+    print("Warning: GNN feature extractor not available")
+    GNNFeatureExtractor = None
 
 class FeatureExtractor:
-    """
-    シミュレーション環境の状態（タスク、開発者）から、
-    機械学習モデル用の特徴量ベクトルを生成するクラス。
-    """
-
     def __init__(self, cfg):
-        """
-        設定ファイルから必要な情報を読み込み、初期化する。
-        """
         self.all_labels = cfg.features.get(
             "all_labels",
             ["bug", "enhancement", "documentation", "question", "help wanted"],
@@ -29,6 +26,10 @@ class FeatureExtractor:
                 "help wanted": {"collaboration"},
             },
         )
+
+        # GNNFeatureExtractorは強化学習のポリシーネットワーク用なので、
+        # IRL訓練では直接使用しない
+        self.gnn_extractor = None
 
         self.feature_names = self._define_feature_names()
         print(f"FeatureExtractor initialized with {len(self.feature_names)} features.")
@@ -51,6 +52,11 @@ class FeatureExtractor:
         names.extend(["dev_recent_activity_count", "dev_current_workload"])
         names.extend(["match_skill_intersection_count", "match_file_experience_count"])
         names.extend([f"match_affinity_for_{label}" for label in self.all_labels])
+        # ▼▼▼【追加】GNN特徴量名を追加▼▼▼
+        if self.gnn_extractor:
+            gnn_names = self.gnn_extractor.get_feature_names()
+            names.extend(gnn_names)
+
         return names
 
     def get_features(self, task, developer, env) -> np.ndarray:
@@ -111,7 +117,66 @@ class FeatureExtractor:
                 affinity_vec[i] = dev_affinity_profile.get(label_name, 0.0)
         feature_values.extend(affinity_vec)
 
+        if self.gnn_extractor:
+            gnn_features = self.gnn_extractor.get_gnn_features(task, developer, env)
+            feature_values.extend(gnn_features)
+
         if len(feature_values) != len(self.feature_names):
             raise ValueError("Feature dimension mismatch.")
 
         return np.array(feature_values, dtype=np.float32)
+
+
+import gymnasium as gym
+import torch
+from stable_baselines3.common.torch_layers import BaseFeaturesExtractor
+from torch import nn
+
+
+class GNNFeatureExtractor(BaseFeaturesExtractor):
+    """
+    強化学習エージェントのポリシーネットワーク用。
+    GNNの特徴量を含む辞書型の観測空間から、単一の特徴量ベクトルを生成する。
+    """
+    def __init__(self, observation_space: gym.spaces.Dict):
+        """
+        コンストラクタ。最終的に生成する特徴量ベクトルの次元数を計算して親クラスに渡す。
+        """
+        # 観測空間の各要素の次元数を取得
+        simple_obs_dim = observation_space["simple_obs"].shape[0]
+        # gnn_embeddings は (ノード数, 特徴量次元数) なので、特徴量次元数を取得
+        gnn_embedding_dim = observation_space["gnn_embeddings"].shape[1]
+        
+        # 最終的な特徴量次元数 = simple_obsの次元 + gnn_embeddingsの次元（プーリング後）
+        features_dim = simple_obs_dim + gnn_embedding_dim
+        
+        # 親クラスのコンストラクタを呼び出す
+        super().__init__(observation_space, features_dim=features_dim)
+
+        # 必要であれば、ここで線形層などを定義することも可能
+        # self.linear = nn.Sequential(nn.Linear(features_dim, 256), nn.ReLU())
+        # super().__init__(observation_space, features_dim=256)
+
+    def forward(self, observations: dict) -> torch.Tensor:
+        """
+        観測辞書を受け取り、単一のテンソルに変換して返す。
+        このメソッドは、エージェントが行動を決定するたびに内部で呼び出される。
+        """
+        # 観測辞書から各データを取り出す
+        simple_obs = observations["simple_obs"]
+        gnn_embeddings = observations["gnn_embeddings"]
+
+        # gnn_embeddings は (バッチサイズ, ノード数, 特徴量次元数) の形をしている
+        # これを固定長のベクトルにするために、ノードの軸でプーリング処理を行う
+        # (例: Global Average Pooling)
+        # dim=1 はノードの次元
+        pooled_gnn_features = torch.mean(gnn_embeddings, dim=1)
+
+        # 2つの特徴量テンソルを結合する
+        # これにより、エージェントは両方の情報を同時に見ることができる
+        combined_features = torch.cat([simple_obs, pooled_gnn_features], dim=1)
+        
+        # もし線形層を定義した場合は、ここで通す
+        # return self.linear(combined_features)
+        
+        return combined_features
