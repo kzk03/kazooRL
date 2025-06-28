@@ -5,6 +5,9 @@ env:
   simulation:
     time_step_hours: 8
     max_days: 365
+  gnn:
+    model_path: "data/gnn_model.pt" # 学習済みGNNモデルのパス
+    graph_data_path: "data/graph.pt" # グラフデータのパス
 
 num_developers: 10 # 開発者の数
 
@@ -19,11 +22,6 @@ features:
     question: ["communication"]
     help wanted: ["collaboration"]
 
-# --- GNNモデルのパス (GNN) ---
-gnn:
-  model_path: "models/gnn_model.pt" # 学習済みGNNモデルのパス
-  graph_data_path: "data/graph_data.pt" # グラフデータのパス
-
 # --- 逆強化学習の設定 (IRL) ---
 irl:
   expert_path: "data/expert_trajectories.pkl"
@@ -31,14 +29,11 @@ irl:
   learning_rate: 0.001
   epochs: 100
   use_gnn: true
-  gnn_model_path: "models/gnn_model.pt" # GNNモデルのパス
-  gnn_graph_data_path: "data/graph_data.pt" # GNNのグラフデータのパス
-  gnn_weight : 0.5 # GNNの重み
 
 # --- 強化学習の設定 (RL) ---
 rl:
   # ▼▼▼【ここを追加】▼▼▼
-  total_timesteps: 500000 # 学習を行う総ステップ数
+  total_timesteps: 5 # 学習を行う総ステップ数
   # ▲▲▲【ここまで追加】▲▲▲
 
   learning_rate: 0.0003

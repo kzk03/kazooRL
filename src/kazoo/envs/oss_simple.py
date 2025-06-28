@@ -37,13 +37,19 @@ class OSSSimpleEnv(gym.Env):
         gnn_config = self.config.env.get("gnn", {})
         self.gnn_model = None
         if gnn_config.get("model_path") and os.path.exists(gnn_config["model_path"]):
-            # GNNモデルの初期化コードは後で実装
-            # self.gnn_model = GNN(...) # GNNモデルの初期化コードを追加
-            # self.gnn_model.load.state_dict(torch.load(gnn_config.model_path))
-            # self.gnn_model.eval()
-            print(
-                f"[OSSSimpleEnv] GNN model path found but loading not implemented: {gnn_config['model_path']}"
-            )
+            try:
+                # GNNモデルの初期化と読み込み
+                from kazoo.gnn.gnn_model import GNNModel
+                self.gnn_model = GNNModel(
+                    in_channels_dict={"dev": 8, "task": 9}, 
+                    out_channels=32
+                )
+                self.gnn_model.load_state_dict(torch.load(gnn_config["model_path"], weights_only=True))
+                self.gnn_model.eval()
+                print(f"[OSSSimpleEnv] Successfully loaded GNN model from {gnn_config['model_path']}")
+            except Exception as e:
+                print(f"[OSSSimpleEnv] Failed to load GNN model: {e}")
+                self.gnn_model = None
 
         # PyTorch Geometricのデータ形式を想定
         self.graph_data = None
@@ -51,7 +57,7 @@ class OSSSimpleEnv(gym.Env):
             gnn_config.graph_data_path
         ):
             try:
-                self.graph_data = torch.load(gnn_config.graph_data_path)
+                self.graph_data = torch.load(gnn_config.graph_data_path, weights_only=False)
                 print(
                     f"[OSSSimpleEnv] Loaded graph data from {gnn_config.graph_data_path}"
                 )
@@ -77,31 +83,18 @@ class OSSSimpleEnv(gym.Env):
                 for agent_id in self.agent_ids
             }
         )
-        # 2. 観測空間(Observation Space)の変更
-        # 元の観測空間の定義
+        # 観測空間を単純なBox空間に変更（PPOAgentとの互換性のため）
         simple_obs_shape = (len(self.initial_backlog) * 3,)
-        # GNNの出力特徴量の次元数 (仮に64とする)
-        gnn_embedding_dim = 64
-        # graph_dataがNoneの場合は空のグラフを想定
-        num_nodes = self.graph_data.num_nodes if self.graph_data is not None else 0
-
+        gnn_pooled_dim = 64  # GNN埋め込みをプールして固定サイズに
+        total_obs_dim = simple_obs_shape[0] + gnn_pooled_dim
+        
         self.observation_space = spaces.Dict(
             {
-                agent_id: spaces.Dict(
-                    {
-                        "simple_obs": spaces.Box(
-                            low=-np.inf,
-                            high=np.inf,
-                            shape=simple_obs_shape,
-                            dtype=np.float32,
-                        ),
-                        "gnn_embeddings": spaces.Box(
-                            low=-np.inf,
-                            high=np.inf,
-                            shape=(num_nodes, gnn_embedding_dim),
-                            dtype=np.float32,
-                        ),
-                    }
+                agent_id: spaces.Box(
+                    low=-np.inf,
+                    high=np.inf,
+                    shape=(total_obs_dim,),
+                    dtype=np.float32,
                 )
                 for agent_id in self.agent_ids
             }
@@ -127,10 +120,29 @@ class OSSSimpleEnv(gym.Env):
     def _calculate_reward(self, agent_id, task, action_type="COMPLETE"):
         # IRLの重みを使う場合は、ここで特徴量を計算して報酬を返す
         if self.reward_weights is not None:
-            # feature_extractorをインスタンス化して使う必要がある
-            # ここでは単純な報酬を返す
-            pass
+            try:
+                # FeatureExtractorを使って特徴量を計算
+                from kazoo.features.feature_extractor import FeatureExtractor
+                feature_extractor = FeatureExtractor(self.config)
+                
+                # 開発者情報を取得
+                developer = self.developers[agent_id]
+                
+                # 特徴量を計算
+                features = feature_extractor.get_features(task, developer, self)
+                
+                # IRLで学習した重みで報酬を計算
+                reward = float(np.dot(self.reward_weights, features))
+                
+                print(f"[IRL Reward] {agent_id} -> {task.title}: {reward:.3f}")
+                return reward
+                
+            except Exception as e:
+                print(f"Warning: Failed to calculate IRL reward: {e}")
+                # フォールバックとしてデフォルト報酬を使用
+                pass
 
+        # デフォルト報酬
         if action_type == "COMPLETE":
             return 1.0
         return 0.0
@@ -236,24 +248,54 @@ class OSSSimpleEnv(gym.Env):
             print("Warning: graph_data is None. Using empty embeddings.")
             gnn_embeddings = np.zeros((0, 64))  # 空の埋め込み
         else:
-            gnn_embeddings = np.zeros((self.graph_data.num_nodes, 64))  # デフォルト値
+            # デフォルト値から開始
+            gnn_embeddings = np.zeros((self.graph_data.num_nodes, 64))
+            
             if self.gnn_model and self.graph_data:
-                # 現在のタスクステータスなどをグラフデータに反映させる (ここは別途実装が必要)
-                # updated_graph_data = self._update_graph_features(self.graph_data)
-
-                with torch.no_grad():
-                    # GNNのフォワードパスを実行して最新のノード特徴量を取得
-                    # gnn_embeddings = self.gnn_model(updated_graph_data).cpu().numpy()
-                    pass  # 実装待ち
+                try:
+                    # 現在のタスクステータスなどをグラフデータに反映
+                    updated_graph_data = self._update_graph_features(self.graph_data)
+                    
+                    with torch.no_grad():
+                        # GNNのフォワードパスを実行して最新のノード特徴量を取得
+                        embeddings_dict = self.gnn_model(
+                            updated_graph_data.x_dict, 
+                            updated_graph_data.edge_index_dict
+                        )
+                        
+                        # 開発者とタスクの埋め込みを結合
+                        dev_embeddings = embeddings_dict["dev"].cpu().numpy()
+                        task_embeddings = embeddings_dict["task"].cpu().numpy()
+                        
+                        # 結合して64次元に調整
+                        combined_embeddings = np.concatenate([dev_embeddings, task_embeddings], axis=0)
+                        
+                        # 必要に応じてサイズ調整
+                        if combined_embeddings.shape[0] >= self.graph_data.num_nodes:
+                            gnn_embeddings = combined_embeddings[:self.graph_data.num_nodes, :32]
+                            # 32次元を64次元にパディング
+                            gnn_embeddings = np.pad(gnn_embeddings, ((0, 0), (0, 32)), mode='constant')
+                        
+                        print(f"[OSSSimpleEnv] Successfully computed GNN embeddings: {gnn_embeddings.shape}")
+                        
+                except Exception as e:
+                    print(f"Warning: Failed to compute GNN embeddings: {e}")
+                    gnn_embeddings = np.zeros((self.graph_data.num_nodes, 64))
 
         # --- 辞書形式で観測をまとめる ---
         observations = {}
 
+        # GNN埋め込みをプール（Global Average Pooling）
+        if gnn_embeddings.shape[0] > 0:
+            pooled_gnn = np.mean(gnn_embeddings, axis=0)  # (64,)
+        else:
+            pooled_gnn = np.zeros(64)  # 空の場合はゼロベクトル
+
+        # Simple obsとプールされたGNN埋め込みを結合
         for agent_id in self.agent_ids:
-            observations[agent_id] = {
-                "simple_obs": obs_vector,
-                "gnn_embeddings": gnn_embeddings,
-            }
+            combined_obs = np.concatenate([obs_vector, pooled_gnn])
+            observations[agent_id] = combined_obs.astype(np.float32)
+        
         return observations
 
     def _get_infos(self):
@@ -266,3 +308,56 @@ class OSSSimpleEnv(gym.Env):
             "tasks_in_progress": self.tasks_in_progress,
         }
         return {agent_id: full_state_info for agent_id in self.agent_ids}
+
+    def _update_graph_features(self, graph_data):
+        """
+        現在の環境状態に基づいてグラフデータの特徴量を更新
+        """
+        try:
+            # グラフデータをコピー
+            updated_data = graph_data.clone()
+            
+            # タスクの状態を更新
+            if hasattr(updated_data, 'x_dict') and 'task' in updated_data.x_dict:
+                task_features = updated_data.x_dict['task'].clone()
+                
+                # 各タスクの状態を更新
+                for i, task_dict in enumerate(self.initial_backlog):
+                    task_id = task_dict['id']
+                    
+                    # タスクの現在の状態を取得
+                    if task_id in self.tasks_in_progress:
+                        status = 1.0  # 進行中
+                    elif any(ct.id == task_id for ct in self.completed_tasks):
+                        status = 2.0  # 完了
+                    else:
+                        status = 0.0  # 未着手
+                    
+                    # 特徴量の最初の次元にステータスを設定
+                    if i < task_features.shape[0]:
+                        task_features[i, 0] = status
+                
+                updated_data.x_dict['task'] = task_features
+            
+            # 開発者の状態を更新
+            if hasattr(updated_data, 'x_dict') and 'dev' in updated_data.x_dict:
+                dev_features = updated_data.x_dict['dev'].clone()
+                
+                # 開発者の活動状況を更新
+                for i, (dev_id, dev_info) in enumerate(self.developers.items()):
+                    if i < dev_features.shape[0]:
+                        # 現在の作業負荷
+                        workload = len(self.assignments.get(dev_id, set()))
+                        dev_features[i, 0] = float(workload)
+                        
+                        # 最近の活動数
+                        recent_activity = len(self.dev_action_history.get(dev_id, []))
+                        dev_features[i, 1] = float(recent_activity)
+                
+                updated_data.x_dict['dev'] = dev_features
+            
+            return updated_data
+            
+        except Exception as e:
+            print(f"Warning: Failed to update graph features: {e}")
+            return graph_data

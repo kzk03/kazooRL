@@ -70,22 +70,11 @@ def main(cfg: DictConfig):
     except Exception:
         raise ValueError("Config file must have 'rl.total_timesteps' defined.")
 
-        # PPOのポリシー引数を定義
+    # PPOのポリシー引数を定義
     policy_kwargs = dict(features_extractor_class=GNNFeatureExtractor)
 
-    # 学習コントローラーの初期化時にpolicy_kwargsを渡すように変更
-    # (IndependentPPOControllerとPPOAgentの改造が必要になる場合があります)
-    # ここでは、stable-baselines3のPPOを直接使う場合を想定
-
-    # from stable_baselines3 import PPO
-    # model = PPO("MultiInputPolicy", env, policy_kwargs=policy_kwargs, verbose=1)
-    # model.learn(total_timesteps=10000)
-
-    # KazooRLのコントローラーを使う場合は、コントローラーの__init__で
-    # policy_kwargsを受け取れるように改造が必要です。
-    controller = IndependentPPOController(
-        env=env, config=cfg.learner, policy_kwargs=policy_kwargs  # policy_kwargsを渡す
-    )
+    # 3. RLコントローラーの初期化（現在のGNNFeatureExtractorは使わずに直接使用）
+    controller = IndependentPPOController(env=env, config=cfg)
 
     controller.learn(total_timesteps=total_timesteps)
 

@@ -1,4 +1,5 @@
 import os
+
 # 自分のプロジェクトのFeatureExtractorを正しくインポートする
 # このスクリプトはプロジェクトルートから実行することを想定
 import sys
@@ -76,6 +77,6 @@ if __name__ == "__main__":
     # 設定ファイルのパスと、train_irl.pyが出力する重みファイルのパスを指定
     # このスクリプトはプロジェクトのルートディレクトリから実行することを想定
     CONFIG_PATH = "configs/base.yaml"
-    WEIGHTS_PATH = "reward_weights.npy"
+    WEIGHTS_PATH = "data/learned_weights.npy"
 
     analyze_reward_weights(CONFIG_PATH, WEIGHTS_PATH)
