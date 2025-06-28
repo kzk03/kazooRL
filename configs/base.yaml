@@ -9,7 +9,7 @@ env:
     model_path: "data/gnn_model.pt" # 学習済みGNNモデルのパス
     graph_data_path: "data/graph.pt" # グラフデータのパス
 
-num_developers: 10 # 開発者の数
+num_developers: 21 # 開発者の数（プロフィールファイルの全開発者を使用）
 
 # --- 特徴量計算の設定 (Features) ---
 features:
@@ -32,9 +32,10 @@ irl:
 
 # --- 強化学習の設定 (RL) ---
 rl:
-  # ▼▼▼【ここを追加】▼▼▼
-  total_timesteps: 5 # 学習を行う総ステップ数
-  # ▲▲▲【ここまで追加】▲▲▲
+
+  
+  total_timesteps: 5 # TODO: 実際の値に置き換える
+  
 
   learning_rate: 0.0003
   gamma: 0.99
