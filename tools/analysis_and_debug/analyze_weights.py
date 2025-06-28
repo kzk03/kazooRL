@@ -1,5 +1,4 @@
 import os
-
 # 自分のプロジェクトのFeatureExtractorを正しくインポートする
 # このスクリプトはプロジェクトルートから実行することを想定
 import sys
