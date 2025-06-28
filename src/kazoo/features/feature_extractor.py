@@ -31,6 +31,10 @@ class FeatureExtractor:
         # GNNFeatureExtractorは強化学習のポリシーネットワーク用なので、
         # IRL訓練では直接使用しない
         self.gnn_extractor = None
+        
+        # データ内での最新日時を基準にするため、初期化時にNoneに設定
+        # 実際の値は初回のget_features呼び出し時に計算される
+        self.data_max_date = None
 
         self.feature_names = self._define_feature_names()
         print(f"FeatureExtractor initialized with {len(self.feature_names)} features.")
@@ -43,7 +47,7 @@ class FeatureExtractor:
         names = []
         names.extend(
             [
-                "task_neglect_time_hours",
+                "task_days_since_last_activity",  # 最後の活動（コメント等）からの日数
                 "task_discussion_activity",
                 "task_text_length",
                 "task_code_block_count",
@@ -60,6 +64,28 @@ class FeatureExtractor:
 
         return names
 
+    def _get_data_max_date(self, env):
+        """
+        環境内の全タスクから最新の更新日時を取得する。
+        初回呼び出し時にキャッシュして、以降は再利用する。
+        """
+        if self.data_max_date is None:
+            max_date = None
+            # バックログ内の全タスクをチェック
+            for task in env.backlog:
+                if max_date is None or task.updated_at > max_date:
+                    max_date = task.updated_at
+            # アサインされているタスクもチェック
+            for assigned_tasks in env.assignments.values():
+                for task in assigned_tasks:
+                    if task.updated_at > max_date:
+                        max_date = task.updated_at
+            
+            self.data_max_date = max_date
+            print(f"[FeatureExtractor] Data max date set to: {self.data_max_date}")
+        
+        return self.data_max_date
+
     def get_features(self, task, developer, env) -> np.ndarray:
         """
         指定されたタスクと開発者のペアに関する特徴量ベクトルを生成する。
@@ -73,10 +99,12 @@ class FeatureExtractor:
         # ▲▲▲【ここまでが修正箇所】▲▲▲
 
         # === カテゴリ1: タスク自体の特徴 ===
-        neglect_time_hours = (
-            env.current_time - task.updated_at
-        ).total_seconds() / 3600.0
-        feature_values.append(neglect_time_hours)
+        # データ内での最新日時を基準とした相対的な放置時間を計算
+        data_max_date = self._get_data_max_date(env)
+        neglect_time_days = (
+            data_max_date - task.updated_at
+        ).total_seconds() / (3600.0 * 24.0)  # 秒 → 日数に変換
+        feature_values.append(neglect_time_days)
         feature_values.append(float(task.comments))
         feature_values.append(float(len(task.body)))
         feature_values.append(float(task.body.count("```") // 2))
