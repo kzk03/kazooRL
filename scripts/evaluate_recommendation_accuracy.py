@@ -91,6 +91,7 @@ class RecommendationEvaluator:
     def get_model_recommendations(self, num_tasks: int = 50, max_k: int = 5) -> List[Tuple[str, List[str]]]:
         """
         学習済みモデルを使用してタスク推薦を生成（Top-K対応）
+        エキスパートデータがあるタスクのみに絞って評価
         
         Args:
             num_tasks: 評価するタスク数
@@ -100,17 +101,36 @@ class RecommendationEvaluator:
             List of (task_id, [recommended_developers]) tuples
             推薦開発者リストは確率の高い順にソート済み
         """
+        # エキスパートデータのタスクIDを事前に取得
+        expert_task_ids = set()
+        for trajectory_episode in self.expert_trajectories:
+            for step in trajectory_episode:
+                if isinstance(step, dict) and 'action_details' in step:
+                    task_id = step['action_details'].get('task_id')
+                    if task_id:
+                        expert_task_ids.add(task_id)
+        
+        print(f"Found {len(expert_task_ids)} tasks with expert data")
+        
         recommendations = []
+        evaluated_tasks = 0
         
         # 環境をリセット
         observations = self.env.reset()
         
-        for step in range(num_tasks):
-            if not self.env.backlog:
+        for step in range(min(num_tasks * 3, 100)):  # より多くのタスクを試行
+            if not self.env.backlog or evaluated_tasks >= num_tasks:
                 break
             
             # 現在のタスクを取得
-            current_task = self.env.backlog[0]  # 最初のタスクを評価対象とする
+            current_task = self.env.backlog[0]
+            
+            # エキスパートデータがあるタスクのみ評価
+            if current_task.id not in expert_task_ids:
+                # このタスクをスキップ（何もしない行動）
+                actions = {agent_id: 0 for agent_id in self.controller.agent_ids}
+                observations, rewards, terminateds, truncateds, infos = self.env.step(actions)
+                continue
             
             # 各開発者に対する行動確率を計算
             developer_scores = {}
@@ -140,6 +160,8 @@ class RecommendationEvaluator:
                 recommendations.append((current_task.id, []))
                 recommended_dev = None
             
+            evaluated_tasks += 1
+            
             # 推薦を実行（シミュレーション）
             actions = {agent_id: 0 for agent_id in self.controller.agent_ids}  # 全員が待機
             if recommended_dev and recommended_dev in actions:
@@ -151,6 +173,7 @@ class RecommendationEvaluator:
             if all(terminateds.values()) or all(truncateds.values()):
                 break
         
+        print(f"Evaluated {evaluated_tasks} tasks with expert data")
         return recommendations
     
     def calculate_accuracy(self, recommendations: List[Tuple[str, List[str]]], k_values: List[int] = [1, 3, 5]) -> Dict[str, float]:

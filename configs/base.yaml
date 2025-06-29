@@ -2,6 +2,7 @@
 env:
   backlog_path: "data/backlog.json"
   dev_profiles_path: "configs/dev_profiles.yaml"
+  expert_trajectories_path: "data/expert_trajectories.pkl"
   simulation:
     time_step_hours: 8
     max_days: 365
@@ -32,10 +33,7 @@ irl:
 
 # --- 強化学習の設定 (RL) ---
 rl:
-
-  
-  total_timesteps: 5 # TODO: 実際の値に置き換える
-  
+  total_timesteps: 20 # 人間タスクに適した学習ステップ数
 
   learning_rate: 0.0003
   gamma: 0.99
