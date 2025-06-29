@@ -105,6 +105,14 @@ class IndependentPPOController:
         print("Starting Multi-Agent PPO Training...")
         obs, info = self.env.reset()
         global_step = 0
+        
+        # GNNオンライン学習の設定
+        gnn_update_frequency = getattr(self.config.irl, 'gnn_update_frequency', 50)
+        online_gnn_learning = getattr(self.config.irl, 'online_gnn_learning', False)
+        
+        print(f"GNN Online Learning: {'Enabled' if online_gnn_learning else 'Disabled'}")
+        if online_gnn_learning:
+            print(f"GNN Update Frequency: Every {gnn_update_frequency} steps")
 
         num_updates = (
             int(total_timesteps / self.rl_config.rollout_len / self.num_agents)
@@ -162,6 +170,11 @@ class IndependentPPOController:
                 rollout_data = self.storages[agent_id]
                 self.agents[agent_id].update(rollout_data)
 
+            # GNNのオンライン学習更新
+            if online_gnn_learning and global_step % gnn_update_frequency == 0:
+                print(f"\n🔄 [Global Step {global_step}] GNN更新チェック中...")
+                self._trigger_gnn_update(global_step)
+
             if self.storages:
                 avg_reward = np.mean(
                     [
@@ -174,6 +187,37 @@ class IndependentPPOController:
                 )
 
         print("Training finished.")
+
+    def _trigger_gnn_update(self, global_step):
+        """GNNのオンライン学習更新をトリガー"""
+        try:
+            # 環境の特徴量抽出器にアクセス
+            if hasattr(self.env, 'feature_extractor') and hasattr(self.env.feature_extractor, 'gnn_extractor'):
+                gnn_extractor = self.env.feature_extractor.gnn_extractor
+                if gnn_extractor and gnn_extractor.online_learning:
+                    print(f"\n🔄 [Step {global_step}] GNNオンライン学習更新を実行中...")
+                    
+                    # バッファの内容をチェック
+                    buffer_size = len(gnn_extractor.interaction_buffer)
+                    if buffer_size > 0:
+                        print(f"  インタラクションバッファサイズ: {buffer_size}")
+                        
+                        # GNN更新実行
+                        gnn_extractor._update_gnn_online()
+                        
+                        # 統計情報表示
+                        gnn_extractor.print_statistics()
+                        
+                        # 定期的にモデルを保存（例：100ステップごと）
+                        if global_step % (100 * getattr(self.config.irl, 'gnn_update_frequency', 50)) == 0:
+                            gnn_extractor.save_updated_model(f"data/gnn_model_step_{global_step}.pt")
+                            print(f"  ✅ GNNモデル保存: gnn_model_step_{global_step}.pt")
+                    else:
+                        print("  インタラクションバッファが空のため、GNN更新をスキップ")
+                else:
+                    print(f"  GNNオンライン学習が無効化されています")
+        except Exception as e:
+            print(f"  ❌ GNN更新中にエラー: {e}")
 
     def save_models(self, directory):
         if not os.path.exists(directory):

@@ -30,15 +30,23 @@ irl:
   learning_rate: 0.001
   epochs: 100
   use_gnn: true
+  gnn_graph_path: "data/graph_retrained.pt" # 再訓練済みグラフデータ
+  gnn_model_path: "data/gnn_model_retrained.pt" # 再訓練済みモデル
+  # オンライン学習設定
+  online_gnn_learning: true # ステップごとのGNN更新を有効化
+  gnn_update_frequency: 5 # 5回のインタラクションごとに更新
+  gnn_learning_rate: 0.0001 # GNNの学習率（控えめに設定）
+  gnn_buffer_size: 100 # インタラクションバッファサイズ
+  gnn_time_window_hours: 24 # 時系列学習の時間窓（24時間）
 
 # --- 強化学習の設定 (RL) ---
 rl:
-  total_timesteps: 20 # 人間タスクに適した学習ステップ数
+  total_timesteps: 500 # より多くのステップ数
 
   learning_rate: 0.0003
   gamma: 0.99
   gae_lambda: 0.95
   eps_clip: 0.2
   k_epochs: 4
-  rollout_len: 2048
+  rollout_len: 20 # 短くしてより頻繁な学習サイクル
   output_model_dir: "models/"
