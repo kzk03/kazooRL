@@ -32,6 +32,7 @@ class RecommendationEvaluator:
         
         # データの読み込み
         import json
+
         import yaml
         
         with open(cfg.env.backlog_path, "r", encoding="utf-8") as f:
@@ -87,12 +88,17 @@ class RecommendationEvaluator:
         print(f"Loaded {len(expert_data)} expert trajectories")
         return expert_data
     
-    def get_model_recommendations(self, num_tasks: int = 50) -> List[Tuple[str, str]]:
+    def get_model_recommendations(self, num_tasks: int = 50, max_k: int = 5) -> List[Tuple[str, List[str]]]:
         """
-        学習済みモデルを使用してタスク推薦を生成
+        学習済みモデルを使用してタスク推薦を生成（Top-K対応）
+        
+        Args:
+            num_tasks: 評価するタスク数
+            max_k: 推薦する開発者の最大数
         
         Returns:
-            List of (task_id, recommended_developer) tuples
+            List of (task_id, [recommended_developers]) tuples
+            推薦開発者リストは確率の高い順にソート済み
         """
         recommendations = []
         
@@ -122,11 +128,17 @@ class RecommendationEvaluator:
                     accept_prob = action_probs[2].item() if len(action_probs) > 2 else 0.0
                     developer_scores[agent_id] = accept_prob
             
-            # 最も確率の高い開発者を推薦
-            recommended_dev = None
+            # 確率の高い順に開発者をソートしてTop-K推薦を生成
             if developer_scores:
-                recommended_dev = max(developer_scores, key=developer_scores.get)
-                recommendations.append((current_task.id, recommended_dev))
+                sorted_developers = sorted(developer_scores.items(), key=lambda x: x[1], reverse=True)
+                top_k_developers = [dev for dev, score in sorted_developers[:max_k]]
+                recommendations.append((current_task.id, top_k_developers))
+                
+                # 最も確率の高い開発者がタスクを受け入れる（シミュレーション）
+                recommended_dev = top_k_developers[0] if top_k_developers else None
+            else:
+                recommendations.append((current_task.id, []))
+                recommended_dev = None
             
             # 推薦を実行（シミュレーション）
             actions = {agent_id: 0 for agent_id in self.controller.agent_ids}  # 全員が待機
@@ -141,12 +153,12 @@ class RecommendationEvaluator:
         
         return recommendations
     
-    def calculate_accuracy(self, recommendations: List[Tuple[str, str]], k_values: List[int] = [1, 3, 5]) -> Dict[str, float]:
+    def calculate_accuracy(self, recommendations: List[Tuple[str, List[str]]], k_values: List[int] = [1, 3, 5]) -> Dict[str, float]:
         """
-        推薦精度を計算
+        推薦精度を計算（Top-K対応）
         
         Args:
-            recommendations: モデルの推薦結果 [(task_id, recommended_dev), ...]
+            recommendations: モデルの推薦結果 [(task_id, [recommended_devs]), ...]
             k_values: Top-K精度を計算するKの値のリスト
         
         Returns:
@@ -171,19 +183,19 @@ class RecommendationEvaluator:
         
         # 精度計算
         accuracies = {}
-        valid_recommendations = 0
         
         for k in k_values:
             correct_predictions = 0
+            valid_recommendations = 0
             
-            for task_id, recommended_dev in recommendations:
+            for task_id, recommended_devs in recommendations:
                 if task_id in expert_assignments:
                     valid_recommendations += 1
                     expert_dev = expert_assignments[task_id]
                     
-                    # Top-K精度の場合、ここでは単純にTop-1として計算
-                    # より複雑なTop-K計算が必要な場合は、複数の推薦を生成する必要がある
-                    if recommended_dev == expert_dev:
+                    # Top-K精度：推薦リストのトップK個に正解が含まれているかチェック
+                    top_k_recommendations = recommended_devs[:k]
+                    if expert_dev in top_k_recommendations:
                         correct_predictions += 1
             
             if valid_recommendations > 0:
@@ -191,6 +203,10 @@ class RecommendationEvaluator:
                 accuracies[f"top_{k}_accuracy"] = accuracy
             else:
                 accuracies[f"top_{k}_accuracy"] = 0.0
+        
+        # 詳細情報の追加
+        accuracies['total_valid_recommendations'] = valid_recommendations
+        accuracies['total_recommendations'] = len(recommendations)
         
         return accuracies
     
@@ -201,14 +217,15 @@ class RecommendationEvaluator:
         
         # 推薦の生成
         print("\n📊 Generating recommendations...")
-        recommendations = self.get_model_recommendations(num_tasks)
+        recommendations = self.get_model_recommendations(num_tasks, max_k=5)
         
         print(f"Generated {len(recommendations)} recommendations")
         
         # サンプル推薦の表示
         print("\n📋 Sample recommendations:")
-        for i, (task_id, dev) in enumerate(recommendations[:5]):
-            print(f"  {i+1}. Task {task_id} → {dev}")
+        for i, (task_id, devs) in enumerate(recommendations[:5]):
+            top_3_devs = devs[:3] if len(devs) >= 3 else devs
+            print(f"  {i+1}. Task {task_id} → {top_3_devs}")
         
         # 精度計算
         print("\n🎯 Calculating accuracy...")
@@ -220,12 +237,14 @@ class RecommendationEvaluator:
         
         if accuracies:
             for metric, value in accuracies.items():
-                print(f"{metric:20s}: {value:.3f} ({value*100:.1f}%)")
+                if metric.endswith('_accuracy'):
+                    print(f"{metric:20s}: {value:.3f} ({value*100:.1f}%)")
         else:
             print("❌ Could not calculate accuracy (no expert data or valid recommendations)")
         
         # 詳細統計
-        print(f"\nTotal recommendations: {len(recommendations)}")
+        print(f"\nTotal recommendations: {accuracies.get('total_recommendations', len(recommendations))}")
+        print(f"Valid recommendations: {accuracies.get('total_valid_recommendations', 0)}")
         print(f"Expert data points: {len(self.expert_trajectories)}")
         
         return accuracies
