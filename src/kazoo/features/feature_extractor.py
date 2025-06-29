@@ -31,7 +31,7 @@ class FeatureExtractor:
         # GNNFeatureExtractorは強化学習のポリシーネットワーク用なので、
         # IRL訓練では直接使用しない
         self.gnn_extractor = None
-        
+
         # データ内での最新日時を基準にするため、初期化時にNoneに設定
         # 実際の値は初回のget_features呼び出し時に計算される
         self.data_max_date = None
@@ -80,10 +80,10 @@ class FeatureExtractor:
                 for task in assigned_tasks:
                     if task.updated_at > max_date:
                         max_date = task.updated_at
-            
+
             self.data_max_date = max_date
             print(f"[FeatureExtractor] Data max date set to: {self.data_max_date}")
-        
+
         return self.data_max_date
 
     def get_features(self, task, developer, env) -> np.ndarray:
@@ -101,9 +101,9 @@ class FeatureExtractor:
         # === カテゴリ1: タスク自体の特徴 ===
         # データ内での最新日時を基準とした相対的な放置時間を計算
         data_max_date = self._get_data_max_date(env)
-        neglect_time_days = (
-            data_max_date - task.updated_at
-        ).total_seconds() / (3600.0 * 24.0)  # 秒 → 日数に変換
+        neglect_time_days = (data_max_date - task.updated_at).total_seconds() / (
+            3600.0 * 24.0
+        )  # 秒 → 日数に変換
         feature_values.append(neglect_time_days)
         feature_values.append(float(task.comments))
         feature_values.append(float(len(task.body)))
