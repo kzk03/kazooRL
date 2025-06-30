@@ -26,9 +26,9 @@ features:
 # --- 逆強化学習の設定 (IRL) ---
 irl:
   expert_path: "data/expert_trajectories.pkl"
-  output_weights_path: "data/learned_weights.npy"
+  output_weights_path: "data/learned_reward_weights.npy"
   learning_rate: 0.0001 # 大幅減少：0.001 → 0.0001（振動問題解決のため）
-  epochs: 1500 # 協力関係特徴量のテストのため一時的に減少（3000 → 1500）
+  epochs: 2000 # 推奨回数で十分な学習（200 → 2000）
   use_gnn: true
   gnn_graph_path: "data/graph_collaborative.pt" # 協力ネットワーク対応グラフデータ
   gnn_model_path: "data/gnn_model_collaborative.pt" # 協力ネットワーク対応モデル
