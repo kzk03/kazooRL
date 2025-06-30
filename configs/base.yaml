@@ -7,8 +7,8 @@ env:
     time_step_hours: 8
     max_days: 365
   gnn:
-    model_path: "data/gnn_model.pt" # 学習済みGNNモデルのパス
-    graph_data_path: "data/graph.pt" # グラフデータのパス
+    model_path: "data/gnn_model_collaborative.pt" # 協力ネットワーク対応GNNモデル
+    graph_data_path: "data/graph_collaborative.pt" # 協力ネットワーク対応グラフデータ
 
 num_developers: 21 # 開発者の数（プロフィールファイルの全開発者を使用）
 
@@ -28,10 +28,10 @@ irl:
   expert_path: "data/expert_trajectories.pkl"
   output_weights_path: "data/learned_weights.npy"
   learning_rate: 0.0001 # 大幅減少：0.001 → 0.0001（振動問題解決のため）
-  epochs: 3000 # 標準的な学習のために増加（1000 → 3000）
+  epochs: 1500 # 協力関係特徴量のテストのため一時的に減少（3000 → 1500）
   use_gnn: true
-  gnn_graph_path: "data/graph_retrained.pt" # 再訓練済みグラフデータ
-  gnn_model_path: "data/gnn_model_retrained.pt" # 再訓練済みモデル
+  gnn_graph_path: "data/graph_collaborative.pt" # 協力ネットワーク対応グラフデータ
+  gnn_model_path: "data/gnn_model_collaborative.pt" # 協力ネットワーク対応モデル
   # オンライン学習設定
   online_gnn_learning: true # ステップごとのGNN更新を有効化
   gnn_update_frequency: 5 # 5回のインタラクションごとに更新

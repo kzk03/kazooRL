@@ -1,25 +1,1844 @@
+'0x6B386F':
+  collaboration_network_size: 2
+  collaborators:
+  - gdevdeiv
+  - ruedigerm-playster
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Akashmathwani:
+  collaboration_network_size: 1
+  collaborators:
+  - AndreKR
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+AlecCooper:
+  collaboration_network_size: 3
+  collaborators:
+  - ahelmel
+  - brunomrlima
+  - ilyakharlamov
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Alora-taken:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+AmrElmasry:
+  collaboration_network_size: 4
+  collaborators:
+  - int-ua
+  - kamalne
+  - xoroz
+  - xubo245
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+AndreKR:
+  collaboration_network_size: 1
+  collaborators:
+  - Akashmathwani
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+AnmSaiful:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+AntonOvsyannikov:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+AntonioL:
+  collaboration_network_size: 1
+  collaborators:
+  - drastorguev
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ArcticSnowman:
+  collaboration_network_size: 1
+  collaborators:
+  - hecbuma
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Atralb:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+BDL70:
+  collaboration_network_size: 1
+  collaborators:
+  - scrandall
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+BLasan:
+  collaboration_network_size: 2
+  collaborators:
+  - fkromer
+  - yankeeguyu
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Benno-K:
+  collaboration_network_size: 1
+  collaborators:
+  - TulsiRao
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+BentCoder:
+  collaboration_network_size: 1
+  collaborators:
+  - ranijames
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+BentiGorlich:
+  collaboration_network_size: 2
+  collaborators:
+  - mat007
+  - nocive
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+BigMorty:
+  collaboration_network_size: 1
+  collaborators:
+  - kierenevans
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Blobonat:
+  collaboration_network_size: 1
+  collaborators:
+  - bentcoder
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+BretFisher:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+CaiWenlie:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Cally99:
+  collaboration_network_size: 1
+  collaborators:
+  - JamesTheAwesomeDude
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+CarstenHoyer:
+  collaboration_network_size: 1
+  collaborators:
+  - cbrunnkvist
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+CharlieReitzel:
+  collaboration_network_size: 1
+  collaborators:
+  - thaJeztah
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Chaz6:
+  collaboration_network_size: 2
+  collaborators:
+  - jpdsc
+  - mat007
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ChosunOne:
+  collaboration_network_size: 1
+  collaborators:
+  - bert2002
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Clindbergh:
+  collaboration_network_size: 1
+  collaborators:
+  - hazcod
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+CorruptComputer:
+  collaboration_network_size: 2
+  collaborators:
+  - MaximeAubanel
+  - vdo
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+CubexsOne:
+  collaboration_network_size: 1
+  collaborators:
+  - bibekg
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+DMW007:
+  collaboration_network_size: 1
+  collaborators:
+  - su-narthur
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+DaleyKD:
+  collaboration_network_size: 1
+  collaborators:
+  - phao5814
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+DanielDent:
+  collaboration_network_size: 1
+  collaborators:
+  - JJ1LFC
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+DarkMikey:
+  collaboration_network_size: 1
+  collaborators:
+  - ulope
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+DavHau:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Doom4535:
+  collaboration_network_size: 1
+  collaborators:
+  - uberhacker
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+EinfachFabsTV:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Elyytscha:
+  collaboration_network_size: 1
+  collaborators:
+  - tanmayambre
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+EpicWink:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 EricHripko:
+  collaboration_network_size: 7
+  collaborators:
+  - Harrisonbro
+  - QIvan
+  - aiordache
+  - albers
+  - ndeloof
+  - thaJeztah
+  - ulyssessouza
+  comment_interactions: 15
+  cross_issue_activity: 4
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 293
   total_merged_prs: 2
   touched_files: []
+Ericwonne:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+EvgenyOrekhov:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ExplosiveJam:
+  collaboration_network_size: 1
+  collaborators:
+  - johnharris85
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+FOGBABY:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+FVolral:
+  collaboration_network_size: 3
+  collaborators:
+  - JordanMalan
+  - clairmont32
+  - emaj9
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+FeralRobot:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+FernandoMiguel:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Foxboron:
+  collaboration_network_size: 1
+  collaborators:
+  - Wiedzmin89
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+GMouraP:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+GabrielBB:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+GarrisonD:
+  collaboration_network_size: 1
+  collaborators:
+  - ravshansbox
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+GenaANTG:
+  collaboration_network_size: 1
+  collaborators:
+  - brunoborges
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+GitHubprajwal:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+GliderGeek:
+  collaboration_network_size: 1
+  collaborators:
+  - chapa
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Glioburd:
+  collaboration_network_size: 2
+  collaborators:
+  - danielrussellLA
+  - rvdende
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Gounlaf:
+  collaboration_network_size: 1
+  collaborators:
+  - performautodev
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+HaleyACS:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Haoke98:
+  collaboration_network_size: 1
+  collaborators:
+  - toshiro92
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Harmouch101:
+  collaboration_network_size: 2
+  collaborators:
+  - nightah
+  - page-down
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Harrisonbro:
+  collaboration_network_size: 3
+  collaborators:
+  - EricHripko
+  - fbudassi
+  - nnisic
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Haxprox:
+  collaboration_network_size: 1
+  collaborators:
+  - jamshid
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Ice-Drake:
+  collaboration_network_size: 1
+  collaborators:
+  - rayjohnson
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ImDevinC:
+  collaboration_network_size: 2
+  collaborators:
+  - simonm11
+  - stale[bot]
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+JJ1LFC:
+  collaboration_network_size: 1
+  collaborators:
+  - DanielDent
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+JOduMonT:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Jackbennett:
+  collaboration_network_size: 1
+  collaborators:
+  - Terkea
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+JamesTheAwesomeDude:
+  collaboration_network_size: 1
+  collaborators:
+  - Cally99
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Jamie-:
+  collaboration_network_size: 2
+  collaborators:
+  - TomaszGasior
+  - jdiegosierra
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+JanJamaszyk-FlyNow:
+  collaboration_network_size: 1
+  collaborators:
+  - SpComb
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+JesseChisholm:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Jn58:
+  collaboration_network_size: 1
+  collaborators:
+  - paulspartan14
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+JonnyWaffles:
+  collaboration_network_size: 1
+  collaborators:
+  - Kytech
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+JordanMalan:
+  collaboration_network_size: 1
+  collaborators:
+  - FVolral
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Karanjot-singh:
+  collaboration_network_size: 1
+  collaborators:
+  - gintsmurans
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+KenwoodFox:
+  collaboration_network_size: 1
+  collaborators:
+  - stam
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+KetchupBomb:
+  collaboration_network_size: 1
+  collaborators:
+  - chapa
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Kianda:
+  collaboration_network_size: 1
+  collaborators:
+  - hadim
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Kreyren:
+  collaboration_network_size: 1
+  collaborators:
+  - edvinkuric
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+KuanYuLai:
+  collaboration_network_size: 1
+  collaborators:
+  - oiljin
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Kytech:
+  collaboration_network_size: 2
+  collaborators:
+  - JonnyWaffles
+  - hehejiuhuizhe
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+LaXiS96:
+  collaboration_network_size: 3
+  collaborators:
+  - dragonpiper
+  - lauyilouis
+  - maaarghk
+  comment_interactions: 3
+  cross_issue_activity: 3
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Legion2:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+LeonardoNve:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+LiamKarlMitchell:
+  collaboration_network_size: 2
+  collaborators:
+  - Mossop
+  - goloroden
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+LouWii:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+LucasVinicius314:
+  collaboration_network_size: 1
+  collaborators:
+  - cliny
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Martinnygaard:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+MatTheCat:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+MaximeAubanel:
+  collaboration_network_size: 1
+  collaborators:
+  - CorruptComputer
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+McPo:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+MetalArend:
+  collaboration_network_size: 1
+  collaborators:
+  - hartwork
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+MexsonFernandes:
+  collaboration_network_size: 1
+  collaborators:
+  - nmaro
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+MichaelAkvo:
+  collaboration_network_size: 1
+  collaborators:
+  - SpComb
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+MichaelBrenden:
+  collaboration_network_size: 1
+  collaborators:
+  - airycanon
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+MitulIslam:
+  collaboration_network_size: 1
+  collaborators:
+  - devinrsmith
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Mossop:
+  collaboration_network_size: 2
+  collaborators:
+  - LiamKarlMitchell
+  - slinkardbrandon
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Motophan:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Mygao:
+  collaboration_network_size: 1
+  collaborators:
+  - mat007
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+NicolasDorier:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+OJFord:
+  collaboration_network_size: 2
+  collaborators:
+  - djherbis
+  - titiyoyo
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+OnkelTem:
+  collaboration_network_size: 1
+  collaborators:
+  - ozmad
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+OverStruck:
+  collaboration_network_size: 1
+  collaborators:
+  - stas-sbi
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+PHLAK:
+  collaboration_network_size: 1
+  collaborators:
+  - sbellem
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Pytal:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+QIvan:
+  collaboration_network_size: 1
+  collaborators:
+  - EricHripko
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+RSWilli:
+  collaboration_network_size: 1
+  collaborators:
+  - matt1
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+SalmanK81099:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+SavostinVladimir:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ScarUY:
+  collaboration_network_size: 1
+  collaborators:
+  - qdel
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+SelfhostedPro:
+  collaboration_network_size: 1
+  collaborators:
+  - sourav82
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 Shikachuu:
+  collaboration_network_size: 5
+  collaborators:
+  - and3rson
+  - bomensal
+  - jpetazzo
+  - logopk
+  - ndeloof
+  comment_interactions: 7
+  cross_issue_activity: 5
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 13
   total_merged_prs: 1
   touched_files: []
+Shiroh1ge:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Skulblaka:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Skydev0h:
+  collaboration_network_size: 1
+  collaborators:
+  - SpComb
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+SourceCode:
+  collaboration_network_size: 1
+  collaborators:
+  - sixcorners
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+SpComb:
+  collaboration_network_size: 4
+  collaborators:
+  - JanJamaszyk-FlyNow
+  - MichaelAkvo
+  - Skydev0h
+  - ivictbor
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Spriz:
+  collaboration_network_size: 1
+  collaborators:
+  - kutschkem
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+SvenDowideit:
+  collaboration_network_size: 1
+  collaborators:
+  - nevergone
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Taranchul:
+  collaboration_network_size: 1
+  collaborators:
+  - matteo-bombelli
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Tea-Ice:
+  collaboration_network_size: 1
+  collaborators:
+  - bendhayer
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+TechTeam12:
+  collaboration_network_size: 1
+  collaborators:
+  - antiBaconMachine
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Terkea:
+  collaboration_network_size: 1
+  collaborators:
+  - Jackbennett
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+TheTerrasque:
+  collaboration_network_size: 1
+  collaborators:
+  - jpetazzo
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+TomaszGasior:
+  collaboration_network_size: 1
+  collaborators:
+  - Jamie-
+  comment_interactions: 4
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ToshY:
+  collaboration_network_size: 1
+  collaborators:
+  - hpello
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+TulsiRao:
+  collaboration_network_size: 1
+  collaborators:
+  - Benno-K
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+TyIsI:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+UglyWillDuckling:
+  collaboration_network_size: 1
+  collaborators:
+  - sameersbn
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Ugoivy:
+  collaboration_network_size: 1
+  collaborators:
+  - raesene
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Vmadmax:
+  collaboration_network_size: 1
+  collaborators:
+  - andoks
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+WCByrne:
+  collaboration_network_size: 1
+  collaborators:
+  - majoyal
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+WhyNotHugo:
+  collaboration_network_size: 1
+  collaborators:
+  - santosh-kh
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Wiedzmin89:
+  collaboration_network_size: 2
+  collaborators:
+  - Foxboron
+  - kriansa
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+Yopadd:
+  collaboration_network_size: 1
+  collaborators:
+  - mat007
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ZeePal:
+  collaboration_network_size: 1
+  collaborators:
+  - gertvanantwerpentno
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ZukkyBaig:
+  collaboration_network_size: 1
+  collaborators:
+  - fchennouf
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+acornforth:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+acran:
+  collaboration_network_size: 1
+  collaborators:
+  - chris-crone
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+adaamz:
+  collaboration_network_size: 2
+  collaborators:
+  - maaarghk
+  - regzon
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+adipascu:
+  collaboration_network_size: 1
+  collaborators:
+  - svoop
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+adriancole:
+  collaboration_network_size: 1
+  collaborators:
+  - jamshid
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+adyanth:
+  collaboration_network_size: 2
+  collaborators:
+  - aiordache
+  - enbrnz
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+agates4:
+  collaboration_network_size: 1
+  collaborators:
+  - mikhail-khodorovskiy
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ahelmel:
+  collaboration_network_size: 1
+  collaborators:
+  - AlecCooper
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ahmet2mir:
+  collaboration_network_size: 1
+  collaborators:
+  - devendraap
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 aiordache:
+  collaboration_network_size: 12
+  collaborators:
+  - EricHripko
+  - adyanth
+  - arbaes
+  - dependabot-preview[bot]
+  - gtardif
+  - hartwork
+  - marcel-st
+  - ndeloof
+  - rumpl
+  - ssbarnea
+  - thaJeztah
+  - ulyssessouza
+  comment_interactions: 14
+  cross_issue_activity: 16
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 179
   total_merged_prs: 8
   touched_files: []
+airycanon:
+  collaboration_network_size: 1
+  collaborators:
+  - MichaelBrenden
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+akalipetis:
+  collaboration_network_size: 1
+  collaborators:
+  - luxalpa
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+akindo:
+  collaboration_network_size: 1
+  collaborators:
+  - bbinet
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+alanjcastonguay:
+  collaboration_network_size: 1
+  collaborators:
+  - baflo
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 albers:
+  collaboration_network_size: 17
+  collaborators:
+  - BretFisher
+  - CaiWenlie
+  - EricHripko
+  - andryyy
+  - chris-crone
+  - cuongnd-scs
+  - dsteinkopf
+  - jonghwanhyeon
+  - matebook14
+  - ndeloof
+  - rikostave1234
+  - rumpl
+  - skaven81
+  - thaJeztah
+  - ulyssessouza
+  - vvucetic
+  - zlpqingmei
+  comment_interactions: 2
+  cross_issue_activity: 3
   label_affinity: {}
   skills:
   - python
@@ -27,34 +1846,1241 @@ albers:
   total_merged_prs: 1
   touched_files: []
 alexrecuenco:
+  collaboration_network_size: 3
+  collaborators:
+  - ndeloof
+  - rumpl
+  - ulyssessouza
+  comment_interactions: 2
+  cross_issue_activity: 1
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 735
   total_merged_prs: 1
   touched_files: []
+alexw1982:
+  collaboration_network_size: 1
+  collaborators:
+  - thaJeztah
+  comment_interactions: 4
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+alfmorais:
+  collaboration_network_size: 1
+  collaborators:
+  - jpca999
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+alirezaDavid:
+  collaboration_network_size: 1
+  collaborators:
+  - lsfera
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+alyyousuf7:
+  collaboration_network_size: 1
+  collaborators:
+  - vivekannan
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+aminancelot:
+  collaboration_network_size: 1
+  collaborators:
+  - etotheipi
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+aminvakil:
+  collaboration_network_size: 1
+  collaborators:
+  - guillaumerose
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+anaetrezve:
+  collaboration_network_size: 1
+  collaborators:
+  - smoebody
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+analytically:
+  collaboration_network_size: 1
+  collaborators:
+  - mcobzarenco
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+and3rson:
+  collaboration_network_size: 3
+  collaborators:
+  - Shikachuu
+  - nocive
+  - thaJeztah
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+andoks:
+  collaboration_network_size: 2
+  collaborators:
+  - Vmadmax
+  - kmrozek-shareablee
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+andrei-m:
+  collaboration_network_size: 2
+  collaborators:
+  - carlocorradini
+  - head1328
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+andryyy:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 4
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+andyburke:
+  collaboration_network_size: 1
+  collaborators:
+  - stingalleman
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+antiBaconMachine:
+  collaboration_network_size: 1
+  collaborators:
+  - TechTeam12
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+arachnetech:
+  collaboration_network_size: 2
+  collaborators:
+  - jpetazzo
+  - pombredanne
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+arbaes:
+  collaboration_network_size: 1
+  collaborators:
+  - aiordache
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+arkodg:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+armmmo:
+  collaboration_network_size: 1
+  collaborators:
+  - bodazhao
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+armpogart:
+  collaboration_network_size: 1
+  collaborators:
+  - hvaandres
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ashatrov:
+  collaboration_network_size: 1
+  collaborators:
+  - josefsabl
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ashcoll:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ashjas:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+asirinelli:
+  collaboration_network_size: 1
+  collaborators:
+  - sjlongland
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 asterite3:
+  collaboration_network_size: 2
+  collaborators:
+  - rumpl
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 1
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 40
   total_merged_prs: 1
   touched_files: []
+augnustin:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+aurelijusrozenas:
+  collaboration_network_size: 1
+  collaborators:
+  - frob
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+avdi:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+avi571:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+avkonst:
+  collaboration_network_size: 1
+  collaborators:
+  - svarogg
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+azmathmoosa:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+b00tsy:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+baflo:
+  collaboration_network_size: 1
+  collaborators:
+  - alanjcastonguay
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bagage:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 bartier:
+  collaboration_network_size: 2
+  collaborators:
+  - ndeloof
+  - rumpl
+  comment_interactions: 1
+  cross_issue_activity: 1
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 37
   total_merged_prs: 1
   touched_files: []
+bbinet:
+  collaboration_network_size: 3
+  collaborators:
+  - akindo
+  - hubertnnn
+  - joanbm
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bburtin:
+  collaboration_network_size: 1
+  collaborators:
+  - valtbarbos
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bdoublet91:
+  collaboration_network_size: 1
+  collaborators:
+  - raesene
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bendavis78:
+  collaboration_network_size: 1
+  collaborators:
+  - morremeyer
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bendhayer:
+  collaboration_network_size: 1
+  collaborators:
+  - Tea-Ice
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+benileo:
+  collaboration_network_size: 1
+  collaborators:
+  - moracabanas
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+benjefferies:
+  collaboration_network_size: 1
+  collaborators:
+  - simonwiles
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bentcoder:
+  collaboration_network_size: 3
+  collaborators:
+  - Blobonat
+  - mdegans
+  - pooya-mohammadi
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bert2002:
+  collaboration_network_size: 3
+  collaborators:
+  - ChosunOne
+  - davide-c
+  - ekampp
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+beyondmeat:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bfallik:
+  collaboration_network_size: 3
+  collaborators:
+  - gordonbanderson
+  - jensneuhaus
+  - ramytamer
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bfirsh:
+  collaboration_network_size: 2
+  collaborators:
+  - shinsenter
+  - tonymj76
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bhanukumar22:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bibekg:
+  collaboration_network_size: 3
+  collaborators:
+  - CubexsOne
+  - mlhelder
+  - mudassirali007
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bibiteix:
+  collaboration_network_size: 1
+  collaborators:
+  - brean
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bkakilli:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+blake-mealey:
+  collaboration_network_size: 3
+  collaborators:
+  - krmnkrn
+  - lackovic
+  - yaahor
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+blevine:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bluesurfer:
+  collaboration_network_size: 1
+  collaborators:
+  - mauryquijada
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bodazhao:
+  collaboration_network_size: 6
+  collaborators:
+  - armmmo
+  - duyngha
+  - mfawzy1
+  - pisces-period
+  - pupattan
+  - raphael-leger
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bomensal:
+  collaboration_network_size: 1
+  collaborators:
+  - Shikachuu
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bousbir:
+  collaboration_network_size: 1
+  collaborators:
+  - su-narthur
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+brean:
+  collaboration_network_size: 1
+  collaborators:
+  - bibiteix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+brian-bason:
+  collaboration_network_size: 2
+  collaborators:
+  - ddelange
+  - peterthomassen
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+briceburg:
+  collaboration_network_size: 1
+  collaborators:
+  - laurazard
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+brosenberg42:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+brunoborges:
+  collaboration_network_size: 2
+  collaborators:
+  - GenaANTG
+  - mindon
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+brunomrlima:
+  collaboration_network_size: 1
+  collaborators:
+  - AlecCooper
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+busyboy77:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+bwateratmsft:
+  collaboration_network_size: 1
+  collaborators:
+  - nkovacs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+carlocorradini:
+  collaboration_network_size: 1
+  collaborators:
+  - andrei-m
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+casdevs:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+cbreezier:
+  collaboration_network_size: 1
+  collaborators:
+  - jamshid
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+cbrunnkvist:
+  collaboration_network_size: 1
+  collaborators:
+  - CarstenHoyer
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+cchantep:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+celinederoland:
+  collaboration_network_size: 3
+  collaborators:
+  - ndeloof
+  - thaJeztah
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+chapa:
+  collaboration_network_size: 4
+  collaborators:
+  - GliderGeek
+  - KetchupBomb
+  - ndeloof
+  - pjezusek
+  comment_interactions: 5
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+chief93:
+  collaboration_network_size: 1
+  collaborators:
+  - jamshid
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+chinnu1028:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 chris-crone:
+  collaboration_network_size: 9
+  collaborators:
+  - acran
+  - albers
+  - ghost
+  - hartwork
+  - max-wittig
+  - ndeloof
+  - rumpl
+  - tablatronix
+  - ulyssessouza
+  comment_interactions: 12
+  cross_issue_activity: 6
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 32
   total_merged_prs: 1
   touched_files: []
+chrmarti:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+chylex:
+  collaboration_network_size: 1
+  collaborators:
+  - core23
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ciaranmcnulty:
+  collaboration_network_size: 1
+  collaborators:
+  - nawa
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+clairmont32:
+  collaboration_network_size: 1
+  collaborators:
+  - FVolral
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+cliny:
+  collaboration_network_size: 1
+  collaborators:
+  - LucasVinicius314
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+cnkuyan:
+  collaboration_network_size: 1
+  collaborators:
+  - filipNowakDev
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+collabnix:
+  collaboration_network_size: 12
+  collaborators:
+  - Atralb
+  - EpicWink
+  - Motophan
+  - azmathmoosa
+  - bkakilli
+  - frgfm
+  - hadim
+  - jonghwanhyeon
+  - nicolas-b12
+  - stacklikemind
+  - ugmSorcero
+  - whillas
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+core23:
+  collaboration_network_size: 1
+  collaborators:
+  - chylex
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+creynders:
+  collaboration_network_size: 1
+  collaborators:
+  - mcfriend99
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+csquan:
+  collaboration_network_size: 1
+  collaborators:
+  - rfay
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+cuongnd-scs:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dabrahams:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dadenewyyt:
+  collaboration_network_size: 1
+  collaborators:
+  - matteo-bombelli
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+danBamikiya:
+  collaboration_network_size: 1
+  collaborators:
+  - logopk
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+danielrussellLA:
+  collaboration_network_size: 1
+  collaborators:
+  - Glioburd
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dansgithubuser:
+  collaboration_network_size: 1
+  collaborators:
+  - matteo-bombelli
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+darkguy2008:
+  collaboration_network_size: 1
+  collaborators:
+  - debdutdeb
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+darrinsimmons:
+  collaboration_network_size: 1
+  collaborators:
+  - rubenvdham
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+davide-c:
+  collaboration_network_size: 1
+  collaborators:
+  - bert2002
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dazinator:
+  collaboration_network_size: 1
+  collaborators:
+  - rezehnde
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ddelange:
+  collaboration_network_size: 1
+  collaborators:
+  - brian-bason
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+debdutdeb:
+  collaboration_network_size: 2
+  collaborators:
+  - darkguy2008
+  - z0w13
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dellagustin-sap:
+  collaboration_network_size: 1
+  collaborators:
+  - suyar
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 dependabot-preview[bot]:
+  collaboration_network_size: 5
+  collaborators:
+  - aiordache
+  - ndeloof
+  - rumpl
+  - tuanggo
+  - ulyssessouza
+  comment_interactions: 3
+  cross_issue_activity: 20
   label_affinity:
     dependencies: 1.0
   skills:
@@ -62,42 +3088,2350 @@ dependabot-preview[bot]:
   total_lines_changed: 48
   total_merged_prs: 17
   touched_files: []
+dependabot[bot]:
+  collaboration_network_size: 1
+  collaborators:
+  - thaJeztah
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+devendraap:
+  collaboration_network_size: 1
+  collaborators:
+  - ahmet2mir
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+devinrsmith:
+  collaboration_network_size: 1
+  collaborators:
+  - MitulIslam
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dexter74:
+  collaboration_network_size: 1
+  collaborators:
+  - matyuda
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dfresh613:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dgzlopes:
+  collaboration_network_size: 2
+  collaborators:
+  - pgassmann
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dhruvkb:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+djbios:
+  collaboration_network_size: 1
+  collaborators:
+  - stefanfoulis
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+djherbis:
+  collaboration_network_size: 2
+  collaborators:
+  - OJFord
+  - sti0
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dkowis:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dmartin:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dmc2015:
+  collaboration_network_size: 1
+  collaborators:
+  - mindon
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dmm:
+  collaboration_network_size: 1
+  collaborators:
+  - thaJeztah
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dominikbraun:
+  collaboration_network_size: 1
+  collaborators:
+  - simonm11
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dopry:
+  collaboration_network_size: 1
+  collaborators:
+  - gilbsgilbs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dozerman94:
+  collaboration_network_size: 1
+  collaborators:
+  - mmarzantowicz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dragonpiper:
+  collaboration_network_size: 1
+  collaborators:
+  - LaXiS96
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+draksha22:
+  collaboration_network_size: 2
+  collaborators:
+  - evorios
+  - petrprikryl
+  comment_interactions: 6
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+drastorguev:
+  collaboration_network_size: 1
+  collaborators:
+  - AntonioL
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dsteinkopf:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+duyngha:
+  collaboration_network_size: 1
+  collaborators:
+  - bodazhao
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+dwaite:
+  collaboration_network_size: 1
+  collaborators:
+  - rbuckland
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+edvinkuric:
+  collaboration_network_size: 1
+  collaborators:
+  - Kreyren
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+efinal:
+  collaboration_network_size: 1
+  collaborators:
+  - sandrodz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+egee-irl:
+  collaboration_network_size: 1
+  collaborators:
+  - setchring
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+egyptianbman:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+eirikb:
+  collaboration_network_size: 2
+  collaborators:
+  - gaby
+  - potiuk
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+eirikeve:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ekampp:
+  collaboration_network_size: 1
+  collaborators:
+  - bert2002
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+emaj9:
+  collaboration_network_size: 1
+  collaborators:
+  - FVolral
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+emersonf:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+enbrnz:
+  collaboration_network_size: 1
+  collaborators:
+  - adyanth
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+engpakravan:
+  collaboration_network_size: 1
+  collaborators:
+  - matteo-bombelli
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+eric521237:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+etotheipi:
+  collaboration_network_size: 1
+  collaborators:
+  - aminancelot
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+evandam:
+  collaboration_network_size: 1
+  collaborators:
+  - zoonage
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+evorios:
+  collaboration_network_size: 2
+  collaborators:
+  - draksha22
+  - ulyssessouza
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ewjoachim:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+far-blue:
+  collaboration_network_size: 1
+  collaborators:
+  - hvuhsg
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+favipcj:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+fbudassi:
+  collaboration_network_size: 1
+  collaborators:
+  - Harrisonbro
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+fchennouf:
+  collaboration_network_size: 1
+  collaborators:
+  - ZukkyBaig
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+fernandogbi:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+filipNowakDev:
+  collaboration_network_size: 1
+  collaborators:
+  - cnkuyan
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+fkluthe:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+fkromer:
+  collaboration_network_size: 2
+  collaborators:
+  - BLasan
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+flowl:
+  collaboration_network_size: 1
+  collaborators:
+  - kung-foo
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+fofiedelly:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+franklin-ross:
+  collaboration_network_size: 1
+  collaborators:
+  - marianatuma
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+franzwong:
+  collaboration_network_size: 1
+  collaborators:
+  - joerobot
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+frgfm:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+frob:
+  collaboration_network_size: 1
+  collaborators:
+  - aurelijusrozenas
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ftahirops:
+  collaboration_network_size: 1
+  collaborators:
+  - ozkanonur
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+fvlasie:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gabrielhpugliese:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gaby:
+  collaboration_network_size: 1
+  collaborators:
+  - eirikb
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gauravmanchanda:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gchamon:
+  collaboration_network_size: 1
+  collaborators:
+  - iamandrewluca
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gdevdeiv:
+  collaboration_network_size: 1
+  collaborators:
+  - '0x6B386F'
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gemmadlou:
+  collaboration_network_size: 1
+  collaborators:
+  - stefanfoulis
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gergelyerdelyi:
+  collaboration_network_size: 1
+  collaborators:
+  - pokutuna
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gertvanantwerpentno:
+  collaboration_network_size: 1
+  collaborators:
+  - ZeePal
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ghominejad:
+  collaboration_network_size: 2
+  collaborators:
+  - ndeloof
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ghost:
+  collaboration_network_size: 11
+  collaborators:
+  - TyIsI
+  - chris-crone
+  - gabrielhpugliese
+  - gauravmanchanda
+  - jarulsamy
+  - jose-ladeira
+  - megaeater
+  - olfamoussaoui
+  - stefanocudini
+  - vitaly-zverev
+  - zahragolpa
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gilbsgilbs:
+  collaboration_network_size: 1
+  collaborators:
+  - dopry
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gintsmurans:
+  collaboration_network_size: 1
+  collaborators:
+  - Karanjot-singh
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+giorgos321:
+  collaboration_network_size: 1
+  collaborators:
+  - mikazp
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+giper45:
+  collaboration_network_size: 1
+  collaborators:
+  - n-a-t-e
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+glours:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+godomainz:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+goloroden:
+  collaboration_network_size: 1
+  collaborators:
+  - LiamKarlMitchell
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gordonbanderson:
+  collaboration_network_size: 1
+  collaborators:
+  - bfallik
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+goshander:
+  collaboration_network_size: 1
+  collaborators:
+  - vblagoje
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+greg-md:
+  collaboration_network_size: 1
+  collaborators:
+  - probablykasper
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+grewy:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gtardif:
+  collaboration_network_size: 2
+  collaborators:
+  - aiordache
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+guillaumerose:
+  collaboration_network_size: 1
+  collaborators:
+  - aminvakil
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+gvasquez95:
+  collaboration_network_size: 1
+  collaborators:
+  - moper248
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hadim:
+  collaboration_network_size: 3
+  collaborators:
+  - Kianda
+  - collabnix
+  - yoanisgil
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hansbogert:
+  collaboration_network_size: 2
+  collaborators:
+  - stale[bot]
+  - thaJeztah
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 hartwork:
+  collaboration_network_size: 7
+  collaborators:
+  - MetalArend
+  - aiordache
+  - chris-crone
+  - jlosito
+  - muxator
+  - ndeloof
+  - ulyssessouza
+  comment_interactions: 3
+  cross_issue_activity: 3
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 4
   total_merged_prs: 1
   touched_files: []
+hazcod:
+  collaboration_network_size: 1
+  collaborators:
+  - Clindbergh
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hazkaz:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+head1328:
+  collaboration_network_size: 1
+  collaborators:
+  - andrei-m
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hecbuma:
+  collaboration_network_size: 1
+  collaborators:
+  - ArcticSnowman
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hehejiuhuizhe:
+  collaboration_network_size: 1
+  collaborators:
+  - Kytech
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hexcowboy:
+  collaboration_network_size: 1
+  collaborators:
+  - settermjd
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hholst80:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hpello:
+  collaboration_network_size: 1
+  collaborators:
+  - ToshY
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hqasemi:
+  collaboration_network_size: 1
+  collaborators:
+  - ngockhoainfo
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hubertnnn:
+  collaboration_network_size: 1
+  collaborators:
+  - bbinet
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hvaandres:
+  collaboration_network_size: 1
+  collaborators:
+  - armpogart
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+hvuhsg:
+  collaboration_network_size: 1
+  collaborators:
+  - far-blue
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+i-ky:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+iamandrewluca:
+  collaboration_network_size: 1
+  collaborators:
+  - gchamon
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+iben12:
+  collaboration_network_size: 1
+  collaborators:
+  - nocive
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+illusaen:
+  collaboration_network_size: 1
+  collaborators:
+  - mat007
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ilons:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ilyakharlamov:
+  collaboration_network_size: 1
+  collaborators:
+  - AlecCooper
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+int-ua:
+  collaboration_network_size: 1
+  collaborators:
+  - AmrElmasry
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+iraklisg:
+  collaboration_network_size: 1
+  collaborators:
+  - nmaro
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ivictbor:
+  collaboration_network_size: 1
+  collaborators:
+  - SpComb
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jakesmart-drizly:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jamshid:
+  collaboration_network_size: 8
+  collaborators:
+  - Haxprox
+  - adriancole
+  - cbreezier
+  - chief93
+  - kris-nova
+  - kung-foo
+  - nagy135
+  - zikaeroh
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+japsu:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 jarulsamy:
+  collaboration_network_size: 4
+  collaborators:
+  - ghost
+  - ndeloof
+  - thaJeztah
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 2
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 175
   total_merged_prs: 1
   touched_files: []
+jdel:
+  collaboration_network_size: 1
+  collaborators:
+  - samgarvis
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jdiegosierra:
+  collaboration_network_size: 1
+  collaborators:
+  - Jamie-
+  comment_interactions: 4
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jeandoyon:
+  collaboration_network_size: 1
+  collaborators:
+  - rfay
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jensneuhaus:
+  collaboration_network_size: 1
+  collaborators:
+  - bfallik
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jgadling:
+  collaboration_network_size: 1
+  collaborators:
+  - subpardaemon
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jiangyanglinlan:
+  collaboration_network_size: 1
+  collaborators:
+  - rmNyro
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jlosito:
+  collaboration_network_size: 1
+  collaborators:
+  - hartwork
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+joanbm:
+  collaboration_network_size: 1
+  collaborators:
+  - bbinet
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+joelbohnes:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+joerobot:
+  collaboration_network_size: 3
+  collaborators:
+  - franzwong
+  - lil12t
+  - tgsmith61591
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+johnharris85:
+  collaboration_network_size: 1
+  collaborators:
+  - ExplosiveJam
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+johnthagen:
+  collaboration_network_size: 1
+  collaborators:
+  - phao5814
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+joncooper65:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jonghwanhyeon:
+  collaboration_network_size: 2
+  collaborators:
+  - albers
+  - collabnix
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jose-ladeira:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+josefsabl:
+  collaboration_network_size: 1
+  collaborators:
+  - ashatrov
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+josh-byster:
+  collaboration_network_size: 1
+  collaborators:
+  - timothy-thomas
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jpca999:
+  collaboration_network_size: 2
+  collaborators:
+  - alfmorais
+  - sanaullahAhmad
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jpdsc:
+  collaboration_network_size: 1
+  collaborators:
+  - Chaz6
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jpetazzo:
+  collaboration_network_size: 5
+  collaborators:
+  - Shikachuu
+  - TheTerrasque
+  - arachnetech
+  - ndeloof
+  - nigurr
+  comment_interactions: 4
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+jsmilani:
+  collaboration_network_size: 1
+  collaborators:
+  - mysuperstar
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kamalne:
+  collaboration_network_size: 1
+  collaborators:
+  - AmrElmasry
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kerbrose:
+  collaboration_network_size: 1
+  collaborators:
+  - scrandall
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kierenevans:
+  collaboration_network_size: 3
+  collaborators:
+  - BigMorty
+  - mat007
+  - ravipal
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kirillt:
+  collaboration_network_size: 1
+  collaborators:
+  - strk
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kkmoslehpour:
+  collaboration_network_size: 1
+  collaborators:
+  - sydneybmunizaga
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kmrozek-shareablee:
+  collaboration_network_size: 1
+  collaborators:
+  - andoks
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kriansa:
+  collaboration_network_size: 1
+  collaborators:
+  - Wiedzmin89
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kris-nova:
+  collaboration_network_size: 1
+  collaborators:
+  - jamshid
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kristianheljas:
+  collaboration_network_size: 1
+  collaborators:
+  - lwoodson
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+krmnkrn:
+  collaboration_network_size: 1
+  collaborators:
+  - blake-mealey
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+krregg:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kung-foo:
+  collaboration_network_size: 2
+  collaborators:
+  - flowl
+  - jamshid
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kutschkem:
+  collaboration_network_size: 1
+  collaborators:
+  - Spriz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kvz:
+  collaboration_network_size: 1
+  collaborators:
+  - rakshak-t
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+kwabena53:
+  collaboration_network_size: 1
+  collaborators:
+  - matteo-bombelli
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lackovic:
+  collaboration_network_size: 1
+  collaborators:
+  - blake-mealey
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+laertis:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 laurazard:
+  collaboration_network_size: 1
+  collaborators:
+  - briceburg
+  comment_interactions: 1
+  cross_issue_activity: 2
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 97
   total_merged_prs: 1
   touched_files: []
+lauyilouis:
+  collaboration_network_size: 1
+  collaborators:
+  - LaXiS96
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lbischof:
+  collaboration_network_size: 1
+  collaborators:
+  - sim6
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ldeluigi:
+  collaboration_network_size: 1
+  collaborators:
+  - opaessens
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+leonheess:
+  collaboration_network_size: 1
+  collaborators:
+  - malawi7
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+leppaott:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lgathy:
+  collaboration_network_size: 1
+  collaborators:
+  - serge1peshcoff
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lil12t:
+  collaboration_network_size: 2
+  collaborators:
+  - joerobot
+  - ping86
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lnking81:
+  collaboration_network_size: 1
+  collaborators:
+  - sixeyed
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lobs001:
+  collaboration_network_size: 1
+  collaborators:
+  - mericano1
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+logoff:
+  collaboration_network_size: 1
+  collaborators:
+  - maruel
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+logopk:
+  collaboration_network_size: 2
+  collaborators:
+  - Shikachuu
+  - danBamikiya
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+longuyen97:
+  collaboration_network_size: 1
+  collaborators:
+  - pmav99
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lonix1:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lorenzoranucci:
+  collaboration_network_size: 1
+  collaborators:
+  - zirkome
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lsfera:
+  collaboration_network_size: 1
+  collaborators:
+  - alirezaDavid
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+luxalpa:
+  collaboration_network_size: 1
+  collaborators:
+  - akalipetis
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+lwoodson:
+  collaboration_network_size: 1
+  collaborators:
+  - kristianheljas
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+m3Yilmaz:
+  collaboration_network_size: 1
+  collaborators:
+  - ozkanonur
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 maaarghk:
+  collaboration_network_size: 5
+  collaborators:
+  - LaXiS96
+  - adaamz
+  - ndeloof
+  - rumpl
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 2
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 6
   total_merged_prs: 1
   touched_files: []
+majoyal:
+  collaboration_network_size: 1
+  collaborators:
+  - WCByrne
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+malawi7:
+  collaboration_network_size: 1
+  collaborators:
+  - leonheess
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+marcel-st:
+  collaboration_network_size: 1
+  collaborators:
+  - aiordache
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+marcelmfs:
+  collaboration_network_size: 13
+  collaborators:
+  - Ericwonne
+  - LeonardoNve
+  - avi571
+  - brosenberg42
+  - chinnu1028
+  - fofiedelly
+  - fvlasie
+  - hazkaz
+  - joncooper65
+  - maxraab
+  - shailesh-vaidya
+  - sri53
+  - steevivo
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+marianatuma:
+  collaboration_network_size: 2
+  collaborators:
+  - franklin-ross
+  - pandarhys
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+maruel:
+  collaboration_network_size: 3
+  collaborators:
+  - logoff
+  - nemchik
+  - shukriadams
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+masterarrow:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 mat007:
+  collaboration_network_size: 10
+  collaborators:
+  - BentiGorlich
+  - Chaz6
+  - Mygao
+  - Yopadd
+  - illusaen
+  - kierenevans
+  - ndeloof
+  - rfay
+  - stephen-turner
+  - ulyssessouza
+  comment_interactions: 11
+  cross_issue_activity: 11
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 4
   total_merged_prs: 1
   touched_files: []
+matebook14:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+matt1:
+  collaboration_network_size: 1
+  collaborators:
+  - RSWilli
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+matteo-bombelli:
+  collaboration_network_size: 5
+  collaborators:
+  - Taranchul
+  - dadenewyyt
+  - dansgithubuser
+  - engpakravan
+  - kwabena53
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+matyuda:
+  collaboration_network_size: 1
+  collaborators:
+  - dexter74
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mauryquijada:
+  collaboration_network_size: 1
+  collaborators:
+  - bluesurfer
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+max-wittig:
+  collaboration_network_size: 1
+  collaborators:
+  - chris-crone
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+maxraab:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mbarrien:
+  collaboration_network_size: 1
+  collaborators:
+  - slavik57
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mcfriend99:
+  collaboration_network_size: 1
+  collaborators:
+  - creynders
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mcobzarenco:
+  collaboration_network_size: 1
+  collaborators:
+  - analytically
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mdegans:
+  collaboration_network_size: 1
+  collaborators:
+  - bentcoder
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mdomi:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+megaeater:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mericano1:
+  collaboration_network_size: 1
+  collaborators:
+  - lobs001
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mfawzy1:
+  collaboration_network_size: 1
+  collaborators:
+  - bodazhao
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mik-laj:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mikazp:
+  collaboration_network_size: 1
+  collaborators:
+  - giorgos321
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 mikesep:
+  collaboration_network_size: 2
+  collaborators:
+  - rumpl
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 1
   label_affinity:
     area/cli: 0.3333333333333333
     kind/feature: 0.3333333333333333
@@ -107,45 +5441,2744 @@ mikesep:
   total_lines_changed: 208
   total_merged_prs: 1
   touched_files: []
+mikhail-khodorovskiy:
+  collaboration_network_size: 1
+  collaborators:
+  - agates4
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mindon:
+  collaboration_network_size: 2
+  collaborators:
+  - brunoborges
+  - dmc2015
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+miroslavKovacPantheon:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mlanett:
+  collaboration_network_size: 1
+  collaborators:
+  - nhooey
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mlhelder:
+  collaboration_network_size: 1
+  collaborators:
+  - bibekg
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mmarzantowicz:
+  collaboration_network_size: 2
+  collaborators:
+  - dozerman94
+  - uy-rrodriguez
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mmathys:
+  collaboration_network_size: 1
+  collaborators:
+  - zffocussss
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+moper248:
+  collaboration_network_size: 1
+  collaborators:
+  - gvasquez95
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+moracabanas:
+  collaboration_network_size: 1
+  collaborators:
+  - benileo
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+morremeyer:
+  collaboration_network_size: 1
+  collaborators:
+  - bendavis78
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mozgbrasil:
+  collaboration_network_size: 1
+  collaborators:
+  - rfay
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mudassirali007:
+  collaboration_network_size: 1
+  collaborators:
+  - bibekg
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+musikov:
+  collaboration_network_size: 1
+  collaborators:
+  - samizdam
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+muxator:
+  collaboration_network_size: 1
+  collaborators:
+  - hartwork
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mwild1:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mysuperstar:
+  collaboration_network_size: 1
+  collaborators:
+  - jsmilani
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+mziwisky:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+n-a-t-e:
+  collaboration_network_size: 1
+  collaborators:
+  - giper45
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nagy135:
+  collaboration_network_size: 1
+  collaborators:
+  - jamshid
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+narwy:
+  collaboration_network_size: 1
+  collaborators:
+  - shortpoet
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nawa:
+  collaboration_network_size: 1
+  collaborators:
+  - ciaranmcnulty
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 ndeloof:
+  collaboration_network_size: 34
+  collaborators:
+  - EricHripko
+  - SalmanK81099
+  - Shikachuu
+  - aiordache
+  - albers
+  - alexrecuenco
+  - bartier
+  - cchantep
+  - celinederoland
+  - chapa
+  - chris-crone
+  - dependabot-preview[bot]
+  - dfresh613
+  - eirikeve
+  - emersonf
+  - favipcj
+  - ghominejad
+  - hartwork
+  - jarulsamy
+  - joelbohnes
+  - jpetazzo
+  - maaarghk
+  - mat007
+  - mziwisky
+  - padraic-padraic
+  - raratiru
+  - slavdok
+  - smidge84
+  - smola
+  - stale[bot]
+  - svarogg
+  - thaJeztah
+  - tracker1
+  - ulyssessouza
+  comment_interactions: 28
+  cross_issue_activity: 21
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 9
   total_merged_prs: 2
   touched_files: []
+nemchik:
+  collaboration_network_size: 1
+  collaborators:
+  - maruel
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nerdkid93:
+  collaboration_network_size: 1
+  collaborators:
+  - ripperdoc
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nevergone:
+  collaboration_network_size: 2
+  collaborators:
+  - SvenDowideit
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+newsages:
+  collaboration_network_size: 1
+  collaborators:
+  - pytz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ngockhoainfo:
+  collaboration_network_size: 1
+  collaborators:
+  - hqasemi
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nhooey:
+  collaboration_network_size: 2
+  collaborators:
+  - mlanett
+  - superlevure
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nicoXXXXXtitan:
+  collaboration_network_size: 1
+  collaborators:
+  - spatchamatla
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nicolas-b12:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nightah:
+  collaboration_network_size: 1
+  collaborators:
+  - Harmouch101
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nigurr:
+  collaboration_network_size: 1
+  collaborators:
+  - jpetazzo
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nikasioMel:
+  collaboration_network_size: 1
+  collaborators:
+  - simonm11
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nkovacs:
+  collaboration_network_size: 1
+  collaborators:
+  - bwateratmsft
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nmaro:
+  collaboration_network_size: 2
+  collaborators:
+  - MexsonFernandes
+  - iraklisg
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nnisic:
+  collaboration_network_size: 1
+  collaborators:
+  - Harrisonbro
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nocive:
+  collaboration_network_size: 3
+  collaborators:
+  - BentiGorlich
+  - and3rson
+  - iben12
+  comment_interactions: 6
+  cross_issue_activity: 4
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+nutjob4life:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ocervell:
+  collaboration_network_size: 1
+  collaborators:
+  - slavdok
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+octplane:
+  collaboration_network_size: 1
+  collaborators:
+  - treybrisbane
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+oiljin:
+  collaboration_network_size: 1
+  collaborators:
+  - KuanYuLai
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+olfamoussaoui:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+opaessens:
+  collaboration_network_size: 1
+  collaborators:
+  - ldeluigi
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ozkanonur:
+  collaboration_network_size: 2
+  collaborators:
+  - ftahirops
+  - m3Yilmaz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ozmad:
+  collaboration_network_size: 1
+  collaborators:
+  - OnkelTem
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ozydingo:
+  collaboration_network_size: 1
+  collaborators:
+  - thaJeztah
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+padraic-padraic:
+  collaboration_network_size: 2
+  collaborators:
+  - ndeloof
+  - pseusys
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+page-down:
+  collaboration_network_size: 1
+  collaborators:
+  - Harmouch101
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pandarhys:
+  collaboration_network_size: 1
+  collaborators:
+  - marianatuma
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+patientplatypus6:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+paulspartan14:
+  collaboration_network_size: 1
+  collaborators:
+  - Jn58
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+performautodev:
+  collaboration_network_size: 1
+  collaborators:
+  - Gounlaf
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+peterthomassen:
+  collaboration_network_size: 1
+  collaborators:
+  - brian-bason
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+petrprikryl:
+  collaboration_network_size: 1
+  collaborators:
+  - draksha22
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pgassmann:
+  collaboration_network_size: 1
+  collaborators:
+  - dgzlopes
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+phao5814:
+  collaboration_network_size: 2
+  collaborators:
+  - DaleyKD
+  - johnthagen
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ping86:
+  collaboration_network_size: 2
+  collaborators:
+  - lil12t
+  - zenhob
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pisces-period:
+  collaboration_network_size: 1
+  collaborators:
+  - bodazhao
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pjezusek:
+  collaboration_network_size: 1
+  collaborators:
+  - chapa
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pmav99:
+  collaboration_network_size: 1
+  collaborators:
+  - longuyen97
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pmihalcin:
+  collaboration_network_size: 1
+  collaborators:
+  - thenewguy
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 pokutuna:
+  collaboration_network_size: 2
+  collaborators:
+  - gergelyerdelyi
+  - rumpl
+  comment_interactions: 1
+  cross_issue_activity: 2
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 51
   total_merged_prs: 1
   touched_files: []
+pombredanne:
+  collaboration_network_size: 1
+  collaborators:
+  - arachnetech
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pooya-mohammadi:
+  collaboration_network_size: 1
+  collaborators:
+  - bentcoder
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+potiuk:
+  collaboration_network_size: 1
+  collaborators:
+  - eirikb
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ppg:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+probablykasper:
+  collaboration_network_size: 1
+  collaborators:
+  - greg-md
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pseusys:
+  collaboration_network_size: 1
+  collaborators:
+  - padraic-padraic
+  comment_interactions: 3
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pupattan:
+  collaboration_network_size: 1
+  collaborators:
+  - bodazhao
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+pytz:
+  collaboration_network_size: 2
+  collaborators:
+  - newsages
+  - tevino
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+qdel:
+  collaboration_network_size: 1
+  collaborators:
+  - ScarUY
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+raesene:
+  collaboration_network_size: 3
+  collaborators:
+  - Ugoivy
+  - bdoublet91
+  - snwfdhmp
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rakshak-t:
+  collaboration_network_size: 1
+  collaborators:
+  - kvz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ramytamer:
+  collaboration_network_size: 1
+  collaborators:
+  - bfallik
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ranijames:
+  collaboration_network_size: 1
+  collaborators:
+  - BentCoder
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+raphael-leger:
+  collaboration_network_size: 1
+  collaborators:
+  - bodazhao
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+raratiru:
+  collaboration_network_size: 2
+  collaborators:
+  - ndeloof
+  - sdavids
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ravipal:
+  collaboration_network_size: 1
+  collaborators:
+  - kierenevans
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ravshansbox:
+  collaboration_network_size: 1
+  collaborators:
+  - GarrisonD
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+raybiwo:
+  collaboration_network_size: 1
+  collaborators:
+  - ssbarnea
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rayjohnson:
+  collaboration_network_size: 1
+  collaborators:
+  - Ice-Drake
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rbuckland:
+  collaboration_network_size: 1
+  collaborators:
+  - dwaite
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+regzon:
+  collaboration_network_size: 1
+  collaborators:
+  - adaamz
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+remram44:
+  collaboration_network_size: 1
+  collaborators:
+  - venthur
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rerpha:
+  collaboration_network_size: 1
+  collaborators:
+  - sarimak
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rezehnde:
+  collaboration_network_size: 1
+  collaborators:
+  - dazinator
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rfay:
+  collaboration_network_size: 6
+  collaborators:
+  - csquan
+  - jeandoyon
+  - mat007
+  - mozgbrasil
+  - siliconmeadow
+  - ulyssessouza
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rightisleft:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rikostave1234:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ripperdoc:
+  collaboration_network_size: 1
+  collaborators:
+  - nerdkid93
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rmNyro:
+  collaboration_network_size: 1
+  collaborators:
+  - jiangyanglinlan
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+robertbartel:
+  collaboration_network_size: 1
+  collaborators:
+  - smidge84
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rubenvdham:
+  collaboration_network_size: 1
+  collaborators:
+  - darrinsimmons
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ruedigerm-playster:
+  collaboration_network_size: 1
+  collaborators:
+  - '0x6B386F'
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rumpl:
+  collaboration_network_size: 11
+  collaborators:
+  - aiordache
+  - albers
+  - alexrecuenco
+  - asterite3
+  - bartier
+  - chris-crone
+  - dependabot-preview[bot]
+  - maaarghk
+  - mikesep
+  - pokutuna
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+rvdende:
+  collaboration_network_size: 1
+  collaborators:
+  - Glioburd
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+s11k:
+  collaboration_network_size: 1
+  collaborators:
+  - tablatronix
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+salihozd:
+  collaboration_network_size: 1
+  collaborators:
+  - stefanpl
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sameersbn:
+  collaboration_network_size: 2
+  collaborators:
+  - UglyWillDuckling
+  - wallehazz
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+samgarvis:
+  collaboration_network_size: 1
+  collaborators:
+  - jdel
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+samizdam:
+  collaboration_network_size: 1
+  collaborators:
+  - musikov
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sanaullahAhmad:
+  collaboration_network_size: 1
+  collaborators:
+  - jpca999
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sandrodz:
+  collaboration_network_size: 1
+  collaborators:
+  - efinal
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sandu-c:
+  collaboration_network_size: 1
+  collaborators:
+  - zffocussss
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+santosh-kh:
+  collaboration_network_size: 1
+  collaborators:
+  - WhyNotHugo
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sapkotasuren:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sarimak:
+  collaboration_network_size: 1
+  collaborators:
+  - rerpha
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sbellem:
+  collaboration_network_size: 2
+  collaborators:
+  - PHLAK
+  - stefanocudini
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+scrandall:
+  collaboration_network_size: 2
+  collaborators:
+  - BDL70
+  - kerbrose
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sdavids:
+  collaboration_network_size: 1
+  collaborators:
+  - raratiru
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+serge1peshcoff:
+  collaboration_network_size: 1
+  collaborators:
+  - lgathy
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sesameguy:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+setchring:
+  collaboration_network_size: 1
+  collaborators:
+  - egee-irl
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+settermjd:
+  collaboration_network_size: 1
+  collaborators:
+  - hexcowboy
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+shailesh-vaidya:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+shin-:
+  collaboration_network_size: 1
+  collaborators:
+  - steakhutzeee
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+shinsenter:
+  collaboration_network_size: 1
+  collaborators:
+  - bfirsh
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+shortpoet:
+  collaboration_network_size: 1
+  collaborators:
+  - narwy
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+shukriadams:
+  collaboration_network_size: 1
+  collaborators:
+  - maruel
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+siliconmeadow:
+  collaboration_network_size: 1
+  collaborators:
+  - rfay
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sim6:
+  collaboration_network_size: 1
+  collaborators:
+  - lbischof
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+simonm11:
+  collaboration_network_size: 3
+  collaborators:
+  - ImDevinC
+  - dominikbraun
+  - nikasioMel
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+simonwiles:
+  collaboration_network_size: 1
+  collaborators:
+  - benjefferies
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sixcorners:
+  collaboration_network_size: 3
+  collaborators:
+  - SourceCode
+  - sselvanathan
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sixeyed:
+  collaboration_network_size: 1
+  collaborators:
+  - lnking81
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sjlongland:
+  collaboration_network_size: 1
+  collaborators:
+  - asirinelli
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+skaven81:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+slavdok:
+  collaboration_network_size: 3
+  collaborators:
+  - ndeloof
+  - ocervell
+  - thaJeztah
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+slavik57:
+  collaboration_network_size: 2
+  collaborators:
+  - mbarrien
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+slinkardbrandon:
+  collaboration_network_size: 1
+  collaborators:
+  - Mossop
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+smelike:
+  collaboration_network_size: 1
+  collaborators:
+  - venkat44488
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+smidge84:
+  collaboration_network_size: 2
+  collaborators:
+  - ndeloof
+  - robertbartel
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+smoebody:
+  collaboration_network_size: 1
+  collaborators:
+  - anaetrezve
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 smola:
+  collaboration_network_size: 2
+  collaborators:
+  - ndeloof
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 1
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 5
   total_merged_prs: 1
   touched_files: []
+snwfdhmp:
+  collaboration_network_size: 1
+  collaborators:
+  - raesene
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sourav82:
+  collaboration_network_size: 1
+  collaborators:
+  - SelfhostedPro
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+spatchamatla:
+  collaboration_network_size: 1
+  collaborators:
+  - nicoXXXXXtitan
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sri53:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ssbarnea:
+  collaboration_network_size: 2
+  collaborators:
+  - aiordache
+  - raybiwo
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ssbkang:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sselvanathan:
+  collaboration_network_size: 1
+  collaborators:
+  - sixcorners
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stacklikemind:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stale[bot]:
+  collaboration_network_size: 44
+  collaborators:
+  - Alora-taken
+  - AnmSaiful
+  - AntonOvsyannikov
+  - DavHau
+  - EinfachFabsTV
+  - EvgenyOrekhov
+  - FOGBABY
+  - FernandoMiguel
+  - GabrielBB
+  - GitHubprajwal
+  - ImDevinC
+  - JOduMonT
+  - Martinnygaard
+  - NicolasDorier
+  - Pytal
+  - SavostinVladimir
+  - acornforth
+  - ashcoll
+  - ashjas
+  - augnustin
+  - b00tsy
+  - bagage
+  - bhanukumar22
+  - blevine
+  - busyboy77
+  - dgzlopes
+  - dkowis
+  - dmartin
+  - eric521237
+  - fernandogbi
+  - fkromer
+  - godomainz
+  - hansbogert
+  - krregg
+  - laertis
+  - masterarrow
+  - miroslavKovacPantheon
+  - ndeloof
+  - sixcorners
+  - slavik57
+  - swarnar87
+  - tanmayambre
+  - vitaly-krugl
+  - we684123
+  comment_interactions: 73
+  cross_issue_activity: 44
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stam:
+  collaboration_network_size: 1
+  collaborators:
+  - KenwoodFox
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stas-sbi:
+  collaboration_network_size: 1
+  collaborators:
+  - OverStruck
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+steakhutzeee:
+  collaboration_network_size: 1
+  collaborators:
+  - shin-
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+steevivo:
+  collaboration_network_size: 1
+  collaborators:
+  - marcelmfs
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stefanfoulis:
+  collaboration_network_size: 2
+  collaborators:
+  - djbios
+  - gemmadlou
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stefanocudini:
+  collaboration_network_size: 2
+  collaborators:
+  - ghost
+  - sbellem
+  comment_interactions: 3
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stefanpl:
+  collaboration_network_size: 1
+  collaborators:
+  - salihozd
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stephen-turner:
+  collaboration_network_size: 1
+  collaborators:
+  - mat007
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sti0:
+  collaboration_network_size: 1
+  collaborators:
+  - djherbis
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+stingalleman:
+  collaboration_network_size: 1
+  collaborators:
+  - andyburke
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+strk:
+  collaboration_network_size: 2
+  collaborators:
+  - kirillt
+  - thaJeztah
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+su-narthur:
+  collaboration_network_size: 2
+  collaborators:
+  - DMW007
+  - bousbir
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+subpardaemon:
+  collaboration_network_size: 1
+  collaborators:
+  - jgadling
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+superlevure:
+  collaboration_network_size: 1
+  collaborators:
+  - nhooey
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+suyar:
+  collaboration_network_size: 1
+  collaborators:
+  - dellagustin-sap
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 svarogg:
+  collaboration_network_size: 4
+  collaborators:
+  - avkonst
+  - ndeloof
+  - thaJeztah
+  - ulyssessouza
+  comment_interactions: 0
+  cross_issue_activity: 1
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 6
   total_merged_prs: 1
   touched_files: []
+svoop:
+  collaboration_network_size: 1
+  collaborators:
+  - adipascu
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+swarnar87:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+sydneybmunizaga:
+  collaboration_network_size: 1
+  collaborators:
+  - kkmoslehpour
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tablatronix:
+  collaboration_network_size: 2
+  collaborators:
+  - chris-crone
+  - s11k
+  comment_interactions: 2
+  cross_issue_activity: 2
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tanmayambre:
+  collaboration_network_size: 2
+  collaborators:
+  - Elyytscha
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tevino:
+  collaboration_network_size: 1
+  collaborators:
+  - pytz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tgsmith61591:
+  collaboration_network_size: 1
+  collaborators:
+  - joerobot
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 thaJeztah:
+  collaboration_network_size: 20
+  collaborators:
+  - CharlieReitzel
+  - EricHripko
+  - aiordache
+  - albers
+  - alexw1982
+  - and3rson
+  - celinederoland
+  - dependabot[bot]
+  - dmm
+  - hansbogert
+  - jarulsamy
+  - ndeloof
+  - ozydingo
+  - slavdok
+  - strk
+  - svarogg
+  - woodcockjosh
+  - yamatoRT
+  - z0w13
+  - zstadler
+  comment_interactions: 24
+  cross_issue_activity: 18
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 39
   total_merged_prs: 2
   touched_files: []
+thenewguy:
+  collaboration_network_size: 1
+  collaborators:
+  - pmihalcin
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+timothy-thomas:
+  collaboration_network_size: 1
+  collaborators:
+  - josh-byster
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+titiyoyo:
+  collaboration_network_size: 1
+  collaborators:
+  - OJFord
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tonymj76:
+  collaboration_network_size: 1
+  collaborators:
+  - bfirsh
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+toshiro92:
+  collaboration_network_size: 1
+  collaborators:
+  - Haoke98
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tracker1:
+  collaboration_network_size: 1
+  collaborators:
+  - ndeloof
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+treybrisbane:
+  collaboration_network_size: 1
+  collaborators:
+  - octplane
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tuanggo:
+  collaboration_network_size: 1
+  collaborators:
+  - dependabot-preview[bot]
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+tutunana:
+  collaboration_network_size: 1
+  collaborators:
+  - xmartinez
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+uberhacker:
+  collaboration_network_size: 1
+  collaborators:
+  - Doom4535
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ugmSorcero:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+ulope:
+  collaboration_network_size: 1
+  collaborators:
+  - DarkMikey
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
 ulyssessouza:
+  collaboration_network_size: 31
+  collaborators:
+  - EricHripko
+  - HaleyACS
+  - Skulblaka
+  - aiordache
+  - albers
+  - alexrecuenco
+  - arkodg
+  - asterite3
+  - casdevs
+  - celinederoland
+  - chris-crone
+  - dependabot-preview[bot]
+  - evorios
+  - ghominejad
+  - glours
+  - gtardif
+  - hartwork
+  - jarulsamy
+  - lonix1
+  - maaarghk
+  - mat007
+  - mikesep
+  - mwild1
+  - ndeloof
+  - nevergone
+  - rfay
+  - rumpl
+  - smola
+  - svarogg
+  - whitleykeith
+  - yamatoRT
+  comment_interactions: 19
+  cross_issue_activity: 23
   label_affinity: {}
   skills:
   - python
   total_lines_changed: 525
   total_merged_prs: 7
+  touched_files: []
+uy-rrodriguez:
+  collaboration_network_size: 1
+  collaborators:
+  - mmarzantowicz
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+v0l:
+  collaboration_network_size: 0
+  collaborators: []
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+valtbarbos:
+  collaboration_network_size: 1
+  collaborators:
+  - bburtin
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+vblagoje:
+  collaboration_network_size: 1
+  collaborators:
+  - goshander
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+vdo:
+  collaboration_network_size: 1
+  collaborators:
+  - CorruptComputer
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+venkat44488:
+  collaboration_network_size: 1
+  collaborators:
+  - smelike
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+venthur:
+  collaboration_network_size: 1
+  collaborators:
+  - remram44
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+vitaly-krugl:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+vitaly-zverev:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+vivekannan:
+  collaboration_network_size: 1
+  collaborators:
+  - alyyousuf7
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+vvucetic:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+wallehazz:
+  collaboration_network_size: 1
+  collaborators:
+  - sameersbn
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+we684123:
+  collaboration_network_size: 1
+  collaborators:
+  - stale[bot]
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+whillas:
+  collaboration_network_size: 1
+  collaborators:
+  - collabnix
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+whitleykeith:
+  collaboration_network_size: 1
+  collaborators:
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+woo2:
+  collaboration_network_size: 1
+  collaborators:
+  - zeehio
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+woodcockjosh:
+  collaboration_network_size: 1
+  collaborators:
+  - thaJeztah
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+xmartinez:
+  collaboration_network_size: 1
+  collaborators:
+  - tutunana
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+xoroz:
+  collaboration_network_size: 1
+  collaborators:
+  - AmrElmasry
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+xubo245:
+  collaboration_network_size: 1
+  collaborators:
+  - AmrElmasry
+  comment_interactions: 2
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+yaahor:
+  collaboration_network_size: 1
+  collaborators:
+  - blake-mealey
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+yamatoRT:
+  collaboration_network_size: 2
+  collaborators:
+  - thaJeztah
+  - ulyssessouza
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+yankeeguyu:
+  collaboration_network_size: 1
+  collaborators:
+  - BLasan
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+yoanisgil:
+  collaboration_network_size: 1
+  collaborators:
+  - hadim
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+z0w13:
+  collaboration_network_size: 2
+  collaborators:
+  - debdutdeb
+  - thaJeztah
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zahragolpa:
+  collaboration_network_size: 1
+  collaborators:
+  - ghost
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zeehio:
+  collaboration_network_size: 1
+  collaborators:
+  - woo2
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zenhob:
+  collaboration_network_size: 1
+  collaborators:
+  - ping86
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zffocussss:
+  collaboration_network_size: 2
+  collaborators:
+  - mmathys
+  - sandu-c
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zikaeroh:
+  collaboration_network_size: 1
+  collaborators:
+  - jamshid
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zirkome:
+  collaboration_network_size: 1
+  collaborators:
+  - lorenzoranucci
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zlpqingmei:
+  collaboration_network_size: 1
+  collaborators:
+  - albers
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zoonage:
+  collaboration_network_size: 1
+  collaborators:
+  - evandam
+  comment_interactions: 0
+  cross_issue_activity: 0
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
+  touched_files: []
+zstadler:
+  collaboration_network_size: 1
+  collaborators:
+  - thaJeztah
+  comment_interactions: 1
+  cross_issue_activity: 1
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 0
+  total_merged_prs: 0
   touched_files: []
