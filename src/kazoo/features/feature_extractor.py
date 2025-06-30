@@ -68,6 +68,10 @@ class FeatureExtractor:
         )
         names.extend([f"task_label_{label}" for label in self.all_labels])
         names.extend(["dev_recent_activity_count", "dev_current_workload", "dev_total_lines_changed"])
+        # 社会的つながりの特徴量を追加
+        names.extend(["dev_collaboration_network_size", "dev_comment_interactions", "dev_cross_issue_activity"])
+        # 具体的な協力関係の特徴量を追加
+        names.extend(["match_collaborated_with_task_author", "match_collaborator_overlap_count", "match_has_prior_collaboration"])
         names.extend(["match_skill_intersection_count", "match_file_experience_count"])
         names.extend([f"match_affinity_for_{label}" for label in self.all_labels])
         # ▼▼▼【追加】GNN特徴量名を追加▼▼▼
@@ -140,6 +144,37 @@ class FeatureExtractor:
         # 総変更行数を追加
         total_lines_changed = float(developer_profile.get("total_lines_changed", 0))
         feature_values.append(total_lines_changed)
+
+        # 社会的つながりの特徴量を追加
+        collaboration_network_size = float(developer_profile.get("collaboration_network_size", 0))
+        feature_values.append(collaboration_network_size)
+        
+        comment_interactions = float(developer_profile.get("comment_interactions", 0))
+        feature_values.append(comment_interactions)
+        
+        cross_issue_activity = float(developer_profile.get("cross_issue_activity", 0))
+        feature_values.append(cross_issue_activity)
+
+        # === カテゴリ4: 具体的な協力関係の特徴 ===
+        dev_collaborators = set(developer_profile.get("collaborators", []))
+        
+        # タスク作成者との協力履歴
+        task_author = getattr(task, "user", {}).get("login") if hasattr(task, "user") else None
+        collaborated_with_author = 1.0 if task_author and task_author in dev_collaborators else 0.0
+        feature_values.append(collaborated_with_author)
+        
+        # タスクの担当者との協力履歴重複数
+        task_assignees = getattr(task, "assignees", []) if hasattr(task, "assignees") else []
+        assignee_logins = {assignee.get("login") for assignee in task_assignees if assignee.get("login")}
+        collaborator_overlap_count = float(len(assignee_logins.intersection(dev_collaborators)))
+        feature_values.append(collaborator_overlap_count)
+        
+        # タスクに関連する開発者（作成者+担当者）との協力履歴があるか
+        task_related_devs = assignee_logins.copy()
+        if task_author:
+            task_related_devs.add(task_author)
+        has_prior_collaboration = 1.0 if len(task_related_devs.intersection(dev_collaborators)) > 0 else 0.0
+        feature_values.append(has_prior_collaboration)
 
         # === カテゴリ3: 相互作用（マッチング）の特徴 ===
         required_skills = set().union(

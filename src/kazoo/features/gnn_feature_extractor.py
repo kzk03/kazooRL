@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 # GNNモデルをインポート
 sys.path.append(str(Path(__file__).resolve().parents[2]))
-from kazoo.gnn.gnn_model import GNNModel
+from kazoo.GAT.GAT_model import GNNModel
 
 
 class GNNFeatureExtractor:
@@ -56,6 +56,16 @@ class GNNFeatureExtractor:
 
             self.graph_data = torch.load(graph_path, weights_only=False)
 
+            # 🆕 開発者協力ネットワークも読み込み
+            network_path = Path("data/developer_collaboration_network.pt")
+            if network_path.exists():
+                print("Loading developer collaboration network...")
+                self.dev_network = torch.load(network_path, weights_only=False)
+                print(f"✅ Developer network loaded: {self.dev_network['num_developers']} devs, {self.dev_network['network_stats']['num_edges']} edges")
+            else:
+                print("Warning: Developer collaboration network not found, using basic features only")
+                self.dev_network = None
+
             # モデル読み込み
             model_path = Path(
                 getattr(self.cfg.irl, "gnn_model_path", "data/gnn_model.pt")
@@ -66,7 +76,7 @@ class GNNFeatureExtractor:
                 return
 
             # Import GNN model here to avoid circular imports
-            from kazoo.gnn.gnn_model import GNNModel
+            from kazoo.GAT.GAT_model import GNNModel
             
             self.model = GNNModel(
                 in_channels_dict={"dev": 8, "task": 9}, out_channels=32
@@ -75,10 +85,19 @@ class GNNFeatureExtractor:
             self.model.eval()
             self.model.to(self.device)
 
-            # 埋め込みを事前計算
+            # 埋め込みを事前計算（協力ネットワークを含む）
+            edge_index_dict = {
+                ("dev", "writes", "task"): self.graph_data["edge_index_dev_writes_task"],
+                ("task", "written_by", "dev"): self.graph_data["edge_index_task_written_by_dev"],
+            }
+            
+            # 🆕 開発者協力関係エッジを追加
+            if self.dev_network is not None:
+                edge_index_dict[("dev", "collaborates", "dev")] = self.dev_network["dev_collaboration_edge_index"]
+
             with torch.no_grad():
                 self.embeddings = self.model(
-                    self.graph_data.x_dict, self.graph_data.edge_index_dict
+                    self.graph_data.x_dict, edge_index_dict
                 )
 
             # ノードIDマッピングを作成
@@ -130,7 +149,9 @@ class GNNFeatureExtractor:
         self.stats["total_requests"] += 1
         
         if not self.model or not self.embeddings:
-            return [0.0] * 3  # 類似度、専門性、人気度の3次元
+            # 協力ネットワークが利用可能かどうかで特徴量数を決定
+            num_features = 5 if self.dev_network is not None else 3
+            return [0.0] * num_features
 
         try:
             # 開発者IDとタスクIDを取得
@@ -145,10 +166,13 @@ class GNNFeatureExtractor:
             missing_dev = dev_idx is None
             missing_task = task_idx is None
 
+            # 協力ネットワークが利用可能かどうかで特徴量数を決定
+            num_features = 5 if self.dev_network is not None else 3
+
             if missing_dev and missing_task:
                 # Both missing - return zero features
                 self.stats["missing_both"] += 1
-                return [0.0] * 3
+                return [0.0] * num_features
             elif missing_dev:
                 # Developer missing - use average developer embedding as fallback
                 self.stats["missing_dev"] += 1
@@ -165,7 +189,8 @@ class GNNFeatureExtractor:
         except Exception as e:
             self.stats["errors"] += 1
             print(f"Error extracting GNN features for dev={dev_id}, task={task_id}: {e}")
-            return [0.0] * 3
+            num_features = 5 if self.dev_network is not None else 3
+            return [0.0] * num_features
 
     def record_interaction(self, task, developer, reward, action_taken=None, simulation_time=None):
         """新しいインタラクションを記録（強化学習のステップごとに呼び出される）"""
@@ -419,7 +444,7 @@ class GNNFeatureExtractor:
         ]
 
     def _get_simplified_gnn_features(self, dev_idx, task_idx):
-        """簡略化されたGNN特徴量（3次元のスコアのみ）"""
+        """簡略化されたGNN特徴量（基本3次元 + 協力ネットワーク特徴量）"""
         # 埋め込みを取得
         dev_emb = self.embeddings["dev"][dev_idx]
         task_emb = self.embeddings["task"][task_idx]
@@ -451,7 +476,61 @@ class GNNFeatureExtractor:
         ).item()
         features.append(task_popularity)
 
+        # 🆕 4. 協力ネットワーク特徴量（利用可能な場合）
+        if self.dev_network is not None:
+            # 協力強度スコア（開発者の協力エッジの重み合計）
+            collab_strength = self._calculate_collaboration_strength(dev_idx)
+            features.append(collab_strength)
+            
+            # ネットワーク中心性スコア（開発者のネットワーク内での重要度）
+            centrality = self._calculate_network_centrality(dev_idx)
+            features.append(centrality)
+
         return features
+
+    def _calculate_collaboration_strength(self, dev_idx):
+        """開発者の協力ネットワーク内での強度を計算"""
+        try:
+            if self.dev_network is None:
+                return 0.0
+                
+            edge_index = self.dev_network["dev_collaboration_edge_index"]
+            edge_weights = self.dev_network["dev_collaboration_edge_weights"]
+            
+            # この開発者が関与するエッジを見つける
+            dev_edges = (edge_index[0] == dev_idx) | (edge_index[1] == dev_idx)
+            if not dev_edges.any():
+                return 0.0
+                
+            # 関連するエッジの重みの合計を計算
+            strength = edge_weights[dev_edges].sum().item()
+            # 正規化（最大強度で割る）
+            max_strength = edge_weights.max().item() if edge_weights.numel() > 0 else 1.0
+            return strength / max_strength if max_strength > 0 else 0.0
+            
+        except Exception as e:
+            print(f"Error calculating collaboration strength: {e}")
+            return 0.0
+
+    def _calculate_network_centrality(self, dev_idx):
+        """開発者のネットワーク中心性を計算（簡易版）"""
+        try:
+            if self.dev_network is None:
+                return 0.0
+                
+            edge_index = self.dev_network["dev_collaboration_edge_index"]
+            
+            # この開発者の次数（接続数）を計算
+            degree = ((edge_index[0] == dev_idx) | (edge_index[1] == dev_idx)).sum().item()
+            
+            # 最大次数で正規化
+            total_devs = self.dev_network["num_developers"]
+            max_possible_degree = total_devs - 1
+            return degree / max_possible_degree if max_possible_degree > 0 else 0.0
+            
+        except Exception as e:
+            print(f"Error calculating network centrality: {e}")
+            return 0.0
 
     def _get_full_gnn_features(self, dev_idx, task_idx):
         """両方のノードが存在する場合の完全なGNN特徴量を計算"""
@@ -548,11 +627,20 @@ class GNNFeatureExtractor:
         return features
 
     def get_feature_names(self):
-        """GNN特徴量の名前リストを返す（3次元のみ）"""
+        """GNN特徴量の名前リストを返す"""
         if not self.model:
             return []
 
-        return ["gnn_similarity", "gnn_dev_expertise", "gnn_task_popularity"]
+        base_features = ["gnn_similarity", "gnn_dev_expertise", "gnn_task_popularity"]
+        
+        # 🆕 協力ネットワークが利用可能な場合、追加の特徴量を含める
+        if self.dev_network is not None:
+            base_features.extend([
+                "gnn_collaboration_strength",  # 開発者の協力ネットワーク内での重要度
+                "gnn_network_centrality"       # ネットワーク内での中心性
+            ])
+        
+        return base_features
 
     def print_statistics(self):
         """GNN特徴量抽出の統計を表示"""

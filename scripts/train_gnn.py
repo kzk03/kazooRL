@@ -4,7 +4,7 @@ from pathlib import Path
 
 import torch
 
-from kazoo.gnn.gnn_model import GNNModel  # 修正したモデルをインポート
+from kazoo.GAT.GAT_model import GNNModel  # 修正したモデルをインポート
 
 
 def main():
