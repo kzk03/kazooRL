@@ -680,12 +680,12 @@ class GNNFeatureExtractor:
         features.append(dev_expertise)
 
         # 3. 平均的な人気度スコア（中程度の値）
-        features.append(0.3)        # 🆕 4-5. 協力ネットワーク特徴量（利用可能な場合）
+        features.append(0.3)  # 🆕 4-5. 協力ネットワーク特徴量（利用可能な場合）
         if self.dev_network is not None:
             # 開発者が存在するので協力特徴量を計算
             collab_strength = self._calculate_collaboration_strength(dev_idx)
             features.append(collab_strength)
-            
+
             centrality = self._calculate_network_centrality(dev_idx)
             features.append(centrality)
 
