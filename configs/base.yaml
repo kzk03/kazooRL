@@ -27,7 +27,7 @@ features:
 irl:
   expert_path: "data/expert_trajectories.pkl"
   output_weights_path: "data/learned_weights.npy"
-  learning_rate: 0.001
+  learning_rate: 0.0001 # 大幅減少：0.001 → 0.0001（振動問題解決のため）
   epochs: 3000 # 標準的な学習のために増加（1000 → 3000）
   use_gnn: true
   gnn_graph_path: "data/graph_retrained.pt" # 再訓練済みグラフデータ
