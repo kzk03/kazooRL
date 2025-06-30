@@ -1,4 +1,5 @@
 import os
+
 # 自分のプロジェクトのFeatureExtractorを正しくインポートする
 # このスクリプトはプロジェクトルートから実行することを想定
 import sys
@@ -8,8 +9,13 @@ import pandas as pd
 from omegaconf import OmegaConf
 
 # プロジェクトのルートディレクトリをPythonのパスに追加
-sys.path.append(os.getcwd())
-from src.kazoo.features.feature_extractor import FeatureExtractor
+project_root = os.getcwd()
+sys.path.insert(0, project_root)
+sys.path.insert(0, os.path.join(project_root, 'src'))
+
+print(f"Python path includes: {sys.path[:3]}")  # 最初の3つを表示
+
+from kazoo.features.feature_extractor import FeatureExtractor
 
 
 def analyze_reward_weights(config_path, weights_path):
@@ -26,13 +32,27 @@ def analyze_reward_weights(config_path, weights_path):
 
     # 2. 特徴量抽出器をインスタンス化して、特徴量の名前リストを取得
     try:
+        # GNN特徴量を含む完全な特徴量抽出器を初期化
+        print("Initializing FeatureExtractor with GNN features...")
+        print(f"GNN enabled: {cfg.irl.get('use_gnn', False)}")
+        print(f"GNN model path: {cfg.irl.get('gnn_model_path', 'Not specified')}")
+        print(f"GNN graph path: {cfg.irl.get('gnn_graph_path', 'Not specified')}")
+        
         feature_extractor = FeatureExtractor(cfg)
         feature_names = feature_extractor.feature_names
+        
+        print(f"Successfully initialized FeatureExtractor with {len(feature_names)} features")
+        print("Feature names:", feature_names)
+        
     except Exception as e:
         print(f"Error initializing FeatureExtractor: {e}")
+        print(f"Exception type: {type(e).__name__}")
+        import traceback
+        traceback.print_exc()
         print(
             "Please check if your config file has the correct structure for FeatureExtractor."
         )
+        print("Also ensure that GNN model and graph files exist if GNN is enabled.")
         return
 
     # 3. 学習済みの重みを読み込む
