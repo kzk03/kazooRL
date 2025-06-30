@@ -10,7 +10,6 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 import yaml
 
 
@@ -72,6 +71,15 @@ def analyze_irl_weights():
         "match_file_experience_count"
     ])
     feature_names.extend([f"match_affinity_for_{label}" for label in all_labels])
+    
+    # GNN特徴量（協力ネットワーク対応）
+    feature_names.extend([
+        "gnn_similarity",
+        "gnn_dev_expertise", 
+        "gnn_task_popularity",
+        "gnn_collaboration_strength",
+        "gnn_network_centrality"
+    ])
     
     print(f"\\n特徴量数: {len(feature_names)}, 重み数: {len(latest_weights)}")
     

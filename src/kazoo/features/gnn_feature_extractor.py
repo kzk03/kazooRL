@@ -87,8 +87,8 @@ class GNNFeatureExtractor:
 
             # 埋め込みを事前計算（協力ネットワークを含む）
             edge_index_dict = {
-                ("dev", "writes", "task"): self.graph_data["edge_index_dev_writes_task"],
-                ("task", "written_by", "dev"): self.graph_data["edge_index_task_written_by_dev"],
+                ("dev", "writes", "task"): self.graph_data[("dev", "writes", "task")].edge_index,
+                ("task", "written_by", "dev"): self.graph_data[("dev", "writes", "task")].edge_index.flip([0]),
             }
             
             # 🆕 開発者協力関係エッジを追加
@@ -124,7 +124,7 @@ class GNNFeatureExtractor:
             else:
                 dev_ids = self.graph_data["dev"].node_id.tolist()
         else:
-            dev_ids = list(range(self.embeddings["dev"].size(0)))
+            dev_ids = list(range(self.embeddings["dev"].shape[0]))
 
         if hasattr(self.graph_data["task"], "node_id"):
             if isinstance(self.graph_data["task"].node_id, list):
@@ -132,7 +132,7 @@ class GNNFeatureExtractor:
             else:
                 task_ids = self.graph_data["task"].node_id.tolist()
         else:
-            task_ids = list(range(self.embeddings["task"].size(0)))
+            task_ids = list(range(self.embeddings["task"].shape[0]))
 
         # ID → インデックスのマッピング
         self.dev_id_to_idx = {str(dev_id): idx for idx, dev_id in enumerate(dev_ids)}
@@ -571,7 +571,7 @@ class GNNFeatureExtractor:
         return features
 
     def _get_fallback_features_missing_dev(self, task_idx, dev_id):
-        """開発者ノードが存在しない場合のフォールバック特徴量（3次元）"""
+        """開発者ノードが存在しない場合のフォールバック特徴量"""
         # タスクは存在するので、平均的な開発者との比較を使用
         task_emb = self.embeddings["task"][task_idx]
         avg_dev_emb = torch.mean(self.embeddings["dev"], dim=0)
@@ -596,10 +596,16 @@ class GNNFeatureExtractor:
         ).item()
         features.append(task_popularity)
         
+        # 🆕 4-5. 協力ネットワーク特徴量（利用可能な場合）
+        if self.dev_network is not None:
+            # 開発者が存在しないので、協力特徴量は0
+            features.append(0.0)  # collaboration_strength
+            features.append(0.0)  # network_centrality
+        
         return features
 
     def _get_fallback_features_missing_task(self, dev_idx, task_id):
-        """タスクノードが存在しない場合のフォールバック特徴量（3次元）"""
+        """タスクノードが存在しない場合のフォールバック特徴量"""
         # 開発者は存在するので、平均的なタスクとの比較を使用
         dev_emb = self.embeddings["dev"][dev_idx]
         avg_task_emb = torch.mean(self.embeddings["task"], dim=0)
@@ -623,6 +629,15 @@ class GNNFeatureExtractor:
         
         # 3. 平均的な人気度スコア（中程度の値）
         features.append(0.3)
+        
+        # 🆕 4-5. 協力ネットワーク特徴量（利用可能な場合）
+        if self.dev_network is not None:
+            # 開発者が存在するので協力特徴量を計算
+            collab_strength = self._calculate_collaboration_strength(dev_idx)
+            features.append(collab_strength)
+            
+            centrality = self._calculate_network_centrality(dev_idx)
+            features.append(centrality)
         
         return features
 
