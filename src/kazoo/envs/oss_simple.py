@@ -85,6 +85,7 @@ class OSSSimpleEnv(gym.Env):
 
         # 特徴量抽出器の初期化
         from kazoo.features.feature_extractor import FeatureExtractor
+
         self.feature_extractor = FeatureExtractor(self.config)
 
         self.action_space = spaces.Dict(
@@ -96,24 +97,26 @@ class OSSSimpleEnv(gym.Env):
         # 観測空間を定義（シンプルな状態 + GNN埋め込み）
         simple_obs_shape = (len(self.initial_backlog) * 3,)
         gnn_pooled_dim = 64  # GNN埋め込みをプールして固定サイズに
-        
+
         # GNN埋め込みを明示的に分離した観測空間
         self.observation_space = spaces.Dict(
             {
-                agent_id: spaces.Dict({
-                    "simple_obs": spaces.Box(
-                        low=-np.inf,
-                        high=np.inf,
-                        shape=simple_obs_shape,
-                        dtype=np.float32,
-                    ),
-                    "gnn_embeddings": spaces.Box(
-                        low=-np.inf,
-                        high=np.inf,
-                        shape=(gnn_pooled_dim,),
-                        dtype=np.float32,
-                    ),
-                })
+                agent_id: spaces.Dict(
+                    {
+                        "simple_obs": spaces.Box(
+                            low=-np.inf,
+                            high=np.inf,
+                            shape=simple_obs_shape,
+                            dtype=np.float32,
+                        ),
+                        "gnn_embeddings": spaces.Box(
+                            low=-np.inf,
+                            high=np.inf,
+                            shape=(gnn_pooled_dim,),
+                            dtype=np.float32,
+                        ),
+                    }
+                )
                 for agent_id in self.agent_ids
             }
         )
@@ -138,7 +141,7 @@ class OSSSimpleEnv(gym.Env):
     def _calculate_reward(self, agent_id, task, action_type="COMPLETE"):
         # IRLの重みを使う場合は、ここで特徴量を計算して報酬を返す
         reward = 0.0
-        
+
         if self.reward_weights is not None:
             try:
                 # FeatureExtractorを使って特徴量を計算
@@ -154,9 +157,12 @@ class OSSSimpleEnv(gym.Env):
 
                 # IRLで学習した重みで報酬を計算
                 reward = float(np.dot(self.reward_weights, features))
-                
+
                 # GNNのオンライン学習用にインタラクションを記録
-                if hasattr(feature_extractor, 'gnn_extractor') and feature_extractor.gnn_extractor:
+                if (
+                    hasattr(feature_extractor, "gnn_extractor")
+                    and feature_extractor.gnn_extractor
+                ):
                     feature_extractor.gnn_extractor.record_interaction(
                         task, developer, reward, action_type
                     )
@@ -174,21 +180,27 @@ class OSSSimpleEnv(gym.Env):
             reward = 1.0
         else:
             reward = 0.0
-            
+
         # GNNのオンライン学習用にインタラクションを記録
         try:
             developer = self.developers[agent_id]
-            
-            if hasattr(self, 'feature_extractor') and hasattr(self.feature_extractor, 'gnn_extractor'):
+
+            if hasattr(self, "feature_extractor") and hasattr(
+                self.feature_extractor, "gnn_extractor"
+            ):
                 if self.feature_extractor.gnn_extractor:
                     self.feature_extractor.gnn_extractor.record_interaction(
-                        task, developer, reward, action_type, simulation_time=self.current_time
+                        task,
+                        developer,
+                        reward,
+                        action_type,
+                        simulation_time=self.current_time,
                     )
         except Exception as e:
             # デバッグ用にエラーを表示
             # print(f"Debug: GNN interaction recording failed: {e}")
             pass  # GNNが利用できない場合はスキップ
-            
+
         return reward
 
     def step(self, actions):
@@ -225,13 +237,17 @@ class OSSSimpleEnv(gym.Env):
                     rewards[completing_agent] += self._calculate_reward(
                         completing_agent, task, "COMPLETE"
                     )
-                    
+
                     # GNNインタラクション記録の確認
-                    if hasattr(self, 'feature_extractor') and hasattr(self.feature_extractor, 'gnn_extractor'):
+                    if hasattr(self, "feature_extractor") and hasattr(
+                        self.feature_extractor, "gnn_extractor"
+                    ):
                         if self.feature_extractor.gnn_extractor:
-                            buffer_size = len(self.feature_extractor.gnn_extractor.interaction_buffer)
+                            buffer_size = len(
+                                self.feature_extractor.gnn_extractor.interaction_buffer
+                            )
                             print(f"    📊 GNN interaction buffer size: {buffer_size}")
-                
+
                 print(
                     f"Time {self.current_time.date()}: {task.title} completed by {completing_agent}!"
                 )

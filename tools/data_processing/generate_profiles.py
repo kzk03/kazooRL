@@ -69,7 +69,9 @@ def generate_developer_profiles(data_dir, output_path):
                         # 行数変更を追加
                         additions = pr.get("additions", 0)
                         deletions = pr.get("deletions", 0)
-                        dev_stats[developer]["total_lines_changed"] += additions + deletions
+                        dev_stats[developer]["total_lines_changed"] += (
+                            additions + deletions
+                        )
 
                         for label in pr.get("labels", []):
                             if "name" in label:

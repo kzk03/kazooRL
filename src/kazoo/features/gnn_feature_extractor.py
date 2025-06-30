@@ -15,7 +15,7 @@ class GNNFeatureExtractor:
     def __init__(self, cfg):
         self.cfg = cfg
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        
+
         # 統計カウンタ
         self.stats = {
             "total_requests": 0,
@@ -24,16 +24,18 @@ class GNNFeatureExtractor:
             "missing_task": 0,
             "missing_both": 0,
             "errors": 0,
-            "updates": 0  # GNN更新回数を追加
+            "updates": 0,  # GNN更新回数を追加
         }
-        
+
         # オンライン学習用の設定
         self.online_learning = cfg.irl.get("online_gnn_learning", False)
         self.update_frequency = cfg.irl.get("gnn_update_frequency", 100)  # N回に1回更新
         self.learning_rate = cfg.irl.get("gnn_learning_rate", 0.001)
-        self.time_window_hours = cfg.irl.get("gnn_time_window_hours", 24)  # 学習に使用する時間窓（時間）
+        self.time_window_hours = cfg.irl.get(
+            "gnn_time_window_hours", 24
+        )  # 学習に使用する時間窓（時間）
         self.optimizer = None
-        
+
         # 新しいインタラクションデータを蓄積
         self.interaction_buffer = []
         self.max_buffer_size = cfg.irl.get("gnn_buffer_size", 1000)
@@ -67,7 +69,7 @@ class GNNFeatureExtractor:
 
             # Import GNN model here to avoid circular imports
             from kazoo.gnn.gnn_model import GNNModel
-            
+
             self.model = GNNModel(
                 in_channels_dict={"dev": 8, "task": 9}, out_channels=32
             )
@@ -83,12 +85,15 @@ class GNNFeatureExtractor:
 
             # ノードIDマッピングを作成
             self._create_id_mappings()
-            
+
             # オンライン学習用のオプティマイザーを初期化
             if self.online_learning:
                 from torch.optim import Adam
+
                 self.optimizer = Adam(self.model.parameters(), lr=self.learning_rate)
-                print(f"✅ Online GNN learning enabled (update every {self.update_frequency} steps)")
+                print(
+                    f"✅ Online GNN learning enabled (update every {self.update_frequency} steps)"
+                )
 
             print("✅ GNN model loaded successfully")
 
@@ -128,7 +133,7 @@ class GNNFeatureExtractor:
     def get_gnn_features(self, task, developer, env):
         """GNNベースの特徴量を取得（3次元のスコアのみ）"""
         self.stats["total_requests"] += 1
-        
+
         if not self.model or not self.embeddings:
             return [0.0] * 3  # 類似度、専門性、人気度の3次元
 
@@ -154,7 +159,7 @@ class GNNFeatureExtractor:
                 self.stats["missing_dev"] += 1
                 return self._get_fallback_features_missing_dev(task_idx, dev_id)
             elif missing_task:
-                # Task missing - use average task embedding as fallback  
+                # Task missing - use average task embedding as fallback
                 self.stats["missing_task"] += 1
                 return self._get_fallback_features_missing_task(dev_idx, task_id)
             else:
@@ -164,90 +169,107 @@ class GNNFeatureExtractor:
 
         except Exception as e:
             self.stats["errors"] += 1
-            print(f"Error extracting GNN features for dev={dev_id}, task={task_id}: {e}")
+            print(
+                f"Error extracting GNN features for dev={dev_id}, task={task_id}: {e}"
+            )
             return [0.0] * 3
 
-    def record_interaction(self, task, developer, reward, action_taken=None, simulation_time=None):
+    def record_interaction(
+        self, task, developer, reward, action_taken=None, simulation_time=None
+    ):
         """新しいインタラクションを記録（強化学習のステップごとに呼び出される）"""
         if not self.online_learning:
             return
-            
+
         # 実際のシミュレーション時間を記録
         from datetime import datetime
+
         if simulation_time is None:
             timestamp = datetime.now()
         else:
             timestamp = simulation_time
-            
+
         interaction = {
-            'dev_id': str(developer.get("name", "")),
-            'task_id': str(task.id),
-            'reward': float(reward),
-            'timestamp': timestamp,
-            'simulation_time': timestamp,
-            'step_number': len(self.interaction_buffer),
-            'action_taken': action_taken  # アサインされたかどうか等
+            "dev_id": str(developer.get("name", "")),
+            "task_id": str(task.id),
+            "reward": float(reward),
+            "timestamp": timestamp,
+            "simulation_time": timestamp,
+            "step_number": len(self.interaction_buffer),
+            "action_taken": action_taken,  # アサインされたかどうか等
         }
-        
+
         self.interaction_buffer.append(interaction)
-        
+
         # バッファサイズを制限
         if len(self.interaction_buffer) > self.max_buffer_size:
             self.interaction_buffer.pop(0)  # 古いものから削除
-        
+
         # 定期的にGNNを更新
         if len(self.interaction_buffer) % self.update_frequency == 0:
             self._update_gnn_online()
 
     def _update_gnn_online(self):
         """蓄積されたインタラクションデータでGNNをオンライン更新（時系列考慮）"""
-        if not self.online_learning or not self.optimizer or len(self.interaction_buffer) < 5:
+        if (
+            not self.online_learning
+            or not self.optimizer
+            or len(self.interaction_buffer) < 5
+        ):
             return
-            
+
         # 最新の時間を取得
         if not self.interaction_buffer:
             return
-            
-        latest_time = max(interaction['simulation_time'] for interaction in self.interaction_buffer)
+
+        latest_time = max(
+            interaction["simulation_time"] for interaction in self.interaction_buffer
+        )
         print(f"🔄 GNNをオンライン更新中... (最新時刻: {latest_time})")
-        
+
         # 時間窓内のインタラクションのみを使用
         from datetime import timedelta
+
         time_window = timedelta(hours=self.time_window_hours)
         cutoff_time = latest_time - time_window
-        
+
         recent_interactions = [
-            interaction for interaction in self.interaction_buffer
-            if interaction['simulation_time'] >= cutoff_time
+            interaction
+            for interaction in self.interaction_buffer
+            if interaction["simulation_time"] >= cutoff_time
         ]
-        
-        print(f"  時間窓内のインタラクション: {len(recent_interactions)}/{len(self.interaction_buffer)}")
+
+        print(
+            f"  時間窓内のインタラクション: {len(recent_interactions)}/{len(self.interaction_buffer)}"
+        )
         print(f"  時間範囲: {cutoff_time} ～ {latest_time}")
-        
+
         if len(recent_interactions) < 3:
             print("  時間窓内のインタラクション数が不足、スキップ")
             return
-        
+
         try:
             self.model.train()
             self.optimizer.zero_grad()
-            
+
             # 時間窓内のインタラクションから正負のペアを生成
             positive_pairs = []
             negative_pairs = []
-            
+
             # 報酬に基づいてポジティブ/ネガティブペアを作成（時間窓内のみ）
             for interaction in recent_interactions:
-                dev_id = interaction['dev_id']
-                task_id = interaction['task_id']
-                reward = interaction['reward']
-                
+                dev_id = interaction["dev_id"]
+                task_id = interaction["task_id"]
+                reward = interaction["reward"]
+
                 dev_idx = self.dev_id_to_idx.get(dev_id)
                 task_idx = self.task_id_to_idx.get(task_id)
-                
+
                 # デバッグ情報
-                print(f"  チェック: {dev_id} (idx={dev_idx}) + {task_id} (idx={task_idx}) = {reward}")
-                
+                print(
+                    f"  チェック: {dev_id} (idx={dev_idx}) + {task_id} (idx={task_idx}) = {reward}"
+                )
+
                 if dev_idx is not None and task_idx is not None:
                     if reward > 0:  # 良いインタラクション
                         positive_pairs.append((dev_idx, task_idx, reward))
@@ -257,27 +279,29 @@ class GNNFeatureExtractor:
                         print(f"    → ネガティブペア追加")
                 else:
                     print(f"    → スキップ（ノードなし）")
-            
-            print(f"  有効なペア: ポジティブ={len(positive_pairs)}, ネガティブ={len(negative_pairs)}")
-            
+
+            print(
+                f"  有効なペア: ポジティブ={len(positive_pairs)}, ネガティブ={len(negative_pairs)}"
+            )
+
             if len(positive_pairs) == 0 and len(negative_pairs) == 0:
                 print("  有効なペアが見つかりませんでした")
                 return
-            
+
             # 現在の埋め込みを取得
             current_embeddings = self.model(
                 self.graph_data.x_dict, self.graph_data.edge_index_dict
             )
-            
+
             total_loss = torch.tensor(0.0, device=self.device, requires_grad=True)
             loss_terms = []
-            
+
             # ポジティブペアの損失（類似度を高める）
             if positive_pairs:
                 for dev_idx, task_idx, weight in positive_pairs:
                     dev_emb = current_embeddings["dev"][dev_idx]
                     task_emb = current_embeddings["task"][task_idx]
-                    
+
                     similarity = F.cosine_similarity(
                         dev_emb.unsqueeze(0), task_emb.unsqueeze(0)
                     )
@@ -285,13 +309,13 @@ class GNNFeatureExtractor:
                     pos_loss = -weight * torch.log(torch.sigmoid(similarity) + 1e-8)
                     loss_terms.append(pos_loss)
                     print(f"    ポジティブ損失: {pos_loss.item():.4f}")
-            
+
             # ネガティブペアの損失（類似度を下げる）
             if negative_pairs:
                 for dev_idx, task_idx, weight in negative_pairs:
                     dev_emb = current_embeddings["dev"][dev_idx]
                     task_emb = current_embeddings["task"][task_idx]
-                    
+
                     similarity = F.cosine_similarity(
                         dev_emb.unsqueeze(0), task_emb.unsqueeze(0)
                     )
@@ -299,39 +323,45 @@ class GNNFeatureExtractor:
                     neg_loss = weight * torch.log(torch.sigmoid(similarity) + 1e-8)
                     loss_terms.append(neg_loss)
                     print(f"    ネガティブ損失: {neg_loss.item():.4f}")
-            
+
             # 全ての損失を合計
             if loss_terms:
                 total_loss = torch.stack(loss_terms).sum()
-            
+
             # 正則化項（埋め込みが大きくなりすぎないように）
-            reg_loss = 0.001 * (torch.norm(current_embeddings["dev"]) + torch.norm(current_embeddings["task"]))
+            reg_loss = 0.001 * (
+                torch.norm(current_embeddings["dev"])
+                + torch.norm(current_embeddings["task"])
+            )
             total_loss = total_loss + reg_loss
-            
+
             print(f"  総損失: {total_loss.item():.4f}")
-            
+
             # バックプロパゲーション
             if total_loss.requires_grad:
                 total_loss.backward()
                 self.optimizer.step()
-                
+
                 # 埋め込みを再計算
                 self.model.eval()
                 with torch.no_grad():
                     self.embeddings = self.model(
                         self.graph_data.x_dict, self.graph_data.edge_index_dict
                     )
-                
+
                 self.stats["updates"] += 1
-                print(f"  ✅ GNN更新完了 (損失: {total_loss.item():.4f}, 更新回数: {self.stats['updates']})")
+                print(
+                    f"  ✅ GNN更新完了 (損失: {total_loss.item():.4f}, 更新回数: {self.stats['updates']})"
+                )
             else:
                 print("  損失に勾配がありません")
-                
+
         except Exception as e:
             print(f"  ❌ GNN更新中にエラー: {e}")
             import traceback
+
             traceback.print_exc()
-        
+
         finally:
             self.model.eval()
 
@@ -339,9 +369,9 @@ class GNNFeatureExtractor:
         """新しい開発者やタスクノードをGNNに追加"""
         if not self.online_learning:
             return
-            
+
         print("🆕 新しいノードをGNNに追加中...")
-        
+
         try:
             # 新しい開発者ノードを追加
             if new_developers:
@@ -349,36 +379,44 @@ class GNNFeatureExtractor:
                     if dev_name not in self.dev_id_to_idx:
                         # 新しい開発者の特徴量を計算
                         dev_features = self._compute_dev_features(dev_name, dev_profile)
-                        
+
                         # グラフデータに追加
-                        new_dev_tensor = torch.tensor([dev_features], dtype=torch.float, device=self.device)
-                        self.graph_data['dev'].x = torch.cat([self.graph_data['dev'].x, new_dev_tensor], dim=0)
-                        
+                        new_dev_tensor = torch.tensor(
+                            [dev_features], dtype=torch.float, device=self.device
+                        )
+                        self.graph_data["dev"].x = torch.cat(
+                            [self.graph_data["dev"].x, new_dev_tensor], dim=0
+                        )
+
                         # ID マッピングを更新
                         new_idx = len(self.dev_id_to_idx)
                         self.dev_id_to_idx[dev_name] = new_idx
-                        self.graph_data['dev'].node_id.append(dev_name)
-                        
+                        self.graph_data["dev"].node_id.append(dev_name)
+
                         print(f"  ✅ 新しい開発者追加: {dev_name} (index: {new_idx})")
-            
+
             # 新しいタスクノードを追加
             if new_tasks:
                 for task_id, task_info in new_tasks.items():
                     if task_id not in self.task_id_to_idx:
                         # 新しいタスクの特徴量を計算
                         task_features = self._compute_task_features(task_id, task_info)
-                        
+
                         # グラフデータに追加
-                        new_task_tensor = torch.tensor([task_features], dtype=torch.float, device=self.device)
-                        self.graph_data['task'].x = torch.cat([self.graph_data['task'].x, new_task_tensor], dim=0)
-                        
+                        new_task_tensor = torch.tensor(
+                            [task_features], dtype=torch.float, device=self.device
+                        )
+                        self.graph_data["task"].x = torch.cat(
+                            [self.graph_data["task"].x, new_task_tensor], dim=0
+                        )
+
                         # ID マッピングを更新
                         new_idx = len(self.task_id_to_idx)
                         self.task_id_to_idx[task_id] = new_idx
-                        self.graph_data['task'].node_id.append(task_id)
-                        
+                        self.graph_data["task"].node_id.append(task_id)
+
                         print(f"  ✅ 新しいタスク追加: {task_id} (index: {new_idx})")
-            
+
             # 埋め込みを再計算
             if new_developers or new_tasks:
                 with torch.no_grad():
@@ -386,36 +424,36 @@ class GNNFeatureExtractor:
                         self.graph_data.x_dict, self.graph_data.edge_index_dict
                     )
                 print(f"  ✅ 埋め込み再計算完了")
-                
+
         except Exception as e:
             print(f"  ❌ ノード追加中にエラー: {e}")
 
     def _compute_dev_features(self, dev_name, dev_profile):
         """新しい開発者の特徴量を計算"""
         return [
-            len(dev_profile.get('skills', [])),
-            len(dev_profile.get('touched_files', [])),
+            len(dev_profile.get("skills", [])),
+            len(dev_profile.get("touched_files", [])),
             0,  # 初期インタラクション数
             0,  # 初期参加タスク数
             0,  # 初期扱ったラベル数
-            dev_profile.get('label_affinity', {}).get('bug', 0.0),
-            dev_profile.get('label_affinity', {}).get('enhancement', 0.0),
-            dev_profile.get('label_affinity', {}).get('documentation', 0.0)
+            dev_profile.get("label_affinity", {}).get("bug", 0.0),
+            dev_profile.get("label_affinity", {}).get("enhancement", 0.0),
+            dev_profile.get("label_affinity", {}).get("documentation", 0.0),
         ]
 
     def _compute_task_features(self, task_id, task_info):
         """新しいタスクの特徴量を計算"""
-        labels = task_info.get('labels', [])
+        labels = task_info.get("labels", [])
         return [
-            len(task_info.get('title', '')),
-            len(task_info.get('body', '')),
+            len(task_info.get("title", "")),
+            len(task_info.get("body", "")),
             len(labels),
-            1 if 'bug' in labels else 0,
-            1 if 'enhancement' in labels else 0,
-            1 if 'documentation' in labels else 0,
+            1 if "bug" in labels else 0,
+            1 if "enhancement" in labels else 0,
+            1 if "documentation" in labels else 0,
             0,  # 初期インタラクション数
             0,  # 初期関与開発者数
-            task_info.get('body', '').count('```') // 2
+            task_info.get("body", "").count("```") // 2,
         ]
 
     def _get_simplified_gnn_features(self, dev_idx, task_idx):
@@ -496,18 +534,19 @@ class GNNFeatureExtractor:
         # タスクは存在するので、平均的な開発者との比較を使用
         task_emb = self.embeddings["task"][task_idx]
         avg_dev_emb = torch.mean(self.embeddings["dev"], dim=0)
-        
+
         features = []
-        
+
         # 1. 平均開発者との類似度（低めの値になると予想）
-        similarity = F.cosine_similarity(
-            avg_dev_emb.unsqueeze(0), task_emb.unsqueeze(0)
-        ).item() * 0.5  # ペナルティとして半分にする
+        similarity = (
+            F.cosine_similarity(avg_dev_emb.unsqueeze(0), task_emb.unsqueeze(0)).item()
+            * 0.5
+        )  # ペナルティとして半分にする
         features.append(similarity)
-        
+
         # 2. 平均的な専門性スコア（中程度の値）
         features.append(0.3)
-        
+
         # 3. タスクの人気度は計算可能
         all_dev_sims = F.cosine_similarity(
             task_emb.unsqueeze(0), self.embeddings["dev"]
@@ -516,7 +555,7 @@ class GNNFeatureExtractor:
             torch.topk(all_dev_sims, k=min(10, all_dev_sims.size(0))).values
         ).item()
         features.append(task_popularity)
-        
+
         return features
 
     def _get_fallback_features_missing_task(self, dev_idx, task_id):
@@ -524,15 +563,16 @@ class GNNFeatureExtractor:
         # 開発者は存在するので、平均的なタスクとの比較を使用
         dev_emb = self.embeddings["dev"][dev_idx]
         avg_task_emb = torch.mean(self.embeddings["task"], dim=0)
-        
+
         features = []
-        
+
         # 1. 平均タスクとの類似度（低めの値になると予想）
-        similarity = F.cosine_similarity(
-            dev_emb.unsqueeze(0), avg_task_emb.unsqueeze(0)
-        ).item() * 0.5  # ペナルティとして半分にする
+        similarity = (
+            F.cosine_similarity(dev_emb.unsqueeze(0), avg_task_emb.unsqueeze(0)).item()
+            * 0.5
+        )  # ペナルティとして半分にする
         features.append(similarity)
-        
+
         # 2. 開発者の専門性は計算可能
         all_task_sims = F.cosine_similarity(
             dev_emb.unsqueeze(0), self.embeddings["task"]
@@ -541,10 +581,10 @@ class GNNFeatureExtractor:
             torch.topk(all_task_sims, k=min(10, all_task_sims.size(0))).values
         ).item()
         features.append(dev_expertise)
-        
+
         # 3. 平均的な人気度スコア（中程度の値）
         features.append(0.3)
-        
+
         return features
 
     def get_feature_names(self):
@@ -560,15 +600,23 @@ class GNNFeatureExtractor:
         if total == 0:
             print("No GNN feature requests yet.")
             return
-            
+
         print(f"\n=== GNN Feature Extraction Statistics ===")
         print(f"Total requests: {total}")
-        print(f"Full features (both nodes found): {self.stats['full_features']} ({self.stats['full_features']/total*100:.1f}%)")
-        print(f"Missing developer: {self.stats['missing_dev']} ({self.stats['missing_dev']/total*100:.1f}%)")
-        print(f"Missing task: {self.stats['missing_task']} ({self.stats['missing_task']/total*100:.1f}%)")
-        print(f"Missing both: {self.stats['missing_both']} ({self.stats['missing_both']/total*100:.1f}%)")
+        print(
+            f"Full features (both nodes found): {self.stats['full_features']} ({self.stats['full_features']/total*100:.1f}%)"
+        )
+        print(
+            f"Missing developer: {self.stats['missing_dev']} ({self.stats['missing_dev']/total*100:.1f}%)"
+        )
+        print(
+            f"Missing task: {self.stats['missing_task']} ({self.stats['missing_task']/total*100:.1f}%)"
+        )
+        print(
+            f"Missing both: {self.stats['missing_both']} ({self.stats['missing_both']/total*100:.1f}%)"
+        )
         print(f"Errors: {self.stats['errors']} ({self.stats['errors']/total*100:.1f}%)")
-        
+
         if self.online_learning:
             print(f"Online learning enabled: True")
             print(f"GNN updates performed: {self.stats['updates']}")
@@ -576,7 +624,7 @@ class GNNFeatureExtractor:
             print(f"Update frequency: every {self.update_frequency} requests")
         else:
             print(f"Online learning enabled: False")
-            
+
         print("=" * 45)
 
     def save_updated_model(self, save_path=None):
@@ -584,19 +632,19 @@ class GNNFeatureExtractor:
         if not self.model:
             print("保存するモデルがありません")
             return
-            
+
         if save_path is None:
             save_path = "data/gnn_model_online_updated.pt"
-            
+
         try:
             torch.save(self.model.state_dict(), save_path)
             print(f"💾 更新されたGNNモデルを保存: {save_path}")
-            
+
             # グラフデータも保存
-            graph_save_path = save_path.replace('model', 'graph')
+            graph_save_path = save_path.replace("model", "graph")
             torch.save(self.graph_data.cpu(), graph_save_path)
             print(f"💾 更新されたグラフデータを保存: {graph_save_path}")
-            
+
         except Exception as e:
             print(f"❌ モデル保存中にエラー: {e}")
 
