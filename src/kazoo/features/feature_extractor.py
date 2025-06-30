@@ -203,13 +203,6 @@ class FeatureExtractor:
             feature_values.extend(gnn_features)
 
         if len(feature_values) != len(self.feature_names):
-            print(f"DEBUG: Feature dimension mismatch!")
-            print(f"  Expected features: {len(self.feature_names)}")
-            print(f"  Actual features: {len(feature_values)}")
-            print(f"  Feature names: {self.feature_names}")
-            if self.gnn_extractor:
-                print(f"  GNN features count: {len(gnn_features) if 'gnn_features' in locals() else 0}")
-                print(f"  GNN feature names: {self.gnn_extractor.get_feature_names()}")
             raise ValueError(f"Feature dimension mismatch: expected {len(self.feature_names)}, got {len(feature_values)}")
 
         return np.array(feature_values, dtype=np.float32)
