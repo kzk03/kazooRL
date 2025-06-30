@@ -67,7 +67,7 @@ class FeatureExtractor:
             ]
         )
         names.extend([f"task_label_{label}" for label in self.all_labels])
-        names.extend(["dev_recent_activity_count", "dev_current_workload"])
+        names.extend(["dev_recent_activity_count", "dev_current_workload", "dev_total_lines_changed"])
         names.extend(["match_skill_intersection_count", "match_file_experience_count"])
         names.extend([f"match_affinity_for_{label}" for label in self.all_labels])
         # ▼▼▼【追加】GNN特徴量名を追加▼▼▼
@@ -136,6 +136,10 @@ class FeatureExtractor:
 
         workload = float(len(env.assignments.get(developer_name, set())))
         feature_values.append(workload)
+
+        # 総変更行数を追加
+        total_lines_changed = float(developer_profile.get("total_lines_changed", 0))
+        feature_values.append(total_lines_changed)
 
         # === カテゴリ3: 相互作用（マッチング）の特徴 ===
         required_skills = set().union(

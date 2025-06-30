@@ -93,19 +93,27 @@ class OSSSimpleEnv(gym.Env):
                 for agent_id in self.agent_ids
             }
         )
-        # 観測空間を単純なBox空間に変更（PPOAgentとの互換性のため）
+        # 観測空間を定義（シンプルな状態 + GNN埋め込み）
         simple_obs_shape = (len(self.initial_backlog) * 3,)
         gnn_pooled_dim = 64  # GNN埋め込みをプールして固定サイズに
-        total_obs_dim = simple_obs_shape[0] + gnn_pooled_dim
-
+        
+        # GNN埋め込みを明示的に分離した観測空間
         self.observation_space = spaces.Dict(
             {
-                agent_id: spaces.Box(
-                    low=-np.inf,
-                    high=np.inf,
-                    shape=(total_obs_dim,),
-                    dtype=np.float32,
-                )
+                agent_id: spaces.Dict({
+                    "simple_obs": spaces.Box(
+                        low=-np.inf,
+                        high=np.inf,
+                        shape=simple_obs_shape,
+                        dtype=np.float32,
+                    ),
+                    "gnn_embeddings": spaces.Box(
+                        low=-np.inf,
+                        high=np.inf,
+                        shape=(gnn_pooled_dim,),
+                        dtype=np.float32,
+                    ),
+                })
                 for agent_id in self.agent_ids
             }
         )
@@ -342,10 +350,12 @@ class OSSSimpleEnv(gym.Env):
         else:
             pooled_gnn = np.zeros(64)  # 空の場合はゼロベクトル
 
-        # Simple obsとプールされたGNN埋め込みを結合
+        # 各エージェントに対して分離された観測を作成
         for agent_id in self.agent_ids:
-            combined_obs = np.concatenate([obs_vector, pooled_gnn])
-            observations[agent_id] = combined_obs.astype(np.float32)
+            observations[agent_id] = {
+                "simple_obs": obs_vector.astype(np.float32),
+                "gnn_embeddings": pooled_gnn.astype(np.float32),
+            }
 
         return observations
 

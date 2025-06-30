@@ -15,6 +15,7 @@ def generate_developer_profiles(data_dir, output_path):
     - label_affinity: どのラベルのタスクをどれくらいの割合で完了させたか
     - touched_files: これまでに編集したことのあるファイルの一覧
     - total_merged_prs: マージされたPRの総数
+    - total_lines_changed: マージされたPRでの総変更行数（追加行数+削除行数）
     """
     print(f"Starting to generate developer profiles from directory: {data_dir}")
 
@@ -32,6 +33,7 @@ def generate_developer_profiles(data_dir, output_path):
             "label_counts": defaultdict(int),
             "touched_files": set(),
             "merged_pr_count": 0,
+            "total_lines_changed": 0,
         }
     )
 
@@ -49,12 +51,6 @@ def generate_developer_profiles(data_dir, output_path):
                         # 壊れた行はスキップ
                         continue
 
-                    # # 【検証のための変更後】
-                    # if event.get('type') == 'PullRequestEvent' and \
-                    # event.get('payload', {}).get('action') == 'closed':
-                    #     # PRがクローズされたイベントを処理
-                    #     continue
-
                     if (
                         event.get("type") == "PullRequestEvent"
                         and event.get("payload", {}).get("action") == "closed"
@@ -69,6 +65,11 @@ def generate_developer_profiles(data_dir, output_path):
                             continue
 
                         dev_stats[developer]["merged_pr_count"] += 1
+
+                        # 行数変更を追加
+                        additions = pr.get("additions", 0)
+                        deletions = pr.get("deletions", 0)
+                        dev_stats[developer]["total_lines_changed"] += additions + deletions
 
                         for label in pr.get("labels", []):
                             if "name" in label:
@@ -100,6 +101,7 @@ def generate_developer_profiles(data_dir, output_path):
             "label_affinity": label_affinity,
             "touched_files": sorted(list(stats["touched_files"])),
             "total_merged_prs": stats["merged_pr_count"],
+            "total_lines_changed": stats["total_lines_changed"],
         }
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -113,6 +115,6 @@ def generate_developer_profiles(data_dir, output_path):
 
 if __name__ == "__main__":
     # データ取得スクリプトが出力したディレクトリを指定
-    INPUT_DATA_DIR = "./data/2019"
-    OUTPUT_YAML_PATH = "configs/dev_profiles.yaml"
+    INPUT_DATA_DIR = "./data"
+    OUTPUT_YAML_PATH = "./configs/dev_profiles.yaml"
     generate_developer_profiles(INPUT_DATA_DIR, OUTPUT_YAML_PATH)

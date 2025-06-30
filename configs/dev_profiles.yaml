@@ -1,138 +1,151 @@
-StefanScherer:
+EricHripko:
   label_affinity: {}
   skills:
   - python
+  total_lines_changed: 293
+  total_merged_prs: 2
+  touched_files: []
+Shikachuu:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 13
   total_merged_prs: 1
   touched_files: []
 aiordache:
   label_affinity: {}
   skills:
   - python
-  total_merged_prs: 1
+  total_lines_changed: 179
+  total_merged_prs: 8
   touched_files: []
-ajlai:
+albers:
   label_affinity: {}
   skills:
   - python
+  total_lines_changed: 8
   total_merged_prs: 1
   touched_files: []
-amezin:
-  label_affinity:
-    status/1-design-review: 1.0
+alexrecuenco:
+  label_affinity: {}
   skills:
   - python
+  total_lines_changed: 735
   total_merged_prs: 1
   touched_files: []
-chibby0ne:
-  label_affinity:
-    kind/enhancement: 1.0
+asterite3:
+  label_affinity: {}
   skills:
   - python
+  total_lines_changed: 40
+  total_merged_prs: 1
+  touched_files: []
+bartier:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 37
   total_merged_prs: 1
   touched_files: []
 chris-crone:
   label_affinity: {}
   skills:
   - python
-  total_merged_prs: 2
-  touched_files: []
-deathtracktor:
-  label_affinity: {}
-  skills:
-  - python
+  total_lines_changed: 32
   total_merged_prs: 1
   touched_files: []
 dependabot-preview[bot]:
   label_affinity:
-    dependencies: 0.75
-    status/4-ready-to-merge: 0.25
+    dependencies: 1.0
   skills:
   - python
-  total_merged_prs: 3
+  total_lines_changed: 48
+  total_merged_prs: 17
   touched_files: []
-glance-:
+hartwork:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 4
+  total_merged_prs: 1
+  touched_files: []
+jarulsamy:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 175
+  total_merged_prs: 1
+  touched_files: []
+laurazard:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 97
+  total_merged_prs: 1
+  touched_files: []
+maaarghk:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 6
+  total_merged_prs: 1
+  touched_files: []
+mat007:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 4
+  total_merged_prs: 1
+  touched_files: []
+mikesep:
   label_affinity:
-    compose-in-a-container: 1.0
+    area/cli: 0.3333333333333333
+    kind/feature: 0.3333333333333333
+    status/2-code-review: 0.3333333333333333
   skills:
   - python
-  total_merged_prs: 2
-  touched_files: []
-glours:
-  label_affinity: {}
-  skills:
-  - python
-  total_merged_prs: 2
-  touched_files: []
-guillaumerose:
-  label_affinity: {}
-  skills:
-  - python
-  total_merged_prs: 1
-  touched_files: []
-jcsirot:
-  label_affinity: {}
-  skills:
-  - python
-  total_merged_prs: 1
-  touched_files: []
-lukas9393:
-  label_affinity: {}
-  skills:
-  - python
+  total_lines_changed: 208
   total_merged_prs: 1
   touched_files: []
 ndeloof:
-  label_affinity:
-    area/build: 0.3333333333333333
-    status/4-ready-to-merge: 0.6666666666666666
-  skills:
-  - python
-  total_merged_prs: 5
-  touched_files: []
-okor:
   label_affinity: {}
   skills:
   - python
-  total_merged_prs: 1
+  total_lines_changed: 9
+  total_merged_prs: 2
   touched_files: []
-rumpl:
-  label_affinity:
-    dco/no: 1.0
-  skills:
-  - python
-  total_merged_prs: 3
-  touched_files: []
-sagarafr:
-  label_affinity:
-    area/secrets: 0.5
-    kind/enhancement: 0.5
-  skills:
-  - python
-  total_merged_prs: 1
-  touched_files: []
-samueljsb:
+pokutuna:
   label_affinity: {}
   skills:
   - python
+  total_lines_changed: 51
   total_merged_prs: 1
   touched_files: []
-smamessier:
+smola:
   label_affinity: {}
   skills:
   - python
+  total_lines_changed: 5
   total_merged_prs: 1
+  touched_files: []
+svarogg:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 6
+  total_merged_prs: 1
+  touched_files: []
+thaJeztah:
+  label_affinity: {}
+  skills:
+  - python
+  total_lines_changed: 39
+  total_merged_prs: 2
   touched_files: []
 ulyssessouza:
-  label_affinity:
-    dco/no: 0.8
-    status/4-ready-to-merge: 0.2
-  skills:
-  - python
-  total_merged_prs: 12
-  touched_files: []
-zelahi:
   label_affinity: {}
   skills:
   - python
-  total_merged_prs: 2
+  total_lines_changed: 525
+  total_merged_prs: 7
   touched_files: []

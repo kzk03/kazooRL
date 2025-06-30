@@ -28,7 +28,7 @@ irl:
   expert_path: "data/expert_trajectories.pkl"
   output_weights_path: "data/learned_weights.npy"
   learning_rate: 0.001
-  epochs: 100
+  epochs: 10 # TODO: もっと多くのエポックで学習
   use_gnn: true
   gnn_graph_path: "data/graph_retrained.pt" # 再訓練済みグラフデータ
   gnn_model_path: "data/gnn_model_retrained.pt" # 再訓練済みモデル
@@ -41,7 +41,7 @@ irl:
 
 # --- 強化学習の設定 (RL) ---
 rl:
-  total_timesteps: 500 # より多くのステップ数
+  total_timesteps: 50 # TODO：より多くのステップ数
 
   learning_rate: 0.0003
   gamma: 0.99

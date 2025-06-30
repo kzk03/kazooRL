@@ -126,11 +126,11 @@ class GNNFeatureExtractor:
         )
 
     def get_gnn_features(self, task, developer, env):
-        """GNNベースの特徴量を取得"""
+        """GNNベースの特徴量を取得（3次元のスコアのみ）"""
         self.stats["total_requests"] += 1
         
         if not self.model or not self.embeddings:
-            return [0.0] * 35  # 32 + 3 = 35次元のゼロベクトル
+            return [0.0] * 3  # 類似度、専門性、人気度の3次元
 
         try:
             # 開発者IDとタスクIDを取得
@@ -144,11 +144,11 @@ class GNNFeatureExtractor:
             # Missing node handling with more informative approach
             missing_dev = dev_idx is None
             missing_task = task_idx is None
-            
+
             if missing_dev and missing_task:
                 # Both missing - return zero features
                 self.stats["missing_both"] += 1
-                return [0.0] * 35
+                return [0.0] * 3
             elif missing_dev:
                 # Developer missing - use average developer embedding as fallback
                 self.stats["missing_dev"] += 1
@@ -160,12 +160,12 @@ class GNNFeatureExtractor:
             else:
                 # Both nodes exist - compute full features
                 self.stats["full_features"] += 1
-                return self._get_full_gnn_features(dev_idx, task_idx)
+                return self._get_simplified_gnn_features(dev_idx, task_idx)
 
         except Exception as e:
             self.stats["errors"] += 1
             print(f"Error extracting GNN features for dev={dev_id}, task={task_id}: {e}")
-            return [0.0] * 35
+            return [0.0] * 3
 
     def record_interaction(self, task, developer, reward, action_taken=None, simulation_time=None):
         """新しいインタラクションを記録（強化学習のステップごとに呼び出される）"""
@@ -418,6 +418,41 @@ class GNNFeatureExtractor:
             task_info.get('body', '').count('```') // 2
         ]
 
+    def _get_simplified_gnn_features(self, dev_idx, task_idx):
+        """簡略化されたGNN特徴量（3次元のスコアのみ）"""
+        # 埋め込みを取得
+        dev_emb = self.embeddings["dev"][dev_idx]
+        task_emb = self.embeddings["task"][task_idx]
+
+        # 特徴量を計算
+        features = []
+
+        # 1. 類似度スコア
+        similarity = F.cosine_similarity(
+            dev_emb.unsqueeze(0), task_emb.unsqueeze(0)
+        ).item()
+        features.append(similarity)
+
+        # 2. 開発者の専門性スコア
+        all_task_sims = F.cosine_similarity(
+            dev_emb.unsqueeze(0), self.embeddings["task"]
+        )
+        dev_expertise = torch.mean(
+            torch.topk(all_task_sims, k=min(10, all_task_sims.size(0))).values
+        ).item()
+        features.append(dev_expertise)
+
+        # 3. タスクの人気度スコア
+        all_dev_sims = F.cosine_similarity(
+            task_emb.unsqueeze(0), self.embeddings["dev"]
+        )
+        task_popularity = torch.mean(
+            torch.topk(all_dev_sims, k=min(10, all_dev_sims.size(0))).values
+        ).item()
+        features.append(task_popularity)
+
+        return features
+
     def _get_full_gnn_features(self, dev_idx, task_idx):
         """両方のノードが存在する場合の完全なGNN特徴量を計算"""
         # 埋め込みを取得
@@ -457,7 +492,7 @@ class GNNFeatureExtractor:
         return features
 
     def _get_fallback_features_missing_dev(self, task_idx, dev_id):
-        """開発者ノードが存在しない場合のフォールバック特徴量"""
+        """開発者ノードが存在しない場合のフォールバック特徴量（3次元）"""
         # タスクは存在するので、平均的な開発者との比較を使用
         task_emb = self.embeddings["task"][task_idx]
         avg_dev_emb = torch.mean(self.embeddings["dev"], dim=0)
@@ -482,13 +517,10 @@ class GNNFeatureExtractor:
         ).item()
         features.append(task_popularity)
         
-        # 4. 平均開発者埋め込み
-        features.extend(avg_dev_emb.tolist())
-        
         return features
 
     def _get_fallback_features_missing_task(self, dev_idx, task_id):
-        """タスクノードが存在しない場合のフォールバック特徴量"""
+        """タスクノードが存在しない場合のフォールバック特徴量（3次元）"""
         # 開発者は存在するので、平均的なタスクとの比較を使用
         dev_emb = self.embeddings["dev"][dev_idx]
         avg_task_emb = torch.mean(self.embeddings["task"], dim=0)
@@ -513,23 +545,14 @@ class GNNFeatureExtractor:
         # 3. 平均的な人気度スコア（中程度の値）
         features.append(0.3)
         
-        # 4. 開発者埋め込み
-        features.extend(dev_emb.tolist())
-        
         return features
 
     def get_feature_names(self):
-        """GNN特徴量の名前リストを返す"""
+        """GNN特徴量の名前リストを返す（3次元のみ）"""
         if not self.model:
             return []
 
-        names = ["gnn_similarity", "gnn_dev_expertise", "gnn_task_popularity"]
-
-        # 開発者埋め込みの各次元
-        for i in range(32):
-            names.append(f"gnn_dev_emb_{i}")
-
-        return names
+        return ["gnn_similarity", "gnn_dev_expertise", "gnn_task_popularity"]
 
     def print_statistics(self):
         """GNN特徴量抽出の統計を表示"""
