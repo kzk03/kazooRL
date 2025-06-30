@@ -3,9 +3,8 @@ from datetime import datetime
 import numpy as np
 
 try:
-    from kazoo.features.gnn_feature_extractor import (
-        GNNFeatureExtractor as IRLGNNFeatureExtractor,
-    )
+    from kazoo.features.gnn_feature_extractor import \
+        GNNFeatureExtractor as IRLGNNFeatureExtractor
 except ImportError:
     print("Warning: GNN feature extractor not available")
     IRLGNNFeatureExtractor = None
@@ -32,11 +31,16 @@ class FeatureExtractor:
 
         # GNNFeatureExtractorを初期化
         self.gnn_extractor = None
-        if IRLGNNFeatureExtractor and hasattr(cfg, 'irl') and cfg.irl.get("use_gnn", False):
+        if (
+            IRLGNNFeatureExtractor
+            and hasattr(cfg, "irl")
+            and cfg.irl.get("use_gnn", False)
+        ):
             try:
                 # IRLに必要な設定が存在する場合のみ初期化
-                if (hasattr(cfg.irl, 'gnn_graph_path') and 
-                    hasattr(cfg.irl, 'gnn_model_path')):
+                if hasattr(cfg.irl, "gnn_graph_path") and hasattr(
+                    cfg.irl, "gnn_model_path"
+                ):
                     self.gnn_extractor = IRLGNNFeatureExtractor(cfg)
                     print("✅ GNN feature extractor initialized")
                 else:
@@ -44,7 +48,7 @@ class FeatureExtractor:
             except Exception as e:
                 print(f"Warning: Failed to initialize GNN feature extractor: {e}")
                 self.gnn_extractor = None
-        
+
         # データ内での最新日時を基準にするため、初期化時にNoneに設定
         # 実際の値は初回のget_features呼び出し時に計算される
         self.data_max_date = None
@@ -67,11 +71,29 @@ class FeatureExtractor:
             ]
         )
         names.extend([f"task_label_{label}" for label in self.all_labels])
-        names.extend(["dev_recent_activity_count", "dev_current_workload", "dev_total_lines_changed"])
+        names.extend(
+            [
+                "dev_recent_activity_count",
+                "dev_current_workload",
+                "dev_total_lines_changed",
+            ]
+        )
         # 社会的つながりの特徴量を追加
-        names.extend(["dev_collaboration_network_size", "dev_comment_interactions", "dev_cross_issue_activity"])
+        names.extend(
+            [
+                "dev_collaboration_network_size",
+                "dev_comment_interactions",
+                "dev_cross_issue_activity",
+            ]
+        )
         # 具体的な協力関係の特徴量を追加
-        names.extend(["match_collaborated_with_task_author", "match_collaborator_overlap_count", "match_has_prior_collaboration"])
+        names.extend(
+            [
+                "match_collaborated_with_task_author",
+                "match_collaborator_overlap_count",
+                "match_has_prior_collaboration",
+            ]
+        )
         names.extend(["match_skill_intersection_count", "match_file_experience_count"])
         names.extend([f"match_affinity_for_{label}" for label in self.all_labels])
         # ▼▼▼【追加】GNN特徴量名を追加▼▼▼
@@ -97,10 +119,10 @@ class FeatureExtractor:
                 for task in assigned_tasks:
                     if task.updated_at > max_date:
                         max_date = task.updated_at
-            
+
             self.data_max_date = max_date
             print(f"[FeatureExtractor] Data max date set to: {self.data_max_date}")
-        
+
         return self.data_max_date
 
     def get_features(self, task, developer, env) -> np.ndarray:
@@ -118,9 +140,9 @@ class FeatureExtractor:
         # === カテゴリ1: タスク自体の特徴 ===
         # データ内での最新日時を基準とした相対的な放置時間を計算
         data_max_date = self._get_data_max_date(env)
-        neglect_time_days = (
-            data_max_date - task.updated_at
-        ).total_seconds() / (3600.0 * 24.0)  # 秒 → 日数に変換
+        neglect_time_days = (data_max_date - task.updated_at).total_seconds() / (
+            3600.0 * 24.0
+        )  # 秒 → 日数に変換
         feature_values.append(neglect_time_days)
         feature_values.append(float(task.comments))
         feature_values.append(float(len(task.body)))
@@ -146,34 +168,50 @@ class FeatureExtractor:
         feature_values.append(total_lines_changed)
 
         # 社会的つながりの特徴量を追加
-        collaboration_network_size = float(developer_profile.get("collaboration_network_size", 0))
+        collaboration_network_size = float(
+            developer_profile.get("collaboration_network_size", 0)
+        )
         feature_values.append(collaboration_network_size)
-        
+
         comment_interactions = float(developer_profile.get("comment_interactions", 0))
         feature_values.append(comment_interactions)
-        
+
         cross_issue_activity = float(developer_profile.get("cross_issue_activity", 0))
         feature_values.append(cross_issue_activity)
 
         # === カテゴリ4: 具体的な協力関係の特徴 ===
         dev_collaborators = set(developer_profile.get("collaborators", []))
-        
+
         # タスク作成者との協力履歴
-        task_author = getattr(task, "user", {}).get("login") if hasattr(task, "user") else None
-        collaborated_with_author = 1.0 if task_author and task_author in dev_collaborators else 0.0
+        task_author = (
+            getattr(task, "user", {}).get("login") if hasattr(task, "user") else None
+        )
+        collaborated_with_author = (
+            1.0 if task_author and task_author in dev_collaborators else 0.0
+        )
         feature_values.append(collaborated_with_author)
-        
+
         # タスクの担当者との協力履歴重複数
-        task_assignees = getattr(task, "assignees", []) if hasattr(task, "assignees") else []
-        assignee_logins = {assignee.get("login") for assignee in task_assignees if assignee.get("login")}
-        collaborator_overlap_count = float(len(assignee_logins.intersection(dev_collaborators)))
+        task_assignees = (
+            getattr(task, "assignees", []) if hasattr(task, "assignees") else []
+        )
+        assignee_logins = {
+            assignee.get("login")
+            for assignee in task_assignees
+            if assignee.get("login")
+        }
+        collaborator_overlap_count = float(
+            len(assignee_logins.intersection(dev_collaborators))
+        )
         feature_values.append(collaborator_overlap_count)
-        
+
         # タスクに関連する開発者（作成者+担当者）との協力履歴があるか
         task_related_devs = assignee_logins.copy()
         if task_author:
             task_related_devs.add(task_author)
-        has_prior_collaboration = 1.0 if len(task_related_devs.intersection(dev_collaborators)) > 0 else 0.0
+        has_prior_collaboration = (
+            1.0 if len(task_related_devs.intersection(dev_collaborators)) > 0 else 0.0
+        )
         feature_values.append(has_prior_collaboration)
 
         # === カテゴリ3: 相互作用（マッチング）の特徴 ===
@@ -203,7 +241,9 @@ class FeatureExtractor:
             feature_values.extend(gnn_features)
 
         if len(feature_values) != len(self.feature_names):
-            raise ValueError(f"Feature dimension mismatch: expected {len(self.feature_names)}, got {len(feature_values)}")
+            raise ValueError(
+                f"Feature dimension mismatch: expected {len(self.feature_names)}, got {len(feature_values)}"
+            )
 
         return np.array(feature_values, dtype=np.float32)
 

@@ -73,12 +73,16 @@ def generate_developer_profiles(data_dir, output_path):
                             continue
 
                         dev_stats[developer]["merged_pr_count"] += 1
-                        dev_stats[developer]["issues_participated"].add(pr.get("number", 0))
+                        dev_stats[developer]["issues_participated"].add(
+                            pr.get("number", 0)
+                        )
 
                         # 行数変更を追加
                         additions = pr.get("additions", 0)
                         deletions = pr.get("deletions", 0)
-                        dev_stats[developer]["total_lines_changed"] += additions + deletions
+                        dev_stats[developer]["total_lines_changed"] += (
+                            additions + deletions
+                        )
 
                         for label in pr.get("labels", []):
                             if "name" in label:
@@ -95,29 +99,50 @@ def generate_developer_profiles(data_dir, output_path):
                         for assignee in pr.get("assignees", []):
                             assignee_login = assignee.get("login")
                             if assignee_login and assignee_login != developer:
-                                dev_stats[developer]["collaborators"].add(assignee_login)
-                                dev_stats[assignee_login]["collaborators"].add(developer)
+                                dev_stats[developer]["collaborators"].add(
+                                    assignee_login
+                                )
+                                dev_stats[assignee_login]["collaborators"].add(
+                                    developer
+                                )
 
                         for reviewer in pr.get("requested_reviewers", []):
                             reviewer_login = reviewer.get("login")
                             if reviewer_login and reviewer_login != developer:
-                                dev_stats[developer]["collaborators"].add(reviewer_login)
-                                dev_stats[reviewer_login]["collaborators"].add(developer)
+                                dev_stats[developer]["collaborators"].add(
+                                    reviewer_login
+                                )
+                                dev_stats[reviewer_login]["collaborators"].add(
+                                    developer
+                                )
 
                     # IssueCommentEvent処理（社会的相互作用）
                     elif event.get("type") == "IssueCommentEvent":
                         actor_login = event.get("actor", {}).get("login")
-                        issue_number = event.get("payload", {}).get("issue", {}).get("number")
-                        issue_author = event.get("payload", {}).get("issue", {}).get("user", {}).get("login")
-                        
+                        issue_number = (
+                            event.get("payload", {}).get("issue", {}).get("number")
+                        )
+                        issue_author = (
+                            event.get("payload", {})
+                            .get("issue", {})
+                            .get("user", {})
+                            .get("login")
+                        )
+
                         if actor_login and issue_number:
                             dev_stats[actor_login]["comment_interactions"] += 1
-                            dev_stats[actor_login]["issues_participated"].add(issue_number)
-                            
+                            dev_stats[actor_login]["issues_participated"].add(
+                                issue_number
+                            )
+
                             # 異なる開発者のIssue/PRにコメントした場合、協力者として記録
                             if issue_author and issue_author != actor_login:
-                                dev_stats[actor_login]["collaborators"].add(issue_author)
-                                dev_stats[issue_author]["collaborators"].add(actor_login)
+                                dev_stats[actor_login]["collaborators"].add(
+                                    issue_author
+                                )
+                                dev_stats[issue_author]["collaborators"].add(
+                                    actor_login
+                                )
         except Exception as e:
             print(f"Error processing file {file_path}: {e}")
 
@@ -141,7 +166,9 @@ def generate_developer_profiles(data_dir, output_path):
             "total_lines_changed": stats["total_lines_changed"],
             # 社会的つながりの特徴量
             "collaboration_network_size": len(stats["collaborators"]),
-            "collaborators": sorted(list(stats["collaborators"])),  # 協力者の具体的なリスト
+            "collaborators": sorted(
+                list(stats["collaborators"])
+            ),  # 協力者の具体的なリスト
             "comment_interactions": stats["comment_interactions"],
             "cross_issue_activity": len(stats["issues_participated"]),
         }
