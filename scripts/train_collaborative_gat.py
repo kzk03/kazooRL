@@ -3,16 +3,18 @@
 協力ネットワーク対応の新しいGATモデルを訓練・保存するスクリプト
 """
 
+import os
+import sys
+from pathlib import Path
+
 import torch
 import torch.nn.functional as F
-from pathlib import Path
-import sys
-import os
 
 # プロジェクトルートを追加
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from kazoo.GAT.GAT_model import GNNModel
+
 
 def train_collaborative_gat():
     """協力ネットワーク対応のGATモデルを訓練"""

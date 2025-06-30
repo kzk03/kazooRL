@@ -4,12 +4,14 @@
 """
 
 import json
-import yaml
-import torch
-import numpy as np
 from collections import defaultdict
-import networkx as nx
 from pathlib import Path
+
+import networkx as nx
+import numpy as np
+import torch
+import yaml
+
 
 def build_developer_collaboration_network(dev_profiles_path, output_path):
     """
@@ -117,7 +119,7 @@ def visualize_network(network_data, output_image_path):
     """
     try:
         import matplotlib.pyplot as plt
-        
+
         # NetworkXグラフを再構築
         edge_index = network_data['dev_collaboration_edge_index']
         edge_weights = network_data['dev_collaboration_edge_weights']
