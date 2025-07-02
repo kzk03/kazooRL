@@ -39,9 +39,9 @@ class OSSSimpleEnv(gym.Env):
         if gnn_config.get("model_path") and os.path.exists(gnn_config["model_path"]):
             try:
                 # GNNモデルの初期化と読み込み
-                from kazoo.GAT.GAT_model import GNNModel
+                from kazoo.GAT.GAT_model import GATModel
 
-                self.gnn_model = GNNModel(
+                self.gnn_model = GATModel(
                     in_channels_dict={"dev": 8, "task": 9}, out_channels=32
                 )
                 self.gnn_model.load_state_dict(

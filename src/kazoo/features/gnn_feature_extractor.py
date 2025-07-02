@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 # GNNモデルをインポート
 sys.path.append(str(Path(__file__).resolve().parents[2]))
-from kazoo.GAT.GAT_model import GNNModel
+from kazoo.GAT.GAT_model import GATModel
 
 
 class GNNFeatureExtractor:
@@ -82,9 +82,9 @@ class GNNFeatureExtractor:
                 return
 
             # Import GNN model here to avoid circular imports
-            from kazoo.GAT.GAT_model import GNNModel
+            from kazoo.GAT.GAT_model import GATModel
 
-            self.model = GNNModel(
+            self.model = GATModel(
                 in_channels_dict={"dev": 8, "task": 9}, out_channels=32
             )
             self.model.load_state_dict(torch.load(model_path, weights_only=True))

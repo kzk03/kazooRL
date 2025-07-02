@@ -13,7 +13,7 @@ import torch.nn.functional as F
 # プロジェクトルートを追加
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from kazoo.GAT.GAT_model import GNNModel
+from kazoo.GAT.GAT_model import GATModel
 
 
 def train_collaborative_gat():
@@ -56,7 +56,7 @@ def train_collaborative_gat():
 
     # モデル初期化
     in_channels_dict = {"dev": 8, "task": 9}
-    model = GNNModel(in_channels_dict=in_channels_dict, out_channels=32)
+    model = GATModel(in_channels_dict=in_channels_dict, out_channels=32)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
     print(f"Model architecture:\n{model}")

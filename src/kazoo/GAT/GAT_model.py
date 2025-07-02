@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from torch_geometric.nn import GATConv
 
 
-class GNNModel(nn.Module):
+class GATModel(nn.Module):
     """
     GATConv を用いた異種グラフニューラルネットワークモデル。
     開発者-タスク間の関係に加えて、開発者-開発者間の協力関係もモデル化。

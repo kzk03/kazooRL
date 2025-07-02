@@ -282,7 +282,7 @@ def retrain_gnn_model(graph_data):
 
     # GNNモデルをインポート
     try:
-        from kazoo.gnn.gnn_model import GNNModel
+        from kazoo.GAT.GAT_model import GATModel
     except ImportError:
         print("❌ GNNモデルをインポートできません")
         return None
@@ -296,7 +296,7 @@ def retrain_gnn_model(graph_data):
     print(f"使用デバイス: {device}")
 
     # モデル初期化
-    model = GNNModel(
+    model = GATModel(
         in_channels_dict={
             "dev": graph_data["dev"].x.shape[1],  # 実際の開発者特徴量次元
             "task": graph_data["task"].x.shape[1],  # 実際のタスク特徴量次元
