@@ -61,15 +61,27 @@ def map_event_to_action(event):
 
 def main(data_dir, backlog_path, output_path):
     # ▼▼▼【ここからが修正箇所】▼▼▼
-    # 1. 複数の.jsonlファイルを読み込む
+    # 1. 複数の.jsonlファイルを読み込む（data/直下とstatus/20**以下の両方）
     print(f"Reading event data from directory: {data_dir}")
-    jsonl_files = glob.glob(os.path.join(data_dir, "*.jsonl"))
+    
+    jsonl_files = []
+    # data_dir直下のjsonlファイル
+    direct_files = glob.glob(os.path.join(data_dir, "*.jsonl"))
+    jsonl_files.extend(direct_files)
+    
+    # data_dir/status/20** 以下のjsonlファイル
+    status_pattern = os.path.join(data_dir, "status", "20*", "*.jsonl")
+    status_files = glob.glob(status_pattern)
+    jsonl_files.extend(status_files)
+    
     if not jsonl_files:
-        print(f"Error: No .jsonl files found in {data_dir}")
+        print(f"Error: No .jsonl files found in {data_dir} or {data_dir}/status/20**/")
         return
 
+    print(f"Found {len(jsonl_files)} files to process.")
     all_events = []
     for file_path in sorted(jsonl_files):
+        print(f"Processing file: {file_path}...")
         with open(file_path, "r", encoding="utf-8") as f:
             for line in f:
                 if line.strip():
@@ -141,7 +153,7 @@ def main(data_dir, backlog_path, output_path):
 
 if __name__ == "__main__":
     # 入力データディレクトリと、依存するファイルを指定
-    INPUT_DATA_DIR = "./data/2019"
+    INPUT_DATA_DIR = "./data"  # data/ 直下とstatus/20**/ 以下の両方を探索
     BACKLOG_FILE_PATH = "data/backlog.json"
     OUTPUT_TRAJECTORY_PATH = "data/expert_trajectories.pkl"
 

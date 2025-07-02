@@ -1,0 +1,155 @@
+# =============================================================================
+# リモートサーバー向け強化学習・逆強化学習 設定ファイル
+# =============================================================================
+#
+# この設定は、リモートサーバーでの長時間・本格的な学習に最適化されています。
+# ローカル開発環境より多くのエポック数・学習ステップを設定しています。
+#
+# =============================================================================
+
+# --- 環境設定 (Environment) ---
+env:
+  backlog_path: "data/backlog.json"
+  dev_profiles_path: "configs/dev_profiles.yaml"
+  expert_trajectories_path: "data/expert_trajectories.pkl"
+  simulation:
+    time_step_hours: 8
+    max_days: 365
+  gnn:
+    model_path: "data/gnn_model_collaborative.pt" # 協力ネットワーク対応GNNモデル
+    graph_data_path: "data/graph_collaborative.pt" # 協力ネットワーク対応グラフデータ
+
+num_developers: 21 # 開発者の数（プロフィールファイルの全開発者を使用）
+
+# --- 特徴量計算の設定 (Features) ---
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- 逆強化学習の設定 (IRL) - サーバー向け強化 ---
+irl:
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_reward_weights.npy"
+
+  # 学習パラメータ（サーバー向けに最適化）
+  learning_rate: 0.00005 # さらに低い学習率で安定性向上 (0.0001 → 0.00005)
+  epochs: 5000 # 本格的な学習のため大幅増加 (2000 → 5000)
+
+  # GNN関連設定
+  use_gnn: true
+  gnn_graph_path: "data/graph_collaborative.pt" # 協力ネットワーク対応グラフデータ
+  gnn_model_path: "data/gnn_model_collaborative.pt" # 協力ネットワーク対応モデル
+
+  # オンライン学習設定（サーバー向け調整）
+  online_gnn_learning: true # ステップごとのGNN更新を有効化
+  gnn_update_frequency: 10 # 更新頻度を下げて安定性向上 (5 → 10)
+  gnn_learning_rate: 0.00005 # GNNの学習率をさらに下げる (0.0001 → 0.00005)
+  gnn_buffer_size: 200 # バッファサイズ増加 (100 → 200)
+  gnn_time_window_hours: 48 # 時系列学習の時間窓を拡大 (24 → 48)
+
+  # 学習の安定性・監視関連
+  loss_logging_frequency: 100 # 100エポックごとにログ出力
+  checkpoint_frequency: 1000 # 1000エポックごとにチェックポイント保存
+  early_stopping_patience: 500 # 500エポック改善がなければ早期停止
+  gradient_clipping: 1.0 # 勾配クリッピングで学習安定化
+
+# --- 強化学習の設定 (RL) - サーバー向け強化 ---
+rl:
+  # 本格的な学習のため大幅にタイムステップ増加
+  total_timesteps: 1000000 # 100万ステップ (100000 → 1000000)
+
+  # 学習パラメータ（長期学習向け調整）
+  learning_rate: 0.0001 # 長期学習のため学習率を下げる (0.0003 → 0.0001)
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  k_epochs: 4
+
+  # バッチサイズ・エピソード関連（サーバー性能活用）
+  batch_size: 2048 # バッチサイズ増加
+  n_steps: 2048 # ステップ数増加
+
+  # 学習監視・保存設定
+  save_frequency: 50000 # 50000ステップごとにモデル保存
+  eval_frequency: 25000 # 25000ステップごとに評価実行
+  log_frequency: 1000 # 1000ステップごとにログ出力
+
+  # 探索・学習安定化
+  ent_coef: 0.01 # エントロピー係数で探索促進
+  vf_coef: 0.5 # 価値関数の重み
+  max_grad_norm: 0.5 # 勾配クリッピング
+
+# --- GNN設定 (協力ネットワーク対応) ---
+gnn:
+  # モデル構造
+  hidden_channels: 64 # 隠れ層のチャネル数増加
+  num_layers: 3 # 層数増加
+  dropout: 0.2 # ドロップアウト率
+
+  # 訓練設定
+  epochs: 1000 # GNN学習エポック数増加 (500 → 1000)
+  learning_rate: 0.001
+  batch_size: 256
+  validation_split: 0.2
+
+  # 協力ネットワーク関連
+  collaboration_threshold: 2 # 協力関係とみなす最小相互作用数
+  network_update_frequency: 100 # ネットワーク更新頻度
+
+# --- ログ・出力設定 ---
+logging:
+  level: "INFO"
+  console_output: true
+  file_output: true
+  log_dir: "logs"
+
+  # 詳細ログ設定
+  log_training_metrics: true
+  log_model_weights: false # 重みログは無効化（容量節約）
+  log_feature_importance: true
+
+  # パフォーマンス監視
+  log_system_resources: true
+  resource_log_frequency: 300 # 5分ごとにシステムリソース記録
+
+# --- 実験・評価設定 ---
+evaluation:
+  # 評価指標
+  metrics:
+    ["accuracy", "precision", "recall", "f1", "auc", "assignment_success_rate"]
+
+  # クロスバリデーション
+  cv_folds: 5
+  test_split: 0.2
+
+  # 評価データ設定
+  eval_episodes: 100 # 評価エピソード数
+  eval_timesteps: 10000 # 評価ステップ数
+
+# --- システム・リソース設定 ---
+system:
+  # 並列処理
+  num_workers: 4 # ワーカープロセス数
+  use_multiprocessing: true
+
+  # GPU設定
+  use_gpu: true # GPU利用を有効化
+  gpu_memory_fraction: 0.8 # GPU メモリ使用率
+
+  # メモリ管理
+  memory_limit_gb: 16 # メモリ使用制限
+  swap_usage_limit: 0.5 # スワップ使用制限
+
+  # チェックポイント・保存
+  checkpoint_dir: "checkpoints"
+  max_checkpoints: 10 # 保持する最大チェックポイント数
+
+  # 自動復旧
+  auto_resume: true # 中断からの自動再開
+  resume_from_checkpoint: true

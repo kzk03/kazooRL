@@ -3,8 +3,9 @@ from datetime import datetime
 import numpy as np
 
 try:
-    from kazoo.features.gnn_feature_extractor import \
-        GNNFeatureExtractor as IRLGNNFeatureExtractor
+    from kazoo.features.gnn_feature_extractor import (
+        GNNFeatureExtractor as IRLGNNFeatureExtractor,
+    )
 except ImportError:
     print("Warning: GNN feature extractor not available")
     IRLGNNFeatureExtractor = None
@@ -144,12 +145,16 @@ class FeatureExtractor:
             3600.0 * 24.0
         )  # 秒 → 日数に変換
         feature_values.append(neglect_time_days)
-        feature_values.append(float(task.comments))
-        feature_values.append(float(len(task.body)))
-        feature_values.append(float(task.body.count("```") // 2))
+        feature_values.append(float(task.comments if task.comments is not None else 0))
+        
+        # task.bodyがNoneの場合の処理を追加
+        task_body = task.body if task.body is not None else ""
+        feature_values.append(float(len(task_body)))
+        feature_values.append(float(task_body.count("```") // 2))
 
         label_vec = [0.0] * len(self.all_labels)
-        for label_name in task.labels:
+        task_labels = task.labels if task.labels is not None else []
+        for label_name in task_labels:
             if label_name in self.label_to_idx:
                 label_vec[self.label_to_idx[label_name]] = 1.0
         feature_values.extend(label_vec)
@@ -216,7 +221,7 @@ class FeatureExtractor:
 
         # === カテゴリ3: 相互作用（マッチング）の特徴 ===
         required_skills = set().union(
-            *(self.LABEL_TO_SKILLS.get(label_name, set()) for label_name in task.labels)
+            *(self.LABEL_TO_SKILLS.get(label_name, set()) for label_name in task_labels)
         )
         developer_skills = set(developer_profile.get("skills", []))
         skill_intersection_count = float(

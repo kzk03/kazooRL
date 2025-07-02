@@ -18,8 +18,8 @@ def analyze_irl_weights():
 
     print("=== IRL報酬重み分析（協力関係特徴量中心） ===\n")
 
-    # 学習済み重みを読み込み
-    weights_files = ["data/learned_weights.npy", "data/learned_reward_weights.npy"]
+    # 学習済み重みを読み込み（最新の重みファイルを優先）
+    weights_files = ["data/learned_reward_weights.npy", "data/learned_weights.npy"]
 
     latest_weights = None
     for weights_file in weights_files:
