@@ -53,16 +53,16 @@ def main():
     print(
         f"4. Starting training loop with {len(expert_trajectory_steps)} expert steps..."
     )
-    
+
     # 進捗表示用の変数
     total_steps = len(expert_trajectory_steps)
     processed_steps = 0
     valid_steps = 0
-    
+
     for epoch in range(cfg.irl.epochs):
         total_loss = 0
         epoch_valid_steps = 0
-        
+
         print(f"\n--- Epoch {epoch + 1}/{cfg.irl.epochs} ---")
 
         # .pklファイルから読み込んだ軌跡の各ステップをループ
@@ -70,7 +70,10 @@ def main():
             # 進捗表示（100ステップごと）
             if step_idx % 100 == 0:
                 progress_pct = (step_idx / total_steps) * 100
-                print(f"  Processing step {step_idx + 1}/{total_steps} ({progress_pct:.1f}%)", end='\r')
+                print(
+                    f"  Processing step {step_idx + 1}/{total_steps} ({progress_pct:.1f}%)",
+                    end="\r",
+                )
             optimizer.zero_grad()
 
             # --- 軌跡データから状態と行動を取得 ---
@@ -99,11 +102,11 @@ def main():
             expert_features = feature_extractor.get_features(
                 expert_task, developer_obj, env
             )
-            
+
             if expert_features is None:
                 print(f"Warning: expert_features is None for task {expert_task_id}")
                 continue
-                
+
             expert_features = torch.from_numpy(expert_features).float()
 
             other_features_list = []
@@ -116,7 +119,9 @@ def main():
                             other_task, developer_obj, env
                         )
                         if features is not None:
-                            other_features_list.append(torch.from_numpy(features).float())
+                            other_features_list.append(
+                                torch.from_numpy(features).float()
+                            )
 
             if not other_features_list:
                 epoch_valid_steps -= 1  # 有効ステップから除外
@@ -143,7 +148,7 @@ def main():
             print(f"    Average Loss: {avg_loss:.4f}")
         else:
             print(f"    No valid steps found!")
-        
+
         valid_steps += epoch_valid_steps
 
     print(f"\n5. Training finished. Total valid steps processed: {valid_steps}")
@@ -151,7 +156,9 @@ def main():
     np.save(cfg.irl.output_weights_path, reward_weights.detach().numpy())
     print(f"✅ Learned reward weights saved to: {cfg.irl.output_weights_path}")
     print(f"   Weight shape: {reward_weights.shape}")
-    print(f"   Weight stats: min={reward_weights.min():.4f}, max={reward_weights.max():.4f}, mean={reward_weights.mean():.4f}")
+    print(
+        f"   Weight stats: min={reward_weights.min():.4f}, max={reward_weights.max():.4f}, mean={reward_weights.mean():.4f}"
+    )
 
 
 if __name__ == "__main__":

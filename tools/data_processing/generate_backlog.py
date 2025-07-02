@@ -20,7 +20,7 @@ def generate_full_backlog(data_dir, output_path):
     """
     全てのイベントログを処理し、各タスクの完全なライフサイクル情報を含む
     包括的なバックログファイルを作成する。
-    
+
     従来のbackward compatibility関数
     """
     return process_multiple_directories(data_dir, output_path)
@@ -31,14 +31,14 @@ def process_multiple_directories(base_data_dir, output_path):
     複数のディレクトリから全ての.jsonlファイルを処理する
     """
     print(f"Starting to generate full backlog from base directory: {base_data_dir}")
-    
+
     # 全てのタスク情報をIDをキーにして保持する辞書
     tasks_db = {}
-    
+
     # データディレクトリ内の全ての.jsonlファイルを検索
     # ルートディレクトリ（data/）の.jsonlファイル
     jsonl_files = glob.glob(os.path.join(base_data_dir, "*.jsonl"))
-    
+
     # status/サブディレクトリの.jsonlファイル
     status_dir = os.path.join(base_data_dir, "status")
     if os.path.exists(status_dir):
@@ -47,13 +47,13 @@ def process_multiple_directories(base_data_dir, output_path):
             if os.path.isdir(year_path):
                 year_files = glob.glob(os.path.join(year_path, "*.jsonl"))
                 jsonl_files.extend(year_files)
-    
+
     if not jsonl_files:
         print(f"Error: No .jsonl files found in directory: {base_data_dir}")
         return
-    
+
     print(f"Found {len(jsonl_files)} files to process.")
-    
+
     for file_path in sorted(jsonl_files):
         print(f"Processing file: {file_path}...")
         try:
@@ -112,10 +112,10 @@ if __name__ == "__main__":
         INPUT_DATA_DIR = sys.argv[1]
     else:
         INPUT_DATA_DIR = "./data/"
-    
+
     if len(sys.argv) > 2:
         OUTPUT_JSON_PATH = sys.argv[2]
     else:
         OUTPUT_JSON_PATH = "data/backlog.json"
-    
+
     process_multiple_directories(INPUT_DATA_DIR, OUTPUT_JSON_PATH)

@@ -63,17 +63,17 @@ def main(data_dir, backlog_path, output_path):
     # ▼▼▼【ここからが修正箇所】▼▼▼
     # 1. 複数の.jsonlファイルを読み込む（data/直下とstatus/20**以下の両方）
     print(f"Reading event data from directory: {data_dir}")
-    
+
     jsonl_files = []
     # data_dir直下のjsonlファイル
     direct_files = glob.glob(os.path.join(data_dir, "*.jsonl"))
     jsonl_files.extend(direct_files)
-    
+
     # data_dir/status/20** 以下のjsonlファイル
     status_pattern = os.path.join(data_dir, "status", "20*", "*.jsonl")
     status_files = glob.glob(status_pattern)
     jsonl_files.extend(status_files)
-    
+
     if not jsonl_files:
         print(f"Error: No .jsonl files found in {data_dir} or {data_dir}/status/20**/")
         return

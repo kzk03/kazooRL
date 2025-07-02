@@ -3,9 +3,8 @@ from datetime import datetime
 import numpy as np
 
 try:
-    from kazoo.features.gnn_feature_extractor import (
-        GNNFeatureExtractor as IRLGNNFeatureExtractor,
-    )
+    from kazoo.features.gnn_feature_extractor import \
+        GNNFeatureExtractor as IRLGNNFeatureExtractor
 except ImportError:
     print("Warning: GNN feature extractor not available")
     IRLGNNFeatureExtractor = None
@@ -146,7 +145,7 @@ class FeatureExtractor:
         )  # 秒 → 日数に変換
         feature_values.append(neglect_time_days)
         feature_values.append(float(task.comments if task.comments is not None else 0))
-        
+
         # task.bodyがNoneの場合の処理を追加
         task_body = task.body if task.body is not None else ""
         feature_values.append(float(len(task_body)))
