@@ -49,14 +49,14 @@ class ActorCritic(nn.Module):
 
 
 class PPOAgent:
-    def __init__(self, obs_space, act_space, lr, gamma, epochs, eps_clip, device):
+    def __init__(self, obs_dim, act_space, lr, gamma, epochs, eps_clip, device):
         self.device = device
         self.gamma = gamma
         self.epochs = epochs
         self.eps_clip = eps_clip
-        self.policy = ActorCritic(obs_space.shape[0], act_space.n).to(self.device)
+        self.policy = ActorCritic(obs_dim, act_space.n).to(self.device)
         self.optimizer = torch.optim.Adam(self.policy.parameters(), lr=lr)
-        self.policy_old = ActorCritic(obs_space.shape[0], act_space.n).to(self.device)
+        self.policy_old = ActorCritic(obs_dim, act_space.n).to(self.device)
         self.policy_old.load_state_dict(self.policy.state_dict())
         self.MseLoss = nn.MSELoss()
 

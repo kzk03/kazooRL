@@ -7,7 +7,7 @@ env:
     time_step_hours: 8
     max_days: 365
 
-num_developers: 21 # 開発者の数（プロフィールファイルの全開発者を使用）
+num_developers: 5170 # 全開発者を使用（トレーニングデータの全5,170人）
 
 # --- 特徴量計算の設定 (Features) ---
 features:
@@ -22,38 +22,35 @@ features:
 
 # --- GATモデルのパス (GAT) ---
 gat:
-  model_path: "data/gat_model_unified.pt" # 学習済みGATモデルのパス
-  graph_data_path: "data/graph_train_unified.pt" # 統一されたグラフデータのパス
+  model_path: "data/gnn_model_collaborative.pt" # 学習済みGATモデルのパス
+  graph_data_path: "data/graph_collaborative.pt" # 統一されたグラフデータのパス（学習済み）
 
 # --- 逆強化学習の設定 (IRL) ---
 irl:
   expert_path: "data/expert_trajectories.pkl"
-  output_weights_path: "data/learned_weights.npy"
-  learning_rate: 0.001
-  epochs: 100
+  output_weights_path: "data/learned_weights_training.npy"
+  learning_rate: 0.0005 # 全員分学習のため少し下げる（0.001→0.0005）
+  epochs: 300 # 全員分学習のため増加（200→300）
   use_gat: true
-  gat_model_path: "data/gat_model_unified.pt" # GATモデルのパス
-  gat_graph_path: "data/graph_train_unified.pt" # グラフデータのパス（正しいキー名）
+  gat_model_path: "data/gnn_model_collaborative.pt" # GATモデルのパス（学習済み）
+  gat_graph_path: "data/graph_collaborative.pt" # グラフデータのパス（学習済み）
   # オンライン学習設定
   online_gat_learning: true # オンライン学習を有効化
-  gat_update_frequency: 10 # 10回のインタラクションごとに更新
-  gat_learning_rate: 0.0003 # GATの学習率
-  gat_buffer_size: 500 # インタラクションバッファサイズ
-  gat_time_window_hours: 48 # 時間窓を拡大（48時間）
+  gat_update_frequency: 20 # 全員分学習のため頻度を下げる（5→20）
+  gat_learning_rate: 0.00005 # 全員分学習のため学習率を下げる（0.0001→0.00005）
+  gat_buffer_size: 2000 # バッファサイズ増加（1000→2000）
+  gat_time_window_hours: 96 # より長い時間窓（72→96時間）
   # 収束判定設定
-  convergence_patience: 50 # 50エポック改善なしで早期停止
-  convergence_threshold: 0.01 # 損失改善の閾値
+  convergence_patience: 100 # 全員分学習のため増加（50→100）
+  convergence_threshold: 0.002 # より厳密な収束判定（0.005→0.002）
 
 # --- 強化学習の設定 (RL) ---
 rl:
-  # ▼▼▼【ここを追加】▼▼▼
-  total_timesteps: 500000 # 学習を行う総ステップ数
-  # ▲▲▲【ここまで追加】▲▲▲
-
-  learning_rate: 0.0003
+  total_timesteps: 2000000 # 全員分学習のためさらに増加（1000000→2000000）
+  learning_rate: 0.0001 # 全員分学習のため学習率を下げる（0.0003→0.0001）
   gamma: 0.99
   gae_lambda: 0.95
   eps_clip: 0.2
   k_epochs: 4
-  rollout_len: 2048
+  rollout_len: 1024 # メモリ効率のため減らす（2048→1024）
   output_model_dir: "models/"

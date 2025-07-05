@@ -27,20 +27,41 @@ def debug_jsonl_format(file_path, max_lines=5):
         print(f"File read error: {e}")
 
 
-def generate_graph():
+def generate_graph(exclude_years=None, output_suffix=""):
     """
     改良されたグラフデータ生成関数
+    
+    Args:
+        exclude_years: 除外する年のリスト（例: [2022]）
+        output_suffix: 出力ファイル名のサフィックス（例: "_training"）
     """
+    if exclude_years is None:
+        exclude_years = []
+        
     data_dir = Path("data/status/")
     print(f"Data directory: {data_dir}")
+    print(f"Excluding years: {exclude_years}")
+    
     profile_path = Path("configs/dev_profiles.yaml")
     backlog_path = Path("data/backlog.json")
-    graph_out = Path("data/graph.pt")
+    graph_out = Path(f"data/graph{output_suffix}.pt")
 
-    # JSONLファイル検索
-    all_jsonl_files = (
-        [p for p in data_dir.glob("**/*.jsonl")] if data_dir.exists() else []
-    )
+    # JSONLファイル検索（除外年を考慮）
+    all_jsonl_files = []
+    if data_dir.exists():
+        for file_path in data_dir.glob("**/*.jsonl"):
+            # ファイル名から年を抽出してチェック
+            file_year = None
+            for year in range(2019, 2025):  # 2019-2024
+                if str(year) in file_path.name:
+                    file_year = year
+                    break
+            
+            # 除外年でなければリストに追加
+            if file_year is None or file_year not in exclude_years:
+                all_jsonl_files.append(file_path)
+            else:
+                print(f"  除外: {file_path} (年: {file_year})")
 
     print("--- 取得対象のJSONLファイル一覧 ---")
     if all_jsonl_files:
@@ -382,8 +403,30 @@ def generate_graph():
 
 def main():
     """メイン関数"""
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="グラフデータを生成")
+    parser.add_argument(
+        "--exclude-years", 
+        nargs="*", 
+        type=int, 
+        default=[],
+        help="除外する年のリスト（例: --exclude-years 2022）"
+    )
+    parser.add_argument(
+        "--output-suffix",
+        type=str,
+        default="",
+        help="出力ファイル名のサフィックス（例: --output-suffix _training）"
+    )
+    
+    args = parser.parse_args()
+    
     try:
-        data = generate_graph()
+        data = generate_graph(
+            exclude_years=args.exclude_years,
+            output_suffix=args.output_suffix
+        )
         if data is not None:
             print("\n=== 生成されたグラフデータの概要 ===")
             print(data)

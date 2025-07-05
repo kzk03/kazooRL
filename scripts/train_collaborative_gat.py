@@ -9,6 +9,7 @@ from pathlib import Path
 
 import torch
 import torch.nn.functional as F
+from tqdm import tqdm
 
 # プロジェクトルートを追加
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
@@ -22,7 +23,7 @@ def train_collaborative_gat():
     print("=== Training Collaborative GAT Model ===")
 
     # グラフデータをロード
-    graph_path = Path("data/graph.pt")
+    graph_path = Path("data/graph_training.pt")
     if not graph_path.exists():
         print(f"Error: Graph data not found: {graph_path}")
         return
@@ -65,39 +66,82 @@ def train_collaborative_gat():
     print("\n=== Training Loop ===")
     model.train()
 
-    for epoch in range(100):  # 100エポック訓練
+    epoch_progress = tqdm(
+        range(200),  # 本格的な訓練のため200エポック（50→200）
+        desc="🧠 GAT 訓練",
+        unit="epoch",
+        colour='cyan',
+        leave=True
+    )
+
+    for epoch in epoch_progress:
         optimizer.zero_grad()
 
         try:
             # フォワードパス
             embeddings = model(data.x_dict, edge_index_dict)
 
-            # 簡単な自己教師学習損失（ノード埋め込みの一貫性）
-            dev_loss = F.mse_loss(embeddings["dev"], embeddings["dev"].detach())
-            task_loss = F.mse_loss(embeddings["task"], embeddings["task"].detach())
+            # 1. リンク予測損失（dev-task エッジ）
+            dev_task_edges = edge_index_dict[("dev", "writes", "task")]
+            if dev_task_edges.size(1) > 0:
+                # 正例: 実際に存在するエッジ
+                src_embeds = embeddings["dev"][dev_task_edges[0]]
+                dst_embeds = embeddings["task"][dev_task_edges[1]]
+                pos_scores = F.cosine_similarity(src_embeds, dst_embeds)
+                
+                # 負例: ランダムに選んだ存在しないエッジ
+                num_neg = min(dev_task_edges.size(1), 100)  # 負例数を制限
+                neg_dev_idx = torch.randint(0, embeddings["dev"].size(0), (num_neg,))
+                neg_task_idx = torch.randint(0, embeddings["task"].size(0), (num_neg,))
+                neg_src_embeds = embeddings["dev"][neg_dev_idx]
+                neg_dst_embeds = embeddings["task"][neg_task_idx]
+                neg_scores = F.cosine_similarity(neg_src_embeds, neg_dst_embeds)
+                
+                # バイナリクロスエントロピー損失
+                pos_loss = F.binary_cross_entropy_with_logits(pos_scores, torch.ones_like(pos_scores))
+                neg_loss = F.binary_cross_entropy_with_logits(neg_scores, torch.zeros_like(neg_scores))
+                link_loss = pos_loss + neg_loss
+            else:
+                link_loss = torch.tensor(0.0)
 
-            # 協力ネットワークエッジに基づく損失
+            # 2. 協力ネットワークエッジに基づく損失
             collab_edges = edge_index_dict[("dev", "collaborates", "dev")]
             if collab_edges.size(1) > 0:
                 # 協力している開発者ペアの埋め込みを近づける
                 src_embeds = embeddings["dev"][collab_edges[0]]
                 dst_embeds = embeddings["dev"][collab_edges[1]]
-                collab_loss = -F.cosine_similarity(src_embeds, dst_embeds).mean()
+                collab_similarity = F.cosine_similarity(src_embeds, dst_embeds)
+                collab_loss = -collab_similarity.mean()  # 類似度を最大化
             else:
                 collab_loss = torch.tensor(0.0)
+                
+            # 3. 埋め込み正則化損失（L2正則化）
+            dev_reg = torch.norm(embeddings["dev"], p=2, dim=1).mean()
+            task_reg = torch.norm(embeddings["task"], p=2, dim=1).mean()
+            reg_loss = 0.001 * (dev_reg + task_reg)
 
-            total_loss = dev_loss + task_loss + 0.1 * collab_loss
+            # 総損失
+            total_loss = link_loss + 0.1 * collab_loss + reg_loss
 
             total_loss.backward()
             optimizer.step()
 
+            # 進捗バーの情報更新
+            epoch_progress.set_postfix({
+                "Loss": f"{total_loss.item():.4f}",
+                "Link": f"{link_loss.item():.4f}",
+                "Collab": f"{collab_loss.item():.4f}",
+                "Reg": f"{reg_loss.item():.4f}"
+            })
+
             if (epoch + 1) % 20 == 0:
                 print(
-                    f"Epoch {epoch+1:3d}: Loss = {total_loss.item():.4f} "
-                    f"(dev: {dev_loss.item():.4f}, task: {task_loss.item():.4f}, collab: {collab_loss.item():.4f})"
+                    f"\nEpoch {epoch+1:3d}: Loss = {total_loss.item():.4f} "
+                    f"(link: {link_loss.item():.4f}, collab: {collab_loss.item():.4f}, reg: {reg_loss.item():.4f})"
                 )
 
         except Exception as e:
+            epoch_progress.set_postfix({"Error": str(e)[:20]})
             print(f"Error in epoch {epoch}: {e}")
             break
 

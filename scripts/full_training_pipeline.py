@@ -11,7 +11,7 @@ Usage:
     python scripts/full_training_pipeline.py [OPTIONS]
 
 Options:
-    --config PATH    設定ファイルのパス (default: configs/base.yaml)
+    --config PATH    設定ファイルのパス (default: configs/base_training.yaml)
     --skip-gnn       GNN訓練をスキップ
     --skip-irl       IRL訓練をスキップ
     --skip-rl        RL訓練をスキップ
@@ -40,6 +40,7 @@ import torch
 import torch.optim as optim
 import yaml
 from omegaconf import OmegaConf
+from tqdm import tqdm
 
 # Kazooモジュールをインポート
 sys.path.append(str(Path(__file__).resolve().parents[1]))
@@ -51,7 +52,7 @@ from kazoo.features.feature_extractor import FeatureExtractor
 class FullTrainingPipeline:
     """統合学習パイプラインの実行クラス"""
 
-    def __init__(self, config_path="configs/base.yaml", quiet=False):
+    def __init__(self, config_path="configs/base_training.yaml", quiet=False):
         self.config_path = config_path
         self.cfg = OmegaConf.load(config_path)
         self.start_time = datetime.now()
@@ -250,11 +251,28 @@ class FullTrainingPipeline:
         )
 
         # 訓練ループ
-        for epoch in range(self.cfg.irl.epochs):
+        epoch_progress = tqdm(
+            range(self.cfg.irl.epochs),
+            desc="🎯 IRL エポック",
+            unit="epoch",
+            colour='blue',
+            leave=True
+        )
+        
+        for epoch in epoch_progress:
             total_loss = 0
             valid_steps = 0
 
-            for step_data in expert_trajectory_steps:
+            # エキスパートステップの進捗バー
+            step_progress = tqdm(
+                expert_trajectory_steps,
+                desc=f"エポック {epoch+1:3d}/{self.cfg.irl.epochs}",
+                unit="step",
+                leave=False,
+                colour='green'
+            )
+
+            for step_data in step_progress:
                 try:
                     optimizer.zero_grad()
 
@@ -314,12 +332,26 @@ class FullTrainingPipeline:
                     optimizer.step()
 
                 except Exception as e:
-                    self.log(f"⚠️ ステップ処理エラー (スキップ): {e}")
+                    step_progress.set_postfix({"エラー": "スキップ"})
                     continue
+                
+                # ステップ毎の情報更新
+                if valid_steps > 0:
+                    avg_loss = total_loss / valid_steps
+                    step_progress.set_postfix({
+                        "平均損失": f"{avg_loss:.6f}",
+                        "有効ステップ": valid_steps
+                    })
 
+            # エポック毎の統計情報更新
             if valid_steps > 0:
                 avg_loss = total_loss / valid_steps
-                if (epoch + 1) % 100 == 0 or epoch == 0:
+                epoch_progress.set_postfix({
+                    "平均損失": f"{avg_loss:.6f}",
+                    "有効ステップ": valid_steps
+                })
+                
+                if (epoch + 1) % 50 == 0 or epoch == 0:
                     self.log(
                         f"📈 エポック {epoch + 1}/{self.cfg.irl.epochs}, 平均損失: {avg_loss:.6f}, 有効ステップ: {valid_steps}"
                     )
@@ -429,6 +461,12 @@ class FullTrainingPipeline:
                 self.log("❌ 前提条件チェック失敗。実行を中止します。")
                 return False
 
+            # 進捗バー表示の説明
+            print("🌟 Kazoo統合学習パイプライン")
+            print("📊 進捗状況は色付きの進捗バーで表示されます:")
+            print("   🧠 GAT訓練 (シアン) → 🎯 IRL学習 (青) → 🤖 PPO学習 (マゼンタ)")
+            print("=" * 60)
+
             success_steps = []
 
             # ステップ1: GNN訓練
@@ -450,6 +488,7 @@ class FullTrainingPipeline:
                 self.log("\n" + "=" * 40)
                 self.log("ステップ2: 逆強化学習（IRL）")
                 self.log("=" * 40)
+                print("💡 IRL学習では青色の進捗バーでエポック/ステップの進行状況を表示します")
                 if self.train_irl():
                     success_steps.append("IRL")
                 else:
@@ -464,6 +503,7 @@ class FullTrainingPipeline:
                 self.log("\n" + "=" * 40)
                 self.log("ステップ3: 強化学習（RL）")
                 self.log("=" * 40)
+                print("💡 PPO学習ではマゼンタ色の進捗バーでUpdate/Stepの進行状況を表示します")
                 if self.train_rl():
                     success_steps.append("RL")
                 else:
@@ -515,8 +555,8 @@ def main():
     )
     parser.add_argument(
         "--config",
-        default="configs/base.yaml",
-        help="設定ファイルのパス (default: configs/base.yaml)",
+        default="configs/base_training.yaml",
+        help="設定ファイルのパス (default: configs/base_training.yaml)",
     )
     parser.add_argument(
         "--production",

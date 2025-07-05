@@ -3,6 +3,7 @@ import os
 import numpy as np
 import torch
 from gymnasium import spaces
+from tqdm import tqdm
 
 from kazoo.learners.ppo_agent import PPOAgent
 
@@ -87,9 +88,29 @@ class IndependentPPOController:
         for agent_id in self.agent_ids:
             obs_space = self.env.observation_space[agent_id]
             act_space = self.env.action_space[agent_id]
+            
+            # デバッグ情報を追加
+            print(f"Agent {agent_id}: obs_space = {obs_space}, act_space = {act_space}")
+            
+            if obs_space is None:
+                raise ValueError(f"Observation space for agent {agent_id} is None")
+            if act_space is None:
+                raise ValueError(f"Action space for agent {agent_id} is None")
+            
+            # 辞書形式の観測空間から次元数を計算
+            if hasattr(obs_space, 'spaces'):  # Dict space
+                total_obs_dim = 0
+                for space_name, space in obs_space.spaces.items():
+                    if hasattr(space, 'shape'):
+                        total_obs_dim += space.shape[0]
+                    else:
+                        print(f"Warning: Space {space_name} has no shape attribute")
+                print(f"Total observation dimension for agent {agent_id}: {total_obs_dim}")
+            else:  # Box space
+                total_obs_dim = obs_space.shape[0]
 
             self.agents[agent_id] = PPOAgent(
-                obs_space=obs_space,
+                obs_dim=total_obs_dim,  # 観測次元数を直接渡す
                 act_space=act_space,
                 lr=self.rl_config.learning_rate,
                 gamma=self.rl_config.gamma,
@@ -122,8 +143,26 @@ class IndependentPPOController:
             else 0
         )
 
-        for update in range(1, num_updates + 1):
-            for step in range(self.rl_config.rollout_len):
+        # PPO学習の進捗バー
+        update_progress = tqdm(
+            range(1, num_updates + 1),
+            desc="🤖 PPO 学習",
+            unit="update",
+            colour='magenta',
+            leave=True
+        )
+
+        for update in update_progress:
+            # ロールアウト収集の進捗バー
+            rollout_progress = tqdm(
+                range(self.rl_config.rollout_len),
+                desc=f"Update {update:4d}/{num_updates}",
+                unit="step",
+                leave=False,
+                colour='yellow'
+            )
+            
+            for step in rollout_progress:
                 global_step += self.num_agents
                 actions_dict, log_probs_dict, values_dict = {}, {}, {}
 
@@ -155,6 +194,14 @@ class IndependentPPOController:
                     )
                 obs = next_obs
 
+                # 現在の平均報酬を計算
+                current_rewards = list(rewards.values())
+                avg_reward = np.mean(current_rewards) if current_rewards else 0.0
+                rollout_progress.set_postfix({
+                    "Step": f"{global_step:,}",
+                    "Avg_Reward": f"{avg_reward:.3f}"
+                })
+
             with torch.no_grad():
                 next_values = {
                     agent_id: self.agents[agent_id].get_action_and_value(obs[agent_id])[
@@ -177,6 +224,7 @@ class IndependentPPOController:
                 print(f"\n🔄 [Global Step {global_step}] GNN更新チェック中...")
                 self._trigger_gnn_update(global_step)
 
+            # 進捗バーのメイン情報更新
             if self.storages:
                 avg_reward = np.mean(
                     [
@@ -184,11 +232,30 @@ class IndependentPPOController:
                         for storage in self.storages.values()
                     ]
                 )
-                print(
-                    f"Update {update}/{num_updates}, Global Step: {global_step}, Avg Reward: {avg_reward:.3f}"
-                )
+                
+                update_progress.set_postfix({
+                    "Global_Step": f"{global_step:,}",
+                    "Avg_Reward": f"{avg_reward:.4f}",
+                    "Agents": self.num_agents
+                })
+                
+                # 詳細ログは少ない頻度で出力
+                if update % 50 == 0:
+                    print(
+                        f"\nUpdate {update}/{num_updates}, Global Step: {global_step:,}, Avg Reward: {avg_reward:.3f}"
+                    )
 
-        print("Training finished.")
+        print("\n🎉 Training finished.")
+        print(f"🔢 Total Global Steps: {global_step:,}")
+        print(f"🤖 Total Agents: {self.num_agents}")
+        print(f"🎯 Total Updates: {num_updates}")
+        
+        # 最終統計
+        if self.storages:
+            final_avg_reward = np.mean(
+                [storage.rewards.mean().item() for storage in self.storages.values()]
+            )
+            print(f"📊 Final Average Reward: {final_avg_reward:.4f}")
 
     def _trigger_gnn_update(self, global_step):
         """GNNのオンライン学習更新をトリガー"""

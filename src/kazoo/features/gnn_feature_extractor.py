@@ -183,8 +183,8 @@ class GNNFeatureExtractor:
         self.stats["total_requests"] += 1
 
         if not self.model or not self.embeddings:
-            # 協力ネットワークが利用可能かどうかで特徴量数を決定
-            num_features = 5 if self.dev_network is not None else 3
+            # 協力ネットワークが利用可能かどうかで特徴量数を決定（32次元埋め込みを含む）
+            num_features = 37 if self.dev_network is not None else 35  # 3〜5統計特徴量 + 32埋め込み
             return [0.0] * num_features
 
         try:
@@ -200,8 +200,8 @@ class GNNFeatureExtractor:
             missing_dev = dev_idx is None
             missing_task = task_idx is None
 
-            # 協力ネットワークが利用可能かどうかで特徴量数を決定
-            num_features = 5 if self.dev_network is not None else 3
+            # 協力ネットワークが利用可能かどうかで特徴量数を決定（32次元埋め込みを含む）
+            num_features = 37 if self.dev_network is not None else 35  # 3〜5統計特徴量 + 32埋め込み
 
             if missing_dev and missing_task:
                 # Both missing - return zero features
@@ -218,14 +218,14 @@ class GNNFeatureExtractor:
             else:
                 # Both nodes exist - compute full features
                 self.stats["full_features"] += 1
-                return self._get_simplified_gnn_features(dev_idx, task_idx)
+                return self._get_full_gnn_features(dev_idx, task_idx)
 
         except Exception as e:
             self.stats["errors"] += 1
             print(
                 f"Error extracting GNN features for dev={dev_id}, task={task_id}: {e}"
             )
-            num_features = 5 if self.dev_network is not None else 3
+            num_features = 37 if self.dev_network is not None else 35  # 3〜5統計特徴量 + 32埋め込み
             return [0.0] * num_features
 
     def record_interaction(
@@ -674,6 +674,9 @@ class GNNFeatureExtractor:
             features.append(0.0)  # collaboration_strength
             features.append(0.0)  # network_centrality
 
+        # 🔥 平均開発者埋め込み（32次元）を追加
+        features.extend(avg_dev_emb.tolist())
+
         return features
 
     def _get_fallback_features_missing_task(self, dev_idx, task_id):
@@ -701,7 +704,9 @@ class GNNFeatureExtractor:
         features.append(dev_expertise)
 
         # 3. 平均的な人気度スコア（中程度の値）
-        features.append(0.3)  # 🆕 4-5. 協力ネットワーク特徴量（利用可能な場合）
+        features.append(0.3)  
+
+        # 🆕 4-5. 協力ネットワーク特徴量（利用可能な場合）
         if self.dev_network is not None:
             # 開発者が存在するので協力特徴量を計算
             collab_strength = self._calculate_collaboration_strength(dev_idx)
@@ -709,6 +714,9 @@ class GNNFeatureExtractor:
 
             centrality = self._calculate_network_centrality(dev_idx)
             features.append(centrality)
+
+        # 🔥 実際の開発者埋め込み（32次元）を追加
+        features.extend(dev_emb.tolist())
 
         return features
 
@@ -727,6 +735,9 @@ class GNNFeatureExtractor:
                     "gat_network_centrality",  # ネットワーク内での中心性
                 ]
             )
+
+        # 🔥 32次元の開発者埋め込みを追加
+        base_features.extend([f"gat_dev_emb_{i}" for i in range(32)])
 
         return base_features
 
