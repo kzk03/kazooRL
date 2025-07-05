@@ -98,7 +98,8 @@ def run_complete_pipeline():
         import yaml
 
         from kazoo.envs.oss_simple import OSSSimpleEnv
-        from kazoo.learners.independent_ppo_controller import IndependentPPOController
+        from kazoo.learners.independent_ppo_controller import \
+            IndependentPPOController
 
         # データ読み込み
         with open(project_root / cfg.env.backlog_path, "r") as f:

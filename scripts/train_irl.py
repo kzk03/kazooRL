@@ -62,13 +62,15 @@ def main():
 
     # エポック用のプログレスバー
     epoch_pbar = tqdm(range(cfg.irl.epochs), desc="🧠 IRL 訓練", unit="epoch")
-    
+
     for epoch in epoch_pbar:
         total_loss = 0
         epoch_valid_steps = 0
 
         # ステップ用のプログレスバー
-        step_pbar = tqdm(expert_trajectory_steps, desc=f"Epoch {epoch + 1}", leave=False, unit="step")
+        step_pbar = tqdm(
+            expert_trajectory_steps, desc=f"Epoch {epoch + 1}", leave=False, unit="step"
+        )
 
         # .pklファイルから読み込んだ軌跡の各ステップをループ
         for step_idx, step_data in enumerate(step_pbar):
@@ -102,7 +104,9 @@ def main():
             )
 
             if expert_features is None:
-                step_pbar.set_postfix({"warning": f"None features for task {expert_task_id}"})
+                step_pbar.set_postfix(
+                    {"warning": f"None features for task {expert_task_id}"}
+                )
                 continue
 
             expert_features = torch.from_numpy(expert_features).float()
@@ -137,22 +141,26 @@ def main():
 
             loss.backward()
             optimizer.step()
-            
+
             # プログレスバーの情報を更新
             if epoch_valid_steps > 0:
                 avg_loss = total_loss / epoch_valid_steps
-                step_pbar.set_postfix({
-                    "loss": f"{avg_loss:.4f}",
-                    "valid": f"{epoch_valid_steps}/{step_idx+1}"
-                })
+                step_pbar.set_postfix(
+                    {
+                        "loss": f"{avg_loss:.4f}",
+                        "valid": f"{epoch_valid_steps}/{step_idx+1}",
+                    }
+                )
 
         # エポック終了時の統計をプログレスバーに反映
         if epoch_valid_steps > 0:
             avg_loss = total_loss / epoch_valid_steps
-            epoch_pbar.set_postfix({
-                "loss": f"{avg_loss:.4f}",
-                "valid_steps": f"{epoch_valid_steps}/{total_steps}"
-            })
+            epoch_pbar.set_postfix(
+                {
+                    "loss": f"{avg_loss:.4f}",
+                    "valid_steps": f"{epoch_valid_steps}/{total_steps}",
+                }
+            )
 
         valid_steps += epoch_valid_steps
 
