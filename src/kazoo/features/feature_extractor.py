@@ -29,25 +29,28 @@ class FeatureExtractor:
             },
         )
 
-        # GNNFeatureExtractorを初期化
-        self.gnn_extractor = None
+        # GATFeatureExtractorを初期化
+        self.gat_extractor = None
         if (
             IRLGNNFeatureExtractor
             and hasattr(cfg, "irl")
-            and cfg.irl.get("use_gnn", False)
+            and cfg.irl.get("use_gat", False)  # use_gnn → use_gat
         ):
             try:
                 # IRLに必要な設定が存在する場合のみ初期化
-                if hasattr(cfg.irl, "gnn_graph_path") and hasattr(
-                    cfg.irl, "gnn_model_path"
+                if hasattr(cfg.irl, "gat_graph_path") and hasattr(
+                    cfg.irl, "gat_model_path"
                 ):
-                    self.gnn_extractor = IRLGNNFeatureExtractor(cfg)
-                    print("✅ GNN feature extractor initialized")
+                    self.gat_extractor = IRLGNNFeatureExtractor(cfg)
+                    print("✅ GAT feature extractor initialized")
                 else:
-                    print("Warning: GNN paths not configured in IRL section")
+                    print("Warning: GAT paths not configured in IRL section")
             except Exception as e:
-                print(f"Warning: Failed to initialize GNN feature extractor: {e}")
-                self.gnn_extractor = None
+                print(f"Warning: Failed to initialize GAT feature extractor: {e}")
+                self.gat_extractor = None
+
+        # 後方互換性のためのエイリアス
+        self.gnn_extractor = self.gat_extractor
 
         # データ内での最新日時を基準にするため、初期化時にNoneに設定
         # 実際の値は初回のget_features呼び出し時に計算される
@@ -96,10 +99,10 @@ class FeatureExtractor:
         )
         names.extend(["match_skill_intersection_count", "match_file_experience_count"])
         names.extend([f"match_affinity_for_{label}" for label in self.all_labels])
-        # ▼▼▼【追加】GNN特徴量名を追加▼▼▼
-        if self.gnn_extractor:
-            gnn_names = self.gnn_extractor.get_feature_names()
-            names.extend(gnn_names)
+        # ▼▼▼【追加】GAT特徴量名を追加▼▼▼
+        if self.gat_extractor:
+            gat_names = self.gat_extractor.get_feature_names()
+            names.extend(gat_names)
 
         return names
 
@@ -240,9 +243,10 @@ class FeatureExtractor:
                 affinity_vec[i] = dev_affinity_profile.get(label_name, 0.0)
         feature_values.extend(affinity_vec)
 
-        if self.gnn_extractor:
-            gnn_features = self.gnn_extractor.get_gnn_features(task, developer, env)
-            feature_values.extend(gnn_features)
+        # ▼▼▼【追加】GAT特徴量を追加▼▼▼
+        if self.gat_extractor:
+            gat_features = self.gat_extractor.get_gnn_features(task, developer, env)
+            feature_values.extend(gat_features)
 
         if len(feature_values) != len(self.feature_names):
             raise ValueError(
@@ -251,12 +255,16 @@ class FeatureExtractor:
 
         return np.array(feature_values, dtype=np.float32)
 
-    def print_gnn_statistics(self):
-        """GNN特徴量抽出の統計を表示"""
-        if self.gnn_extractor:
-            self.gnn_extractor.print_statistics()
+    def print_gat_statistics(self):
+        """GAT特徴量抽出の統計を表示"""
+        if self.gat_extractor:
+            self.gat_extractor.print_statistics()
         else:
-            print("GNN feature extractor not available.")
+            print("GAT feature extractor not available.")
+
+    def print_gnn_statistics(self):
+        """GNN特徴量抽出の統計を表示（後方互換性）"""
+        self.print_gat_statistics()
 
 
 import gymnasium as gym

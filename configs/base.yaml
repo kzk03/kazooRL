@@ -6,9 +6,6 @@ env:
   simulation:
     time_step_hours: 8
     max_days: 365
-  gnn:
-    model_path: "data/gnn_model_collaborative.pt" # 協力ネットワーク対応GNNモデル
-    graph_data_path: "data/graph_collaborative.pt" # 協力ネットワーク対応グラフデータ
 
 num_developers: 21 # 開発者の数（プロフィールファイルの全開発者を使用）
 
@@ -23,30 +20,40 @@ features:
     question: ["communication"]
     help wanted: ["collaboration"]
 
+# --- GATモデルのパス (GAT) ---
+gat:
+  model_path: "data/gat_model_unified.pt" # 学習済みGATモデルのパス
+  graph_data_path: "data/graph_train_unified.pt" # 統一されたグラフデータのパス
+
 # --- 逆強化学習の設定 (IRL) ---
 irl:
   expert_path: "data/expert_trajectories.pkl"
-  output_weights_path: "data/learned_reward_weights.npy"
-  learning_rate: 0.0001 # 大幅減少：0.001 → 0.0001（振動問題解決のため）
-  epochs: 2000 # 推奨回数で十分な学習（200 → 2000）
-  use_gnn: true
-  gnn_graph_path: "data/graph_collaborative.pt" # 協力ネットワーク対応グラフデータ
-  gnn_model_path: "data/gnn_model_collaborative.pt" # 協力ネットワーク対応モデル
+  output_weights_path: "data/learned_weights.npy"
+  learning_rate: 0.001
+  epochs: 100
+  use_gat: true
+  gat_model_path: "data/gat_model_unified.pt" # GATモデルのパス
+  gat_graph_path: "data/graph_train_unified.pt" # グラフデータのパス（正しいキー名）
   # オンライン学習設定
-  online_gnn_learning: true # ステップごとのGNN更新を有効化
-  gnn_update_frequency: 5 # 5回のインタラクションごとに更新
-  gnn_learning_rate: 0.0001 # GNNの学習率（控えめに設定）
-  gnn_buffer_size: 100 # インタラクションバッファサイズ
-  gnn_time_window_hours: 24 # 時系列学習の時間窓（24時間）
+  online_gat_learning: true # オンライン学習を有効化
+  gat_update_frequency: 10 # 10回のインタラクションごとに更新
+  gat_learning_rate: 0.0003 # GATの学習率
+  gat_buffer_size: 500 # インタラクションバッファサイズ
+  gat_time_window_hours: 48 # 時間窓を拡大（48時間）
+  # 収束判定設定
+  convergence_patience: 50 # 50エポック改善なしで早期停止
+  convergence_threshold: 0.01 # 損失改善の閾値
 
 # --- 強化学習の設定 (RL) ---
 rl:
-  total_timesteps: 100000 # 標準的な学習のために大幅増加（5000 → 100000）
+  # ▼▼▼【ここを追加】▼▼▼
+  total_timesteps: 500000 # 学習を行う総ステップ数
+  # ▲▲▲【ここまで追加】▲▲▲
 
   learning_rate: 0.0003
   gamma: 0.99
   gae_lambda: 0.95
   eps_clip: 0.2
   k_epochs: 4
-  rollout_len: 20 # 短くしてより頻繁な学習サイクル
+  rollout_len: 2048
   output_model_dir: "models/"

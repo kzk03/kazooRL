@@ -4,13 +4,13 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 
-# GNNモデルをインポート
+# GATモデルをインポート
 sys.path.append(str(Path(__file__).resolve().parents[2]))
 from kazoo.GAT.GAT_model import GATModel
 
 
 class GNNFeatureExtractor:
-    """IRLのためのGNNベースの特徴量抽出器"""
+    """IRLのためのGATベースの特徴量抽出器"""
 
     def __init__(self, cfg):
         self.cfg = cfg
@@ -27,32 +27,36 @@ class GNNFeatureExtractor:
             "updates": 0,  # GNN更新回数を追加
         }
 
-        # オンライン学習用の設定
-        self.online_learning = cfg.irl.get("online_gnn_learning", False)
-        self.update_frequency = cfg.irl.get("gnn_update_frequency", 100)  # N回に1回更新
-        self.learning_rate = cfg.irl.get("gnn_learning_rate", 0.001)
+        # オンライン学習用の設定（GAT対応）
+        self.online_learning = cfg.irl.get("online_gat_learning", cfg.irl.get("online_gnn_learning", False))
+        self.update_frequency = cfg.irl.get("gat_update_frequency", cfg.irl.get("gnn_update_frequency", 100))  # N回に1回更新
+        self.learning_rate = cfg.irl.get("gat_learning_rate", cfg.irl.get("gnn_learning_rate", 0.001))
         self.time_window_hours = cfg.irl.get(
-            "gnn_time_window_hours", 24
+            "gat_time_window_hours", cfg.irl.get("gnn_time_window_hours", 24)
         )  # 学習に使用する時間窓（時間）
         self.optimizer = None
 
         # 新しいインタラクションデータを蓄積
         self.interaction_buffer = []
-        self.max_buffer_size = cfg.irl.get("gnn_buffer_size", 1000)
+        self.max_buffer_size = cfg.irl.get("gat_buffer_size", cfg.irl.get("gnn_buffer_size", 1000))
 
-        if getattr(cfg.irl, "use_gnn", False):
-            self._load_gnn_model()
+        # GAT設定の確認（後方互換性を保持）
+        if getattr(cfg.irl, "use_gat", False) or getattr(cfg.irl, "use_gnn", False):
+            self._load_gat_model()
         else:
             self.model = None
             self.embeddings = None
 
-    def _load_gnn_model(self):
-        """GNNモデルとグラフデータを読み込み"""
+    def _load_gat_model(self):
+        """GATモデルとグラフデータを読み込み"""
         try:
-            # グラフデータ読み込み
-            graph_path = Path(getattr(self.cfg.irl, "gnn_graph_path", "data/graph.pt"))
+            # グラフデータ読み込み（GAT対応）
+            graph_path = Path(
+                getattr(self.cfg.irl, "gat_graph_path", 
+                        getattr(self.cfg.irl, "gnn_graph_path", "data/graph.pt"))
+            )
             if not graph_path.exists():
-                print(f"Warning: GNN graph file not found: {graph_path}")
+                print(f"Warning: GAT graph file not found: {graph_path}")
                 self.model = None
                 return
 
@@ -72,16 +76,17 @@ class GNNFeatureExtractor:
                 )
                 self.dev_network = None
 
-            # モデル読み込み
+            # モデル読み込み（GAT対応）
             model_path = Path(
-                getattr(self.cfg.irl, "gnn_model_path", "data/gnn_model.pt")
+                getattr(self.cfg.irl, "gat_model_path", 
+                        getattr(self.cfg.irl, "gnn_model_path", "data/gat_model_unified.pt"))
             )
             if not model_path.exists():
-                print(f"Warning: GNN model file not found: {model_path}")
+                print(f"Warning: GAT model file not found: {model_path}")
                 self.model = None
                 return
 
-            # Import GNN model here to avoid circular imports
+            # Import GAT model here to avoid circular imports
             from kazoo.GAT.GAT_model import GATModel
 
             self.model = GATModel(
@@ -158,7 +163,7 @@ class GNNFeatureExtractor:
         )
 
     def get_gnn_features(self, task, developer, env):
-        """GNNベースの特徴量を取得（3次元のスコアのみ）"""
+        """GATベースの特徴量を取得（5次元の特徴量）"""
         self.stats["total_requests"] += 1
 
         if not self.model or not self.embeddings:
@@ -692,25 +697,25 @@ class GNNFeatureExtractor:
         return features
 
     def get_feature_names(self):
-        """GNN特徴量の名前リストを返す"""
+        """GAT特徴量の名前リストを返す"""
         if not self.model:
             return []
 
-        base_features = ["gnn_similarity", "gnn_dev_expertise", "gnn_task_popularity"]
+        base_features = ["gat_similarity", "gat_dev_expertise", "gat_task_popularity"]
 
         # 🆕 協力ネットワークが利用可能な場合、追加の特徴量を含める
         if self.dev_network is not None:
             base_features.extend(
                 [
-                    "gnn_collaboration_strength",  # 開発者の協力ネットワーク内での重要度
-                    "gnn_network_centrality",  # ネットワーク内での中心性
+                    "gat_collaboration_strength",  # 開発者の協力ネットワーク内での重要度
+                    "gat_network_centrality",  # ネットワーク内での中心性
                 ]
             )
 
         return base_features
 
     def print_statistics(self):
-        """GNN特徴量抽出の統計を表示"""
+        """GAT特徴量抽出の統計を表示"""
         total = self.stats["total_requests"]
         if total == 0:
             print("No GNN feature requests yet.")
