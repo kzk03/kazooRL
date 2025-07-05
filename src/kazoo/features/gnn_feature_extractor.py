@@ -28,9 +28,15 @@ class GNNFeatureExtractor:
         }
 
         # オンライン学習用の設定（GAT対応）
-        self.online_learning = cfg.irl.get("online_gat_learning", cfg.irl.get("online_gnn_learning", False))
-        self.update_frequency = cfg.irl.get("gat_update_frequency", cfg.irl.get("gnn_update_frequency", 100))  # N回に1回更新
-        self.learning_rate = cfg.irl.get("gat_learning_rate", cfg.irl.get("gnn_learning_rate", 0.001))
+        self.online_learning = cfg.irl.get(
+            "online_gat_learning", cfg.irl.get("online_gnn_learning", False)
+        )
+        self.update_frequency = cfg.irl.get(
+            "gat_update_frequency", cfg.irl.get("gnn_update_frequency", 100)
+        )  # N回に1回更新
+        self.learning_rate = cfg.irl.get(
+            "gat_learning_rate", cfg.irl.get("gnn_learning_rate", 0.001)
+        )
         self.time_window_hours = cfg.irl.get(
             "gat_time_window_hours", cfg.irl.get("gnn_time_window_hours", 24)
         )  # 学習に使用する時間窓（時間）
@@ -38,7 +44,9 @@ class GNNFeatureExtractor:
 
         # 新しいインタラクションデータを蓄積
         self.interaction_buffer = []
-        self.max_buffer_size = cfg.irl.get("gat_buffer_size", cfg.irl.get("gnn_buffer_size", 1000))
+        self.max_buffer_size = cfg.irl.get(
+            "gat_buffer_size", cfg.irl.get("gnn_buffer_size", 1000)
+        )
 
         # GAT設定の確認（後方互換性を保持）
         if getattr(cfg.irl, "use_gat", False) or getattr(cfg.irl, "use_gnn", False):
@@ -52,8 +60,11 @@ class GNNFeatureExtractor:
         try:
             # グラフデータ読み込み（GAT対応）
             graph_path = Path(
-                getattr(self.cfg.irl, "gat_graph_path", 
-                        getattr(self.cfg.irl, "gnn_graph_path", "data/graph.pt"))
+                getattr(
+                    self.cfg.irl,
+                    "gat_graph_path",
+                    getattr(self.cfg.irl, "gnn_graph_path", "data/graph.pt"),
+                )
             )
             if not graph_path.exists():
                 print(f"Warning: GAT graph file not found: {graph_path}")
@@ -78,8 +89,13 @@ class GNNFeatureExtractor:
 
             # モデル読み込み（GAT対応）
             model_path = Path(
-                getattr(self.cfg.irl, "gat_model_path", 
-                        getattr(self.cfg.irl, "gnn_model_path", "data/gat_model_unified.pt"))
+                getattr(
+                    self.cfg.irl,
+                    "gat_model_path",
+                    getattr(
+                        self.cfg.irl, "gnn_model_path", "data/gat_model_unified.pt"
+                    ),
+                )
             )
             if not model_path.exists():
                 print(f"Warning: GAT model file not found: {model_path}")
