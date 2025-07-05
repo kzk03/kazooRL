@@ -16,21 +16,34 @@ def parse_datetime(timestamp_str: str | None) -> datetime | None:
         return None
 
 
-def generate_full_backlog(data_dir, output_path):
+def generate_full_backlog(data_dir, output_path, exclude_years=None):
     """
     全てのイベントログを処理し、各タスクの完全なライフサイクル情報を含む
     包括的なバックログファイルを作成する。
 
-    従来のbackward compatibility関数
+    Args:
+        data_dir: データディレクトリのパス
+        output_path: 出力ファイルのパス
+        exclude_years: 除外する年のリスト（例: ["2022"]）
     """
-    return process_multiple_directories(data_dir, output_path)
+    return process_multiple_directories(data_dir, output_path, exclude_years)
 
 
-def process_multiple_directories(base_data_dir, output_path):
+def process_multiple_directories(base_data_dir, output_path, exclude_years=None):
     """
     複数のディレクトリから全ての.jsonlファイルを処理する
+    
+    Args:
+        base_data_dir: データディレクトリのパス
+        output_path: 出力ファイルのパス
+        exclude_years: 除外する年のリスト（例: ["2022"]）
     """
-    print(f"Starting to generate full backlog from base directory: {base_data_dir}")
+    if exclude_years is None:
+        exclude_years = []
+    
+    print(f"Starting to generate backlog from base directory: {base_data_dir}")
+    if exclude_years:
+        print(f"Excluding years: {exclude_years}")
 
     # 全てのタスク情報をIDをキーにして保持する辞書
     tasks_db = {}
@@ -43,6 +56,11 @@ def process_multiple_directories(base_data_dir, output_path):
     status_dir = os.path.join(base_data_dir, "status")
     if os.path.exists(status_dir):
         for year_dir in os.listdir(status_dir):
+            # 除外する年をスキップ
+            if year_dir in exclude_years:
+                print(f"Skipping year directory: {year_dir}")
+                continue
+                
             year_path = os.path.join(status_dir, year_dir)
             if os.path.isdir(year_path):
                 year_files = glob.glob(os.path.join(year_path, "*.jsonl"))
@@ -118,4 +136,19 @@ if __name__ == "__main__":
     else:
         OUTPUT_JSON_PATH = "data/backlog.json"
 
+    # 2022年のデータを除外してトレーニング用バックログを生成
+    exclude_years = ["2022"]
+    
+    # トレーニング用バックログ（2022年除外）
+    training_output = OUTPUT_JSON_PATH.replace(".json", "_training.json")
+    print(f"Generating training backlog (excluding {exclude_years})...")
+    process_multiple_directories(INPUT_DATA_DIR, training_output, exclude_years)
+    
+    # テスト用バックログ（2022年のみ）
+    test_output = OUTPUT_JSON_PATH.replace(".json", "_test_2022.json")
+    print(f"\nGenerating test backlog (2022 only)...")
+    process_multiple_directories(INPUT_DATA_DIR, test_output, exclude_years=["2019", "2020", "2021", "2023", "2024"])
+    
+    # 従来の完全なバックログも生成（後方互換性のため）
+    print(f"\nGenerating complete backlog (all years)...")
     process_multiple_directories(INPUT_DATA_DIR, OUTPUT_JSON_PATH)
