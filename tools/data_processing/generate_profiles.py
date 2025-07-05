@@ -27,7 +27,7 @@ def generate_developer_profiles(data_dir, output_path, exclude_years=None):
     """
     if exclude_years is None:
         exclude_years = []
-        
+
     print(f"Starting to generate developer profiles from directory: {data_dir}")
     if exclude_years:
         print(f"Excluding years: {exclude_years}")
@@ -48,7 +48,7 @@ def generate_developer_profiles(data_dir, output_path, exclude_years=None):
             if year_dir in exclude_years:
                 print(f"Skipping year directory: {year_dir}")
                 continue
-                
+
             year_path = os.path.join(status_dir, year_dir)
             if os.path.isdir(year_path):
                 year_files = glob.glob(os.path.join(year_path, "*.jsonl"))
@@ -216,20 +216,24 @@ def generate_developer_profiles(data_dir, output_path, exclude_years=None):
 if __name__ == "__main__":
     # データ取得スクリプトが出力したディレクトリを指定
     INPUT_DATA_DIR = "./data"
-    
+
     # 2022年のデータを除外してトレーニング用プロファイルを生成
     exclude_years = ["2022"]
-    
+
     # トレーニング用プロファイル（2022年除外）
     training_output = "./configs/dev_profiles_training.yaml"
     print(f"Generating training profiles (excluding {exclude_years})...")
     generate_developer_profiles(INPUT_DATA_DIR, training_output, exclude_years)
-    
+
     # テスト用プロファイル（2022年のみ）
     test_output = "./configs/dev_profiles_test_2022.yaml"
     print(f"\nGenerating test profiles (2022 only)...")
-    generate_developer_profiles(INPUT_DATA_DIR, test_output, exclude_years=["2019", "2020", "2021", "2023", "2024"])
-    
+    generate_developer_profiles(
+        INPUT_DATA_DIR,
+        test_output,
+        exclude_years=["2019", "2020", "2021", "2023", "2024"],
+    )
+
     # 従来の完全なプロファイルも生成（後方互換性のため）
     OUTPUT_YAML_PATH = "./configs/dev_profiles.yaml"
     print(f"\nGenerating complete profiles (all years)...")

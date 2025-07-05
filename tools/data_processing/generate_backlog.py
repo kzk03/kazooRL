@@ -32,7 +32,7 @@ def generate_full_backlog(data_dir, output_path, exclude_years=None):
 def process_multiple_directories(base_data_dir, output_path, exclude_years=None):
     """
     複数のディレクトリから全ての.jsonlファイルを処理する
-    
+
     Args:
         base_data_dir: データディレクトリのパス
         output_path: 出力ファイルのパス
@@ -40,7 +40,7 @@ def process_multiple_directories(base_data_dir, output_path, exclude_years=None)
     """
     if exclude_years is None:
         exclude_years = []
-    
+
     print(f"Starting to generate backlog from base directory: {base_data_dir}")
     if exclude_years:
         print(f"Excluding years: {exclude_years}")
@@ -60,7 +60,7 @@ def process_multiple_directories(base_data_dir, output_path, exclude_years=None)
             if year_dir in exclude_years:
                 print(f"Skipping year directory: {year_dir}")
                 continue
-                
+
             year_path = os.path.join(status_dir, year_dir)
             if os.path.isdir(year_path):
                 year_files = glob.glob(os.path.join(year_path, "*.jsonl"))
@@ -138,17 +138,21 @@ if __name__ == "__main__":
 
     # 2022年のデータを除外してトレーニング用バックログを生成
     exclude_years = ["2022"]
-    
+
     # トレーニング用バックログ（2022年除外）
     training_output = OUTPUT_JSON_PATH.replace(".json", "_training.json")
     print(f"Generating training backlog (excluding {exclude_years})...")
     process_multiple_directories(INPUT_DATA_DIR, training_output, exclude_years)
-    
+
     # テスト用バックログ（2022年のみ）
     test_output = OUTPUT_JSON_PATH.replace(".json", "_test_2022.json")
     print(f"\nGenerating test backlog (2022 only)...")
-    process_multiple_directories(INPUT_DATA_DIR, test_output, exclude_years=["2019", "2020", "2021", "2023", "2024"])
-    
+    process_multiple_directories(
+        INPUT_DATA_DIR,
+        test_output,
+        exclude_years=["2019", "2020", "2021", "2023", "2024"],
+    )
+
     # 従来の完全なバックログも生成（後方互換性のため）
     print(f"\nGenerating complete backlog (all years)...")
     process_multiple_directories(INPUT_DATA_DIR, OUTPUT_JSON_PATH)
