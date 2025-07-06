@@ -31,11 +31,11 @@ def analyze_reward_weights(config_path, weights_path):
 
     # 2. 特徴量抽出器をインスタンス化して、特徴量の名前リストを取得
     try:
-        # GNN特徴量を含む完全な特徴量抽出器を初期化
+        # GAT特徴量を含む完全な特徴量抽出器を初期化
         print("Initializing FeatureExtractor with GNN features...")
-        print(f"GNN enabled: {cfg.irl.get('use_gnn', False)}")
-        print(f"GNN model path: {cfg.irl.get('gnn_model_path', 'Not specified')}")
-        print(f"GNN graph path: {cfg.irl.get('gnn_graph_path', 'Not specified')}")
+        print(f"GAT enabled: {cfg.irl.get('use_gat', False)}")
+        print(f"GAT model path: {cfg.irl.get('gat_model_path', 'Not specified')}")
+        print(f"GAT graph path: {cfg.irl.get('gat_graph_path', 'Not specified')}")
 
         feature_extractor = FeatureExtractor(cfg)
         feature_names = feature_extractor.feature_names
@@ -97,7 +97,7 @@ def analyze_reward_weights(config_path, weights_path):
 if __name__ == "__main__":
     # 設定ファイルのパスと、train_irl.pyが出力する重みファイルのパスを指定
     # このスクリプトはプロジェクトのルートディレクトリから実行することを想定
-    CONFIG_PATH = "configs/base.yaml"
+    CONFIG_PATH = "configs/base_training.yaml"
     WEIGHTS_PATH = "data/learned_weights.npy"
 
     analyze_reward_weights(CONFIG_PATH, WEIGHTS_PATH)

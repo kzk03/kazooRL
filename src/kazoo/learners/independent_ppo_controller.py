@@ -17,8 +17,19 @@ class RolloutStorage:
         self.device = device
         self.num_steps = num_steps
 
+        # 複合観測空間の場合は全体の次元を計算
+        if hasattr(obs_space, 'spaces'):  # Dict space
+            # 全観測空間の合計次元を計算
+            total_dim = 0
+            for space in obs_space.spaces.values():
+                if hasattr(space, 'shape') and space.shape:
+                    total_dim += space.shape[0]
+            obs_shape = (total_dim,)
+        else:
+            obs_shape = obs_space.shape
+        
         # ストレージを(ステップ数, 次元)の形で初期化
-        self.obs = torch.zeros((num_steps,) + obs_space.shape).to(device)
+        self.obs = torch.zeros((num_steps,) + obs_shape).to(device)
         self.actions = torch.zeros(num_steps, 1, dtype=torch.long).to(device)
         self.log_probs = torch.zeros(num_steps, 1).to(device)
         self.rewards = torch.zeros(num_steps, 1).to(device)
@@ -31,7 +42,14 @@ class RolloutStorage:
         ステップごとのデータを追加する。
         全てのデータを、保存先の形状である[1]に合わせる。
         """
-        self.obs[self.step].copy_(torch.as_tensor(obs, device=self.device))
+        # 複合観測の場合は平坦化して結合
+        if isinstance(obs, dict):
+            obs_tensor = torch.cat([torch.as_tensor(v, device=self.device).flatten() 
+                                  for v in obs.values()], dim=0)
+        else:
+            obs_tensor = torch.as_tensor(obs, device=self.device)
+        
+        self.obs[self.step].copy_(obs_tensor)
         self.actions[self.step].copy_(
             torch.as_tensor([action], device=self.device, dtype=torch.long)
         )
@@ -88,26 +106,24 @@ class IndependentPPOController:
         for agent_id in self.agent_ids:
             obs_space = self.env.observation_space[agent_id]
             act_space = self.env.action_space[agent_id]
-
+            
             # デバッグ情報を追加
             print(f"Agent {agent_id}: obs_space = {obs_space}, act_space = {act_space}")
-
+            
             if obs_space is None:
                 raise ValueError(f"Observation space for agent {agent_id} is None")
             if act_space is None:
                 raise ValueError(f"Action space for agent {agent_id} is None")
-
+            
             # 辞書形式の観測空間から次元数を計算
-            if hasattr(obs_space, "spaces"):  # Dict space
+            if hasattr(obs_space, 'spaces'):  # Dict space
                 total_obs_dim = 0
                 for space_name, space in obs_space.spaces.items():
-                    if hasattr(space, "shape"):
+                    if hasattr(space, 'shape'):
                         total_obs_dim += space.shape[0]
                     else:
                         print(f"Warning: Space {space_name} has no shape attribute")
-                print(
-                    f"Total observation dimension for agent {agent_id}: {total_obs_dim}"
-                )
+                print(f"Total observation dimension for agent {agent_id}: {total_obs_dim}")
             else:  # Box space
                 total_obs_dim = obs_space.shape[0]
 
@@ -150,8 +166,8 @@ class IndependentPPOController:
             range(1, num_updates + 1),
             desc="🤖 PPO 学習",
             unit="update",
-            colour="magenta",
-            leave=True,
+            colour='magenta',
+            leave=True
         )
 
         for update in update_progress:
@@ -161,9 +177,9 @@ class IndependentPPOController:
                 desc=f"Update {update:4d}/{num_updates}",
                 unit="step",
                 leave=False,
-                colour="yellow",
+                colour='yellow'
             )
-
+            
             for step in rollout_progress:
                 global_step += self.num_agents
                 actions_dict, log_probs_dict, values_dict = {}, {}, {}
@@ -199,9 +215,10 @@ class IndependentPPOController:
                 # 現在の平均報酬を計算
                 current_rewards = list(rewards.values())
                 avg_reward = np.mean(current_rewards) if current_rewards else 0.0
-                rollout_progress.set_postfix(
-                    {"Step": f"{global_step:,}", "Avg_Reward": f"{avg_reward:.3f}"}
-                )
+                rollout_progress.set_postfix({
+                    "Step": f"{global_step:,}",
+                    "Avg_Reward": f"{avg_reward:.3f}"
+                })
 
             with torch.no_grad():
                 next_values = {
@@ -233,15 +250,13 @@ class IndependentPPOController:
                         for storage in self.storages.values()
                     ]
                 )
-
-                update_progress.set_postfix(
-                    {
-                        "Global_Step": f"{global_step:,}",
-                        "Avg_Reward": f"{avg_reward:.4f}",
-                        "Agents": self.num_agents,
-                    }
-                )
-
+                
+                update_progress.set_postfix({
+                    "Global_Step": f"{global_step:,}",
+                    "Avg_Reward": f"{avg_reward:.4f}",
+                    "Agents": self.num_agents
+                })
+                
                 # 詳細ログは少ない頻度で出力
                 if update % 50 == 0:
                     print(
@@ -252,7 +267,7 @@ class IndependentPPOController:
         print(f"🔢 Total Global Steps: {global_step:,}")
         print(f"🤖 Total Agents: {self.num_agents}")
         print(f"🎯 Total Updates: {num_updates}")
-
+        
         # 最終統計
         if self.storages:
             final_avg_reward = np.mean(

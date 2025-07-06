@@ -255,10 +255,10 @@ class FullTrainingPipeline:
             range(self.cfg.irl.epochs),
             desc="🎯 IRL エポック",
             unit="epoch",
-            colour="blue",
-            leave=True,
+            colour='blue',
+            leave=True
         )
-
+        
         for epoch in epoch_progress:
             total_loss = 0
             valid_steps = 0
@@ -269,7 +269,7 @@ class FullTrainingPipeline:
                 desc=f"エポック {epoch+1:3d}/{self.cfg.irl.epochs}",
                 unit="step",
                 leave=False,
-                colour="green",
+                colour='green'
             )
 
             for step_data in step_progress:
@@ -334,21 +334,23 @@ class FullTrainingPipeline:
                 except Exception as e:
                     step_progress.set_postfix({"エラー": "スキップ"})
                     continue
-
+                
                 # ステップ毎の情報更新
                 if valid_steps > 0:
                     avg_loss = total_loss / valid_steps
-                    step_progress.set_postfix(
-                        {"平均損失": f"{avg_loss:.6f}", "有効ステップ": valid_steps}
-                    )
+                    step_progress.set_postfix({
+                        "平均損失": f"{avg_loss:.6f}",
+                        "有効ステップ": valid_steps
+                    })
 
             # エポック毎の統計情報更新
             if valid_steps > 0:
                 avg_loss = total_loss / valid_steps
-                epoch_progress.set_postfix(
-                    {"平均損失": f"{avg_loss:.6f}", "有効ステップ": valid_steps}
-                )
-
+                epoch_progress.set_postfix({
+                    "平均損失": f"{avg_loss:.6f}",
+                    "有効ステップ": valid_steps
+                })
+                
                 if (epoch + 1) % 50 == 0 or epoch == 0:
                     self.log(
                         f"📈 エポック {epoch + 1}/{self.cfg.irl.epochs}, 平均損失: {avg_loss:.6f}, 有効ステップ: {valid_steps}"
@@ -486,9 +488,7 @@ class FullTrainingPipeline:
                 self.log("\n" + "=" * 40)
                 self.log("ステップ2: 逆強化学習（IRL）")
                 self.log("=" * 40)
-                print(
-                    "💡 IRL学習では青色の進捗バーでエポック/ステップの進行状況を表示します"
-                )
+                print("💡 IRL学習では青色の進捗バーでエポック/ステップの進行状況を表示します")
                 if self.train_irl():
                     success_steps.append("IRL")
                 else:
@@ -503,9 +503,7 @@ class FullTrainingPipeline:
                 self.log("\n" + "=" * 40)
                 self.log("ステップ3: 強化学習（RL）")
                 self.log("=" * 40)
-                print(
-                    "💡 PPO学習ではマゼンタ色の進捗バーでUpdate/Stepの進行状況を表示します"
-                )
+                print("💡 PPO学習ではマゼンタ色の進捗バーでUpdate/Stepの進行状況を表示します")
                 if self.train_rl():
                     success_steps.append("RL")
                 else:

@@ -3,8 +3,9 @@ from datetime import datetime
 import numpy as np
 
 try:
-    from kazoo.features.gnn_feature_extractor import \
-        GNNFeatureExtractor as IRLGNNFeatureExtractor
+    from kazoo.features.gnn_feature_extractor import (
+        GNNFeatureExtractor as IRLGNNFeatureExtractor,
+    )
 except ImportError:
     print("Warning: GNN feature extractor not available")
     IRLGNNFeatureExtractor = None

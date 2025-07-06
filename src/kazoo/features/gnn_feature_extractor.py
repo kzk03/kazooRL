@@ -184,9 +184,7 @@ class GNNFeatureExtractor:
 
         if not self.model or not self.embeddings:
             # 協力ネットワークが利用可能かどうかで特徴量数を決定（32次元埋め込みを含む）
-            num_features = (
-                37 if self.dev_network is not None else 35
-            )  # 3〜5統計特徴量 + 32埋め込み
+            num_features = 37 if self.dev_network is not None else 35  # 3〜5統計特徴量 + 32埋め込み
             return [0.0] * num_features
 
         try:
@@ -203,9 +201,7 @@ class GNNFeatureExtractor:
             missing_task = task_idx is None
 
             # 協力ネットワークが利用可能かどうかで特徴量数を決定（32次元埋め込みを含む）
-            num_features = (
-                37 if self.dev_network is not None else 35
-            )  # 3〜5統計特徴量 + 32埋め込み
+            num_features = 37 if self.dev_network is not None else 35  # 3〜5統計特徴量 + 32埋め込み
 
             if missing_dev and missing_task:
                 # Both missing - return zero features
@@ -229,9 +225,7 @@ class GNNFeatureExtractor:
             print(
                 f"Error extracting GNN features for dev={dev_id}, task={task_id}: {e}"
             )
-            num_features = (
-                37 if self.dev_network is not None else 35
-            )  # 3〜5統計特徴量 + 32埋め込み
+            num_features = 37 if self.dev_network is not None else 35  # 3〜5統計特徴量 + 32埋め込み
             return [0.0] * num_features
 
     def record_interaction(
@@ -710,7 +704,7 @@ class GNNFeatureExtractor:
         features.append(dev_expertise)
 
         # 3. 平均的な人気度スコア（中程度の値）
-        features.append(0.3)
+        features.append(0.3)  
 
         # 🆕 4-5. 協力ネットワーク特徴量（利用可能な場合）
         if self.dev_network is not None:

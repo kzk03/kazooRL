@@ -70,8 +70,8 @@ def train_collaborative_gat():
         range(200),  # 本格的な訓練のため200エポック（50→200）
         desc="🧠 GAT 訓練",
         unit="epoch",
-        colour="cyan",
-        leave=True,
+        colour='cyan',
+        leave=True
     )
 
     for epoch in epoch_progress:
@@ -88,7 +88,7 @@ def train_collaborative_gat():
                 src_embeds = embeddings["dev"][dev_task_edges[0]]
                 dst_embeds = embeddings["task"][dev_task_edges[1]]
                 pos_scores = F.cosine_similarity(src_embeds, dst_embeds)
-
+                
                 # 負例: ランダムに選んだ存在しないエッジ
                 num_neg = min(dev_task_edges.size(1), 100)  # 負例数を制限
                 neg_dev_idx = torch.randint(0, embeddings["dev"].size(0), (num_neg,))
@@ -96,14 +96,10 @@ def train_collaborative_gat():
                 neg_src_embeds = embeddings["dev"][neg_dev_idx]
                 neg_dst_embeds = embeddings["task"][neg_task_idx]
                 neg_scores = F.cosine_similarity(neg_src_embeds, neg_dst_embeds)
-
+                
                 # バイナリクロスエントロピー損失
-                pos_loss = F.binary_cross_entropy_with_logits(
-                    pos_scores, torch.ones_like(pos_scores)
-                )
-                neg_loss = F.binary_cross_entropy_with_logits(
-                    neg_scores, torch.zeros_like(neg_scores)
-                )
+                pos_loss = F.binary_cross_entropy_with_logits(pos_scores, torch.ones_like(pos_scores))
+                neg_loss = F.binary_cross_entropy_with_logits(neg_scores, torch.zeros_like(neg_scores))
                 link_loss = pos_loss + neg_loss
             else:
                 link_loss = torch.tensor(0.0)
@@ -118,7 +114,7 @@ def train_collaborative_gat():
                 collab_loss = -collab_similarity.mean()  # 類似度を最大化
             else:
                 collab_loss = torch.tensor(0.0)
-
+                
             # 3. 埋め込み正則化損失（L2正則化）
             dev_reg = torch.norm(embeddings["dev"], p=2, dim=1).mean()
             task_reg = torch.norm(embeddings["task"], p=2, dim=1).mean()
@@ -131,14 +127,12 @@ def train_collaborative_gat():
             optimizer.step()
 
             # 進捗バーの情報更新
-            epoch_progress.set_postfix(
-                {
-                    "Loss": f"{total_loss.item():.4f}",
-                    "Link": f"{link_loss.item():.4f}",
-                    "Collab": f"{collab_loss.item():.4f}",
-                    "Reg": f"{reg_loss.item():.4f}",
-                }
-            )
+            epoch_progress.set_postfix({
+                "Loss": f"{total_loss.item():.4f}",
+                "Link": f"{link_loss.item():.4f}",
+                "Collab": f"{collab_loss.item():.4f}",
+                "Reg": f"{reg_loss.item():.4f}"
+            })
 
             if (epoch + 1) % 20 == 0:
                 print(

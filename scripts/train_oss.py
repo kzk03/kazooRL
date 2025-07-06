@@ -11,7 +11,7 @@ from kazoo.features.feature_extractor import GNNFeatureExtractor
 from kazoo.learners.independent_ppo_controller import IndependentPPOController
 
 
-@hydra.main(config_path="../configs", config_name="base", version_base=None)
+@hydra.main(config_path="../configs", config_name="base_training", version_base=None)
 def main(cfg: DictConfig):
     """
     強化学習（PPO）を使って、開発者エージェントを訓練する。
