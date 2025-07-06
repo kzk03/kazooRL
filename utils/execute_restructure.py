@@ -6,86 +6,101 @@ Kazoo プロジェクト構造実行スクリプト
 
 import os
 import shutil
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+
 
 def create_new_directory_structure():
     """新しいディレクトリ構造を作成"""
     print("📁 新しいディレクトリ構造を作成中...")
-    
+
     directories = [
         "training/gat",
-        "training/irl", 
+        "training/irl",
         "training/rl",
         "pipelines",
         "analysis/reports",
         "analysis/visualization",
         "evaluation",
         "data_processing",
-        "utils"
+        "utils",
     ]
-    
+
     for dir_path in directories:
         Path(dir_path).mkdir(parents=True, exist_ok=True)
         print(f"✅ {dir_path}")
-    
+
     # __init__.pyファイルを作成
     init_dirs = ["training", "analysis"]
     for dir_name in init_dirs:
         init_file = Path(dir_name) / "__init__.py"
         init_file.write_text("# -*- coding: utf-8 -*-\n")
 
+
 def move_and_rename_files():
     """ファイルの移動とリネームを実行"""
     print("\n📦 ファイル移動・リネーム中...")
-    
+
     # 移動・リネーム計画
     moves = [
         # GAT関連
         ("scripts/train_collaborative_gat.py", "training/gat/train_gat.py"),
         ("scripts/train_gnn.py", "training/gat/train_gat_standalone.py"),
-        
-        # IRL関連  
+        # IRL関連
         ("scripts/train_irl.py", "training/irl/train_irl.py"),
-        
         # RL関連
         ("scripts/train_oss.py", "training/rl/train_rl.py"),
-        
         # パイプライン
         ("run_full_training_from_scratch.py", "pipelines/full_pipeline.py"),
-        
         # 分析
         ("analyze_training_results.py", "analysis/reports/training_analysis.py"),
         ("generate_summary_report.py", "analysis/reports/summary_report.py"),
         ("analyze_gat_features.py", "analysis/reports/gat_analysis.py"),
-        
         # 評価
         ("scripts/evaluate_2022_test.py", "evaluation/evaluate_models.py"),
         ("test_feature_dimensions.py", "evaluation/test_features.py"),
-        
         # データ処理
-        ("tools/data_processing/generate_graph.py", "data_processing/generate_graph.py"),
-        ("tools/data_processing/generate_profiles.py", "data_processing/generate_profiles.py"),
-        ("tools/data_processing/generate_backlog.py", "data_processing/generate_backlog.py"),
-        ("tools/data_processing/build_developer_network.py", "data_processing/build_network.py"),
-        ("tools/data_processing/get_github_data.py", "data_processing/extract_github_data.py"),
-        ("tools/data_processing/generate_labels.py", "data_processing/generate_labels.py"),
+        (
+            "tools/data_processing/generate_graph.py",
+            "data_processing/generate_graph.py",
+        ),
+        (
+            "tools/data_processing/generate_profiles.py",
+            "data_processing/generate_profiles.py",
+        ),
+        (
+            "tools/data_processing/generate_backlog.py",
+            "data_processing/generate_backlog.py",
+        ),
+        (
+            "tools/data_processing/build_developer_network.py",
+            "data_processing/build_network.py",
+        ),
+        (
+            "tools/data_processing/get_github_data.py",
+            "data_processing/extract_github_data.py",
+        ),
+        (
+            "tools/data_processing/generate_labels.py",
+            "data_processing/generate_labels.py",
+        ),
     ]
-    
+
     for old_path, new_path in moves:
         old_file = Path(old_path)
         new_file = Path(new_path)
-        
+
         if old_file.exists():
             shutil.copy2(old_file, new_file)
             print(f"✅ {old_path} -> {new_path}")
         else:
             print(f"❌ {old_path} - ファイルが見つかりません")
 
+
 def create_unified_irl_analysis():
     """統合IRL分析スクリプトを作成"""
     print("\n🔄 統合IRL分析スクリプト作成中...")
-    
+
     unified_script = '''#!/usr/bin/env python3
 """
 統合IRL分析スクリプト
@@ -301,15 +316,16 @@ def main():
 if __name__ == "__main__":
     main()
 '''
-    
+
     unified_file = Path("analysis/reports/irl_analysis.py")
     unified_file.write_text(unified_script)
     print(f"✅ 統合IRL分析スクリプト作成: {unified_file}")
 
+
 def create_unified_pipeline():
     """統合パイプラインを作成"""
     print("\n🔄 統合パイプライン作成中...")
-    
+
     pipeline_script = '''#!/usr/bin/env python3
 """
 Kazoo 統合学習パイプライン
@@ -489,43 +505,47 @@ def main():
 if __name__ == "__main__":
     main()
 '''
-    
+
     pipeline_file = Path("pipelines/full_pipeline.py")
     pipeline_file.write_text(pipeline_script)
     print(f"✅ 統合パイプライン作成: {pipeline_file}")
 
+
 def update_import_paths():
     """インポートパスを更新"""
     print("\n🔧 インポートパス更新中...")
-    
+
     # 新しいファイルでsrcへのパスを修正
     files_to_update = [
         "training/gat/train_gat.py",
-        "training/irl/train_irl.py", 
+        "training/irl/train_irl.py",
         "training/rl/train_rl.py",
         "analysis/reports/irl_analysis.py",
-        "evaluation/evaluate_models.py"
+        "evaluation/evaluate_models.py",
     ]
-    
+
     for file_path in files_to_update:
         file_obj = Path(file_path)
         if file_obj.exists():
             content = file_obj.read_text()
-            
+
             # srcパスの修正
             if "sys.path.append('src')" in content:
                 # ファイルの階層に応じてパスを調整
                 depth = len(file_obj.parts) - 1
                 new_path = "../" * depth + "src"
-                content = content.replace("sys.path.append('src')", f"sys.path.append('{new_path}')")
+                content = content.replace(
+                    "sys.path.append('src')", f"sys.path.append('{new_path}')"
+                )
                 file_obj.write_text(content)
                 print(f"✅ {file_path} - インポートパス更新")
+
 
 def create_readme():
     """新しい構造のREADMEを作成"""
     print("\n📝 README作成中...")
-    
-    readme_content = '''# Kazoo プロジェクト - 新構造
+
+    readme_content = """# Kazoo プロジェクト - 新構造
 
 ## 📁 ディレクトリ構造
 
@@ -599,37 +619,40 @@ python evaluation/evaluate_models.py
 - 学習済みモデル: `models/`
 - 分析結果: `outputs/`
 - ログ: `logs/`
-'''
-    
+"""
+
     readme_file = Path("README_NEW_STRUCTURE.md")
     readme_file.write_text(readme_content)
     print(f"✅ README作成: {readme_file}")
+
 
 def main():
     """メイン実行"""
     print("🔄 Kazoo プロジェクト構造整理実行")
     print(f"📅 実行日時: {datetime.now()}")
     print("=" * 60)
-    
+
     try:
         create_new_directory_structure()
-        move_and_rename_files() 
+        move_and_rename_files()
         create_unified_irl_analysis()
         create_unified_pipeline()
         update_import_paths()
         create_readme()
-        
+
         print("\\n🎉 プロジェクト構造整理完了!")
         print("\\n📋 確認事項:")
         print("1. 新しい構造でのファイル配置確認")
-        print("2. インポートパスの動作確認") 
+        print("2. インポートパスの動作確認")
         print("3. パイプライン動作テスト")
         print("\\n💡 古いファイルは残してあります（バックアップとして）")
-        
+
     except Exception as e:
         print(f"❌ エラー: {e}")
         import traceback
+
         traceback.print_exc()
+
 
 if __name__ == "__main__":
     main()
