@@ -113,10 +113,112 @@ def analyze_all_weights(weights, feature_descriptions):
     print(f"正の重み: {positive_weights} ({positive_weights/len(weights)*100:.1f}%)")
     print(f"負の重み: {negative_weights} ({negative_weights/len(weights)*100:.1f}%)")
 
+    # ★ 全重みの詳細表示を追加
+    print_all_weights_detailed(weights, feature_descriptions)
+
+
+def print_all_weights_detailed(weights, feature_descriptions):
+    """全重みの詳細表示"""
+    print(f"\n" + "=" * 100)
+    print("📋 【全重み詳細一覧】")
+    print("=" * 100)
+    
+    # カテゴリ別に整理
+    categories = {
+        "タスク特徴量": list(range(0, 9)),
+        "開発者特徴量": list(range(9, 15)), 
+        "マッチング特徴量": list(range(15, 25)),
+        "GAT統計特徴量": list(range(25, 30)),
+        "GAT埋め込み": list(range(30, 62))
+    }
+    
+    for category, indices in categories.items():
+        print(f"\n🎯 {category} ({len(indices)}次元)")
+        print("-" * 80)
+        
+        for i in indices:
+            if i < len(weights) and i < len(feature_descriptions):
+                feature_name, description = feature_descriptions[i]
+                weight = weights[i]
+                
+                # 重要度レベル
+                abs_weight = abs(weight)
+                if abs_weight > 1.5:
+                    importance = "🔥極重要"
+                elif abs_weight > 1.0:
+                    importance = "⭐非常に重要"
+                elif abs_weight > 0.5:
+                    importance = "📊重要"
+                elif abs_weight > 0.1:
+                    importance = "📈軽微"
+                else:
+                    importance = "➖無視"
+                
+                # 方向性
+                direction = "✅好む" if weight > 0 else "❌避ける" if weight < 0 else "🔄中立"
+                
+                print(f"{i+1:2d}. {feature_name:<35} | {weight:8.6f} | {importance:8s} | {direction:6s} | {description}")
+    
+    # 重要度順ランキング
+    print(f"\n" + "=" * 100)
+    print("🏆 【重要度順ランキング - 全62次元】")
+    print("=" * 100)
+    
+    # 重要度でソート
+    weight_data = []
+    for i, (feature_name, description) in enumerate(feature_descriptions):
+        if i < len(weights):
+            weight_data.append((i, feature_name, description, weights[i], abs(weights[i])))
+    
+    weight_data.sort(key=lambda x: x[4], reverse=True)  # 絶対値でソート
+    
+    print(f"{'順位':>3} | {'特徴量名':<35} | {'重み値':>10} | {'絶対値':>8} | {'説明'}")
+    print("-" * 100)
+    
+    for rank, (idx, name, desc, weight, abs_weight) in enumerate(weight_data, 1):
+        direction = "+" if weight > 0 else "-"
+        print(f"{rank:3d} | {name:<35} | {direction}{abs_weight:9.6f} | {abs_weight:8.6f} | {desc}")
+    
+    # 統計サマリー
+    print(f"\n" + "=" * 100)
+    print("📊 【カテゴリ別統計サマリー】")
+    print("=" * 100)
+    
+    for category, indices in categories.items():
+        if indices:
+            cat_weights = [weights[i] for i in indices if i < len(weights)]
+            if cat_weights:
+                print(f"\n{category}:")
+                print(f"  次元数: {len(cat_weights)}")
+                print(f"  平均重み: {np.mean(cat_weights):8.6f}")
+                print(f"  標準偏差: {np.std(cat_weights):8.6f}")
+                print(f"  最大値: {np.max(cat_weights):8.6f}")
+                print(f"  最小値: {np.min(cat_weights):8.6f}")
+                print(f"  絶対値平均: {np.mean(np.abs(cat_weights)):8.6f}")
+                print(f"  正の重み数: {np.sum(np.array(cat_weights) > 0):3d}")
+                print(f"  負の重み数: {np.sum(np.array(cat_weights) < 0):3d}")
+                print(f"  重要重み数 (|w|>0.5): {np.sum(np.abs(cat_weights) > 0.5):3d}")
+
 
 def create_complete_weight_table(weights, feature_descriptions, output_dir="outputs"):
     """全重みの完全テーブルを作成"""
     print(f"\n【全重み詳細テーブル】")
+
+    # カテゴリ情報
+    categories = {
+        "タスク特徴量": list(range(0, 9)),
+        "開発者特徴量": list(range(9, 15)), 
+        "マッチング特徴量": list(range(15, 25)),
+        "GAT統計特徴量": list(range(25, 30)),
+        "GAT埋め込み": list(range(30, 62))
+    }
+    
+    # インデックスからカテゴリを取得
+    def get_category(idx):
+        for cat_name, indices in categories.items():
+            if idx in indices:
+                return cat_name
+        return "その他"
 
     # データフレーム作成
     data = []
@@ -125,15 +227,29 @@ def create_complete_weight_table(weights, feature_descriptions, output_dir="outp
             weight_val = weights[i]
             abs_weight = abs(weight_val)
             sign = "+" if weight_val > 0 else "-" if weight_val < 0 else "0"
+            
+            # 重要度レベル
+            if abs_weight > 1.5:
+                importance = "極重要"
+            elif abs_weight > 1.0:
+                importance = "非常に重要"
+            elif abs_weight > 0.5:
+                importance = "重要"
+            elif abs_weight > 0.1:
+                importance = "軽微"
+            else:
+                importance = "無視"
 
             data.append(
                 {
-                    "番号": i,
+                    "番号": i + 1,
+                    "カテゴリ": get_category(i),
                     "特徴量名": feature_name,
                     "説明": description,
                     "重み値": weight_val,
                     "絶対値": abs_weight,
                     "符号": sign,
+                    "重要度": importance,
                     "重要度ランク": 0,  # 後で設定
                 }
             )
@@ -141,27 +257,36 @@ def create_complete_weight_table(weights, feature_descriptions, output_dir="outp
     df = pd.DataFrame(data)
 
     # 重要度ランクを設定
-    df = df.sort_values("絶対値", ascending=False)
-    df["重要度ランク"] = range(1, len(df) + 1)
-    df = df.sort_values("番号")  # 元の順序に戻す
+    df_sorted = df.sort_values("絶対値", ascending=False)
+    df_sorted["重要度ランク"] = range(1, len(df_sorted) + 1)
+    
+    # 元の順序に戻すために番号でソート
+    df = df_sorted.sort_values("番号")
 
-    # テーブル表示
+    # テーブル表示（重要度順）
+    df_display = df_sorted.copy()
     pd.set_option("display.max_rows", None)
     pd.set_option("display.max_columns", None)
     pd.set_option("display.width", None)
-    pd.set_option("display.max_colwidth", 50)
+    pd.set_option("display.max_colwidth", 40)
 
-    print(df.to_string(index=False, float_format="%.6f"))
+    print("\n🏆 重要度順:")
+    print(df_display[["重要度ランク", "特徴量名", "重み値", "重要度", "カテゴリ", "説明"]].to_string(index=False, float_format="%.6f"))
 
-    # CSVファイルとして保存
+    # CSVファイルとして保存（重要度順）
     import os
 
     os.makedirs(output_dir, exist_ok=True)
-    csv_path = f"{output_dir}/irl_all_weights_table.csv"
-    df.to_csv(csv_path, index=False, encoding="utf-8")
+    csv_path = f"{output_dir}/irl_all_weights_complete_table.csv"
+    df_display.to_csv(csv_path, index=False, encoding="utf-8")
     print(f"\n✅ 全重みテーブルをCSVで保存: {csv_path}")
+    
+    # 番号順でも保存
+    csv_path_ordered = f"{output_dir}/irl_all_weights_ordered_table.csv"
+    df.to_csv(csv_path_ordered, index=False, encoding="utf-8")
+    print(f"✅ 番号順テーブルもCSVで保存: {csv_path_ordered}")
 
-    return df
+    return df_display, df
 
 
 def analyze_by_feature_category(weights, feature_descriptions):
@@ -434,7 +559,7 @@ def main():
     analyze_all_weights(weights, feature_descriptions)
 
     # 完全テーブル作成
-    df = create_complete_weight_table(weights, feature_descriptions)
+    df_importance, df_ordered = create_complete_weight_table(weights, feature_descriptions)
 
     # カテゴリ別分析
     analyze_by_feature_category(weights, feature_descriptions)
@@ -443,11 +568,12 @@ def main():
     create_comprehensive_visualizations(weights, feature_descriptions)
 
     # 総合レポート生成
-    generate_summary_report(weights, feature_descriptions, df)
+    generate_summary_report(weights, feature_descriptions, df_importance)
 
     print("\n✅ IRL全重み詳細分析完了！")
     print("📁 生成されたファイル:")
-    print("   - outputs/irl_all_weights_table.csv")
+    print("   - outputs/irl_all_weights_complete_table.csv (重要度順)")
+    print("   - outputs/irl_all_weights_ordered_table.csv (番号順)")
     print("   - outputs/irl_all_weights_comprehensive_analysis.png")
     print("   - outputs/irl_all_weights_summary_report.txt")
 
