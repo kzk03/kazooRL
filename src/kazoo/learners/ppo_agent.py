@@ -66,21 +66,25 @@ class PPOAgent:
             # 辞書形式の観測データを単一のテンソルに結合
             if isinstance(state, dict):
                 state_list = []
-                if 'gnn_embeddings' in state:
-                    gnn_emb = state['gnn_embeddings']
+                if "gnn_embeddings" in state:
+                    gnn_emb = state["gnn_embeddings"]
                     if not isinstance(gnn_emb, torch.Tensor):
                         gnn_emb = torch.FloatTensor(gnn_emb)
                     state_list.append(gnn_emb)
-                if 'simple_obs' in state:
-                    simple_obs = state['simple_obs']
+                if "simple_obs" in state:
+                    simple_obs = state["simple_obs"]
                     if not isinstance(simple_obs, torch.Tensor):
                         simple_obs = torch.FloatTensor(simple_obs)
                     state_list.append(simple_obs)
-                state = torch.cat(state_list, dim=0) if len(state_list) > 1 else state_list[0]
+                state = (
+                    torch.cat(state_list, dim=0)
+                    if len(state_list) > 1
+                    else state_list[0]
+                )
                 state = state.to(self.device)
             else:
                 state = torch.FloatTensor(state).to(self.device)
-            
+
             action_probs = self.policy.actor(state)
             dist = Categorical(action_probs)
             action = dist.sample()
