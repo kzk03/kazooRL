@@ -1,0 +1,83 @@
+# --- 強化学習実験用設定（20人・デバッグ用）---
+env:
+  backlog_path: "data/backlog_training.json"
+  dev_profiles_path: "configs/dev_profiles_training.yaml"
+  expert_trajectories_path: "data/expert_trajectories.pkl"
+  simulation:
+    time_step_hours: 8
+    max_days: 30 # デバッグ用に短縮
+
+# 🎯 実際のexpert_trajectoriesに合わせた設定（482人）
+num_developers: 482
+
+# --- 特徴量計算の設定 ---
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- GATモデルのパス ---
+gat:
+  model_path: "data/gnn_model_collaborative.pt"
+  graph_data_path: "data/graph_collaborative.pt"
+
+# --- 逆強化学習の設定 ---
+irl:
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_weights_training.npy"
+  learning_rate: 0.001
+  epochs: 100 # デバッグ用に短縮
+  use_gat: true
+  gat_model_path: "data/gnn_model_collaborative.pt"
+  gat_graph_path: "data/graph_collaborative.pt"
+  # オンライン学習設定
+  online_gat_learning: true
+  gat_update_frequency: 5
+  gat_learning_rate: 0.0001
+  gat_buffer_size: 500
+  gat_time_window_hours: 24
+  convergence_patience: 20
+  convergence_threshold: 0.01
+
+# --- 強化学習の設定 ---
+rl:
+  total_timesteps: 300000 # 482人用に調整
+  learning_rate: 0.001
+  output_model_dir: "models/rl_debug"
+
+  # PPO基本パラメータ
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+
+  # PPO固有の設定
+  ppo:
+    n_steps: 512 # 小さく
+    batch_size: 32 # 小さく
+    n_epochs: 4 # 少なく
+
+  # PPOエージェント用の設定 (直接参照される)
+  k_epochs: 4 # PPOエージェントでの更新エポック数
+  eps_clip: 0.2 # PPO クリッピング範囲
+  rollout_len: 512 # ロールアウト長
+
+  # 学習の記録・評価設定
+  logging:
+    log_interval: 50
+    eval_freq: 5000
+    save_freq: 10000
+
+# --- 実験管理設定 ---
+experiment:
+  name: "rl_debug_482dev"
+  description: "482開発者での実際データ実験"
+  output_dir: "outputs/rl_debug"
+  seed: 42

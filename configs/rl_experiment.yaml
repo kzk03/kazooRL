@@ -1,0 +1,108 @@
+# --- 強化学習実験用設定 ---
+# 計算効率とパフォーマンスのバランスを考慮した設定
+
+env:
+  backlog_path: "data/backlog_training.json"
+  dev_profiles_path: "configs/dev_profiles_training.yaml"
+  expert_trajectories_path: "data/expert_trajectories.pkl"
+  simulation:
+    time_step_hours: 8
+    max_days: 180 # 実験用に短縮（365→180日）
+
+# 🎯 開発者数の設定オプション
+# オプション1: 小規模実験（10-50人）- 高速実験・デバッグ用
+# num_developers: 20
+
+# オプション2: 中規模実験（100-500人）- バランス重視
+num_developers: 200
+
+# オプション3: 大規模実験（1000+人）- 本格運用想定
+# num_developers: 1000
+
+# オプション4: 全開発者（5170人）- 最終実験用
+# num_developers: 5170
+
+# --- 特徴量計算の設定 (Features) ---
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- GATモデルのパス (GAT) ---
+gat:
+  model_path: "data/gnn_model_collaborative.pt"
+  graph_data_path: "data/graph_collaborative.pt"
+
+# --- 逆強化学習の設定 (IRL) ---
+irl:
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_weights_training.npy"
+  learning_rate: 0.001
+  epochs: 200
+  use_gat: true
+  gat_model_path: "data/gnn_model_collaborative.pt"
+  gat_graph_path: "data/graph_collaborative.pt"
+  # オンライン学習設定（開発者数に応じて調整）
+  online_gat_learning: true
+  gat_update_frequency: 10 # 中規模用
+  gat_learning_rate: 0.0001
+  gat_buffer_size: 1000
+  gat_time_window_hours: 48
+  convergence_patience: 50
+  convergence_threshold: 0.005
+
+# --- 強化学習の設定 (RL) ---
+rl:
+  # 🎯 開発者数に応じたタイムステップ調整
+  # 20人: 100,000 - 500,000
+  # 200人: 500,000 - 1,000,000
+  # 1000人: 1,000,000 - 2,000,000
+  # 5170人: 2,000,000+
+  total_timesteps: 800000 # 200人用の設定
+
+  learning_rate: 0.0003
+  output_model_dir: "models/rl_agents"
+
+  # PPO固有の設定
+  ppo:
+    n_steps: 2048
+    batch_size: 64
+    n_epochs: 10
+    gamma: 0.99
+    gae_lambda: 0.95
+    clip_range: 0.2
+    ent_coef: 0.01
+    vf_coef: 0.5
+    max_grad_norm: 0.5
+
+  # PPOエージェント用の設定 (直接参照される)
+  k_epochs: 10 # PPOエージェントでの更新エポック数
+  eps_clip: 0.2 # PPO クリッピング範囲
+  rollout_len: 2048 # ロールアウト長
+
+  # 学習の記録・評価設定
+  logging:
+    log_interval: 100
+    eval_freq: 10000
+    save_freq: 50000
+
+# --- 実験管理設定 ---
+experiment:
+  name: "rl_experiment_200dev"
+  description: "200開発者での強化学習実験"
+  output_dir: "outputs/rl_experiments"
+  seed: 42
+
+# --- パフォーマンス設定 ---
+performance:
+  # 並列処理設定
+  n_envs: 4 # 環境の並列数
+  device: "cuda" # GPU使用（利用可能な場合）
+  # メモリ効率化
+  use_memory_efficient_attention: true
+  gradient_checkpointing: false

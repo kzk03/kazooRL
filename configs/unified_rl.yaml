@@ -1,0 +1,110 @@
+# 統合強化学習システム設定
+# train_unified_rl.py用の設定ファイル
+
+# 訓練方法の選択
+# - 'original': 元のIndependentPPOControllerを使用
+# - 'stable_baselines': Stable-Baselines3を直接使用
+# - 'unified': 両方を組み合わせ（デフォルト）
+training_method: unified
+
+# 開発者数（サブセット化用）
+num_developers: 5170
+
+# 環境設定
+env:
+  backlog_path: "data/backlog.json" # 統合データ（時系列評価用）
+  dev_profiles_path: "configs/dev_profiles.yaml" # 統合プロファイル
+  expert_trajectories_path: "data/expert_trajectories.pkl" # 2019-2021年IRL学習済み
+  max_steps: 200 # 100 → 200に増加（より長いエピソード）
+  normalize_rewards: true
+
+  # OSSSimpleEnvに必要な設定
+  simulation:
+    time_step_hours: 8
+    max_days: 365
+
+  reward:
+    assignment_reward: 1.0
+    completion_reward: 10.0
+    penalty_unassigned: -0.1
+    # 報酬バリエーション追加
+    quality_bonus_range: [0.5, 2.0] # 品質ボーナスの範囲
+    efficiency_penalty_range: [-1.0, 0.0] # 効率性ペナルティの範囲
+    collaboration_bonus: 1.5 # コラボレーションボーナス
+
+# 特徴量設定
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# GATモデル設定
+gat:
+  model_path: "data/gnn_model_collaborative.pt"
+  graph_data_path: "data/graph_collaborative.pt"
+
+# IRL設定
+irl:
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_weights_training.npy"
+  use_irl_rewards: true
+  irl_weight_factor: 0.3 # IRL報酬の重み (0.5 → 0.3に減少してバリエーション増加)
+  learning_rate: 0.0005
+  epochs: 300
+  use_gat: true
+  gat_model_path: "data/gnn_model_collaborative.pt"
+  gat_graph_path: "data/graph_collaborative.pt"
+
+# 強化学習設定
+rl:
+  # 共通設定
+  total_timesteps: 500000 # 50万ステップ（10倍に増加）
+
+  # Stable-Baselines3設定
+  learning_rate: 3e-4
+  use_lr_schedule: true # 学習率スケジューリングを使用
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95 # GAE lambda
+  clip_range: 0.2 # PPO clip range
+  ent_coef: 0.01 # Entropy coefficient
+  vf_coef: 0.5 # Value function coefficient
+  max_grad_norm: 0.5 # Max gradient norm
+  seed: 42 # Random seed for reproducibility
+
+  # 元システム設定（IndependentPPOController用）
+  output_model_dir: "models/unified_rl"
+  eps_clip: 0.2
+  k_epochs: 4
+  rollout_len: 1024
+
+  # 評価設定
+  eval_freq: 5000 # 1000 → 5000に変更（評価回数を減らして高速化）
+  eval_episodes: 5 # 10 → 5に減少（評価時間短縮）
+
+# 出力設定
+output:
+  save_models: true
+  generate_reports: true
+  create_visualizations: true
+  output_dir: "outputs/"
+
+# デバッグ設定
+debug:
+  verbose: true
+  save_intermediate_results: true
+  log_feature_importance: true
+
+# 計算効率化設定
+optimization:
+  use_subset: true
+  max_developers: 150 # 100 → 150人に増加（より多様性）
+  max_tasks: 750 # 500 → 750タスクに増加（より複雑）
+  parallel_evaluation: false

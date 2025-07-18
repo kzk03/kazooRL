@@ -1,0 +1,81 @@
+# マルチメソッド強化学習・逆強化学習設定
+# 3つの抽出方法（assignees, creators, all）でそれぞれ独立した学習を行う
+
+# --- 共通設定 ---
+common:
+  backlog_path: "data/backlog.json" # 生データを使用
+  time_step_hours: 8
+  max_days: 365
+  recent_activity_window_days: 30
+
+# --- 3つの抽出方法の設定 ---
+extraction_methods:
+  assignees:
+    name: "assignees"
+    description: "assigneesフィールドのみ使用（高品質・狭いカバレッジ）"
+    expert_trajectories_path: "data/expert_trajectories_assignees.pkl"
+    learned_weights_path: "data/learned_weights_assignees.npy"
+    rl_model_path: "models/rl_assignees/"
+
+  creators:
+    name: "creators"
+    description: "Issue/PR作成者（user）のみ使用（広いカバレッジ）"
+    expert_trajectories_path: "data/expert_trajectories_creators.pkl"
+    learned_weights_path: "data/learned_weights_creators.npy"
+    rl_model_path: "models/rl_creators/"
+
+  all:
+    name: "all"
+    description: "全ての方法を統合（assignees + creators）"
+    expert_trajectories_path: "data/expert_trajectories_all.pkl"
+    learned_weights_path: "data/learned_weights_all.npy"
+    rl_model_path: "models/rl_all/"
+
+# --- 特徴量計算の設定 ---
+features:
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- GATモデル設定 ---
+gat:
+  model_path: "data/gnn_model_collaborative.pt"
+  graph_data_path: "data/graph_collaborative.pt"
+
+# --- 逆強化学習の設定（方法別） ---
+irl:
+  learning_rate: 0.001
+  epochs: 200
+  use_gat: true
+  gat_model_path: "data/gnn_model_collaborative.pt"
+  gat_graph_path: "data/graph_collaborative.pt"
+  # オンライン学習設定
+  online_gat_learning: true
+  gat_update_frequency: 10
+  gat_learning_rate: 0.0001
+  gat_buffer_size: 1000
+  gat_time_window_hours: 72
+  # 収束判定設定
+  convergence_patience: 50
+  convergence_threshold: 0.005
+
+# --- 強化学習の設定（方法別） ---
+rl:
+  total_timesteps: 500000 # 方法別なので少し減らす
+  learning_rate: 0.0003
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  k_epochs: 4
+  rollout_len: 2048
+
+# --- 評価設定 ---
+evaluation:
+  test_data_path: "data/backlog.json" # 生データでテスト
+  comparison_methods: ["assignees", "creators", "all"]
+  metrics: ["accuracy", "top3_accuracy", "top5_accuracy", "coverage"]
+  output_dir: "outputs/multi_method_comparison/"
