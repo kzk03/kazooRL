@@ -57,36 +57,36 @@ def get_smart_candidate_developers(backlog_data, dev_profiles_data, num_candidat
             for assignee in task["assignees"]:
                 if assignee.get("login") and assignee["login"] in dev_profiles_data:
                     actual_assignees.add(assignee["login"])
-    
+
     print(f"🎯 実際の担当者数: {len(actual_assignees)}")
     print(f"📋 実際の担当者: {sorted(actual_assignees)}")
-    
+
     # プロファイル上位開発者
     all_developers = list(dev_profiles_data.keys())
-    top_developers = all_developers[:num_candidates - len(actual_assignees)]
-    
+    top_developers = all_developers[: num_candidates - len(actual_assignees)]
+
     # 実際の担当者 + 上位開発者の組み合わせ
     candidate_developers = list(actual_assignees) + [
         dev for dev in top_developers if dev not in actual_assignees
     ]
-    
+
     print(f"👥 候補開発者数: {len(candidate_developers)}")
     print(f"   - 実際の担当者: {len(actual_assignees)}")
     print(f"   - 上位開発者: {len(candidate_developers) - len(actual_assignees)}")
-    
+
     return candidate_developers, actual_assignees
 
 
 class ImprovedRecommendationSystem:
     """改良された推薦システム"""
-    
+
     def __init__(self, irl_weights, ppo_model, env, feature_extractor):
         self.irl_weights = irl_weights
         self.ppo_model = ppo_model
         self.env = env
         self.feature_extractor = feature_extractor
         self.dev_profiles = env.dev_profiles
-        
+
     def get_task_developer_features(self, task, developer_name):
         """タスクと開発者のペアから特徴量を抽出"""
         try:
@@ -96,57 +96,55 @@ class ImprovedRecommendationSystem:
             return features
         except Exception as e:
             return None
-    
+
     def calculate_hybrid_score(self, features, weights=(0.6, 0.3, 0.1)):
         """ハイブリッドスコアを計算"""
         irl_weight, ppo_weight, gat_weight = weights
-        
+
         try:
             # IRL スコア
             irl_score = np.dot(features, self.irl_weights)
-            
+
             # PPO スコア
             obs = features.reshape(1, -1)
             with torch.no_grad():
-                if hasattr(self.ppo_model.policy, 'predict_values'):
+                if hasattr(self.ppo_model.policy, "predict_values"):
                     obs_tensor = torch.FloatTensor(obs)
                     value = self.ppo_model.policy.predict_values(obs_tensor)
                     ppo_score = float(value.item())
                 else:
                     ppo_score = 0.5
-            
+
             # GAT スコア
             gat_features = features[25:62] if len(features) > 61 else features[25:]
             gat_score = np.mean(np.abs(gat_features)) if len(gat_features) > 0 else 0.0
-            
+
             # 総合スコア
             total_score = (
-                irl_weight * irl_score +
-                ppo_weight * ppo_score +
-                gat_weight * gat_score
+                irl_weight * irl_score + ppo_weight * ppo_score + gat_weight * gat_score
             )
-            
+
             return float(total_score), {
-                'irl_score': float(irl_score),
-                'ppo_score': float(ppo_score),
-                'gat_score': float(gat_score)
+                "irl_score": float(irl_score),
+                "ppo_score": float(ppo_score),
+                "gat_score": float(gat_score),
             }
-            
+
         except Exception as e:
-            return 0.0, {'irl_score': 0.0, 'ppo_score': 0.0, 'gat_score': 0.0}
-    
+            return 0.0, {"irl_score": 0.0, "ppo_score": 0.0, "gat_score": 0.0}
+
     def recommend_developers(self, task, candidate_developers, num_recommendations=5):
         """開発者を推薦"""
         developer_scores = []
-        
+
         for dev_name in candidate_developers:
             features = self.get_task_developer_features(task, dev_name)
             if features is None:
                 continue
-            
+
             total_score, score_details = self.calculate_hybrid_score(features)
             developer_scores.append((dev_name, total_score, score_details))
-        
+
         # スコア順にソート（降順）
         developer_scores.sort(key=lambda x: x[1], reverse=True)
         return developer_scores[:num_recommendations]
@@ -154,26 +152,28 @@ class ImprovedRecommendationSystem:
 
 def create_mock_task(task_data):
     """タスクデータからモックタスクオブジェクトを作成"""
+
     class MockTask:
         def __init__(self, task_data):
             self.id = task_data.get("id")
             self.title = task_data.get("title", "")
             self.body = task_data.get("body", "")
-            
+
             # ラベルの形式を統一的に処理
             labels_data = task_data.get("labels", [])
             if labels_data and isinstance(labels_data[0], dict):
                 self.labels = [label.get("name") for label in labels_data]
             else:
                 self.labels = labels_data if isinstance(labels_data, list) else []
-            
+
             self.comments = task_data.get("comments", 0)
             self.updated_at = task_data.get("updated_at", "2023-01-01T00:00:00Z")
             self.user = task_data.get("user", task_data.get("author", {}))
             self.assignees = task_data.get("assignees", [])
-            
+
             # 日付文字列をdatetimeオブジェクトに変換
             from datetime import datetime
+
             if isinstance(self.updated_at, str):
                 try:
                     if self.updated_at.endswith("Z"):
@@ -181,7 +181,7 @@ def create_mock_task(task_data):
                     self.updated_at = datetime.fromisoformat(self.updated_at)
                 except:
                     self.updated_at = datetime(2023, 1, 1)
-    
+
     return MockTask(task_data)
 
 
@@ -195,15 +195,17 @@ def evaluate_improved_recommendations(
     num_recommendations=5,
 ):
     """改良された推薦システムを評価"""
-    
+
     # 賢い候補開発者リストを作成
     candidate_developers, actual_assignees = get_smart_candidate_developers(
         backlog_data, dev_profiles_data, num_candidates=200
     )
-    
+
     # 推薦システムを初期化
-    recommender = ImprovedRecommendationSystem(irl_weights, ppo_model, env, feature_extractor)
-    
+    recommender = ImprovedRecommendationSystem(
+        irl_weights, ppo_model, env, feature_extractor
+    )
+
     results = {
         "total_tasks": 0,
         "tasks_with_assignees": 0,
@@ -213,8 +215,8 @@ def evaluate_improved_recommendations(
         "candidate_info": {
             "total_candidates": len(candidate_developers),
             "actual_assignees_in_candidates": len(actual_assignees),
-            "actual_assignees": list(actual_assignees)
-        }
+            "actual_assignees": list(actual_assignees),
+        },
     }
 
     print(f"🤖 改良推薦評価開始: {len(backlog_data)} タスクで評価")
@@ -257,18 +259,20 @@ def evaluate_improved_recommendations(
         try:
             # モックタスクオブジェクトを作成
             mock_task = create_mock_task(task)
-            
+
             # 推薦を実行
             recommendations_with_scores = recommender.recommend_developers(
                 mock_task, candidate_developers, num_recommendations
             )
-            
+
             if not recommendations_with_scores:
                 task_progress.set_postfix({"Status": "推薦失敗"})
                 continue
-            
+
             # 推薦リストを作成
-            recommendations = [dev_name for dev_name, score, details in recommendations_with_scores]
+            recommendations = [
+                dev_name for dev_name, score, details in recommendations_with_scores
+            ]
 
             # 正解率を計算
             correct_in_top_k = []
@@ -287,7 +291,8 @@ def evaluate_improved_recommendations(
                     "actual_assignees": actual_assignees_task,
                     "recommendations": recommendations,
                     "recommendation_scores": [
-                        (dev, float(score)) for dev, score, details in recommendations_with_scores
+                        (dev, float(score))
+                        for dev, score, details in recommendations_with_scores
                     ],
                     "correct_in_top_1": correct_in_top_k[0],
                     "correct_in_top_3": correct_in_top_k[1],
@@ -330,7 +335,9 @@ def main():
         "--ppo-model", required=True, help="学習済みPPOモデルファイルのパス"
     )
     parser.add_argument(
-        "--output", default="improved_recommendation_results_2023.json", help="結果出力ファイル"
+        "--output",
+        default="improved_recommendation_results_2023.json",
+        help="結果出力ファイル",
     )
 
     args = parser.parse_args()
@@ -374,7 +381,12 @@ def main():
     # 改良推薦評価実行
     print("🚀 改良推薦評価実行中...")
     results = evaluate_improved_recommendations(
-        backlog_data, dev_profiles_data, irl_weights, ppo_model, env, env.feature_extractor
+        backlog_data,
+        dev_profiles_data,
+        irl_weights,
+        ppo_model,
+        env,
+        env.feature_extractor,
     )
 
     # 結果計算
@@ -389,11 +401,19 @@ def main():
         print("=" * 70)
         print(f"評価タスク数: {total_tasks}")
         print(f"候補開発者数: {results['candidate_info']['total_candidates']}")
-        print(f"実際の担当者が候補に含まれる数: {results['candidate_info']['actual_assignees_in_candidates']}")
+        print(
+            f"実際の担当者が候補に含まれる数: {results['candidate_info']['actual_assignees_in_candidates']}"
+        )
         print(f"")
-        print(f"Top-1 Accuracy: {accuracy_top_1:.3f} ({results['top_k_hits']['top_1']}/{total_tasks})")
-        print(f"Top-3 Accuracy: {accuracy_top_3:.3f} ({results['top_k_hits']['top_3']}/{total_tasks})")
-        print(f"Top-5 Accuracy: {accuracy_top_5:.3f} ({results['top_k_hits']['top_5']}/{total_tasks})")
+        print(
+            f"Top-1 Accuracy: {accuracy_top_1:.3f} ({results['top_k_hits']['top_1']}/{total_tasks})"
+        )
+        print(
+            f"Top-3 Accuracy: {accuracy_top_3:.3f} ({results['top_k_hits']['top_3']}/{total_tasks})"
+        )
+        print(
+            f"Top-5 Accuracy: {accuracy_top_5:.3f} ({results['top_k_hits']['top_5']}/{total_tasks})"
+        )
         print("=" * 70)
 
         # 結果をまとめ
@@ -409,7 +429,7 @@ def main():
                 "top_3_accuracy": float(accuracy_top_3),
                 "top_5_accuracy": float(accuracy_top_5),
             },
-            "method": "Improved_Hybrid_Recommendation_With_Actual_Candidates"
+            "method": "Improved_Hybrid_Recommendation_With_Actual_Candidates",
         }
 
         # 結果保存

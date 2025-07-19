@@ -49,104 +49,112 @@ def load_config(config_path):
 
 class PPORecommendationSystem:
     """PPOポリシーを使った推薦システム"""
-    
+
     def __init__(self, ppo_model, env, feature_extractor):
         self.ppo_model = ppo_model
         self.env = env
         self.feature_extractor = feature_extractor
         self.dev_profiles = env.dev_profiles
-        
+
     def get_task_developer_features(self, task, developer_name):
         """タスクと開発者のペアから特徴量を抽出"""
         try:
             dev_profile = self.dev_profiles[developer_name]
             developer = {"name": developer_name, "profile": dev_profile}
-            
+
             # 特徴量を抽出
             features = self.feature_extractor.get_features(task, developer, self.env)
             return features
         except Exception as e:
             print(f"⚠️ 特徴量抽出エラー ({developer_name}): {e}")
             return None
-    
+
     def recommend_developers(self, task, candidate_developers, num_recommendations=5):
         """
         PPOポリシーを使って開発者を推薦する
-        
+
         Args:
             task: 推薦対象のタスク
             candidate_developers: 候補開発者リスト
             num_recommendations: 推薦する開発者数
-            
+
         Returns:
             list: (開発者名, スコア) のタプルリスト（スコア降順）
         """
         developer_scores = []
-        
+
         for dev_name in candidate_developers:
             try:
                 # タスクと開発者の特徴量を取得
                 features = self.get_task_developer_features(task, dev_name)
                 if features is None:
                     continue
-                
+
                 # PPOポリシーで行動価値を予測
                 obs = features.reshape(1, -1)  # バッチ次元を追加
-                
+
                 # PPOモデルで行動確率を取得
                 with torch.no_grad():
                     # PPOの価値関数を使用してスコアを計算
                     action, _states = self.ppo_model.predict(obs, deterministic=True)
-                    
+
                     # より詳細な情報を取得
-                    if hasattr(self.ppo_model.policy, 'evaluate_actions'):
+                    if hasattr(self.ppo_model.policy, "evaluate_actions"):
                         # 行動の対数確率を取得（より詳細なスコア）
                         obs_tensor = torch.FloatTensor(obs)
                         action_tensor = torch.LongTensor([action])
-                        
+
                         with torch.no_grad():
-                            _, log_prob, entropy = self.ppo_model.policy.evaluate_actions(
-                                obs_tensor, action_tensor
+                            _, log_prob, entropy = (
+                                self.ppo_model.policy.evaluate_actions(
+                                    obs_tensor, action_tensor
+                                )
                             )
                             score = float(log_prob.exp().item())  # 確率に変換
                     else:
                         # フォールバック: アクション値をスコアとして使用
-                        score = float(action) if isinstance(action, (int, float)) else float(action[0])
-                
+                        score = (
+                            float(action)
+                            if isinstance(action, (int, float))
+                            else float(action[0])
+                        )
+
                 developer_scores.append((dev_name, score))
-                
+
             except Exception as e:
                 print(f"⚠️ PPO予測エラー ({dev_name}): {e}")
                 continue
-        
+
         # スコア順にソート（降順）
         developer_scores.sort(key=lambda x: x[1], reverse=True)
-        
+
         return developer_scores[:num_recommendations]
 
 
 def create_mock_task(task_data):
     """タスクデータからモックタスクオブジェクトを作成"""
+
     class MockTask:
         def __init__(self, task_data):
             self.id = task_data.get("id")
             self.title = task_data.get("title", "")
             self.body = task_data.get("body", "")
-            
+
             # ラベルの形式を統一的に処理
             labels_data = task_data.get("labels", [])
             if labels_data and isinstance(labels_data[0], dict):
                 self.labels = [label.get("name") for label in labels_data]
             else:
                 self.labels = labels_data if isinstance(labels_data, list) else []
-            
+
             self.comments = task_data.get("comments", 0)
             self.updated_at = task_data.get("updated_at", "2023-01-01T00:00:00Z")
             self.user = task_data.get("user", task_data.get("author", {}))
             self.assignees = task_data.get("assignees", [])
-            
+
             # 日付文字列をdatetimeオブジェクトに変換
             from datetime import datetime
+
             if isinstance(self.updated_at, str):
                 try:
                     if self.updated_at.endswith("Z"):
@@ -154,7 +162,7 @@ def create_mock_task(task_data):
                     self.updated_at = datetime.fromisoformat(self.updated_at)
                 except:
                     self.updated_at = datetime(2023, 1, 1)
-    
+
     return MockTask(task_data)
 
 
@@ -180,10 +188,10 @@ def evaluate_ppo_recommendations(
     Returns:
         dict: 評価結果
     """
-    
+
     # PPO推薦システムを初期化
     recommender = PPORecommendationSystem(ppo_model, env, feature_extractor)
-    
+
     results = {
         "total_tasks": 0,
         "tasks_with_assignees": 0,
@@ -236,18 +244,20 @@ def evaluate_ppo_recommendations(
         try:
             # モックタスクオブジェクトを作成
             mock_task = create_mock_task(task)
-            
+
             # PPOポリシーで開発者を推薦
             recommendations_with_scores = recommender.recommend_developers(
                 mock_task, candidate_developers, num_recommendations
             )
-            
+
             if not recommendations_with_scores:
                 task_progress.set_postfix({"Status": "推薦失敗"})
                 continue
-            
+
             # 推薦リストを作成
-            recommendations = [dev_name for dev_name, score in recommendations_with_scores]
+            recommendations = [
+                dev_name for dev_name, score in recommendations_with_scores
+            ]
 
             # 正解率を計算
             correct_in_top_k = []
@@ -266,7 +276,8 @@ def evaluate_ppo_recommendations(
                     "actual_assignees": actual_assignees,
                     "recommendations": recommendations,
                     "recommendation_scores": [
-                        (dev, float(score)) for dev, score in recommendations_with_scores
+                        (dev, float(score))
+                        for dev, score in recommendations_with_scores
                     ],
                     "correct_in_top_1": correct_in_top_k[0],
                     "correct_in_top_3": correct_in_top_k[1],
@@ -306,7 +317,9 @@ def main():
         "--ppo-model", required=True, help="学習済みPPOモデルファイルのパス"
     )
     parser.add_argument(
-        "--output", default="ppo_recommendation_results_2023.json", help="結果出力ファイル"
+        "--output",
+        default="ppo_recommendation_results_2023.json",
+        help="結果出力ファイル",
     )
 
     args = parser.parse_args()
@@ -380,7 +393,7 @@ def main():
             "top_3_accuracy": float(accuracy_top_3),
             "top_5_accuracy": float(accuracy_top_5),
             "detailed_results": results["recommendation_details"],
-            "method": "PPO_Policy_Based_Recommendation"
+            "method": "PPO_Policy_Based_Recommendation",
         }
 
         # 結果保存
@@ -398,7 +411,9 @@ def main():
             print(f"\nタスク {i+1}: {detail['task_title']}")
             print(f"  実際の担当者: {detail['actual_assignees']}")
             print(f"  PPO推薦Top-5: {detail['recommendations']}")
-            print(f"  推薦スコア: {[f'{dev}({score:.3f})' for dev, score in detail['recommendation_scores'][:3]]}")
+            print(
+                f"  推薦スコア: {[f'{dev}({score:.3f})' for dev, score in detail['recommendation_scores'][:3]]}"
+            )
             print(f"  Top-1正解: {'✅' if detail['correct_in_top_1'] else '❌'}")
             print(f"  Top-3正解: {'✅' if detail['correct_in_top_3'] else '❌'}")
 

@@ -116,45 +116,57 @@ def evaluate_rl_recommendations(
         try:
             # 環境にタスクを設定
             env.reset()
-            
+
             # タスクを環境に追加（簡易実装）
-            task_obj = type('Task', (), {
-                'id': task.get('id'),
-                'title': task.get('title', ''),
-                'body': task.get('body', ''),
-                'labels': task.get('labels', []) if isinstance(task.get('labels', []), list) else [],
-                'updated_at': task.get('updated_at', '2023-01-01T00:00:00Z'),
-                'user': task.get('user', task.get('author', {})),
-                'assignees': task.get('assignees', [])
-            })()
-            
+            task_obj = type(
+                "Task",
+                (),
+                {
+                    "id": task.get("id"),
+                    "title": task.get("title", ""),
+                    "body": task.get("body", ""),
+                    "labels": (
+                        task.get("labels", [])
+                        if isinstance(task.get("labels", []), list)
+                        else []
+                    ),
+                    "updated_at": task.get("updated_at", "2023-01-01T00:00:00Z"),
+                    "user": task.get("user", task.get("author", {})),
+                    "assignees": task.get("assignees", []),
+                },
+            )()
+
             # 利用可能な開発者リストを取得
-            available_developers = list(dev_profiles_data.keys())[:200]  # 上位200人で評価
-            
+            available_developers = list(dev_profiles_data.keys())[
+                :200
+            ]  # 上位200人で評価
+
             # 各開発者に対してRLモデルで行動確率を計算
             developer_scores = []
-            
+
             for dev_name in available_developers:
                 try:
                     # 開発者プロファイルを取得
                     dev_profile = dev_profiles_data[dev_name]
                     developer = {"name": dev_name, "profile": dev_profile}
-                    
+
                     # 特徴量を抽出（状態として使用）
-                    features = env.feature_extractor.get_features(task_obj, developer, env)
-                    
+                    features = env.feature_extractor.get_features(
+                        task_obj, developer, env
+                    )
+
                     # RLモデルで行動確率を予測
                     obs = features.reshape(1, -1)  # バッチ次元を追加
                     action_probs = rl_model.predict(obs, deterministic=True)
-                    
+
                     # 行動確率をスコアとして使用
                     if isinstance(action_probs, tuple):
                         score = float(action_probs[0][0])  # 最初の行動の確率
                     else:
                         score = float(action_probs[0])
-                    
+
                     developer_scores.append((dev_name, score))
-                    
+
                 except Exception as e:
                     # エラーが発生した場合はスキップ
                     continue
