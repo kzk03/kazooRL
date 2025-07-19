@@ -64,10 +64,18 @@ def evaluate_recommendations(
             self.id = task_data.get("id")
             self.title = task_data.get("title", "")
             self.body = task_data.get("body", "")
-            self.labels = [label.get("name") for label in task_data.get("labels", [])]
+            # ラベルの形式を統一的に処理
+            labels_data = task_data.get("labels", [])
+            if labels_data and isinstance(labels_data[0], dict):
+                # 辞書形式の場合（2022年データ）
+                self.labels = [label.get("name") for label in labels_data]
+            else:
+                # 文字列配列の場合（2023年データ）
+                self.labels = labels_data if isinstance(labels_data, list) else []
             self.comments = task_data.get("comments", 0)
             self.updated_at = task_data.get("updated_at", "2022-01-01T00:00:00Z")
-            self.user = task_data.get("user", {})
+            # userまたはauthorフィールドを統一的に処理
+            self.user = task_data.get("user", task_data.get("author", {}))
             self.assignees = task_data.get("assignees", [])
 
             # 日付文字列をdatetimeオブジェクトに変換

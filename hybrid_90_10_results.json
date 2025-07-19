@@ -1,0 +1,559 @@
+{
+  "evaluation_config": "configs/base_test_2023.yaml",
+  "irl_weights_path": "data/learned_weights_training.npy",
+  "ppo_model_path": "models/simple_unified_best/best_model.zip",
+  "hybrid_config": {
+    "simple_weight": 0.9,
+    "rl_weight": 0.1,
+    "activity_window_months": 3
+  },
+  "total_tasks_evaluated": 902,
+  "results": {
+    "top_1_accuracy": 0.23835920177383593,
+    "top_3_accuracy": 0.729490022172949,
+    "top_5_accuracy": 0.9545454545454546
+  },
+  "method": "Hybrid_Simple_RL_Recommendation",
+  "sample_results": [
+    {
+      "task_id": 1183233304,
+      "task_title": "limit build concurrency according to --parallel",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "120011676",
+        "0az",
+        "0x6B386F",
+        "123unix"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 11.669827096225703,
+          "hybrid_score": 2.8769827096225704
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.526609649993754,
+          "hybrid_score": 1.1526609649993753
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.383312826101122,
+          "hybrid_score": 1.1383312826101122
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.091047100681042,
+          "hybrid_score": 1.1091047100681042
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 10.960536383567595,
+          "hybrid_score": 1.0960536383567596
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 0,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.19,
+        "avg_rl_score": 10.841607705817884
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183233304,
+      "task_title": "limit build concurrency according to --parallel",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif",
+        "120011676",
+        "0x6B386F",
+        "0x7162"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 10.566655653818392,
+          "hybrid_score": 2.7666655653818393
+        },
+        {
+          "simple_score": 0.08000000000000002,
+          "rl_score": 11.56439013051408,
+          "hybrid_score": 1.2284390130514082
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.352893720056027,
+          "hybrid_score": 1.1352893720056028
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 10.9488111800891,
+          "hybrid_score": 1.09488111800891
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 10.236304379207983,
+          "hybrid_score": 1.0236304379207983
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.198,
+        "avg_rl_score": 10.306817800781644
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183273905,
+      "task_title": "introduce `--ignore-buildable` to ignore buildable",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "120011676",
+        "0x7162",
+        "123unix",
+        "0az"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 12.111057188930015,
+          "hybrid_score": 2.921105718893002
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.747961699152782,
+          "hybrid_score": 1.2747961699152783
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.3949125744867,
+          "hybrid_score": 1.23949125744867
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.335166977279044,
+          "hybrid_score": 1.2335166977279046
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.291121674447744,
+          "hybrid_score": 1.2291121674447745
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 1,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.19,
+        "avg_rl_score": 12.099891245529454
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183273905,
+      "task_title": "introduce `--ignore-buildable` to ignore buildable",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif",
+        "120011676",
+        "119Vik",
+        "0x6B386F"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 10.212877265107377,
+          "hybrid_score": 2.731287726510738
+        },
+        {
+          "simple_score": 0.08000000000000002,
+          "rl_score": 12.232113875562096,
+          "hybrid_score": 1.2952113875562097
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.004673251974609,
+          "hybrid_score": 1.200467325197461
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.969925925768862,
+          "hybrid_score": 1.1969925925768863
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.672709990513034,
+          "hybrid_score": 1.1672709990513035
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.198,
+        "avg_rl_score": 11.45451042600991
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183298333,
+      "task_title": "Ignore not only auto-removed containers but also \"",
+      "ground_truth": [
+        "gtardif"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "0az",
+        "0xB455",
+        "0h41",
+        "gtardif"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 11.993761448239885,
+          "hybrid_score": 2.9093761448239883
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.737208084857178,
+          "hybrid_score": 1.273720808485718
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.643934326801233,
+          "hybrid_score": 1.2643934326801234
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.628145912234263,
+          "hybrid_score": 1.2628145912234263
+        },
+        {
+          "simple_score": 0.08000000000000002,
+          "rl_score": 11.856838146673228,
+          "hybrid_score": 1.2576838146673228
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 1,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.198,
+        "avg_rl_score": 12.091879145669045
+      },
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183298333,
+      "task_title": "Ignore not only auto-removed containers but also \"",
+      "ground_truth": [
+        "gtardif"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif",
+        "0x7162",
+        "0az",
+        "0h41"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 11.715462049142312,
+          "hybrid_score": 2.8815462049142315
+        },
+        {
+          "simple_score": 0.08000000000000002,
+          "rl_score": 12.08464099766138,
+          "hybrid_score": 1.280464099766138
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.573178339822752,
+          "hybrid_score": 1.2573178339822753
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.42078885343507,
+          "hybrid_score": 1.2420788853435072
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.970658808781113,
+          "hybrid_score": 1.1970658808781114
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.198,
+        "avg_rl_score": 11.842510616979876
+      },
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183556856,
+      "task_title": "introduce --no-attach to ignore some service outpu",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif",
+        "0xB455",
+        "0az",
+        "0x6B386F"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 10.679004114478678,
+          "hybrid_score": 2.7779004114478676
+        },
+        {
+          "simple_score": 0.08000000000000002,
+          "rl_score": 11.657753281544126,
+          "hybrid_score": 1.2377753281544128
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.872553006245044,
+          "hybrid_score": 1.1872553006245044
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.868497334220105,
+          "hybrid_score": 1.1868497334220105
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.715985174926562,
+          "hybrid_score": 1.1715985174926562
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.198,
+        "avg_rl_score": 11.341711673053753
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183556856,
+      "task_title": "introduce --no-attach to ignore some service outpu",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "0h41",
+        "gtardif",
+        "119Vik",
+        "120011676"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 10.648091685191307,
+          "hybrid_score": 2.7748091685191305
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.045634974594284,
+          "hybrid_score": 1.2045634974594286
+        },
+        {
+          "simple_score": 0.08000000000000002,
+          "rl_score": 11.184214555986008,
+          "hybrid_score": 1.190421455598601
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.251825095278367,
+          "hybrid_score": 1.1251825095278367
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.09437558262659,
+          "hybrid_score": 1.109437558262659
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.198,
+        "avg_rl_score": 10.898257651031646
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1186224864,
+      "task_title": "introduce ConvergenceResult and use it to also sto",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif",
+        "0h41",
+        "0x7162",
+        "120011676"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 10.914693323469292,
+          "hybrid_score": 2.8014693323469295
+        },
+        {
+          "simple_score": 0.08000000000000002,
+          "rl_score": 11.859833012651599,
+          "hybrid_score": 1.25798330126516
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 12.144173531166535,
+          "hybrid_score": 1.2144173531166536
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.881776699559328,
+          "hybrid_score": 1.1881776699559328
+        },
+        {
+          "simple_score": 0.0,
+          "rl_score": 11.8735813616905,
+          "hybrid_score": 1.18735813616905
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.198,
+        "avg_rl_score": 11.609550477028076
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1186224864,
+      "task_title": "introduce ConvergenceResult and use it to also sto",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "milas",
+        "glours",
+        "ndeloof",
+        "ulyssessouza",
+        "dependabot[bot]"
+      ],
+      "scores": [
+        {
+          "simple_score": 1.9,
+          "rl_score": 11.987445511890611,
+          "hybrid_score": 2.908744551189061
+        },
+        {
+          "simple_score": 1.9,
+          "rl_score": 11.046922137580419,
+          "hybrid_score": 2.814692213758042
+        },
+        {
+          "simple_score": 1.9,
+          "rl_score": 10.111208358457803,
+          "hybrid_score": 2.72112083584578
+        },
+        {
+          "simple_score": 0.3500000000000001,
+          "rl_score": 11.135682200538142,
+          "hybrid_score": 1.4285682200538143
+        },
+        {
+          "simple_score": 0.4,
+          "rl_score": 10.452421795666462,
+          "hybrid_score": 1.4052421795666463
+        }
+      ],
+      "candidate_info": {
+        "total_active_developers": 7,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 10,
+        "activity_window_months": 3,
+        "hybrid_method": "simple_0.9_rl_0.1",
+        "avg_simple_score": 0.6609999999999999,
+        "avg_rl_score": 10.900083572377257
+      },
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    }
+  ]
+}

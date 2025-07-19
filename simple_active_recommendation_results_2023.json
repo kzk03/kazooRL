@@ -1,0 +1,265 @@
+{
+  "evaluation_config": "configs/base_test_2023.yaml",
+  "activity_window_months": 3,
+  "total_tasks_evaluated": 902,
+  "results": {
+    "top_1_accuracy": 0.18957871396895787,
+    "top_3_accuracy": 0.7305986696230599,
+    "top_5_accuracy": 0.9745011086474501
+  },
+  "method": "Simple_Active_Developer_Recommendation",
+  "sample_results": [
+    {
+      "task_id": 1183233304,
+      "task_title": "limit build concurrency according to --parallel",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof"
+      ],
+      "scores": [
+        1.9
+      ],
+      "candidate_info": {
+        "total_active_developers": 0,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 1,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183233304,
+      "task_title": "limit build concurrency according to --parallel",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif"
+      ],
+      "scores": [
+        1.9,
+        0.08000000000000002
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 2,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183273905,
+      "task_title": "introduce `--ignore-buildable` to ignore buildable",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof"
+      ],
+      "scores": [
+        1.9
+      ],
+      "candidate_info": {
+        "total_active_developers": 1,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 1,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183273905,
+      "task_title": "introduce `--ignore-buildable` to ignore buildable",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif"
+      ],
+      "scores": [
+        1.9,
+        0.08000000000000002
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 2,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183298333,
+      "task_title": "Ignore not only auto-removed containers but also \"",
+      "ground_truth": [
+        "gtardif"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif"
+      ],
+      "scores": [
+        1.9,
+        0.08000000000000002
+      ],
+      "candidate_info": {
+        "total_active_developers": 1,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 2,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183298333,
+      "task_title": "Ignore not only auto-removed containers but also \"",
+      "ground_truth": [
+        "gtardif"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif"
+      ],
+      "scores": [
+        1.9,
+        0.08000000000000002
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 2,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183556856,
+      "task_title": "introduce --no-attach to ignore some service outpu",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif"
+      ],
+      "scores": [
+        1.9,
+        0.08000000000000002
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 2,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1183556856,
+      "task_title": "introduce --no-attach to ignore some service outpu",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif"
+      ],
+      "scores": [
+        1.9,
+        0.08000000000000002
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 2,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1186224864,
+      "task_title": "introduce ConvergenceResult and use it to also sto",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "ndeloof",
+        "gtardif"
+      ],
+      "scores": [
+        1.9,
+        0.08000000000000002
+      ],
+      "candidate_info": {
+        "total_active_developers": 2,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 2,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": true,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1186224864,
+      "task_title": "introduce ConvergenceResult and use it to also sto",
+      "ground_truth": [
+        "ndeloof"
+      ],
+      "recommendations": [
+        "glours",
+        "ndeloof",
+        "milas",
+        "dependabot[bot]",
+        "ulyssessouza"
+      ],
+      "scores": [
+        1.9,
+        1.9,
+        1.9,
+        0.4,
+        0.3500000000000001
+      ],
+      "candidate_info": {
+        "total_active_developers": 7,
+        "actual_assignees_count": 0,
+        "task_author_count": 1,
+        "final_candidates_count": 7,
+        "activity_window_months": 3
+      },
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    }
+  ]
+}

@@ -1,0 +1,6479 @@
+{
+  "evaluation_config": "configs/base_test_2023.yaml",
+  "learned_weights_path": "data/learned_weights_training.npy",
+  "total_tasks_evaluated": 294,
+  "tasks_with_assignees": 294,
+  "top_1_accuracy": 0.0,
+  "top_3_accuracy": 0.20408163265306123,
+  "top_5_accuracy": 0.20748299319727892,
+  "detailed_results": [
+    {
+      "task_id": 1188396716,
+      "task_title": "Support for docker compose build --push",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.873046875],
+        ["ndeloof", 2029.9329833984375],
+        ["ulyssessouza", 1386.3975830078125],
+        ["aiordache", 1244.4542236328125],
+        ["thaJeztah", 840.8526000976562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1196748767,
+      "task_title": "Skeleton for dry-run under alpha command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.77783203125],
+        ["ndeloof", 2029.948974609375],
+        ["ulyssessouza", 1386.41357421875],
+        ["aiordache", 1244.35888671875],
+        ["thaJeztah", 840.75732421875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1196748767,
+      "task_title": "Skeleton for dry-run under alpha command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.82275390625],
+        ["ndeloof", 2029.9940185546875],
+        ["ulyssessouza", 1386.458740234375],
+        ["aiordache", 1244.4039306640625],
+        ["thaJeztah", 840.8023071289062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1197093789,
+      "task_title": "use compose service methods when exist instead of ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.783203125],
+        ["ndeloof", 2029.9542236328125],
+        ["ulyssessouza", 1386.4189453125],
+        ["aiordache", 1244.3641357421875],
+        ["thaJeztah", 840.7625732421875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1537757989,
+      "task_title": "[BUG] Error killing docker compose through Docker ",
+      "actual_assignees": ["ndeloof", "glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.610595703125],
+        ["ndeloof", 2031.05322265625],
+        ["ulyssessouza", 1387.7786865234375],
+        ["aiordache", 1245.1915283203125],
+        ["thaJeztah", 841.5899047851562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1551760447,
+      "task_title": "[BUG] Healthcheck test is lost when start_period i",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.8134765625],
+        ["ndeloof", 2031.638916015625],
+        ["ulyssessouza", 1387.720703125],
+        ["aiordache", 1245.3946533203125],
+        ["thaJeztah", 841.7929077148438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1213916822,
+      "task_title": "Add `index` for `logs` CLI command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.730224609375],
+        ["ndeloof", 2031.7900390625],
+        ["ulyssessouza", 1388.254638671875],
+        ["aiordache", 1246.311279296875],
+        ["thaJeztah", 842.709716796875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1557730495,
+      "task_title": "build with pull does not tag base images in Docker",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.678466796875],
+        ["ndeloof", 2030.738525390625],
+        ["ulyssessouza", 1387.2032470703125],
+        ["aiordache", 1245.259765625],
+        ["thaJeztah", 841.658203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1219518715,
+      "task_title": "Dry run kill support",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.886962890625],
+        ["ndeloof", 2030.05810546875],
+        ["ulyssessouza", 1386.522705078125],
+        ["aiordache", 1244.468017578125],
+        ["thaJeztah", 840.8663940429688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1220012425,
+      "task_title": "refresh Maintainers list",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.867431640625],
+        ["ndeloof", 2030.0384521484375],
+        ["ulyssessouza", 1386.503173828125],
+        ["aiordache", 1244.4483642578125],
+        ["thaJeztah", 840.8468017578125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1220012425,
+      "task_title": "refresh Maintainers list",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.869140625],
+        ["ndeloof", 2030.0401611328125],
+        ["ulyssessouza", 1386.5048828125],
+        ["aiordache", 1244.4500732421875],
+        ["thaJeztah", 840.8485107421875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1221271370,
+      "task_title": "Dry run pause support",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.890625],
+        ["ndeloof", 2030.0616455078125],
+        ["ulyssessouza", 1386.5263671875],
+        ["aiordache", 1244.4715576171875],
+        ["thaJeztah", 840.8699340820312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1228032487,
+      "task_title": "support dry-run for cp command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.91015625],
+        ["ndeloof", 2030.081298828125],
+        ["ulyssessouza", 1386.5460205078125],
+        ["aiordache", 1244.4912109375],
+        ["thaJeztah", 840.8896484375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1228729990,
+      "task_title": "bump golang to 1.20",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.92529296875],
+        ["ndeloof", 2030.0963134765625],
+        ["ulyssessouza", 1386.56103515625],
+        ["aiordache", 1244.5062255859375],
+        ["thaJeztah", 840.9046630859375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1230580541,
+      "task_title": "bump docker engine and cli version to 23.0.0 with ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.928955078125],
+        ["ndeloof", 2030.10009765625],
+        ["ulyssessouza", 1386.5648193359375],
+        ["aiordache", 1244.510009765625],
+        ["thaJeztah", 840.908447265625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1230580541,
+      "task_title": "bump docker engine and cli version to 23.0.0 with ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.93994140625],
+        ["ndeloof", 2030.1109619140625],
+        ["ulyssessouza", 1386.5755615234375],
+        ["aiordache", 1244.5208740234375],
+        ["thaJeztah", 840.9192504882812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1233321573,
+      "task_title": "support dry-run for exec command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.99169921875],
+        ["ndeloof", 2030.162841796875],
+        ["ulyssessouza", 1386.62744140625],
+        ["aiordache", 1244.57275390625],
+        ["thaJeztah", 840.97119140625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1576101810,
+      "task_title": "[BUG] readlink /var/lib/docker/overlay2: invalid a",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.24951171875],
+        ["ndeloof", 2032.309326171875],
+        ["ulyssessouza", 1388.7740478515625],
+        ["aiordache", 1246.83056640625],
+        ["thaJeztah", 843.22900390625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1577770351,
+      "task_title": "[BUG] Wrong path resolution for env files if servi",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.90673828125],
+        ["ndeloof", 2030.9666748046875],
+        ["ulyssessouza", 1387.4312744140625],
+        ["aiordache", 1245.4879150390625],
+        ["thaJeztah", 841.88623046875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1578013140,
+      "task_title": "[BUG] `up` Incorrectly recreates containers with n",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.202392578125],
+        ["ndeloof", 2030.26220703125],
+        ["ulyssessouza", 1386.726806640625],
+        ["aiordache", 1244.783447265625],
+        ["thaJeztah", 841.1818237304688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1235559434,
+      "task_title": "ci: use CGO for tests to enable race detector",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.17041015625],
+        ["ndeloof", 2030.341552734375],
+        ["ulyssessouza", 1386.8062744140625],
+        ["aiordache", 1244.751708984375],
+        ["thaJeztah", 841.1500244140625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1235559434,
+      "task_title": "ci: use CGO for tests to enable race detector",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.171142578125],
+        ["ndeloof", 2030.34228515625],
+        ["ulyssessouza", 1386.806884765625],
+        ["aiordache", 1244.7523193359375],
+        ["thaJeztah", 841.150634765625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1235829270,
+      "task_title": "ci: don't use `-race` on Windows",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.9462890625],
+        ["ndeloof", 2030.1171875],
+        ["ulyssessouza", 1386.5819091796875],
+        ["aiordache", 1244.527099609375],
+        ["thaJeztah", 840.925537109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1235829270,
+      "task_title": "ci: don't use `-race` on Windows",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.9501953125],
+        ["ndeloof", 2030.1214599609375],
+        ["ulyssessouza", 1386.586181640625],
+        ["aiordache", 1244.5313720703125],
+        ["thaJeztah", 840.9297485351562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1581307742,
+      "task_title": "[BUG] watch: can't watch a service without a build",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.30615234375],
+        ["ndeloof", 2031.1318359375],
+        ["ulyssessouza", 1387.213623046875],
+        ["aiordache", 1244.887451171875],
+        ["thaJeztah", 841.2857666015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1242664760,
+      "task_title": "ci: bump to Go 1.20.1 and latest deps",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.986083984375],
+        ["ndeloof", 2030.1571044921875],
+        ["ulyssessouza", 1386.621826171875],
+        ["aiordache", 1244.5670166015625],
+        ["thaJeztah", 840.9654541015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1242664760,
+      "task_title": "ci: bump to Go 1.20.1 and latest deps",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3662.994384765625],
+        ["ndeloof", 2030.16552734375],
+        ["ulyssessouza", 1386.630126953125],
+        ["aiordache", 1244.5753173828125],
+        ["thaJeztah", 840.9737548828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1590324409,
+      "task_title": "[BUG] Extra \"invalid interpolation format\" error w",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.35498046875],
+        ["ndeloof", 2032.180419921875],
+        ["ulyssessouza", 1388.26220703125],
+        ["aiordache", 1245.93603515625],
+        ["thaJeztah", 842.3343505859375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1591913980,
+      "task_title": "Inconsistent behavior between `--env-file` CLI fla",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.81298828125],
+        ["ndeloof", 2030.873046875],
+        ["ulyssessouza", 1387.337646484375],
+        ["aiordache", 1245.394287109375],
+        ["thaJeztah", 841.7926025390625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1249057071,
+      "task_title": "bump golang/x/net to v0.7.0 (CVE-2022-41723)",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.017333984375],
+        ["ndeloof", 2030.1884765625],
+        ["ulyssessouza", 1386.653076171875],
+        ["aiordache", 1244.5982666015625],
+        ["thaJeztah", 840.9967041015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1598100453,
+      "task_title": "Safely Restart a Service When --abort-on-container",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.140869140625],
+        ["ndeloof", 2030.966064453125],
+        ["ulyssessouza", 1387.0478515625],
+        ["aiordache", 1244.7216796875],
+        ["thaJeztah", 841.1200561523438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1253538580,
+      "task_title": "watch: ignore ephemeral files & minor output tweak",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.059326171875],
+        ["ndeloof", 2030.2303466796875],
+        ["ulyssessouza", 1386.695068359375],
+        ["aiordache", 1244.6402587890625],
+        ["thaJeztah", 841.0386962890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1253538580,
+      "task_title": "watch: ignore ephemeral files & minor output tweak",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.0771484375],
+        ["ndeloof", 2030.248291015625],
+        ["ulyssessouza", 1386.712890625],
+        ["aiordache", 1244.658203125],
+        ["thaJeztah", 841.0565185546875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1256028828,
+      "task_title": "test: tweak pause test to try and prevent failures",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.063720703125],
+        ["ndeloof", 2030.2347412109375],
+        ["ulyssessouza", 1386.699462890625],
+        ["aiordache", 1244.6446533203125],
+        ["thaJeztah", 841.0430908203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1601901128,
+      "task_title": "[BUG] Failure when pulling a (particular?) image",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.72705078125],
+        ["ndeloof", 2031.5523681640625],
+        ["ulyssessouza", 1387.63427734375],
+        ["aiordache", 1245.30810546875],
+        ["thaJeztah", 841.7064819335938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1603651539,
+      "task_title": "Suport Re-Following Logs on Single Service Restart",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.091552734375],
+        ["ndeloof", 2030.916748046875],
+        ["ulyssessouza", 1386.99853515625],
+        ["aiordache", 1244.67236328125],
+        ["thaJeztah", 841.0707397460938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1259121234,
+      "task_title": "restart only needed services by checking depends_o",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.073974609375],
+        ["ndeloof", 2030.2449951171875],
+        ["ulyssessouza", 1386.709716796875],
+        ["aiordache", 1244.6549072265625],
+        ["thaJeztah", 841.0533447265625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1259186724,
+      "task_title": "Dry run restart support",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.0654296875],
+        ["ndeloof", 2030.2364501953125],
+        ["ulyssessouza", 1386.701171875],
+        ["aiordache", 1244.6463623046875],
+        ["thaJeztah", 841.0447998046875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1259186724,
+      "task_title": "Dry run restart support",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.071044921875],
+        ["ndeloof", 2030.2420654296875],
+        ["ulyssessouza", 1386.7066650390625],
+        ["aiordache", 1244.6519775390625],
+        ["thaJeztah", 841.0503540039062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1260811381,
+      "task_title": "add dry-run support for pull command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.094482421875],
+        ["ndeloof", 2030.265625],
+        ["ulyssessouza", 1386.730224609375],
+        ["aiordache", 1244.675537109375],
+        ["thaJeztah", 841.0738525390625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1614630006,
+      "task_title": "[BUG] docker-compose run still creates containers ",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.56103515625],
+        ["ndeloof", 2030.7427978515625],
+        ["ulyssessouza", 1387.4683837890625],
+        ["aiordache", 1245.14208984375],
+        ["thaJeztah", 841.42919921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1267611922,
+      "task_title": "add dry-run support for push command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.111328125],
+        ["ndeloof", 2030.282470703125],
+        ["ulyssessouza", 1386.7470703125],
+        ["aiordache", 1244.6923828125],
+        ["thaJeztah", 841.0906982421875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1274748211,
+      "task_title": "build and push binaries images when a PR is merged",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.159423828125],
+        ["ndeloof", 2030.33056640625],
+        ["ulyssessouza", 1386.795166015625],
+        ["aiordache", 1244.740478515625],
+        ["thaJeztah", 841.138916015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1623506414,
+      "task_title": "[BUG] docker-compose does not shut-down resources ",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.3056640625],
+        ["ndeloof", 2031.3656005859375],
+        ["ulyssessouza", 1387.830322265625],
+        ["aiordache", 1245.8868408203125],
+        ["thaJeztah", 842.2852172851562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1277251724,
+      "task_title": "update containerd to 1.7.0",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.616943359375],
+        ["ndeloof", 2030.7880859375],
+        ["ulyssessouza", 1387.252685546875],
+        ["aiordache", 1245.197998046875],
+        ["thaJeztah", 841.596435546875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1283344631,
+      "task_title": "watch: add file delete/rename handling",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.238037109375],
+        ["ndeloof", 2030.4091796875],
+        ["ulyssessouza", 1386.873779296875],
+        ["aiordache", 1244.819091796875],
+        ["thaJeztah", 841.2174682617188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1283344631,
+      "task_title": "watch: add file delete/rename handling",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.241943359375],
+        ["ndeloof", 2030.4129638671875],
+        ["ulyssessouza", 1386.877685546875],
+        ["aiordache", 1244.8228759765625],
+        ["thaJeztah", 841.2213134765625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1286560867,
+      "task_title": "watch: data race / segfault fixes",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.21826171875],
+        ["ndeloof", 2030.389404296875],
+        ["ulyssessouza", 1386.8541259765625],
+        ["aiordache", 1244.79931640625],
+        ["thaJeztah", 841.19775390625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1289086351,
+      "task_title": "ci: upgrade to Go 1.20.2 & bump deps",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.207763671875],
+        ["ndeloof", 2030.37890625],
+        ["ulyssessouza", 1386.8436279296875],
+        ["aiordache", 1244.788818359375],
+        ["thaJeztah", 841.187255859375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1289161752,
+      "task_title": "test: fix race in e2e build test",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.21142578125],
+        ["ndeloof", 2030.3824462890625],
+        ["ulyssessouza", 1386.84716796875],
+        ["aiordache", 1244.7923583984375],
+        ["thaJeztah", 841.1907958984375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1289161752,
+      "task_title": "test: fix race in e2e build test",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.21142578125],
+        ["ndeloof", 2030.382568359375],
+        ["ulyssessouza", 1386.84716796875],
+        ["aiordache", 1244.79248046875],
+        ["thaJeztah", 841.1908569335938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1289276249,
+      "task_title": "test: fix e2e commands on Windows",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.21826171875],
+        ["ndeloof", 2030.3895263671875],
+        ["ulyssessouza", 1386.8541259765625],
+        ["aiordache", 1244.7994384765625],
+        ["thaJeztah", 841.1978149414062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1289276249,
+      "task_title": "test: fix e2e commands on Windows",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.218505859375],
+        ["ndeloof", 2030.3896484375],
+        ["ulyssessouza", 1386.854248046875],
+        ["aiordache", 1244.799560546875],
+        ["thaJeztah", 841.1978759765625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1289392717,
+      "task_title": "add dry-run support to run command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.226318359375],
+        ["ndeloof", 2030.3974609375],
+        ["ulyssessouza", 1386.862060546875],
+        ["aiordache", 1244.807373046875],
+        ["thaJeztah", 841.2057495117188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1640473503,
+      "task_title": "[BUG] docker-compose 2.17.1 changes syntex limitat",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.57275390625],
+        ["ndeloof", 2030.632568359375],
+        ["ulyssessouza", 1387.09716796875],
+        ["aiordache", 1245.15380859375],
+        ["thaJeztah", 841.5521240234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1640473503,
+      "task_title": "[BUG] docker-compose 2.17.1 changes syntex limitat",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.57275390625],
+        ["ndeloof", 2030.632568359375],
+        ["ulyssessouza", 1387.09716796875],
+        ["aiordache", 1245.15380859375],
+        ["thaJeztah", 841.5521240234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1290354082,
+      "task_title": "ci: bump compose-go to v1.13.2",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.2109375],
+        ["ndeloof", 2030.3819580078125],
+        ["ulyssessouza", 1386.8465576171875],
+        ["aiordache", 1244.7918701171875],
+        ["thaJeztah", 841.1902465820312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1290354082,
+      "task_title": "ci: bump compose-go to v1.13.2",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.2109375],
+        ["ndeloof", 2030.3819580078125],
+        ["ulyssessouza", 1386.8466796875],
+        ["aiordache", 1244.7918701171875],
+        ["thaJeztah", 841.1903076171875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1643179028,
+      "task_title": "[BUG] `docker-compose rm` command has inconsistent",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3666.81689453125],
+        ["ndeloof", 2034.642333984375],
+        ["ulyssessouza", 1390.7242431640625],
+        ["aiordache", 1248.39794921875],
+        ["thaJeztah", 844.79638671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1644984546,
+      "task_title": "[BUG] using multiple yaml alias not working. mappi",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.2548828125],
+        ["ndeloof", 2032.0804443359375],
+        ["ulyssessouza", 1388.1622314453125],
+        ["aiordache", 1245.836181640625],
+        ["thaJeztah", 842.234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1646091190,
+      "task_title": "[BUG] volumes_from external container fails: servi",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.29248046875],
+        ["ndeloof", 2032.1177978515625],
+        ["ulyssessouza", 1388.19970703125],
+        ["aiordache", 1245.87353515625],
+        ["thaJeztah", 842.2717895507812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1648366720,
+      "task_title": "There are no online resources on how to access a d",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.40673828125],
+        ["ndeloof", 2030.4666748046875],
+        ["ulyssessouza", 1386.931396484375],
+        ["aiordache", 1244.9879150390625],
+        ["thaJeztah", 841.3863525390625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1649250109,
+      "task_title": "[BUG] alpha watch <service> for 2.17.2 throws a ru",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.7900390625],
+        ["ndeloof", 2032.6153564453125],
+        ["ulyssessouza", 1388.697265625],
+        ["aiordache", 1246.37109375],
+        ["thaJeztah", 842.7694702148438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1651976562,
+      "task_title": "[BUG] docker-compose fails with \"read .env: is a d",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.868896484375],
+        ["ndeloof", 2031.694091796875],
+        ["ulyssessouza", 1387.776123046875],
+        ["aiordache", 1245.4498291015625],
+        ["thaJeztah", 841.84814453125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1302160262,
+      "task_title": "ci: bump Go to 1.20.3 and various dependencies",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.279541015625],
+        ["ndeloof", 2030.45068359375],
+        ["ulyssessouza", 1386.915283203125],
+        ["aiordache", 1244.860595703125],
+        ["thaJeztah", 841.2589721679688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1302160262,
+      "task_title": "ci: bump Go to 1.20.3 and various dependencies",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.27978515625],
+        ["ndeloof", 2030.45068359375],
+        ["ulyssessouza", 1386.9154052734375],
+        ["aiordache", 1244.860595703125],
+        ["thaJeztah", 841.259033203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1302727754,
+      "task_title": "bump docker version to 23.0.3 (CVE-2023-28840)",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.27734375],
+        ["ndeloof", 2030.448486328125],
+        ["ulyssessouza", 1386.9130859375],
+        ["aiordache", 1244.8583984375],
+        ["thaJeztah", 841.2567749023438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1304755583,
+      "task_title": "add dry-run support to down command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.591552734375],
+        ["ndeloof", 2030.7626953125],
+        ["ulyssessouza", 1387.227294921875],
+        ["aiordache", 1245.1727294921875],
+        ["thaJeztah", 841.571044921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1658208019,
+      "task_title": "[BUG] incorrect interpretation of relative paths i",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.599609375],
+        ["ndeloof", 2031.425048828125],
+        ["ulyssessouza", 1387.5068359375],
+        ["aiordache", 1245.1807861328125],
+        ["thaJeztah", 841.5791625976562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1305465987,
+      "task_title": "Remove redundant goroutine while removing containe",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.361572265625],
+        ["ndeloof", 2030.42138671875],
+        ["ulyssessouza", 1386.885986328125],
+        ["aiordache", 1244.942626953125],
+        ["thaJeztah", 841.341064453125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1661704278,
+      "task_title": "[BUG] The dockerfile_inline field does not take ef",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.96630859375],
+        ["ndeloof", 2031.0262451171875],
+        ["ulyssessouza", 1387.49072265625],
+        ["aiordache", 1245.5474853515625],
+        ["thaJeztah", 841.9457397460938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1309683936,
+      "task_title": "log: fix race on container kill",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.32666015625],
+        ["ndeloof", 2030.49755859375],
+        ["ulyssessouza", 1386.9622802734375],
+        ["aiordache", 1244.907470703125],
+        ["thaJeztah", 841.305908203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1309683936,
+      "task_title": "log: fix race on container kill",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.331298828125],
+        ["ndeloof", 2030.50244140625],
+        ["ulyssessouza", 1386.967041015625],
+        ["aiordache", 1244.912353515625],
+        ["thaJeztah", 841.310791015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1664000593,
+      "task_title": "[BUG] Container name changes on recreation using \"",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0625],
+        ["ndeloof", 2031.1224365234375],
+        ["ulyssessouza", 1387.5870361328125],
+        ["aiordache", 1245.6436767578125],
+        ["thaJeztah", 842.0420532226562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1666540288,
+      "task_title": "[BUG] Problem to monitor specific docker container",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.9873046875],
+        ["ndeloof", 2032.812744140625],
+        ["ulyssessouza", 1388.89453125],
+        ["aiordache", 1246.568359375],
+        ["thaJeztah", 842.966796875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1670897981,
+      "task_title": "[BUG] `up` stacks if root container has update in ",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.046875],
+        ["ndeloof", 2031.8720703125],
+        ["ulyssessouza", 1387.9541015625],
+        ["aiordache", 1245.6278076171875],
+        ["thaJeztah", 842.0261840820312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1673148293,
+      "task_title": "[BUG] tmpfs volumes’s mode only works once",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.43310546875],
+        ["ndeloof", 2032.147216796875],
+        ["ulyssessouza", 1388.2291259765625],
+        ["aiordache", 1245.9029541015625],
+        ["thaJeztah", 842.30126953125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1325822742,
+      "task_title": "test: fix E2E tests under Engine v23 / DD 4.19",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.402099609375],
+        ["ndeloof", 2030.5731201171875],
+        ["ulyssessouza", 1387.037841796875],
+        ["aiordache", 1244.9830322265625],
+        ["thaJeztah", 841.3814697265625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1683174217,
+      "task_title": "[BUG] Compose 2.17.2 not reading host environment ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.36865234375],
+        ["ndeloof", 2031.428466796875],
+        ["ulyssessouza", 1387.8931884765625],
+        ["aiordache", 1245.9498291015625],
+        ["thaJeztah", 842.34814453125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1684449594,
+      "task_title": "PORT is not showing for prometheus container while",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.958984375],
+        ["ndeloof", 2031.018798828125],
+        ["ulyssessouza", 1387.4833984375],
+        ["aiordache", 1245.5400390625],
+        ["thaJeztah", 841.9383544921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1330720187,
+      "task_title": "Dry run build command support",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.415283203125],
+        ["ndeloof", 2030.5863037109375],
+        ["ulyssessouza", 1387.051025390625],
+        ["aiordache", 1244.9962158203125],
+        ["thaJeztah", 841.3946533203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1330720187,
+      "task_title": "Dry run build command support",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.4462890625],
+        ["ndeloof", 2030.6173095703125],
+        ["ulyssessouza", 1387.08203125],
+        ["aiordache", 1245.0272216796875],
+        ["thaJeztah", 841.4256591796875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1331651526,
+      "task_title": "make progress title configurable",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.4267578125],
+        ["ndeloof", 2030.597900390625],
+        ["ulyssessouza", 1387.0626220703125],
+        ["aiordache", 1245.0078125],
+        ["thaJeztah", 841.40625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1331651526,
+      "task_title": "make progress title configurable",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.453369140625],
+        ["ndeloof", 2030.62451171875],
+        ["ulyssessouza", 1387.089111328125],
+        ["aiordache", 1245.034423828125],
+        ["thaJeztah", 841.432861328125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1335015665,
+      "task_title": "Revert \"build(deps): bump github.com/opencontainer",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.44287109375],
+        ["ndeloof", 2030.614013671875],
+        ["ulyssessouza", 1387.0787353515625],
+        ["aiordache", 1245.02392578125],
+        ["thaJeztah", 841.42236328125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1337500951,
+      "task_title": "trace: add OTEL initialization",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.474853515625],
+        ["ndeloof", 2030.64599609375],
+        ["ulyssessouza", 1387.110595703125],
+        ["aiordache", 1245.055908203125],
+        ["thaJeztah", 841.4542236328125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1337500951,
+      "task_title": "trace: add OTEL initialization",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.69482421875],
+        ["ndeloof", 2030.8658447265625],
+        ["ulyssessouza", 1387.33056640625],
+        ["aiordache", 1245.2757568359375],
+        ["thaJeztah", 841.6741333007812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1338423699,
+      "task_title": "add dry-run support to up command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.45703125],
+        ["ndeloof", 2030.628173828125],
+        ["ulyssessouza", 1387.0927734375],
+        ["aiordache", 1245.0380859375],
+        ["thaJeztah", 841.4365234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1338423699,
+      "task_title": "add dry-run support to up command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.7392578125],
+        ["ndeloof", 2030.910400390625],
+        ["ulyssessouza", 1387.375],
+        ["aiordache", 1245.3204345703125],
+        ["thaJeztah", 841.7188110351562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1339563059,
+      "task_title": "move dry-run support from alpha to main command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.46435546875],
+        ["ndeloof", 2030.635498046875],
+        ["ulyssessouza", 1387.1002197265625],
+        ["aiordache", 1245.04541015625],
+        ["thaJeztah", 841.44384765625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1339563059,
+      "task_title": "move dry-run support from alpha to main command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.525390625],
+        ["ndeloof", 2030.696533203125],
+        ["ulyssessouza", 1387.1611328125],
+        ["aiordache", 1245.1064453125],
+        ["thaJeztah", 841.5048828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1703505820,
+      "task_title": "[BUG]  environment variable COMPOSE_PARALLEL_LIMIT",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.006103515625],
+        ["ndeloof", 2031.0660400390625],
+        ["ulyssessouza", 1387.530517578125],
+        ["aiordache", 1245.5872802734375],
+        ["thaJeztah", 841.9855346679688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1710723142,
+      "task_title": "[BUG] Alpha watch should not rebuild when no x-dev",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.051513671875],
+        ["ndeloof", 2032.8768310546875],
+        ["ulyssessouza", 1388.958740234375],
+        ["aiordache", 1246.6324462890625],
+        ["thaJeztah", 843.0308837890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1353178920,
+      "task_title": "only check the platform of cached image if image f",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.532470703125],
+        ["ndeloof", 2030.7034912109375],
+        ["ulyssessouza", 1387.168212890625],
+        ["aiordache", 1245.1134033203125],
+        ["thaJeztah", 841.5118408203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1717653450,
+      "task_title": "[BUG] compose run doesn't forward signals",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.42529296875],
+        ["ndeloof", 2032.250732421875],
+        ["ulyssessouza", 1388.33251953125],
+        ["aiordache", 1246.00634765625],
+        ["thaJeztah", 842.4047241210938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1718393413,
+      "task_title": "[BUG] Overlay network not found on worker node",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.6533203125],
+        ["ndeloof", 2031.478759765625],
+        ["ulyssessouza", 1387.560546875],
+        ["aiordache", 1245.2344970703125],
+        ["thaJeztah", 841.6328735351562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1718395429,
+      "task_title": "[BUG] Reset value do not work on lists",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.223388671875],
+        ["ndeloof", 2031.937255859375],
+        ["ulyssessouza", 1388.0191650390625],
+        ["aiordache", 1245.69287109375],
+        ["thaJeztah", 842.09130859375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1719588535,
+      "task_title": "[BUG] COMPOSE_PROJECT_NAME broken in `docker compo",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.93701171875],
+        ["ndeloof", 2031.762451171875],
+        ["ulyssessouza", 1387.84423828125],
+        ["aiordache", 1245.51806640625],
+        ["thaJeztah", 841.9163818359375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1719915048,
+      "task_title": "[BUG] Setting secrets using \"environment:\" instead",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.933349609375],
+        ["ndeloof", 2032.7586669921875],
+        ["ulyssessouza", 1388.840576171875],
+        ["aiordache", 1246.5142822265625],
+        ["thaJeztah", 842.9127197265625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1722292541,
+      "task_title": "[BUG] x-develop : watch : sync processes can stack",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.054931640625],
+        ["ndeloof", 2032.1148681640625],
+        ["ulyssessouza", 1388.57958984375],
+        ["aiordache", 1246.6361083984375],
+        ["thaJeztah", 843.0345458984375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1723260070,
+      "task_title": "[BUG] docker compose down --help prints incorrect ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.455322265625],
+        ["ndeloof", 2031.51513671875],
+        ["ulyssessouza", 1387.9798583984375],
+        ["aiordache", 1246.036376953125],
+        ["thaJeztah", 842.4347534179688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1723561071,
+      "task_title": "[BUG] docker-compose commands failing with \"unknow",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.29638671875],
+        ["ndeloof", 2031.356201171875],
+        ["ulyssessouza", 1387.8209228515625],
+        ["aiordache", 1245.8775634765625],
+        ["thaJeztah", 842.27587890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1363169092,
+      "task_title": "progress: remove errant import",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.586669921875],
+        ["ndeloof", 2030.7578125],
+        ["ulyssessouza", 1387.222412109375],
+        ["aiordache", 1245.167724609375],
+        ["thaJeztah", 841.5661010742188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1363169092,
+      "task_title": "progress: remove errant import",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.588623046875],
+        ["ndeloof", 2030.7596435546875],
+        ["ulyssessouza", 1387.224365234375],
+        ["aiordache", 1245.1695556640625],
+        ["thaJeztah", 841.5679931640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1363557204,
+      "task_title": "fix display of volumes flag in down command help",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.580078125],
+        ["ndeloof", 2030.751220703125],
+        ["ulyssessouza", 1387.2159423828125],
+        ["aiordache", 1245.1612548828125],
+        ["thaJeztah", 841.5596313476562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1363557204,
+      "task_title": "fix display of volumes flag in down command help",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.580810546875],
+        ["ndeloof", 2030.751953125],
+        ["ulyssessouza", 1387.216552734375],
+        ["aiordache", 1245.161865234375],
+        ["thaJeztah", 841.5602416992188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1725418412,
+      "task_title": "[BUG] docker compose -p <Project> logs -f not show",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.969970703125],
+        ["ndeloof", 2031.79541015625],
+        ["ulyssessouza", 1387.877197265625],
+        ["aiordache", 1245.5511474609375],
+        ["thaJeztah", 841.9494018554688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1725502520,
+      "task_title": "[BUG] `compose run` display `[+] Building X.Ys (n/",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.2431640625],
+        ["ndeloof", 2032.068359375],
+        ["ulyssessouza", 1388.150146484375],
+        ["aiordache", 1245.823974609375],
+        ["thaJeztah", 842.2223510742188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1365443919,
+      "task_title": "Fix typo in warning about existing volume",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.635986328125],
+        ["ndeloof", 2030.69580078125],
+        ["ulyssessouza", 1387.1605224609375],
+        ["aiordache", 1245.217041015625],
+        ["thaJeztah", 841.615478515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1366530626,
+      "task_title": "add GitHub action to trigger Docker Desktop e2e te",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.682373046875],
+        ["ndeloof", 2030.8533935546875],
+        ["ulyssessouza", 1387.318115234375],
+        ["aiordache", 1245.2633056640625],
+        ["thaJeztah", 841.6617431640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1371621916,
+      "task_title": "add Windows drive prefix to temp dir usage in the ",
+      "actual_assignees": ["glours", "laurazard"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.62255859375],
+        ["ndeloof", 2030.793701171875],
+        ["ulyssessouza", 1387.2584228515625],
+        ["aiordache", 1245.2037353515625],
+        ["thaJeztah", 841.6021118164062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1371621916,
+      "task_title": "add Windows drive prefix to temp dir usage in the ",
+      "actual_assignees": ["glours", "laurazard"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.622802734375],
+        ["ndeloof", 2030.7939453125],
+        ["ulyssessouza", 1387.258544921875],
+        ["aiordache", 1245.203857421875],
+        ["thaJeztah", 841.602294921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1371621916,
+      "task_title": "add Windows drive prefix to temp dir usage in the ",
+      "actual_assignees": ["glours", "laurazard"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.622802734375],
+        ["ndeloof", 2030.7939453125],
+        ["ulyssessouza", 1387.258544921875],
+        ["aiordache", 1245.203857421875],
+        ["thaJeztah", 841.602294921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1371621916,
+      "task_title": "add Windows drive prefix to temp dir usage in the ",
+      "actual_assignees": ["glours", "laurazard"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.622802734375],
+        ["ndeloof", 2030.7939453125],
+        ["ulyssessouza", 1387.258544921875],
+        ["aiordache", 1245.203857421875],
+        ["thaJeztah", 841.602294921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1736851711,
+      "task_title": "[BUG] docker compose sync doesn't create folder",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.71826171875],
+        ["ndeloof", 2031.543701171875],
+        ["ulyssessouza", 1387.62548828125],
+        ["aiordache", 1245.29931640625],
+        ["thaJeztah", 841.69775390625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1380919768,
+      "task_title": "ci: bump golangci-lint to v1.53.x",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.6630859375],
+        ["ndeloof", 2030.834228515625],
+        ["ulyssessouza", 1387.2989501953125],
+        ["aiordache", 1245.2442626953125],
+        ["thaJeztah", 841.642578125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1380919768,
+      "task_title": "ci: bump golangci-lint to v1.53.x",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.6650390625],
+        ["ndeloof", 2030.8359375],
+        ["ulyssessouza", 1387.3006591796875],
+        ["aiordache", 1245.245849609375],
+        ["thaJeztah", 841.644287109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1381525335,
+      "task_title": "ci: upgrade to Go 1.20.5 and Moby v24.x",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.671630859375],
+        ["ndeloof", 2030.8427734375],
+        ["ulyssessouza", 1387.307373046875],
+        ["aiordache", 1245.252685546875],
+        ["thaJeztah", 841.6510620117188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1745198257,
+      "task_title": "[BUG] Secret mounts in `/run/secrets` throws an er",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.96240234375],
+        ["ndeloof", 2032.78759765625],
+        ["ulyssessouza", 1388.86962890625],
+        ["aiordache", 1246.5433349609375],
+        ["thaJeztah", 842.9417724609375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1382816097,
+      "task_title": "ci: merge Go coverage reports before upload",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.6728515625],
+        ["ndeloof", 2030.84375],
+        ["ulyssessouza", 1387.3084716796875],
+        ["aiordache", 1245.253662109375],
+        ["thaJeztah", 841.652099609375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1382816097,
+      "task_title": "ci: merge Go coverage reports before upload",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.679931640625],
+        ["ndeloof", 2030.85107421875],
+        ["ulyssessouza", 1387.315673828125],
+        ["aiordache", 1245.260986328125],
+        ["thaJeztah", 841.6593627929688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1746746643,
+      "task_title": "[BUG] Intermittent \"container <id> is not connecte",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.7373046875],
+        ["ndeloof", 2031.908447265625],
+        ["ulyssessouza", 1388.3731689453125],
+        ["aiordache", 1246.318603515625],
+        ["thaJeztah", 842.7169189453125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1747878887,
+      "task_title": "Enhancement of “docker compose up `--abort-on-cont",
+      "actual_assignees": ["ulyssessouza"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.11962890625],
+        ["ndeloof", 2031.290771484375],
+        ["ulyssessouza", 1388.0269775390625],
+        ["aiordache", 1245.42919921875],
+        ["thaJeztah", 841.8275756835938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1748083296,
+      "task_title": "[BUG] docker compose up failing to connect to post",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.500244140625],
+        ["ndeloof", 2032.560302734375],
+        ["ulyssessouza", 1389.02490234375],
+        ["aiordache", 1247.08154296875],
+        ["thaJeztah", 843.47998046875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1386652413,
+      "task_title": "use env instead of variables prefix to use DOCKERD",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.67724609375],
+        ["ndeloof", 2030.848388671875],
+        ["ulyssessouza", 1387.31298828125],
+        ["aiordache", 1245.25830078125],
+        ["thaJeztah", 841.6566162109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1386652413,
+      "task_title": "use env instead of variables prefix to use DOCKERD",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.67724609375],
+        ["ndeloof", 2030.848388671875],
+        ["ulyssessouza", 1387.31298828125],
+        ["aiordache", 1245.25830078125],
+        ["thaJeztah", 841.6566772460938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1388344767,
+      "task_title": "escape containerimage.digest attribut in merge.yml",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.697998046875],
+        ["ndeloof", 2030.8690185546875],
+        ["ulyssessouza", 1387.333740234375],
+        ["aiordache", 1245.2789306640625],
+        ["thaJeztah", 841.6773681640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1388344767,
+      "task_title": "escape containerimage.digest attribute in merge.ym",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.70361328125],
+        ["ndeloof", 2030.8746337890625],
+        ["ulyssessouza", 1387.33935546875],
+        ["aiordache", 1245.28466796875],
+        ["thaJeztah", 841.6829833984375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1388686077,
+      "task_title": "ci: add more ignore rules to dependabot",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.694580078125],
+        ["ndeloof", 2030.86572265625],
+        ["ulyssessouza", 1387.330322265625],
+        ["aiordache", 1245.2755126953125],
+        ["thaJeztah", 841.6739501953125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1390098943,
+      "task_title": "fix typo in merge workflow for DOCKERDESKTOP_APP_I",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.69921875],
+        ["ndeloof", 2030.8702392578125],
+        ["ulyssessouza", 1387.3349609375],
+        ["aiordache", 1245.2801513671875],
+        ["thaJeztah", 841.6785888671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1755404876,
+      "task_title": "[BUG] x-develop watch not working",
+      "actual_assignees": ["ndeloof", "glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.6357421875],
+        ["ndeloof", 2032.0782470703125],
+        ["ulyssessouza", 1388.8037109375],
+        ["aiordache", 1246.2166748046875],
+        ["thaJeztah", 842.614990234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1755625440,
+      "task_title": "[BUG] Docker compose hangs forever on starting con",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.072509765625],
+        ["ndeloof", 2031.89794921875],
+        ["ulyssessouza", 1387.9798583984375],
+        ["aiordache", 1245.6536865234375],
+        ["thaJeztah", 842.052001953125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1394384918,
+      "task_title": "otel: fix initialization / error-handling",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.717041015625],
+        ["ndeloof", 2030.8880615234375],
+        ["ulyssessouza", 1387.352783203125],
+        ["aiordache", 1245.2979736328125],
+        ["thaJeztah", 841.6964111328125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1394384918,
+      "task_title": "otel: fix initialization / error-handling",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.71728515625],
+        ["ndeloof", 2030.8883056640625],
+        ["ulyssessouza", 1387.35302734375],
+        ["aiordache", 1245.2982177734375],
+        ["thaJeztah", 841.6966552734375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1394504852,
+      "task_title": "trace: refactor root command span reporting",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.727783203125],
+        ["ndeloof", 2030.8988037109375],
+        ["ulyssessouza", 1387.363525390625],
+        ["aiordache", 1245.308837890625],
+        ["thaJeztah", 841.7071533203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1394504852,
+      "task_title": "trace: refactor root command span reporting",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.758056640625],
+        ["ndeloof", 2030.9290771484375],
+        ["ulyssessouza", 1387.3936767578125],
+        ["aiordache", 1245.3389892578125],
+        ["thaJeztah", 841.7373657226562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1398623560,
+      "task_title": "add missing comma in desktop-edge-test job",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.739501953125],
+        ["ndeloof", 2030.9105224609375],
+        ["ulyssessouza", 1387.375244140625],
+        ["aiordache", 1245.3204345703125],
+        ["thaJeztah", 841.7188720703125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1399446494,
+      "task_title": "use main branch of Docker Desktop repo to trigger ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.747314453125],
+        ["ndeloof", 2030.91845703125],
+        ["ulyssessouza", 1387.383056640625],
+        ["aiordache", 1245.328369140625],
+        ["thaJeztah", 841.7267456054688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1399446494,
+      "task_title": "use main branch of Docker Desktop repo to trigger ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.747802734375],
+        ["ndeloof", 2030.9188232421875],
+        ["ulyssessouza", 1387.383544921875],
+        ["aiordache", 1245.3287353515625],
+        ["thaJeztah", 841.7271728515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1400080572,
+      "task_title": "ci: upgrade to buildx v0.11",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.747314453125],
+        ["ndeloof", 2030.91845703125],
+        ["ulyssessouza", 1387.383056640625],
+        ["aiordache", 1245.328369140625],
+        ["thaJeztah", 841.7267456054688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1400080572,
+      "task_title": "ci: upgrade to buildx v0.11",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.751953125],
+        ["ndeloof", 2030.9229736328125],
+        ["ulyssessouza", 1387.3876953125],
+        ["aiordache", 1245.3328857421875],
+        ["thaJeztah", 841.7313232421875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1401318545,
+      "task_title": "bump compose-go to version v1.15.0",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.745849609375],
+        ["ndeloof", 2030.9169921875],
+        ["ulyssessouza", 1387.381591796875],
+        ["aiordache", 1245.326904296875],
+        ["thaJeztah", 841.7252197265625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1769286023,
+      "task_title": "docker-compose sporadically complains FileNotFound",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0439453125],
+        ["ndeloof", 2031.1038818359375],
+        ["ulyssessouza", 1387.5684814453125],
+        ["aiordache", 1245.6251220703125],
+        ["thaJeztah", 842.0234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1408016686,
+      "task_title": "add warning when a watch source is already used by",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.787353515625],
+        ["ndeloof", 2030.9583740234375],
+        ["ulyssessouza", 1387.423095703125],
+        ["aiordache", 1245.3682861328125],
+        ["thaJeztah", 841.7667236328125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1408016686,
+      "task_title": "add warning when a watch source is already used by",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.78955078125],
+        ["ndeloof", 2030.960693359375],
+        ["ulyssessouza", 1387.42529296875],
+        ["aiordache", 1245.37060546875],
+        ["thaJeztah", 841.76904296875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1409758966,
+      "task_title": "add support of --builder and BUILDX_BUILDER",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.828125],
+        ["ndeloof", 2030.9991455078125],
+        ["ulyssessouza", 1387.4638671875],
+        ["aiordache", 1245.4090576171875],
+        ["thaJeztah", 841.8074951171875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1778220183,
+      "task_title": "[BUG] dockerfile_inline does not work in 2.19.0",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.21240234375],
+        ["ndeloof", 2031.804443359375],
+        ["ulyssessouza", 1388.2691650390625],
+        ["aiordache", 1246.3258056640625],
+        ["thaJeztah", 842.72412109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1778444355,
+      "task_title": "[BUG] service \"#extensions\" has neither an image n",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.6826171875],
+        ["ndeloof", 2031.7425537109375],
+        ["ulyssessouza", 1388.207275390625],
+        ["aiordache", 1246.2637939453125],
+        ["thaJeztah", 842.6621704101562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1780048641,
+      "task_title": "[BUG] Long variable names are not imported by comp",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0205078125],
+        ["ndeloof", 2031.080322265625],
+        ["ulyssessouza", 1387.544921875],
+        ["aiordache", 1245.6015625],
+        ["thaJeztah", 842.0]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1413861494,
+      "task_title": "up: fix race condition on network connect",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0458984375],
+        ["ndeloof", 2031.217041015625],
+        ["ulyssessouza", 1387.6817626953125],
+        ["aiordache", 1245.6270751953125],
+        ["thaJeztah", 842.0254516601562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1413861494,
+      "task_title": "up: fix race condition on network connect",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0478515625],
+        ["ndeloof", 2031.2188720703125],
+        ["ulyssessouza", 1387.68359375],
+        ["aiordache", 1245.62890625],
+        ["thaJeztah", 842.0272827148438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1413905886,
+      "task_title": "ci: upgrade compose-go to v1.15.1",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.795166015625],
+        ["ndeloof", 2030.96630859375],
+        ["ulyssessouza", 1387.430908203125],
+        ["aiordache", 1245.376220703125],
+        ["thaJeztah", 841.7745361328125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1413905886,
+      "task_title": "ci: upgrade compose-go to v1.15.1",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.79541015625],
+        ["ndeloof", 2030.96630859375],
+        ["ulyssessouza", 1387.4310302734375],
+        ["aiordache", 1245.3763427734375],
+        ["thaJeztah", 841.774658203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1792189980,
+      "task_title": "`Host name lookup failure` when using multiple net",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.361328125],
+        ["ndeloof", 2031.5325927734375],
+        ["ulyssessouza", 1387.997314453125],
+        ["aiordache", 1245.942626953125],
+        ["thaJeztah", 842.3408813476562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1423467069,
+      "task_title": "network: fix random missing network when service h",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.87646484375],
+        ["ndeloof", 2031.047607421875],
+        ["ulyssessouza", 1387.51220703125],
+        ["aiordache", 1245.45751953125],
+        ["thaJeztah", 841.8558349609375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1792525276,
+      "task_title": "[BUG] Compose output issues on 2.19.0/1",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.5595703125],
+        ["ndeloof", 2033.3848876953125],
+        ["ulyssessouza", 1389.4666748046875],
+        ["aiordache", 1247.1405029296875],
+        ["thaJeztah", 843.5388793945312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1424609298,
+      "task_title": "deps: bump docker/cli-docs-tool to v0.6.0",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.848876953125],
+        ["ndeloof", 2031.0198974609375],
+        ["ulyssessouza", 1387.484619140625],
+        ["aiordache", 1245.4298095703125],
+        ["thaJeztah", 841.8282470703125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1424609298,
+      "task_title": "deps: bump docker/cli-docs-tool to v0.6.0",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.86669921875],
+        ["ndeloof", 2031.037841796875],
+        ["ulyssessouza", 1387.50244140625],
+        ["aiordache", 1245.44775390625],
+        ["thaJeztah", 841.84619140625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1793855270,
+      "task_title": "[BUG] Secrets permission mode value does not compl",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.9951171875],
+        ["ndeloof", 2032.05517578125],
+        ["ulyssessouza", 1388.519775390625],
+        ["aiordache", 1246.576416015625],
+        ["thaJeztah", 842.9747314453125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1424957826,
+      "task_title": "fix(secrets): file permission value does not compl",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.878662109375],
+        ["ndeloof", 2030.9383544921875],
+        ["ulyssessouza", 1387.403076171875],
+        ["aiordache", 1245.4595947265625],
+        ["thaJeztah", 841.8579711914062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1427825980,
+      "task_title": "watch: move sync logic into separate package",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.87158203125],
+        ["ndeloof", 2031.0426025390625],
+        ["ulyssessouza", 1387.50732421875],
+        ["aiordache", 1245.4525146484375],
+        ["thaJeztah", 841.8509521484375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1427825980,
+      "task_title": "watch: move sync logic into separate package",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.92529296875],
+        ["ndeloof", 2031.096435546875],
+        ["ulyssessouza", 1387.5611572265625],
+        ["aiordache", 1245.50634765625],
+        ["thaJeztah", 841.90478515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1427835814,
+      "task_title": "ci: speed up a couple Dockerfile targets w/ cache ",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.874755859375],
+        ["ndeloof", 2031.0458984375],
+        ["ulyssessouza", 1387.510498046875],
+        ["aiordache", 1245.455810546875],
+        ["thaJeztah", 841.8541870117188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1427843028,
+      "task_title": "bump buildkit to version v0.11.0-rc3.0.20230620112",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.88134765625],
+        ["ndeloof", 2031.052490234375],
+        ["ulyssessouza", 1387.51708984375],
+        ["aiordache", 1245.46240234375],
+        ["thaJeztah", 841.8607788085938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1797213771,
+      "task_title": "[BUG] Ignored `mac_address` field",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.05224609375],
+        ["ndeloof", 2032.877685546875],
+        ["ulyssessouza", 1388.9595947265625],
+        ["aiordache", 1246.6334228515625],
+        ["thaJeztah", 843.03173828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1798400311,
+      "task_title": "[BUG] Building a service image fails for service e",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.629638671875],
+        ["ndeloof", 2032.689453125],
+        ["ulyssessouza", 1389.1541748046875],
+        ["aiordache", 1247.2105712890625],
+        ["thaJeztah", 843.6090087890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1429908276,
+      "task_title": "watch: fix missing events from symlinked path (e.g",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.88671875],
+        ["ndeloof", 2031.0579833984375],
+        ["ulyssessouza", 1387.522705078125],
+        ["aiordache", 1245.4678955078125],
+        ["thaJeztah", 841.8662719726562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1429908276,
+      "task_title": "watch: fix missing events from symlinked path (e.g",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.8916015625],
+        ["ndeloof", 2031.062744140625],
+        ["ulyssessouza", 1387.52734375],
+        ["aiordache", 1245.47265625],
+        ["thaJeztah", 841.87109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1429908276,
+      "task_title": "watch: fix missing events from symlinked path (e.g",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.8916015625],
+        ["ndeloof", 2031.062744140625],
+        ["ulyssessouza", 1387.52734375],
+        ["aiordache", 1245.47265625],
+        ["thaJeztah", 841.87109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1429908276,
+      "task_title": "watch: fix missing events from symlinked path (e.g",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.9228515625],
+        ["ndeloof", 2031.093994140625],
+        ["ulyssessouza", 1387.5587158203125],
+        ["aiordache", 1245.50390625],
+        ["thaJeztah", 841.90234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1430215519,
+      "task_title": "watch: add end-to-end test",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.88232421875],
+        ["ndeloof", 2031.053466796875],
+        ["ulyssessouza", 1387.51806640625],
+        ["aiordache", 1245.46337890625],
+        ["thaJeztah", 841.86181640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1801068491,
+      "task_title": "[BUG] Proxy config not applied as build args with ",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.66259765625],
+        ["ndeloof", 2031.7225341796875],
+        ["ulyssessouza", 1388.1871337890625],
+        ["aiordache", 1246.2437744140625],
+        ["thaJeztah", 842.64208984375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1801370351,
+      "task_title": "depends_on required property error",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.607177734375],
+        ["ndeloof", 2031.667236328125],
+        ["ulyssessouza", 1388.1318359375],
+        ["aiordache", 1246.1884765625],
+        ["thaJeztah", 842.5868530273438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1436412241,
+      "task_title": "go.mod: github.com/docker/docker 8443a06149b5 (v24",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.734130859375],
+        ["ndeloof", 2031.4375],
+        ["ulyssessouza", 1387.902099609375],
+        ["aiordache", 1245.3150634765625],
+        ["thaJeztah", 842.245849609375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1807930478,
+      "task_title": "[BUG] `build --push` attempts to push images for s",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.0673828125],
+        ["ndeloof", 2032.2386474609375],
+        ["ulyssessouza", 1388.703369140625],
+        ["aiordache", 1246.648681640625],
+        ["thaJeztah", 843.0469970703125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1437473490,
+      "task_title": "build: do not attempt to push unnamed service imag",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.9296875],
+        ["ndeloof", 2031.1005859375],
+        ["ulyssessouza", 1387.5653076171875],
+        ["aiordache", 1245.5106201171875],
+        ["thaJeztah", 841.908935546875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1437473490,
+      "task_title": "build: do not attempt to push unnamed service imag",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.9404296875],
+        ["ndeloof", 2031.1114501953125],
+        ["ulyssessouza", 1387.576171875],
+        ["aiordache", 1245.5213623046875],
+        ["thaJeztah", 841.9197998046875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1438118167,
+      "task_title": "test: speed up the e2e test suite",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.93017578125],
+        ["ndeloof", 2031.101318359375],
+        ["ulyssessouza", 1387.56591796875],
+        ["aiordache", 1245.51123046875],
+        ["thaJeztah", 841.90966796875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1438118167,
+      "task_title": "test: speed up the e2e test suite",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.93310546875],
+        ["ndeloof", 2031.104248046875],
+        ["ulyssessouza", 1387.56884765625],
+        ["aiordache", 1245.51416015625],
+        ["thaJeztah", 841.91259765625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1439873885,
+      "task_title": "cmd: add project load instrumentation",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.917236328125],
+        ["ndeloof", 2031.08837890625],
+        ["ulyssessouza", 1387.552978515625],
+        ["aiordache", 1245.498291015625],
+        ["thaJeztah", 841.896728515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1439873885,
+      "task_title": "cmd: add project load instrumentation",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.91943359375],
+        ["ndeloof", 2031.09033203125],
+        ["ulyssessouza", 1387.5550537109375],
+        ["aiordache", 1245.500244140625],
+        ["thaJeztah", 841.898681640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1439889332,
+      "task_title": "go.mod: buildx v0.11.2, buildkit v0.12, docker/cli",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.412109375],
+        ["ndeloof", 2031.1156005859375],
+        ["ulyssessouza", 1387.580322265625],
+        ["aiordache", 1244.9931640625],
+        ["thaJeztah", 841.9239501953125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1439917931,
+      "task_title": "pkg/compose: RunOneOffContainer: don't use NewStar",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.392578125],
+        ["ndeloof", 2031.095947265625],
+        ["ulyssessouza", 1387.5606689453125],
+        ["aiordache", 1244.973388671875],
+        ["thaJeztah", 841.904296875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1440042123,
+      "task_title": "test: watch e2e reliability tweaks",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.92138671875],
+        ["ndeloof", 2031.092529296875],
+        ["ulyssessouza", 1387.5572509765625],
+        ["aiordache", 1245.50244140625],
+        ["thaJeztah", 841.90087890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1440042123,
+      "task_title": "test: watch e2e reliability tweaks",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.92431640625],
+        ["ndeloof", 2031.095458984375],
+        ["ulyssessouza", 1387.56005859375],
+        ["aiordache", 1245.50537109375],
+        ["thaJeztah", 841.9037475585938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1810916219,
+      "task_title": "start-interval parameter for docker compose health",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.929931640625],
+        ["ndeloof", 2030.98974609375],
+        ["ulyssessouza", 1387.454345703125],
+        ["aiordache", 1245.510986328125],
+        ["thaJeztah", 841.9093627929688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1810916219,
+      "task_title": "start-interval parameter for docker compose health",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.029052734375],
+        ["ndeloof", 2031.0887451171875],
+        ["ulyssessouza", 1387.553466796875],
+        ["aiordache", 1245.6099853515625],
+        ["thaJeztah", 842.0084228515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1440278540,
+      "task_title": "trace: instrument `compose up` at a high-level",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.924560546875],
+        ["ndeloof", 2031.0955810546875],
+        ["ulyssessouza", 1387.560302734375],
+        ["aiordache", 1245.5054931640625],
+        ["thaJeztah", 841.9039306640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1440278540,
+      "task_title": "trace: instrument `compose up` at a high-level",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3663.927978515625],
+        ["ndeloof", 2031.0989990234375],
+        ["ulyssessouza", 1387.5635986328125],
+        ["aiordache", 1245.5089111328125],
+        ["thaJeztah", 841.9072875976562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1817817888,
+      "task_title": "[BUG] include: functionality does not actually use",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.54345703125],
+        ["ndeloof", 2032.36865234375],
+        ["ulyssessouza", 1388.4505615234375],
+        ["aiordache", 1246.124267578125],
+        ["thaJeztah", 842.522705078125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1454178716,
+      "task_title": "watch: add tar sync implementation",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.008544921875],
+        ["ndeloof", 2031.1796875],
+        ["ulyssessouza", 1387.644287109375],
+        ["aiordache", 1245.589599609375],
+        ["thaJeztah", 841.988037109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1454178716,
+      "task_title": "watch: add tar sync implementation",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.033447265625],
+        ["ndeloof", 2031.2044677734375],
+        ["ulyssessouza", 1387.669189453125],
+        ["aiordache", 1245.6143798828125],
+        ["thaJeztah", 842.0128173828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1458789348,
+      "task_title": "watch: support multiple containers for tar impleme",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0302734375],
+        ["ndeloof", 2031.2015380859375],
+        ["ulyssessouza", 1387.666259765625],
+        ["aiordache", 1245.6114501953125],
+        ["thaJeztah", 842.0098876953125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1458789348,
+      "task_title": "watch: support multiple containers for tar impleme",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0419921875],
+        ["ndeloof", 2031.213134765625],
+        ["ulyssessouza", 1387.677734375],
+        ["aiordache", 1245.623046875],
+        ["thaJeztah", 842.021484375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1832395356,
+      "task_title": "`docker compose alpha watch` fails to sync files i",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.07080078125],
+        ["ndeloof", 2031.1304931640625],
+        ["ulyssessouza", 1387.5950927734375],
+        ["aiordache", 1245.6517333984375],
+        ["thaJeztah", 842.0501098632812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1832607649,
+      "task_title": "[BUG] watch: rebuild always rebuilds all (or depen",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.470947265625],
+        ["ndeloof", 2032.53076171875],
+        ["ulyssessouza", 1388.9954833984375],
+        ["aiordache", 1247.052001953125],
+        ["thaJeztah", 843.4503784179688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1833216114,
+      "task_title": "[BUG] include specification gives me \"container na",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.81103515625],
+        ["ndeloof", 2032.63623046875],
+        ["ulyssessouza", 1388.718017578125],
+        ["aiordache", 1246.391845703125],
+        ["thaJeztah", 842.7902221679688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1459859430,
+      "task_title": "watch: batch & de-duplicate file events",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.036376953125],
+        ["ndeloof", 2031.20751953125],
+        ["ulyssessouza", 1387.6722412109375],
+        ["aiordache", 1245.617431640625],
+        ["thaJeztah", 842.015869140625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1459859430,
+      "task_title": "watch: batch & de-duplicate file events",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0439453125],
+        ["ndeloof", 2031.21484375],
+        ["ulyssessouza", 1387.6795654296875],
+        ["aiordache", 1245.624755859375],
+        ["thaJeztah", 842.023193359375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461413926,
+      "task_title": "up: do not warn on successful optional dependency ",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.017822265625],
+        ["ndeloof", 2031.18896484375],
+        ["ulyssessouza", 1387.653564453125],
+        ["aiordache", 1245.598876953125],
+        ["thaJeztah", 841.9971923828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461413926,
+      "task_title": "up: do not warn on successful optional dependency ",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.02001953125],
+        ["ndeloof", 2031.19091796875],
+        ["ulyssessouza", 1387.6556396484375],
+        ["aiordache", 1245.6009521484375],
+        ["thaJeztah", 841.9993286132812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461462503,
+      "task_title": "progress: minor correctness fixes",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.02392578125],
+        ["ndeloof", 2031.195068359375],
+        ["ulyssessouza", 1387.6597900390625],
+        ["aiordache", 1245.6051025390625],
+        ["thaJeztah", 842.0034790039062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461462503,
+      "task_title": "progress: minor correctness fixes",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.025634765625],
+        ["ndeloof", 2031.1966552734375],
+        ["ulyssessouza", 1387.661376953125],
+        ["aiordache", 1245.6065673828125],
+        ["thaJeztah", 842.0050048828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461522620,
+      "task_title": "test: fix e2e test for privileged builds",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.035888671875],
+        ["ndeloof", 2031.2069091796875],
+        ["ulyssessouza", 1387.671630859375],
+        ["aiordache", 1245.6168212890625],
+        ["thaJeztah", 842.0152587890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461751415,
+      "task_title": "test: temporarily disable an exit-code-from Cucumb",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.00830078125],
+        ["ndeloof", 2031.179443359375],
+        ["ulyssessouza", 1387.6441650390625],
+        ["aiordache", 1245.58935546875],
+        ["thaJeztah", 841.98779296875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461751415,
+      "task_title": "test: temporarily disable an exit-code-from Cucumb",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.009033203125],
+        ["ndeloof", 2031.1800537109375],
+        ["ulyssessouza", 1387.644775390625],
+        ["aiordache", 1245.5899658203125],
+        ["thaJeztah", 841.9884033203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461899649,
+      "task_title": "build: fix missing proxy build args for classic bu",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.02587890625],
+        ["ndeloof", 2031.1968994140625],
+        ["ulyssessouza", 1387.66162109375],
+        ["aiordache", 1245.6068115234375],
+        ["thaJeztah", 842.0052490234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461899649,
+      "task_title": "build: fix missing proxy build args for classic bu",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.056640625],
+        ["ndeloof", 2031.227783203125],
+        ["ulyssessouza", 1387.6923828125],
+        ["aiordache", 1245.6376953125],
+        ["thaJeztah", 842.0360717773438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461921132,
+      "task_title": "watch: enable tar-based syncer by default",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.02392578125],
+        ["ndeloof", 2031.19482421875],
+        ["ulyssessouza", 1387.6595458984375],
+        ["aiordache", 1245.604736328125],
+        ["thaJeztah", 842.003173828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1461921132,
+      "task_title": "watch: enable tar-based syncer by default",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0302734375],
+        ["ndeloof", 2031.201416015625],
+        ["ulyssessouza", 1387.6661376953125],
+        ["aiordache", 1245.6114501953125],
+        ["thaJeztah", 842.009765625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1462029111,
+      "task_title": "Improve shell completion for `--project-directory`",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.0537109375],
+        ["ndeloof", 2031.1134033203125],
+        ["ulyssessouza", 1387.578125],
+        ["aiordache", 1245.634765625],
+        ["thaJeztah", 842.0330810546875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1469991216,
+      "task_title": "update README and CI workflows to match main branc",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.06103515625],
+        ["ndeloof", 2031.23193359375],
+        ["ulyssessouza", 1387.6966552734375],
+        ["aiordache", 1245.641845703125],
+        ["thaJeztah", 842.040283203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1470281193,
+      "task_title": "upgrade Golang to 1.21",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.05615234375],
+        ["ndeloof", 2031.2271728515625],
+        ["ulyssessouza", 1387.69189453125],
+        ["aiordache", 1245.6370849609375],
+        ["thaJeztah", 842.0355224609375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1470514418,
+      "task_title": "bump compose-go to version v1.18.0",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.056884765625],
+        ["ndeloof", 2031.2279052734375],
+        ["ulyssessouza", 1387.692626953125],
+        ["aiordache", 1245.6378173828125],
+        ["thaJeztah", 842.0362548828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1845391470,
+      "task_title": "[BUG] service is required by service but is disabl",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.41259765625],
+        ["ndeloof", 2032.4725341796875],
+        ["ulyssessouza", 1388.9371337890625],
+        ["aiordache", 1246.9937744140625],
+        ["thaJeztah", 843.3921508789062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1470826230,
+      "task_title": "bump compose-go to version v1.18.1",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.05810546875],
+        ["ndeloof", 2031.2293701171875],
+        ["ulyssessouza", 1387.694091796875],
+        ["aiordache", 1245.6392822265625],
+        ["thaJeztah", 842.0376586914062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1847158285,
+      "task_title": "[BUG] --no-path-resolution not working when using ",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.239501953125],
+        ["ndeloof", 2033.06494140625],
+        ["ulyssessouza", 1389.146728515625],
+        ["aiordache", 1246.820556640625],
+        ["thaJeztah", 843.2189331054688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1849163677,
+      "task_title": "[BUG] Migrating from docker compose v1 to v2  --bu",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.1435546875],
+        ["ndeloof", 2032.203369140625],
+        ["ulyssessouza", 1388.6680908203125],
+        ["aiordache", 1246.7247314453125],
+        ["thaJeztah", 843.123046875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1852274893,
+      "task_title": "[BUG] docker-compose 2.20.3 rewriting environment ",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.76806640625],
+        ["ndeloof", 2033.5933837890625],
+        ["ulyssessouza", 1389.67529296875],
+        ["aiordache", 1247.34912109375],
+        ["thaJeztah", 843.7474365234375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1854587864,
+      "task_title": "[BUG] COMPOSE_PROFILES environment var no longer w",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.7412109375],
+        ["ndeloof", 2031.80126953125],
+        ["ulyssessouza", 1388.2657470703125],
+        ["aiordache", 1246.322509765625],
+        ["thaJeztah", 842.7207641601562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1854938046,
+      "task_title": "Detach mode prints full output",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.748046875],
+        ["ndeloof", 2031.80810546875],
+        ["ulyssessouza", 1388.272705078125],
+        ["aiordache", 1246.329345703125],
+        ["thaJeztah", 842.7276611328125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1479766654,
+      "task_title": "up: handle various attach use cases better",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.1611328125],
+        ["ndeloof", 2031.332275390625],
+        ["ulyssessouza", 1387.7969970703125],
+        ["aiordache", 1245.7423095703125],
+        ["thaJeztah", 842.1406860351562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1479766654,
+      "task_title": "up: handle various attach use cases better",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.164306640625],
+        ["ndeloof", 2031.3353271484375],
+        ["ulyssessouza", 1387.800048828125],
+        ["aiordache", 1245.7452392578125],
+        ["thaJeztah", 842.1436767578125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1480880693,
+      "task_title": "otel: add `include` to project up span",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.109375],
+        ["ndeloof", 2031.2802734375],
+        ["ulyssessouza", 1387.7449951171875],
+        ["aiordache", 1245.6903076171875],
+        ["thaJeztah", 842.0886840820312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1480880693,
+      "task_title": "otel: add `include` to project up span",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.1328125],
+        ["ndeloof", 2031.303955078125],
+        ["ulyssessouza", 1387.7686767578125],
+        ["aiordache", 1245.7139892578125],
+        ["thaJeztah", 842.1123046875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1483407936,
+      "task_title": "ci: bump golangci-lint to v1.54.2",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.126953125],
+        ["ndeloof", 2031.298095703125],
+        ["ulyssessouza", 1387.7626953125],
+        ["aiordache", 1245.7080078125],
+        ["thaJeztah", 842.1064453125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1483407936,
+      "task_title": "ci: bump golangci-lint to v1.54.2",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.142333984375],
+        ["ndeloof", 2031.3134765625],
+        ["ulyssessouza", 1387.778076171875],
+        ["aiordache", 1245.723388671875],
+        ["thaJeztah", 842.1217651367188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1862260915,
+      "task_title": "[BUG] Attempting to explicitly start included serv",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.89404296875],
+        ["ndeloof", 2032.719482421875],
+        ["ulyssessouza", 1388.80126953125],
+        ["aiordache", 1246.4752197265625],
+        ["thaJeztah", 842.87353515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1488611619,
+      "task_title": "watch: only allow a single instance per-project",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.164794921875],
+        ["ndeloof", 2031.3358154296875],
+        ["ulyssessouza", 1387.800537109375],
+        ["aiordache", 1245.7457275390625],
+        ["thaJeztah", 842.1441650390625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1490344275,
+      "task_title": "up: fix various race/deadlock conditions on exit",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.18505859375],
+        ["ndeloof", 2031.3560791015625],
+        ["ulyssessouza", 1387.82080078125],
+        ["aiordache", 1245.7659912109375],
+        ["thaJeztah", 842.1644287109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1490344275,
+      "task_title": "up: fix various race/deadlock conditions on exit",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.219970703125],
+        ["ndeloof", 2031.39111328125],
+        ["ulyssessouza", 1387.855712890625],
+        ["aiordache", 1245.801025390625],
+        ["thaJeztah", 842.1993408203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1494345186,
+      "task_title": "build(deps): upgrade to compose-go v1.18.3",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.1787109375],
+        ["ndeloof", 2031.3497314453125],
+        ["ulyssessouza", 1387.8143310546875],
+        ["aiordache", 1245.7596435546875],
+        ["thaJeztah", 842.1580200195312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1494345186,
+      "task_title": "build(deps): upgrade to compose-go v1.18.3",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.182861328125],
+        ["ndeloof", 2031.35400390625],
+        ["ulyssessouza", 1387.8187255859375],
+        ["aiordache", 1245.7640380859375],
+        ["thaJeztah", 842.162353515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1872618428,
+      "task_title": "[BUG] restarting single service that has a profile",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.5654296875],
+        ["ndeloof", 2032.3907470703125],
+        ["ulyssessouza", 1388.47265625],
+        ["aiordache", 1246.146484375],
+        ["thaJeztah", 842.544677734375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1495814957,
+      "task_title": "test: e2e test reliability improvements",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.1904296875],
+        ["ndeloof", 2031.361572265625],
+        ["ulyssessouza", 1387.826171875],
+        ["aiordache", 1245.771484375],
+        ["thaJeztah", 842.1698608398438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1495814957,
+      "task_title": "test: e2e test reliability improvements",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.19140625],
+        ["ndeloof", 2031.362548828125],
+        ["ulyssessouza", 1387.8271484375],
+        ["aiordache", 1245.7724609375],
+        ["thaJeztah", 842.1707763671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1497860873,
+      "task_title": "build: pass BuildOptions around explicitly & fix m",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.2392578125],
+        ["ndeloof", 2031.4102783203125],
+        ["ulyssessouza", 1387.875],
+        ["aiordache", 1245.8201904296875],
+        ["thaJeztah", 842.2186279296875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1497860873,
+      "task_title": "build: pass BuildOptions around explicitly & fix m",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.24169921875],
+        ["ndeloof", 2031.412841796875],
+        ["ulyssessouza", 1387.87744140625],
+        ["aiordache", 1245.8226318359375],
+        ["thaJeztah", 842.2210693359375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1497871356,
+      "task_title": "watch: build & launch the project at start",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.21435546875],
+        ["ndeloof", 2031.3856201171875],
+        ["ulyssessouza", 1387.850341796875],
+        ["aiordache", 1245.7955322265625],
+        ["thaJeztah", 842.1939697265625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1497871356,
+      "task_title": "watch: build & launch the project at start",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.256591796875],
+        ["ndeloof", 2031.4276123046875],
+        ["ulyssessouza", 1387.892333984375],
+        ["aiordache", 1245.8375244140625],
+        ["thaJeztah", 842.2359619140625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1878514098,
+      "task_title": "[BUG] volume: !reset [] not applied w/ extends (se",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.258544921875],
+        ["ndeloof", 2033.0841064453125],
+        ["ulyssessouza", 1389.1658935546875],
+        ["aiordache", 1246.83984375],
+        ["thaJeztah", 843.238037109375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1883820876,
+      "task_title": "[BUG] <title>IPv6 configuration in Compose does no",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.75439453125],
+        ["ndeloof", 2031.8143310546875],
+        ["ulyssessouza", 1388.27880859375],
+        ["aiordache", 1246.3355712890625],
+        ["thaJeztah", 842.73388671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1505288131,
+      "task_title": "add scale command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.266357421875],
+        ["ndeloof", 2031.4375],
+        ["ulyssessouza", 1387.9022216796875],
+        ["aiordache", 1245.8475341796875],
+        ["thaJeztah", 842.245849609375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1505340427,
+      "task_title": "test: add a fully containerized (via Compose) e2e ",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.228515625],
+        ["ndeloof", 2031.3995361328125],
+        ["ulyssessouza", 1387.8641357421875],
+        ["aiordache", 1245.8094482421875],
+        ["thaJeztah", 842.2078247070312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1506924646,
+      "task_title": "cli: fix `--build` flag for `create`",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.241455078125],
+        ["ndeloof", 2031.41259765625],
+        ["ulyssessouza", 1387.877197265625],
+        ["aiordache", 1245.822509765625],
+        ["thaJeztah", 842.2208862304688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1506924646,
+      "task_title": "cli: fix `--build` flag for `create`",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.24609375],
+        ["ndeloof", 2031.4171142578125],
+        ["ulyssessouza", 1387.8818359375],
+        ["aiordache", 1245.8270263671875],
+        ["thaJeztah", 842.2254638671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1889600739,
+      "task_title": "[BUG] docker-compose can't work on desktop docker ",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.5732421875],
+        ["ndeloof", 2032.398681640625],
+        ["ulyssessouza", 1388.48046875],
+        ["aiordache", 1246.154296875],
+        ["thaJeztah", 842.5525512695312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1510518319,
+      "task_title": "deps: upgrade Moby to v24.0.6 and gRPC to v1.58.0",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.25732421875],
+        ["ndeloof", 2031.4283447265625],
+        ["ulyssessouza", 1387.89306640625],
+        ["aiordache", 1245.8382568359375],
+        ["thaJeztah", 842.2366943359375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1510518319,
+      "task_title": "deps: upgrade Moby to v24.0.6 and gRPC to v1.58.0",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.25732421875],
+        ["ndeloof", 2031.4285888671875],
+        ["ulyssessouza", 1387.8931884765625],
+        ["aiordache", 1245.8385009765625],
+        ["thaJeztah", 842.2368774414062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1510531633,
+      "task_title": "ci: tweak restricted imports in linter",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.26220703125],
+        ["ndeloof", 2031.433349609375],
+        ["ulyssessouza", 1387.8980712890625],
+        ["aiordache", 1245.84326171875],
+        ["thaJeztah", 842.24169921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1510531633,
+      "task_title": "ci: tweak restricted imports in linter",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.262451171875],
+        ["ndeloof", 2031.43359375],
+        ["ulyssessouza", 1387.898193359375],
+        ["aiordache", 1245.843505859375],
+        ["thaJeztah", 842.241943359375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1894113713,
+      "task_title": "[BUG] `config --images` should not fail on missing",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.6015625],
+        ["ndeloof", 2032.4271240234375],
+        ["ulyssessouza", 1388.509033203125],
+        ["aiordache", 1246.182861328125],
+        ["thaJeztah", 842.5811157226562]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1894848785,
+      "task_title": "[BUG] unexpected 'no such service' error when --no",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.861572265625],
+        ["ndeloof", 2032.686767578125],
+        ["ulyssessouza", 1388.768798828125],
+        ["aiordache", 1246.4425048828125],
+        ["thaJeztah", 842.8409423828125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1895305763,
+      "task_title": "[BUG] network not found when using network_mode:se",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.86083984375],
+        ["ndeloof", 2032.68603515625],
+        ["ulyssessouza", 1388.7679443359375],
+        ["aiordache", 1246.441650390625],
+        ["thaJeztah", 842.840087890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1521921623,
+      "task_title": "remove --timeout=0 flag to cleanup function of wat",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.306640625],
+        ["ndeloof", 2031.477783203125],
+        ["ulyssessouza", 1387.9423828125],
+        ["aiordache", 1245.8876953125],
+        ["thaJeztah", 842.2860717773438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1521921623,
+      "task_title": "remove --timeout=0 flag to cleanup function of wat",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.315185546875],
+        ["ndeloof", 2031.4862060546875],
+        ["ulyssessouza", 1387.950927734375],
+        ["aiordache", 1245.8961181640625],
+        ["thaJeztah", 842.2945556640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1908609548,
+      "task_title": "[BUG] ps command output filled with whitespace sin",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.7373046875],
+        ["ndeloof", 2033.562744140625],
+        ["ulyssessouza", 1389.64453125],
+        ["aiordache", 1247.318359375],
+        ["thaJeztah", 843.7167358398438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1533142528,
+      "task_title": "update the watch warning message when no services ",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.3544921875],
+        ["ndeloof", 2031.525634765625],
+        ["ulyssessouza", 1387.990234375],
+        ["aiordache", 1245.935546875],
+        ["thaJeztah", 842.3339233398438]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1538999995,
+      "task_title": "add support of COMPOSE_ENV_FILES env variable to p",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.408935546875],
+        ["ndeloof", 2031.580078125],
+        ["ulyssessouza", 1388.0447998046875],
+        ["aiordache", 1245.989990234375],
+        ["thaJeztah", 842.388427734375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1544174071,
+      "task_title": "add dry-run support for publish command",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.40478515625],
+        ["ndeloof", 2031.5758056640625],
+        ["ulyssessouza", 1388.04052734375],
+        ["aiordache", 1245.9857177734375],
+        ["thaJeztah", 842.3841552734375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1931827345,
+      "task_title": "[BUG] `build --push` does not push when building f",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.701904296875],
+        ["ndeloof", 2033.52734375],
+        ["ulyssessouza", 1389.609130859375],
+        ["aiordache", 1247.282958984375],
+        ["thaJeztah", 843.6813354492188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1549408584,
+      "task_title": "remove cucumber tests as we haven't added new ones",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.4375],
+        ["ndeloof", 2031.6083984375],
+        ["ulyssessouza", 1388.0731201171875],
+        ["aiordache", 1246.0184326171875],
+        ["thaJeztah", 842.4168090820312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1937387346,
+      "task_title": "Allow overriding `networks` with `network_mode` wh",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.78857421875],
+        ["ndeloof", 2032.6138916015625],
+        ["ulyssessouza", 1388.69580078125],
+        ["aiordache", 1246.36962890625],
+        ["thaJeztah", 842.7678833007812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1552000956,
+      "task_title": "remove refrecence docs generation",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.447998046875],
+        ["ndeloof", 2031.6190185546875],
+        ["ulyssessouza", 1388.083740234375],
+        ["aiordache", 1246.0289306640625],
+        ["thaJeztah", 842.4273681640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1940504657,
+      "task_title": "Inconsistent/undefined behavior between default me",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3666.4150390625],
+        ["ndeloof", 2034.240478515625],
+        ["ulyssessouza", 1390.322265625],
+        ["aiordache", 1247.99609375],
+        ["thaJeztah", 844.3944091796875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1556150544,
+      "task_title": "add sync+restart action to watch attribute",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.481689453125],
+        ["ndeloof", 2031.6527099609375],
+        ["ulyssessouza", 1388.117431640625],
+        ["aiordache", 1246.0626220703125],
+        ["thaJeztah", 842.4610595703125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1562677868,
+      "task_title": "check that the pull policy provided is a valid one",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.48291015625],
+        ["ndeloof", 2031.6541748046875],
+        ["ulyssessouza", 1388.1187744140625],
+        ["aiordache", 1246.0640869140625],
+        ["thaJeztah", 842.4624633789062]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1957700819,
+      "task_title": "[BUG] CTRL+C No longer force kills processes",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.677490234375],
+        ["ndeloof", 2032.5029296875],
+        ["ulyssessouza", 1388.584716796875],
+        ["aiordache", 1246.258544921875],
+        ["thaJeztah", 842.656982421875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1963109075,
+      "task_title": "labels with list syntax are broken in docker compo",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.07958984375],
+        ["ndeloof", 2032.90478515625],
+        ["ulyssessouza", 1388.98681640625],
+        ["aiordache", 1246.6605224609375],
+        ["thaJeztah", 843.0588989257812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1976254082,
+      "task_title": "extending services should allow overwriting port b",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.472412109375],
+        ["ndeloof", 2032.297607421875],
+        ["ulyssessouza", 1388.379638671875],
+        ["aiordache", 1246.0533447265625],
+        ["thaJeztah", 842.45166015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1977761598,
+      "task_title": "[BUG]  error decoding 'memswap_limit': invalid siz",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.032958984375],
+        ["ndeloof", 2032.214599609375],
+        ["ulyssessouza", 1388.940185546875],
+        ["aiordache", 1246.614013671875],
+        ["thaJeztah", 842.9010620117188]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1588297686,
+      "task_title": "improve watch configuration logging",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.13037109375],
+        ["ndeloof", 2032.3017578125],
+        ["ulyssessouza", 1388.766357421875],
+        ["aiordache", 1246.7117919921875],
+        ["thaJeztah", 843.1099853515625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1979338365,
+      "task_title": "[BUG] compose up - `invalid --pull option \"policy\"",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.981689453125],
+        ["ndeloof", 2032.80712890625],
+        ["ulyssessouza", 1388.888916015625],
+        ["aiordache", 1246.5628662109375],
+        ["thaJeztah", 842.9611206054688]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1981613083,
+      "task_title": "Allow build ulimit to be defined in the compose fi",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.484619140625],
+        ["ndeloof", 2032.309814453125],
+        ["ulyssessouza", 1388.3917236328125],
+        ["aiordache", 1246.0654296875],
+        ["thaJeztah", 842.4638671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1593106650,
+      "task_title": "bump golang to version 1.21.4",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.65283203125],
+        ["ndeloof", 2031.823974609375],
+        ["ulyssessouza", 1388.28857421875],
+        ["aiordache", 1246.23388671875],
+        ["thaJeztah", 842.6322021484375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1985022700,
+      "task_title": "[BUG] `compose run` display `[+] Building X.Ys (n/",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.588623046875],
+        ["ndeloof", 2032.6485595703125],
+        ["ulyssessouza", 1389.11328125],
+        ["aiordache", 1247.1697998046875],
+        ["thaJeztah", 843.5681762695312]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1989178463,
+      "task_title": "[BUG] watch watch's root even if that is not speci",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.953125],
+        ["ndeloof", 2032.77880859375],
+        ["ulyssessouza", 1388.860595703125],
+        ["aiordache", 1246.534423828125],
+        ["thaJeztah", 842.9327392578125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1989178463,
+      "task_title": "[BUG] watch watch's root even if that is not speci",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.95361328125],
+        ["ndeloof", 2032.7789306640625],
+        ["ulyssessouza", 1388.86083984375],
+        ["aiordache", 1246.53466796875],
+        ["thaJeztah", 842.9329223632812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 2001170138,
+      "task_title": "[BUG] v2.23.0 broke docker-compose down -v --remov",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.763916015625],
+        ["ndeloof", 2032.58935546875],
+        ["ulyssessouza", 1388.671142578125],
+        ["aiordache", 1246.344970703125],
+        ["thaJeztah", 842.743408203125]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1609498975,
+      "task_title": "Add support for endpoint-specific MAC address",
+      "actual_assignees": ["akerouanton"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.701171875],
+        ["ndeloof", 2032.143798828125],
+        ["ulyssessouza", 1388.6085205078125],
+        ["aiordache", 1246.2822265625],
+        ["thaJeztah", 842.6806640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1609498975,
+      "task_title": "Add support for endpoint-specific MAC address",
+      "actual_assignees": ["akerouanton"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.87158203125],
+        ["ndeloof", 2032.3140869140625],
+        ["ulyssessouza", 1388.77880859375],
+        ["aiordache", 1246.4525146484375],
+        ["thaJeztah", 842.8508911132812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1609524574,
+      "task_title": "identify services to build and don't display 'buil",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.69189453125],
+        ["ndeloof", 2031.863037109375],
+        ["ulyssessouza", 1388.32763671875],
+        ["aiordache", 1246.27294921875],
+        ["thaJeztah", 842.67138671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1611188105,
+      "task_title": "in watch mode force pull policy to build for servi",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.705810546875],
+        ["ndeloof", 2031.876953125],
+        ["ulyssessouza", 1388.341552734375],
+        ["aiordache", 1246.286865234375],
+        ["thaJeztah", 842.685302734375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1613260617,
+      "task_title": "bump buildx to v0.12.0 and adapt code to changes",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.70458984375],
+        ["ndeloof", 2031.8756103515625],
+        ["ulyssessouza", 1388.3402099609375],
+        ["aiordache", 1246.2855224609375],
+        ["thaJeztah", 842.683837890625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1614170295,
+      "task_title": "let contributor know we might close unanswered iss",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.165771484375],
+        ["ndeloof", 2031.7579345703125],
+        ["ulyssessouza", 1388.333984375],
+        ["aiordache", 1245.7467041015625],
+        ["thaJeztah", 842.1451416015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1614170295,
+      "task_title": "let contributor know we might close unanswered iss",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.16357421875],
+        ["ndeloof", 2031.755859375],
+        ["ulyssessouza", 1388.331787109375],
+        ["aiordache", 1245.74462890625],
+        ["thaJeztah", 842.1430053710938]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 2008453132,
+      "task_title": "[BUG] JSON output for ps command no longer has a P",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.857177734375],
+        ["ndeloof", 2032.6826171875],
+        ["ulyssessouza", 1388.764404296875],
+        ["aiordache", 1246.438232421875],
+        ["thaJeztah", 842.836669921875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 2019461942,
+      "task_title": "[BUG] Using up --pull always in combination with -",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3666.478515625],
+        ["ndeloof", 2034.303955078125],
+        ["ulyssessouza", 1390.3857421875],
+        ["aiordache", 1248.0595703125],
+        ["thaJeztah", 844.4578857421875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1626158515,
+      "task_title": "fix(publish): add OCI 1.0 fallback support for AWS",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.791748046875],
+        ["ndeloof", 2031.9627685546875],
+        ["ulyssessouza", 1388.427490234375],
+        ["aiordache", 1246.3726806640625],
+        ["thaJeztah", 842.7711181640625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 1626158515,
+      "task_title": "fix(publish): add OCI 1.0 fallback support for AWS",
+      "actual_assignees": ["milas"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.81591796875],
+        ["ndeloof", 2031.9869384765625],
+        ["ulyssessouza", 1388.4515380859375],
+        ["aiordache", 1246.3968505859375],
+        ["thaJeztah", 842.7952270507812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 2022943400,
+      "task_title": "[BUG] \"docker compose up\" parameter order causes i",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.322265625],
+        ["ndeloof", 2033.1474609375],
+        ["ulyssessouza", 1389.2293701171875],
+        ["aiordache", 1246.9031982421875],
+        ["thaJeztah", 843.301513671875]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1631367591,
+      "task_title": "bump golang to version 1.21.5",
+      "actual_assignees": ["glours"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.778076171875],
+        ["ndeloof", 2031.94921875],
+        ["ulyssessouza", 1388.413818359375],
+        ["aiordache", 1246.359130859375],
+        ["thaJeztah", 842.757568359375]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": false
+    },
+    {
+      "task_id": 2038563576,
+      "task_title": "[BUG] panic: interface conversion: interface {} is",
+      "actual_assignees": ["ndeloof"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3665.74951171875],
+        ["ndeloof", 2033.5748291015625],
+        ["ulyssessouza", 1389.6566162109375],
+        ["aiordache", 1247.3304443359375],
+        ["thaJeztah", 843.7288208007812]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": true,
+      "correct_in_top_5": true
+    },
+    {
+      "task_id": 1654118556,
+      "task_title": "go.mod: docker/docker and docker/cli v25.0.0-beta.",
+      "actual_assignees": ["thaJeztah"],
+      "recommendations": [
+        "stale[bot]",
+        "ndeloof",
+        "ulyssessouza",
+        "aiordache",
+        "thaJeztah"
+      ],
+      "top_scores": [
+        ["stale[bot]", 3664.67529296875],
+        ["ndeloof", 2032.1180419921875],
+        ["ulyssessouza", 1388.582763671875],
+        ["aiordache", 1246.2564697265625],
+        ["thaJeztah", 842.9263916015625]
+      ],
+      "correct_in_top_1": false,
+      "correct_in_top_3": false,
+      "correct_in_top_5": true
+    }
+  ]
+}

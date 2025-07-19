@@ -58,18 +58,18 @@ class OSSSimpleEnv(gym.Env):
         # PyTorch Geometricのデータ形式を想定
         self.graph_data = None
         if gnn_config.get("graph_data_path") and os.path.exists(
-            gnn_config.graph_data_path
+            gnn_config["graph_data_path"]
         ):
             try:
                 self.graph_data = torch.load(
-                    gnn_config.graph_data_path, weights_only=False
+                    gnn_config["graph_data_path"], weights_only=False
                 )
                 print(
-                    f"[OSSSimpleEnv] Loaded graph data from {gnn_config.graph_data_path}"
+                    f"[OSSSimpleEnv] Loaded graph data from {gnn_config['graph_data_path']}"
                 )
             except Exception as e:
                 print(
-                    f"Warning: Failed to load graph data from {gnn_config.graph_data_path}: {e}"
+                    f"Warning: Failed to load graph data from {gnn_config['graph_data_path']}: {e}"
                 )
                 self.graph_data = None
 

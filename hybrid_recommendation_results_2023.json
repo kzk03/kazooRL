@@ -1,0 +1,19 @@
+{
+  "evaluation_config": "configs/base_test_2023.yaml",
+  "irl_weights_path": "data/learned_weights_training.npy",
+  "ppo_model_path": "models/simple_unified_best/best_model.zip",
+  "total_tasks_evaluated": 294,
+  "tasks_with_assignees": 294,
+  "hybrid_results": {
+    "top_1_accuracy": 0.0,
+    "top_3_accuracy": 0.0,
+    "top_5_accuracy": 0.0
+  },
+  "method_comparison_summary": {
+    "irl_only": {},
+    "ppo_only": {},
+    "gat_only": {},
+    "hybrid": {}
+  },
+  "method": "Hybrid_IRL_PPO_GAT_Recommendation"
+}

@@ -1,0 +1,69 @@
+# --- 時系列準拠 2022年RL訓練設定 ---
+# IRL (2019-2021) → RL訓練 (2022) → RL評価 (2023)
+
+# --- 環境設定 (Environment) ---
+env:
+  backlog_path: "data/backlog_training_2022.json" # 2022年データ
+  dev_profiles_path: "configs/dev_profiles_training_2022.yaml" # 2022年対応プロファイル
+  expert_trajectories_path: "data/expert_trajectories.pkl" # IRL学習済み（2019-2021）
+  simulation:
+    time_step_hours: 8
+    max_days: 365
+  gnn:
+    model_path: "data/gnn_model_collaborative.pt" # 学習済みGATモデル
+    graph_data_path: "data/graph_collaborative.pt" # 統一されたグラフデータ
+
+num_developers: 200 # 段階的に開発者数を増加（50→200）
+
+# --- 時系列分割設定 ---
+temporal_split:
+  irl_end_date: "2021-12-31" # IRL用データの終了日
+  train_start_date: "2022-01-01" # RL訓練データの開始日
+  train_end_date: "2022-12-31" # RL訓練データの終了日
+  test_start_date: "2023-01-01" # テストデータの開始日
+
+# --- 特徴量計算の設定 (Features) ---
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- GATモデルのパス (GAT) ---
+gat:
+  model_path: "data/gnn_model_collaborative.pt" # 学習済みGATモデル
+  graph_data_path: "data/graph_collaborative.pt" # 統一されたグラフデータ
+
+# --- 逆強化学習の設定 (IRL) ---
+irl:
+  expert_path: "data/expert_trajectories.pkl" # 2019-2021年データで学習済み
+  output_weights_path: "data/learned_weights_training.npy" # 学習済み重み
+  learning_rate: 0.0005
+  epochs: 300
+  use_gat: true
+  gat_model_path: "data/gnn_model_collaborative.pt"
+  gat_graph_path: "data/graph_collaborative.pt"
+  # オンライン学習設定
+  online_gat_learning: true
+  gat_update_frequency: 20
+  gat_learning_rate: 0.00005
+  gat_buffer_size: 2000
+  gat_time_window_hours: 96
+  # 収束判定設定
+  convergence_patience: 100
+  convergence_threshold: 0.002
+
+# --- 強化学習の設定 (RL) - 2022年データ用 ---
+rl:
+  total_timesteps: 50000 # 200人の開発者に適した訓練ステップ数
+  learning_rate: 0.0001
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  k_epochs: 4
+  rollout_len: 128 # 200人の開発者に適したロールアウト長
+  output_model_dir: "models/rl_2022/"

@@ -1,0 +1,31 @@
+{
+  "total_test_tasks": 1993,
+  "total_dev_profiles": 5182,
+  "unique_actual_assignees": 7,
+  "assignees_in_profiles": 6,
+  "assignees_not_in_profiles": 1,
+  "candidate_developers": 200,
+  "evaluable_tasks": 0,
+  "max_possible_accuracy": 0.0,
+  "coverage_rate": 0.0,
+  "top_assignees": {
+    "milas": 140,
+    "glours": 93,
+    "ndeloof": 59,
+    "laurazard": 14,
+    "akerouanton": 2,
+    "ulyssessouza": 1,
+    "thaJeztah": 1
+  },
+  "missing_from_profiles": [
+    "laurazard"
+  ],
+  "missing_from_candidates": [
+    "ulyssessouza",
+    "milas",
+    "akerouanton",
+    "glours",
+    "thaJeztah",
+    "ndeloof"
+  ]
+}
