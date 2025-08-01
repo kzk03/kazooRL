@@ -1,0 +1,153 @@
+# 改良されたPPO訓練設定
+# PPO 0%精度問題の解決を目指した設定
+
+# --- 環境設定 ---
+env:
+  backlog_path: "data/backlog_training_2022.json"
+  dev_profiles_path: "configs/dev_profiles_training_2022.yaml"
+  expert_trajectories_path: "data/expert_trajectories.pkl"
+  simulation:
+    time_step_hours: 8
+    max_days: 365
+  gnn:
+    model_path: "data/gnn_model_collaborative.pt"
+    graph_data_path: "data/graph_collaborative.pt"
+
+# 開発者数を段階的に増加
+num_developers: 50 # 200 → 50に削減（学習を簡単に）
+
+# --- 行動空間縮小設定 ---
+max_action_candidates: 15 # 最大候補数
+min_action_candidates: 5 # 最小候補数
+
+# --- 観測処理設定 ---
+processed_feature_dim: 64 # 処理済み特徴量次元
+task_feature_dim: 16 # タスク特徴量次元
+dev_feature_dim: 16 # 開発者特徴量次元
+context_feature_dim: 16 # コンテキスト特徴量次元
+gnn_feature_dim: 16 # GNN特徴量次元
+
+# --- 時系列分割設定 ---
+temporal_split:
+  irl_end_date: "2021-12-31"
+  train_start_date: "2022-01-01"
+  train_end_date: "2022-12-31"
+  test_start_date: "2023-01-01"
+
+# --- 特徴量計算の設定 ---
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- 逆強化学習の設定 ---
+irl:
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_weights_training.npy"
+  learning_rate: 0.0005
+  epochs: 300
+  use_gat: true
+  gat_model_path: "data/gnn_model_collaborative.pt"
+  gat_graph_path: "data/graph_collaborative.pt"
+
+# --- 改良された強化学習設定 ---
+rl:
+  # 大幅に増加した訓練ステップ数
+  total_timesteps: 500000 # 50,000 → 500,000 (10倍)
+
+  # 学習率の調整
+  learning_rate: 0.0003 # 0.0001 → 0.0003 (3倍)
+
+  # PPOパラメータの最適化
+  gamma: 0.99 # 割引率
+  gae_lambda: 0.95 # GAE lambda
+  eps_clip: 0.2 # PPOクリッピング
+  k_epochs: 10 # 4 → 10 (更新回数増加)
+
+  # バッチサイズとロールアウト長の最適化
+  rollout_len: 256 # 128 → 256 (2倍)
+  batch_size: 64 # 新規追加
+  minibatch_size: 16 # 新規追加
+
+  # 価値関数の重み
+  vf_coef: 0.5 # 価値関数損失の重み
+  ent_coef: 0.01 # エントロピー損失の重み
+
+  # 勾配クリッピング
+  max_grad_norm: 0.5 # 勾配ノルムの上限
+
+  # 学習率スケジューリング
+  lr_schedule: "linear" # 線形減衰
+
+  # 早期停止設定
+  early_stopping:
+    enabled: true
+    patience: 50 # 改善が見られない更新回数
+    min_improvement: 0.01 # 最小改善幅
+
+  # 定期評価設定
+  eval_frequency: 10000 # 評価頻度（ステップ数）
+  eval_episodes: 10 # 評価エピソード数
+
+  # モデル保存設定
+  save_frequency: 50000 # 保存頻度（ステップ数）
+  output_model_dir: "models/improved_rl_2022/"
+
+  # デバッグ・ログ設定
+  verbose: 2 # 詳細ログ
+  log_interval: 1000 # ログ出力間隔
+
+  # 報酬設定
+  reward_system: "improved" # 改良された報酬システムを使用
+  reward_normalization: true # 報酬の正規化
+
+  # 探索設定
+  exploration:
+    initial_epsilon: 0.3 # 初期探索率
+    final_epsilon: 0.05 # 最終探索率
+    decay_steps: 100000 # 探索率減衰ステップ数
+
+# --- ネットワークアーキテクチャ設定 ---
+network:
+  # Actor-Criticネットワークの改良
+  hidden_layers: [128, 128, 64] # より深いネットワーク
+  activation: "relu" # 活性化関数
+  dropout_rate: 0.1 # ドロップアウト率
+
+  # 特徴量抽出器
+  feature_extractor:
+    type: "mlp" # MLP特徴量抽出器
+    layers: [64, 32] # 特徴量抽出層
+
+  # 正規化
+  layer_norm: true # レイヤー正規化
+  batch_norm: false # バッチ正規化
+
+# --- 実験設定 ---
+experiment:
+  name: "improved_ppo_v1"
+  seed: 42 # 再現性のためのシード
+  device: "auto" # GPU自動検出
+
+  # Weights & Biases設定（オプション）
+  wandb:
+    enabled: false
+    project: "kazoo_improved_rl"
+    tags: ["ppo", "improved", "v1"]
+
+# --- デバッグ設定 ---
+debug:
+  enabled: true
+  log_rewards: true # 報酬ログ
+  log_actions: true # 行動ログ
+  log_observations: false # 観測ログ（大量になるため通常はfalse）
+  save_trajectories: true # 軌跡保存
+
+  # 可視化設定
+  plot_training_curves: true # 訓練曲線のプロット
+  plot_reward_distribution: true # 報酬分布のプロット

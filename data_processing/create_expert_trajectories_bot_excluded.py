@@ -181,9 +181,21 @@ def main(data_dir: str, backlog_path: str, dev_profiles_path: str, output_path: 
 
     # 複数の.jsonlファイルを読み込む
     print(f"\nReading event data from directory: {data_dir}")
-    jsonl_files = glob.glob(os.path.join(data_dir, "*.jsonl"))
+    jsonl_files = []
+    
+    # data_dir直下のjsonlファイル
+    direct_files = glob.glob(os.path.join(data_dir, "*.jsonl"))
+    jsonl_files.extend(direct_files)
+    
+    # IRL用データ（2019-2021）のみを使用
+    for year in ["2019", "2020", "2021"]:
+        year_pattern = os.path.join(data_dir, year, "*.jsonl")
+        year_files = glob.glob(year_pattern)
+        jsonl_files.extend(year_files)
+        print(f"  Found {len(year_files)} files for year {year}")
+    
     if not jsonl_files:
-        print(f"Error: No .jsonl files found in {data_dir}")
+        print(f"Error: No .jsonl files found in {data_dir} or {data_dir}/20**/")
         return
 
     all_events = []
@@ -310,7 +322,7 @@ def main(data_dir: str, backlog_path: str, dev_profiles_path: str, output_path: 
 
 if __name__ == "__main__":
     # デフォルト設定
-    INPUT_DATA_DIR = "./data"  # 複数年分のデータを含むディレクトリ
+    INPUT_DATA_DIR = "./data/status"  # 複数年分のデータを含むディレクトリ
     BACKLOG_FILE_PATH = "data/backlog.json"
     DEV_PROFILES_PATH = "configs/dev_profiles.yaml"
     OUTPUT_TRAJECTORY_PATH = "data/expert_trajectories_bot_excluded.pkl"

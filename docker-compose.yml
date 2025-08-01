@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  python-analyzer:
+    build: .
+    image: hk-RL
+    container_name: hk-RL
+    tty: true
+    volumes:
+      - ./:/app
+    working_dir: /app
+    deploy:
+      resources:
+        limits:
+          cpus: "5.0"

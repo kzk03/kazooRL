@@ -88,12 +88,27 @@ class OSSSimpleEnv(gym.Env):
 
         self.feature_extractor = FeatureExtractor(self.config)
 
+        # 動的行動空間の設定
+        try:
+            from kazoo.envs.action_space_reducer import HierarchicalActionSpace
+            self.hierarchical_action = HierarchicalActionSpace(self.config)
+            
+            # 最大行動空間サイズを設定（動的に変更される）
+            max_action_size = self.config.get('max_action_candidates', 20) + 1  # +1 for NO_OP
+        except (ImportError, AttributeError, ModuleNotFoundError) as e:
+            print(f"Warning: Could not import HierarchicalActionSpace: {e}")
+            self.hierarchical_action = None
+            max_action_size = len(self.initial_backlog) + 1  # フォールバック
+        
         self.action_space = spaces.Dict(
             {
-                agent_id: spaces.Discrete(len(self.initial_backlog) + 1)
+                agent_id: spaces.Discrete(max_action_size)
                 for agent_id in self.agent_ids
             }
         )
+        
+        # 現在の行動空間マッピングを保存
+        self.current_action_mappings = {}
         # 観測空間を定義（シンプルな状態 + GNN埋め込み）
         simple_obs_shape = (len(self.initial_backlog) * 3,)
         gnn_pooled_dim = 64  # GNN埋め込みをプールして固定サイズに
@@ -139,52 +154,84 @@ class OSSSimpleEnv(gym.Env):
         return developers
 
     def _calculate_reward(self, agent_id, task, action_type="COMPLETE"):
-        # IRLの重みを使う場合は、ここで特徴量を計算して報酬を返す
-        reward = 0.0
-
+        # 改良された報酬システムを使用
+        try:
+            from kazoo.envs.improved_reward_system import ImprovedRewardSystem
+            
+            if not hasattr(self, 'improved_reward_system'):
+                self.improved_reward_system = ImprovedRewardSystem(self.config)
+        except (ImportError, AttributeError, ModuleNotFoundError) as e:
+            print(f"Warning: Could not import ImprovedRewardSystem: {e}")
+            # フォールバック: デフォルト報酬を使用
+            if action_type == "COMPLETE":
+                return 1.0
+            else:
+                return 0.0
+        
+        # 改良された報酬システムが利用可能な場合のみ使用
+        if hasattr(self, 'improved_reward_system') and self.improved_reward_system:
+            # 環境状態を取得
+            env_state = {
+                'developers': self.developers,
+                'assignments': getattr(self, 'assignments', defaultdict(set)),
+                'current_time': self.current_time,
+                'backlog': self.backlog,
+                'tasks_in_progress': getattr(self, 'tasks_in_progress', {})
+            }
+            
+            # 改良された報酬計算
+            try:
+                reward, reward_breakdown = self.improved_reward_system.calculate_reward(
+                    agent_id, task.__dict__, action_type, env_state
+                )
+            except Exception as e:
+                print(f"Warning: Error in improved reward calculation: {e}")
+                # フォールバック
+                reward = 1.0 if action_type == "COMPLETE" else 0.0
+                reward_breakdown = {'completion': reward}
+        else:
+            # デフォルト報酬
+            reward = 1.0 if action_type == "COMPLETE" else 0.0
+            reward_breakdown = {'completion': reward}
+        
+        # IRLの重みがある場合は組み合わせる
         if self.reward_weights is not None:
             try:
-                # FeatureExtractorを使って特徴量を計算
                 from kazoo.features.feature_extractor import FeatureExtractor
-
                 feature_extractor = FeatureExtractor(self.config)
-
-                # 開発者情報を取得
                 developer = self.developers[agent_id]
-
-                # 特徴量を計算
                 features = feature_extractor.get_features(task, developer, self)
-
-                # IRLで学習した重みで報酬を計算
-                reward = float(np.dot(self.reward_weights, features))
-
+                irl_reward = float(np.dot(self.reward_weights, features))
+                
+                # IRL報酬と改良報酬を組み合わせ（重み付き平均）
+                combined_reward = 0.6 * reward + 0.4 * np.tanh(irl_reward)
+                
                 # GNNのオンライン学習用にインタラクションを記録
-                if (
-                    hasattr(feature_extractor, "gnn_extractor")
-                    and feature_extractor.gnn_extractor
-                ):
-                    feature_extractor.gnn_extractor.record_interaction(
-                        task, developer, reward, action_type
-                    )
-
-                print(f"[IRL Reward] {agent_id} -> {task.title}: {reward:.3f}")
-                return reward
-
+                try:
+                    if hasattr(self, "feature_extractor") and hasattr(
+                        self.feature_extractor, "gnn_extractor"
+                    ):
+                        if self.feature_extractor.gnn_extractor:
+                            self.feature_extractor.gnn_extractor.record_interaction(
+                                task,
+                                developer,
+                                combined_reward,
+                                action_type,
+                                simulation_time=self.current_time,
+                            )
+                except Exception as e:
+                    pass  # GNNが利用できない場合はスキップ
+                
+                print(f"[Combined Reward] {agent_id} -> {task.title}: {combined_reward:.3f} "
+                      f"(Improved: {reward:.3f}, IRL: {irl_reward:.3f})")
+                return combined_reward
+                
             except Exception as e:
                 print(f"Warning: Failed to calculate IRL reward: {e}")
-                # フォールバックとしてデフォルト報酬を使用
-                pass
-
-        # デフォルト報酬
-        if action_type == "COMPLETE":
-            reward = 1.0
-        else:
-            reward = 0.0
-
+        
         # GNNのオンライン学習用にインタラクションを記録
         try:
             developer = self.developers[agent_id]
-
             if hasattr(self, "feature_extractor") and hasattr(
                 self.feature_extractor, "gnn_extractor"
             ):
@@ -197,10 +244,10 @@ class OSSSimpleEnv(gym.Env):
                         simulation_time=self.current_time,
                     )
         except Exception as e:
-            # デバッグ用にエラーを表示
-            # print(f"Debug: GNN interaction recording failed: {e}")
             pass  # GNNが利用できない場合はスキップ
-
+        
+        print(f"[Improved Reward] {agent_id} -> {task.title}: {reward:.3f} "
+              f"(breakdown: {reward_breakdown})")
         return reward
 
     def step(self, actions):

@@ -1,0 +1,82 @@
+# 簡単なテスト用設定ファイル
+# エラーを避けるための最小限の設定
+
+# --- 環境設定 ---
+env:
+  backlog_path: "data/backlog_training_2022.json"
+  dev_profiles_path: "configs/dev_profiles_training_2022.yaml"
+  simulation:
+    time_step_hours: 8
+    max_days: 30 # テスト用に短縮
+  gnn:
+    model_path: "" # 空にしてGNN読み込みをスキップ
+    graph_data_path: ""
+
+# 開発者数を少なくしてテスト
+num_developers: 10
+
+# 行動空間設定
+max_action_candidates: 10
+min_action_candidates: 3
+
+# 観測処理設定
+processed_feature_dim: 32
+task_feature_dim: 8
+dev_feature_dim: 8
+context_feature_dim: 8
+gnn_feature_dim: 8
+
+# --- 時系列分割設定 ---
+temporal_split:
+  irl_end_date: "2021-12-31"
+  train_start_date: "2022-01-01"
+  train_end_date: "2022-12-31"
+  test_start_date: "2023-01-01"
+
+# --- 特徴量計算の設定 ---
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation"]
+
+# --- IRL設定 ---
+irl:
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_weights_training.npy"
+
+# --- 簡単なRL設定 ---
+rl:
+  total_timesteps: 10000 # テスト用に短縮
+  learning_rate: 0.001
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  k_epochs: 4
+  rollout_len: 64
+  batch_size: 32
+  minibatch_size: 8
+  vf_coef: 0.5
+  ent_coef: 0.01
+  max_grad_norm: 0.5
+
+  # 評価・保存設定
+  eval_frequency: 2000
+  eval_episodes: 3
+  save_frequency: 5000
+  output_model_dir: "models/simple_test/"
+
+  # ログ設定
+  verbose: 1
+  log_interval: 100
+
+# --- ネットワーク設定 ---
+network:
+  hidden_layers: [64, 32]
+  activation: "relu"
+  dropout_rate: 0.1
+  layer_norm: true
+
+# --- デバッグ設定 ---
+debug:
+  enabled: true
+  log_rewards: true
+  log_actions: false
