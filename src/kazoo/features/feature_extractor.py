@@ -3,9 +3,8 @@ from datetime import datetime
 import numpy as np
 
 try:
-    from kazoo.features.gnn_feature_extractor import (
-        GNNFeatureExtractor as IRLGNNFeatureExtractor,
-    )
+    from kazoo.features.gnn_feature_extractor import \
+        GNNFeatureExtractor as IRLGNNFeatureExtractor
 except ImportError:
     print("Warning: GNN feature extractor not available")
     IRLGNNFeatureExtractor = None
@@ -32,10 +31,12 @@ class FeatureExtractor:
 
         # GATFeatureExtractorを初期化
         self.gat_extractor = None
-        
+
         if hasattr(cfg, "irl") and cfg.irl.get("use_gat", False):
             try:
-                from kazoo.features.gat_feature_extractor import GATFeatureExtractor
+                from kazoo.features.gat_feature_extractor import \
+                    GATFeatureExtractor
+
                 self.gat_extractor = GATFeatureExtractor(cfg)
                 print("✅ GAT feature extractor initialized")
             except Exception as e:

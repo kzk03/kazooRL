@@ -7,7 +7,8 @@ import yaml
 from omegaconf import DictConfig, OmegaConf
 
 from kazoo.envs.oss_simple import OSSSimpleEnv
-from kazoo.features.feature_extractor import FeatureExtractor as GATFeatureExtractor
+from kazoo.features.feature_extractor import \
+    FeatureExtractor as GATFeatureExtractor
 from kazoo.learners.independent_ppo_controller import IndependentPPOController
 
 
