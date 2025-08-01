@@ -15,22 +15,22 @@ import yaml
 
 class ConfigMigrator:
     """設定ファイルマイグレーター"""
-    
+
     def __init__(self, config_root: str):
         self.config_root = Path(config_root)
         self.old_configs_dir = self.config_root / "old_configs"
-        
+
     def create_backup(self):
         """既存の設定ファイルをバックアップ"""
         print("📦 既存設定ファイルをバックアップ中...")
-        
+
         if not self.old_configs_dir.exists():
             self.old_configs_dir.mkdir()
-            
+
         # 古いファイルをバックアップディレクトリに移動
         old_files = [
             "base_test_2022.yaml",
-            "base_test_2023.yaml", 
+            "base_test_2023.yaml",
             "base_training.yaml",
             "base_training_2022.yaml",
             "dev_profiles_training.yaml",
@@ -42,9 +42,9 @@ class ConfigMigrator:
             "rl_debug.yaml",
             "rl_experiment.yaml",
             "simple_test.yaml",
-            "unified_rl.yaml"
+            "unified_rl.yaml",
         ]
-        
+
         backed_up = 0
         for filename in old_files:
             old_path = self.config_root / filename
@@ -53,19 +53,17 @@ class ConfigMigrator:
                 shutil.move(str(old_path), str(backup_path))
                 backed_up += 1
                 print(f"  ✅ {filename} -> old_configs/")
-                
+
         print(f"📦 {backed_up}個のファイルをバックアップしました")
-        
+
     def create_migration_mapping(self) -> Dict[str, str]:
         """旧設定から新設定へのマッピングを作成"""
         return {
             # 開発・デバッグ用
             "rl_debug.yaml": "environments/development.yaml",
             "simple_test.yaml": "environments/development.yaml",
-            
             # 本番用
             "production.yaml": "environments/production.yaml",
-            
             # トレーニング用
             "base_training.yaml": "training/base_training.yaml",
             "base_training_2022.yaml": "training/base_training.yaml",
@@ -73,12 +71,11 @@ class ConfigMigrator:
             "improved_rl_training.yaml": "training/improved_training.yaml",
             "multi_method_training.yaml": "training/multi_method_training.yaml",
             "unified_rl.yaml": "training/multi_method_training.yaml",
-            
             # 評価用
             "base_test_2022.yaml": "evaluation/base_evaluation.yaml",
             "base_test_2023.yaml": "evaluation/base_evaluation.yaml",
         }
-    
+
     def generate_usage_guide(self):
         """使用ガイドを生成"""
         guide_content = """# 設定ファイル移行ガイド
@@ -185,23 +182,25 @@ config_path = "environments/development.yaml"
 cd utils && python config_loader.py
 ```
 """
-        
+
         guide_path = self.config_root / "MIGRATION_GUIDE.md"
-        with open(guide_path, 'w', encoding='utf-8') as f:
+        with open(guide_path, "w", encoding="utf-8") as f:
             f.write(guide_content)
-            
+
         print(f"📖 使用ガイドを作成: {guide_path}")
 
     def update_hybrid_recommendation_system(self):
         """hybrid_recommendation_system.pyを新しい設定システムに対応"""
-        hybrid_file = self.config_root.parent / "evaluation" / "hybrid_recommendation_system.py"
-        
+        hybrid_file = (
+            self.config_root.parent / "evaluation" / "hybrid_recommendation_system.py"
+        )
+
         if not hybrid_file.exists():
             print("⚠️  hybrid_recommendation_system.py が見つかりません")
             return
-            
+
         print("🔄 hybrid_recommendation_system.py を更新中...")
-        
+
         # ConfigLoaderのインポートを追加
         import_addition = """
 # 新しい設定システムを使用
@@ -223,15 +222,15 @@ from config_loader import load_config"""
     def get(self, key, default=None):
         return self._dict.get(key, default)'''
 
-        new_simple_config = '''# SimpleConfigは config_loader から使用'''
+        new_simple_config = """# SimpleConfigは config_loader から使用"""
 
         # 設定読み込み部分を更新
-        old_config_load = '''    # 設定読み込み
+        old_config_load = """    # 設定読み込み
     with open(args.config, "r", encoding="utf-8") as f:
         config_dict = yaml.safe_load(f)
-    config = SimpleConfig(config_dict)'''
+    config = SimpleConfig(config_dict)"""
 
-        new_config_load = '''    # 設定読み込み（新しいシステム）
+        new_config_load = """    # 設定読み込み（新しいシステム）
     try:
         config = load_config(args.config)
         print(f"✅ 新しい設定システムで読み込み: {args.config}")
@@ -240,34 +239,35 @@ from config_loader import load_config"""
         with open(args.config, "r", encoding="utf-8") as f:
             config_dict = yaml.safe_load(f)
         from config_loader import SimpleConfig
-        config = SimpleConfig(config_dict)'''
+        config = SimpleConfig(config_dict)"""
 
         try:
-            with open(hybrid_file, 'r', encoding='utf-8') as f:
+            with open(hybrid_file, "r", encoding="utf-8") as f:
                 content = f.read()
-                
+
             # 更新を適用
             if "from config_loader import" not in content:
                 # インポートを追加
                 content = content.replace(
                     'sys.path.append(str(Path(__file__).parent.parent / "src"))',
-                    'sys.path.append(str(Path(__file__).parent.parent / "src"))' + import_addition
+                    'sys.path.append(str(Path(__file__).parent.parent / "src"))'
+                    + import_addition,
                 )
-                
+
             # SimpleConfigクラス定義を置換
             if old_simple_config in content:
                 content = content.replace(old_simple_config, new_simple_config)
-                
+
             # 設定読み込み部分を置換
             if old_config_load in content:
                 content = content.replace(old_config_load, new_config_load)
-                
+
             # ファイルを更新
-            with open(hybrid_file, 'w', encoding='utf-8') as f:
+            with open(hybrid_file, "w", encoding="utf-8") as f:
                 f.write(content)
-                
+
             print("✅ hybrid_recommendation_system.py を更新しました")
-            
+
         except Exception as e:
             print(f"❌ ファイル更新エラー: {e}")
 
@@ -275,19 +275,19 @@ from config_loader import load_config"""
         """完全マイグレーションを実行"""
         print("🚀 設定ファイルマイグレーション開始")
         print("=" * 50)
-        
+
         # 1. バックアップ作成
         self.create_backup()
         print()
-        
+
         # 2. 使用ガイド生成
         self.generate_usage_guide()
         print()
-        
+
         # 3. hybrid_recommendation_system.py更新
         self.update_hybrid_recommendation_system()
         print()
-        
+
         print("✅ マイグレーション完了！")
         print("📖 詳細は MIGRATION_GUIDE.md を参照してください")
 
@@ -295,20 +295,16 @@ from config_loader import load_config"""
 def main():
     parser = argparse.ArgumentParser(description="設定ファイルマイグレーション")
     parser.add_argument(
-        "--config-root", 
-        default=".", 
-        help="設定ファイルのルートディレクトリ"
+        "--config-root", default=".", help="設定ファイルのルートディレクトリ"
     )
     parser.add_argument(
-        "--backup-only", 
-        action="store_true", 
-        help="バックアップのみ実行"
+        "--backup-only", action="store_true", help="バックアップのみ実行"
     )
-    
+
     args = parser.parse_args()
-    
+
     migrator = ConfigMigrator(args.config_root)
-    
+
     if args.backup_only:
         migrator.create_backup()
     else:
