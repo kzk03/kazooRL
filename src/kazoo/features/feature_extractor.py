@@ -29,7 +29,8 @@ class FeatureExtractor:
 
         if hasattr(cfg, "irl") and cfg.irl.get("use_gat", False):
             try:
-                from kazoo.features.gat_feature_extractor import GATFeatureExtractor
+                from kazoo.features.gat_feature_extractor import \
+                    GATFeatureExtractor
 
                 self.gat_extractor = GATFeatureExtractor(cfg)
                 print("✅ GAT feature extractor initialized")
