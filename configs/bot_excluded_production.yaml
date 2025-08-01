@@ -63,14 +63,23 @@ features:
 # === IRL設定（2019-2021データ使用） ===
 irl:
   expert_path: "data/expert_trajectories_bot_excluded.pkl" # 必須キー追加
-  epochs: 300
-  learning_rate: 0.0005
+  epochs: 500 # より多くのエポック数で十分な学習
+  learning_rate: 0.0001 # 学習率を下げて安定した学習
   batch_size: 64
   output_weights_path: "data/learned_weights_bot_excluded.npy"
 
+  # 早期停止（十分な学習を確保）
   early_stopping:
-    patience: 30
-    min_improvement: 0.0001
+    enabled: true
+    patience: 50 # 50エポック改善なしで停止（十分な学習時間）
+    min_improvement: 0.0001 # 細かい改善も検出
+
+  # 学習率スケジューラー（安定した学習）
+  lr_scheduler:
+    enabled: true
+    type: "cosine"
+    warmup_epochs: 50 # より長いウォームアップ期間
+    min_lr: 0.000001 # より低い最小学習率
 
 # === RL設定（2022データで訓練） ===
 rl:
