@@ -68,6 +68,11 @@ irl:
   batch_size: 64
   output_weights_path: "data/learned_weights_bot_excluded.npy"
 
+  # GAT設定（Graph Attention Network）
+  use_gat: true
+  gat_graph_path: "data/developer_collaboration_network.pt"
+  gat_model_path: "data/gat_model_collaborative.pt"
+
   # 早期停止（十分な学習を確保）
   early_stopping:
     enabled: true

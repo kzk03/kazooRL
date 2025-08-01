@@ -3,8 +3,9 @@ from datetime import datetime
 import numpy as np
 
 try:
-    from kazoo.features.gnn_feature_extractor import \
-        GNNFeatureExtractor as IRLGNNFeatureExtractor
+    from kazoo.features.gnn_feature_extractor import (
+        GNNFeatureExtractor as IRLGNNFeatureExtractor,
+    )
 except ImportError:
     print("Warning: GNN feature extractor not available")
     IRLGNNFeatureExtractor = None
@@ -31,26 +32,17 @@ class FeatureExtractor:
 
         # GATFeatureExtractorを初期化
         self.gat_extractor = None
-        if (
-            IRLGNNFeatureExtractor
-            and hasattr(cfg, "irl")
-            and cfg.irl.get("use_gat", False)  # use_gnn → use_gat
-        ):
+        
+        if hasattr(cfg, "irl") and cfg.irl.get("use_gat", False):
             try:
-                # IRLに必要な設定が存在する場合のみ初期化
-                if hasattr(cfg.irl, "gat_graph_path") and hasattr(
-                    cfg.irl, "gat_model_path"
-                ):
-                    self.gat_extractor = IRLGNNFeatureExtractor(cfg)
-                    print("✅ GAT feature extractor initialized")
-                else:
-                    print("Warning: GAT paths not configured in IRL section")
+                from kazoo.features.gat_feature_extractor import GATFeatureExtractor
+                self.gat_extractor = GATFeatureExtractor(cfg)
+                print("✅ GAT feature extractor initialized")
             except Exception as e:
                 print(f"Warning: Failed to initialize GAT feature extractor: {e}")
                 self.gat_extractor = None
 
-        # 後方互換性のためのエイリアス
-        self.gnn_extractor = self.gat_extractor
+        # GAT特徴量抽出器のみ使用
 
         # データ内での最新日時を基準にするため、初期化時にNoneに設定
         # 実際の値は初回のget_features呼び出し時に計算される
@@ -245,7 +237,7 @@ class FeatureExtractor:
 
         # ▼▼▼【追加】GAT特徴量を追加▼▼▼
         if self.gat_extractor:
-            gat_features = self.gat_extractor.get_gnn_features(task, developer, env)
+            gat_features = self.gat_extractor.get_gat_features(task, developer, env)
             feature_values.extend(gat_features)
 
         if len(feature_values) != len(self.feature_names):
@@ -263,7 +255,7 @@ class FeatureExtractor:
             print("GAT feature extractor not available.")
 
     def print_gnn_statistics(self):
-        """GNN特徴量抽出の統計を表示（後方互換性）"""
+        """GNN特徴量抽出の統計を表示（後方互換性のため残存）"""
         self.print_gat_statistics()
 
 

@@ -9,7 +9,7 @@ sys.path.append(str(Path(__file__).resolve().parents[2]))
 from kazoo.GAT.GAT_model import GATModel
 
 
-class GNNFeatureExtractor:
+class GATFeatureExtractor:
     """IRLのためのGATベースの特徴量抽出器"""
 
     def __init__(self, cfg):

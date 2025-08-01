@@ -7,7 +7,7 @@ import yaml
 from omegaconf import DictConfig, OmegaConf
 
 from kazoo.envs.oss_simple import OSSSimpleEnv
-from kazoo.features.feature_extractor import GNNFeatureExtractor
+from kazoo.features.feature_extractor import FeatureExtractor as GATFeatureExtractor
 from kazoo.learners.independent_ppo_controller import IndependentPPOController
 
 
@@ -71,9 +71,9 @@ def main(cfg: DictConfig):
         raise ValueError("Config file must have 'rl.total_timesteps' defined.")
 
     # PPOのポリシー引数を定義
-    policy_kwargs = dict(features_extractor_class=GNNFeatureExtractor)
+    policy_kwargs = dict(features_extractor_class=GATFeatureExtractor)
 
-    # 3. RLコントローラーの初期化（現在のGNNFeatureExtractorは使わずに直接使用）
+    # 3. RLコントローラーの初期化（GATFeatureExtractorを使用）
     controller = IndependentPPOController(env=env, config=cfg)
 
     controller.learn(total_timesteps=total_timesteps)
