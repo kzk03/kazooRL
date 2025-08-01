@@ -1,0 +1,73 @@
+# RL（強化学習）設定
+
+# --- 基本PPO設定 ---
+base_ppo:
+  total_timesteps: 1000000
+  learning_rate: 0.0003
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+
+# --- 改良PPO設定 ---
+improved_ppo:
+  total_timesteps: 1500000
+  learning_rate: 0.0001
+  batch_size: 128
+  n_epochs: 15
+  gamma: 0.99
+  gae_lambda: 0.98
+  clip_range: 0.15
+  ent_coef: 0.001
+  vf_coef: 0.8
+  max_grad_norm: 1.0
+
+# --- 大規模PPO設定 ---
+large_scale_ppo:
+  total_timesteps: 2000000
+  learning_rate: 0.0001
+  batch_size: 256
+  n_epochs: 20
+  gamma: 0.99
+  gae_lambda: 0.98
+  clip_range: 0.1
+  ent_coef: 0.001
+  vf_coef: 1.0
+  max_grad_norm: 1.0
+
+# --- デバッグPPO設定 ---
+debug_ppo:
+  total_timesteps: 10000
+  learning_rate: 0.01
+  batch_size: 16
+  n_epochs: 5
+  gamma: 0.9
+  gae_lambda: 0.9
+  clip_range: 0.3
+  ent_coef: 0.1
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  verbose: true
+
+# --- ネットワーク設定 ---
+network:
+  policy_hidden_sizes: [256, 256]
+  value_hidden_sizes: [256, 256]
+  activation: "tanh"
+
+# --- 探索設定 ---
+exploration:
+  initial_epsilon: 1.0
+  final_epsilon: 0.1
+  epsilon_decay_steps: 100000
+
+# --- 経験再生設定 ---
+replay_buffer:
+  buffer_size: 100000
+  prioritized: false
+  alpha: 0.6
+  beta: 0.4

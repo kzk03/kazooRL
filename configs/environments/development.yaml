@@ -1,0 +1,41 @@
+# 開発環境設定
+# 開発・デバッグ用の設定
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_2022" # data_paths.yamlのdata_2022を使用
+  simulation:
+    time_step_hours: 8
+    max_days: 30 # デバッグ用に短縮
+
+# --- 開発者数制限（デバッグ用） ---
+num_developers: 10
+
+# --- デバッグ用設定 ---
+debug:
+  enabled: true
+  log_level: "DEBUG"
+  save_intermediate_results: true
+  plot_training_curves: true
+
+# --- IRL設定 ---
+irl:
+  config: "debug_irl" # irl_settings.yamlのdebug_irlを使用
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/debug_weights.npy"
+
+# --- RL設定 ---
+rl:
+  config: "debug_ppo" # rl_settings.yamlのdebug_ppoを使用
+  model_save_path: "models/debug_ppo_model"
+
+# --- 評価設定 ---
+evaluation:
+  enabled: true
+  frequency: 1000 # ステップごと
+  metrics: ["accuracy", "precision", "recall", "f1"]

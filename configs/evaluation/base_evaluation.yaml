@@ -1,0 +1,35 @@
+# 基本評価設定
+# 標準的な評価設定
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_2023" # 2023年データで評価
+
+# --- 評価設定 ---
+evaluation:
+  type: "standard"
+  metrics: ["accuracy", "precision", "recall", "f1"]
+  top_k_values: [1, 3, 5]
+  save_detailed_results: true
+
+# --- モデル設定 ---
+models:
+  irl_weights_path: "data/learned_weights_training.npy"
+  ppo_model_path: "models/base_training_model"
+
+# --- 出力設定 ---
+output:
+  results_path: "results/base_evaluation_results.json"
+  detailed_path: "results/base_evaluation_detailed.json"
+  visualization_path: "outputs/evaluation_plots/"
+
+# --- 統計設定 ---
+statistics:
+  confidence_level: 0.95
+  bootstrap_samples: 1000
+  cross_validation_folds: 5

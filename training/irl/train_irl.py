@@ -1,3 +1,4 @@
+import argparse
 import json
 import pickle  # ▼▼▼ pickleをインポート ▼▼▼
 from datetime import datetime
@@ -13,11 +14,12 @@ from kazoo.envs.task import Task
 from kazoo.features.feature_extractor import FeatureExtractor
 
 
-def main():
+def main(config_path="configs/base_training.yaml"):
     """逆強化学習のメイン処理."""
 
     print("1. Loading configuration and data...")
-    cfg = OmegaConf.load("configs/base_training.yaml")
+    print(f"Using config: {config_path}")
+    cfg = OmegaConf.load(config_path)
 
     try:
         with open(cfg.irl.expert_path, "rb") as f:
@@ -162,4 +164,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Train IRL model")
+    parser.add_argument("--config", default="configs/base_training.yaml", 
+                       help="Path to config file")
+    args = parser.parse_args()
+    
+    main(args.config)

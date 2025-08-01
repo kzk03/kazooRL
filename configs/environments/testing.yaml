@@ -1,0 +1,43 @@
+# テスト環境設定
+# テスト・評価用の設定
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_2023" # data_paths.yamlのdata_2023を使用（テストデータ）
+  simulation:
+    time_step_hours: 8
+    max_days: 365
+
+# --- 開発者数（テスト用） ---
+num_developers: 1000 # 中規模
+
+# --- テスト設定 ---
+test:
+  enabled: true
+  log_level: "INFO"
+  save_predictions: true
+  detailed_metrics: true
+
+# --- 評価専用設定 ---
+evaluation:
+  enabled: true
+  frequency: 1000
+  metrics: ["accuracy", "precision", "recall", "f1", "auc", "ndcg"]
+  save_confusion_matrix: true
+  save_predictions: true
+
+# --- 事前学習モデル使用 ---
+pretrained:
+  irl_weights_path: "data/learned_weights_production.npy"
+  ppo_model_path: "models/production_ppo_model"
+
+# --- テスト条件 ---
+test_conditions:
+  cross_validation: false
+  temporal_split: true
+  bootstrap_samples: 100

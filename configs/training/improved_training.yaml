@@ -1,0 +1,79 @@
+# 改良トレーニング設定
+# 精度向上を目指した改良設定
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+  - "base/irl_settings.yaml"
+  - "base/rl_settings.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_2022"
+
+# --- 開発者数（段階的増加） ---
+num_developers: 50 # 学習を簡単にするため削減
+
+# --- 行動空間縮小設定 ---
+action_space:
+  max_candidates: 15
+  min_candidates: 5
+
+# --- IRL設定 ---
+irl:
+  config: "base_irl"
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_weights_improved.npy"
+  # より厳密な設定
+  learning_rate: 0.0005
+  epochs: 250
+  convergence_threshold: 0.003
+  online_learning_config: "online_learning"
+
+# --- RL設定 ---
+rl:
+  config: "improved_ppo"
+  model_save_path: "models/improved_training_model"
+
+# --- カリキュラム学習 ---
+curriculum_learning:
+  enabled: true
+  stages:
+    - name: "easy"
+      num_developers: 20
+      timesteps: 200000
+    - name: "medium"
+      num_developers: 35
+      timesteps: 300000
+    - name: "hard"
+      num_developers: 50
+      timesteps: 500000
+
+# --- データ拡張 ---
+data_augmentation:
+  enabled: true
+  noise_level: 0.1
+  rotation_probability: 0.2
+
+# --- 正則化 ---
+regularization:
+  l2_weight: 0.001
+  dropout_rate: 0.1
+  gradient_clipping: 1.0
+
+# --- トレーニング設定 ---
+training:
+  save_frequency: 5000
+  evaluation_frequency: 2000
+  early_stopping:
+    enabled: true
+    patience: 30000
+    min_improvement: 0.0005
+
+# --- ログ設定 ---
+logging:
+  level: "DEBUG"
+  save_tensorboard: true
+  tensorboard_dir: "logs/tensorboard/improved_training"
+  save_model_checkpoints: true

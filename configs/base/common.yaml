@@ -1,0 +1,44 @@
+# 共通設定
+# すべての設定で使用される基本的な設定項目
+
+# --- 特徴量計算の共通設定 ---
+features:
+  recent_activity_window_days: 30
+  all_labels: ["bug", "enhancement", "documentation", "question", "help wanted"]
+  label_to_skills:
+    bug: ["debugging", "analysis"]
+    enhancement: ["python", "design"]
+    documentation: ["writing"]
+    question: ["communication"]
+    help wanted: ["collaboration"]
+
+# --- GNN共通設定 ---
+gnn:
+  model_path: "data/gnn_model_collaborative.pt"
+  graph_data_path: "data/graph_collaborative.pt"
+  feature_dim: 128
+  hidden_dim: 64
+  output_dim: 32
+  num_heads: 4
+  dropout_rate: 0.1
+
+# --- 環境シミュレーション共通設定 ---
+simulation:
+  time_step_hours: 8
+  max_days: 365
+  reward_scale: 1.0
+  penalty_scale: 1.0
+
+# --- 観測処理共通設定 ---
+observation:
+  processed_feature_dim: 64
+  task_feature_dim: 16
+  dev_feature_dim: 16
+  context_feature_dim: 16
+  gnn_feature_dim: 16
+
+# --- 行動空間共通設定 ---
+action_space:
+  max_candidates: 20
+  min_candidates: 5
+  selection_strategy: "top_k"

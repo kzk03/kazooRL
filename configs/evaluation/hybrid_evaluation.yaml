@@ -1,0 +1,63 @@
+# ハイブリッド評価設定
+# ハイブリッド推薦システムの評価設定
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_2023" # 2023年データで評価
+
+# --- ハイブリッド設定 ---
+hybrid:
+  enabled: true
+  methods: ["simple_stats", "rl"]
+  weight_combinations:
+    - simple_weight: 0.5
+      rl_weight: 0.5
+    - simple_weight: 0.7
+      rl_weight: 0.3
+    - simple_weight: 0.9
+      rl_weight: 0.1
+    - simple_weight: 0.3
+      rl_weight: 0.7
+
+# --- 活動ウィンドウ設定 ---
+activity_analysis:
+  window_months: [1, 3, 6, 12]
+  default_window: 3
+
+# --- 評価設定 ---
+evaluation:
+  type: "hybrid"
+  metrics: ["accuracy", "precision", "recall", "f1", "auc", "ndcg"]
+  top_k_values: [1, 3, 5, 10]
+  save_detailed_results: true
+  compare_methods: true
+
+# --- モデル設定 ---
+models:
+  irl_weights_path: "data/learned_weights_training.npy"
+  ppo_model_path: "models/base_training_model"
+
+# --- シンプル統計設定 ---
+simple_stats:
+  recent_activity_weight: 0.4
+  total_activity_weight: 0.3
+  pr_experience_weight: 0.2
+  freshness_weight: 0.1
+
+# --- 出力設定 ---
+output:
+  results_path: "results/hybrid_evaluation_results.json"
+  comparison_path: "results/hybrid_method_comparison.json"
+  visualization_path: "outputs/hybrid_evaluation_plots/"
+
+# --- 分析設定 ---
+analysis:
+  ablation_study: true
+  feature_importance: true
+  error_analysis: true
+  temporal_analysis: true

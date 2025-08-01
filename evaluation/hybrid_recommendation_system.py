@@ -20,24 +20,12 @@ from tqdm import tqdm
 
 # パッケージのパスを追加
 sys.path.append(str(Path(__file__).parent.parent / "src"))
+sys.path.append(str(Path(__file__).parent.parent / "utils"))
+
+from config_loader import ConfigLoader, SimpleConfig
 
 from kazoo.envs.oss_simple import OSSSimpleEnv
 from kazoo.features.feature_extractor import FeatureExtractor
-
-
-class SimpleConfig:
-    """辞書をオブジェクトのように扱うためのクラス"""
-
-    def __init__(self, config_dict):
-        self._dict = config_dict
-        for key, value in config_dict.items():
-            if isinstance(value, dict):
-                setattr(self, key, SimpleConfig(value))
-            else:
-                setattr(self, key, value)
-
-    def get(self, key, default=None):
-        return self._dict.get(key, default)
 
 
 def parse_datetime(date_str):
@@ -560,10 +548,18 @@ def main():
     print(f"📅 活動期間: {args.activity_months}ヶ月")
     print(f"⚖️ 重み配分: シンプル{args.simple_weight} + RL{args.rl_weight}")
 
-    # 設定読み込み
-    with open(args.config, "r", encoding="utf-8") as f:
-        config_dict = yaml.safe_load(f)
-    config = SimpleConfig(config_dict)
+    # 新しい設定システムを使用して設定読み込み
+    try:
+        config_loader = ConfigLoader()
+        config_dict = config_loader.load_complete_config(args.config)
+        config = SimpleConfig(config_dict)
+        print(f"✅ 新しい設定システムで設定読み込み完了")
+    except Exception as e:
+        print(f"⚠️ 新しい設定システムでの読み込みに失敗、従来方式を使用: {e}")
+        # フォールバック: 従来の方法で設定読み込み
+        with open(args.config, "r", encoding="utf-8") as f:
+            config_dict = yaml.safe_load(f)
+        config = SimpleConfig(config_dict)
 
     # IRL重み読み込み
     irl_weights = np.load(args.irl_weights)

@@ -1,7 +1,7 @@
 # --- 環境設定 (Environment) ---
 env:
-  backlog_path: "data/backlog_training.json" # 2022年除外
-  dev_profiles_path: "configs/dev_profiles_training.yaml" # 2022年除外
+  backlog_path: "data/backlog_training.json"
+  dev_profiles_path: "configs/dev_profiles_training.yaml"
   expert_trajectories_path: "data/expert_trajectories.pkl"
   simulation:
     time_step_hours: 8

@@ -1,0 +1,51 @@
+# IRL（逆強化学習）設定
+
+# --- 基本IRL設定 ---
+base_irl:
+  learning_rate: 0.001
+  epochs: 200
+  batch_size: 32
+  convergence_threshold: 0.005
+  convergence_patience: 50
+  use_gat: true
+
+# --- 小規模学習設定 ---
+small_scale_irl:
+  learning_rate: 0.001
+  epochs: 150
+  batch_size: 16
+  convergence_threshold: 0.01
+  convergence_patience: 30
+
+# --- 大規模学習設定 ---
+large_scale_irl:
+  learning_rate: 0.0005
+  epochs: 300
+  batch_size: 64
+  convergence_threshold: 0.002
+  convergence_patience: 100
+
+# --- オンライン学習設定 ---
+online_learning:
+  enabled: true
+  gat_update_frequency: 10
+  gat_learning_rate: 0.0001
+  gat_buffer_size: 1000
+  gat_time_window_hours: 72
+
+# --- 大規模オンライン学習設定 ---
+large_scale_online:
+  enabled: true
+  gat_update_frequency: 20
+  gat_learning_rate: 0.00005
+  gat_buffer_size: 2000
+  gat_time_window_hours: 96
+
+# --- デバッグ設定 ---
+debug_irl:
+  learning_rate: 0.01
+  epochs: 50
+  batch_size: 8
+  convergence_threshold: 0.05
+  convergence_patience: 10
+  verbose: true

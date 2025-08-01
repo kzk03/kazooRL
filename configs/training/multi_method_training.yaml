@@ -1,0 +1,67 @@
+# マルチメソッドトレーニング設定
+# 複数の手法を組み合わせたトレーニング
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+  - "base/irl_settings.yaml"
+  - "base/rl_settings.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_unified" # 統合データを使用
+
+# --- 開発者数 ---
+num_developers: 2000 # 大規模
+
+# --- マルチメソッド設定 ---
+multi_method:
+  enabled: true
+  methods: ["irl", "ppo", "gat", "simple_stats"]
+  ensemble_weights: [0.4, 0.3, 0.2, 0.1]
+
+# --- IRL設定 ---
+irl:
+  config: "large_scale_irl"
+  expert_path: "data/expert_trajectories_all.pkl"
+  output_weights_path: "data/learned_weights_multi.npy"
+  online_learning_config: "large_scale_online"
+
+# --- RL設定 ---
+rl:
+  config: "large_scale_ppo"
+  model_save_path: "models/multi_method_model"
+
+# --- GAT特別設定 ---
+gat:
+  enhanced_training: true
+  attention_layers: 3
+  multi_head_attention: 8
+  graph_update_frequency: 100
+
+# --- 統計ベース手法設定 ---
+simple_stats:
+  enabled: true
+  weight: 0.1
+  features: ["activity", "expertise", "availability"]
+
+# --- アンサンブル学習 ---
+ensemble:
+  method: "weighted_average"
+  dynamic_weights: true
+  weight_update_frequency: 1000
+
+# --- トレーニング設定 ---
+training:
+  save_frequency: 20000
+  evaluation_frequency: 10000
+  multi_gpu: true
+  distributed_training: true
+
+# --- ログ設定 ---
+logging:
+  level: "INFO"
+  save_tensorboard: true
+  tensorboard_dir: "logs/tensorboard/multi_method"
+  detailed_metrics: true

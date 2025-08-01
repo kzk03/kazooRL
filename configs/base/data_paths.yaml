@@ -1,0 +1,45 @@
+# データ設定
+# データファイルのパスと関連設定
+
+# --- 2022年データセット ---
+data_2022:
+  backlog_path: "data/backlog_training_2022.json"
+  dev_profiles_path: "configs/data/dev_profiles_2022.yaml"
+  expert_trajectories_path: "data/expert_trajectories.pkl"
+  description: "2022年のトレーニングデータセット"
+
+# --- 2023年データセット ---
+data_2023:
+  backlog_path: "data/backlog_test_2023.json"
+  dev_profiles_path: "configs/data/dev_profiles_2023.yaml"
+  expert_trajectories_path: "data/expert_trajectories.pkl"
+  description: "2023年のテストデータセット"
+
+# --- 統合データセット ---
+data_unified:
+  backlog_path: "data/backlog_training.json"
+  dev_profiles_path: "configs/data/dev_profiles_unified.yaml"
+  expert_trajectories_path: "data/expert_trajectories_all.pkl"
+  description: "統合されたデータセット"
+
+# --- IRL関連データ ---
+irl_data:
+  assignee_trajectories: "data/expert_trajectories_assignees.pkl"
+  creator_trajectories: "data/expert_trajectories_creators.pkl"
+  bot_excluded_trajectories: "data/expert_trajectories_bot_excluded.pkl"
+  learned_weights_output: "data/learned_weights_training.npy"
+
+# --- 評価結果保存パス ---
+output_paths:
+  evaluation_results: "results/evaluation_results.json"
+  model_checkpoint: "models/checkpoints/"
+  logs: "logs/"
+  visualization: "outputs/visualization/"
+
+# --- 時系列分割設定 ---
+temporal_split:
+  irl_end_date: "2021-12-31"
+  train_start_date: "2022-01-01"
+  train_end_date: "2022-12-31"
+  test_start_date: "2023-01-01"
+  test_end_date: "2023-12-31"

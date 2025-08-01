@@ -1,0 +1,43 @@
+# 基本トレーニング設定
+# 標準的なトレーニング設定
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+  - "base/irl_settings.yaml"
+  - "base/rl_settings.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_2022" # 2022年データでトレーニング
+
+# --- 開発者数 ---
+num_developers: 1000 # 中規模トレーニング
+
+# --- IRL設定 ---
+irl:
+  config: "base_irl"
+  expert_path: "data/expert_trajectories.pkl"
+  output_weights_path: "data/learned_weights_training.npy"
+  online_learning_config: "online_learning"
+
+# --- RL設定 ---
+rl:
+  config: "base_ppo"
+  model_save_path: "models/base_training_model"
+
+# --- トレーニング設定 ---
+training:
+  save_frequency: 10000
+  evaluation_frequency: 5000
+  early_stopping:
+    enabled: true
+    patience: 50000
+    min_improvement: 0.001
+
+# --- ログ設定 ---
+logging:
+  level: "INFO"
+  save_tensorboard: true
+  tensorboard_dir: "logs/tensorboard/base_training"

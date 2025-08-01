@@ -1,0 +1,48 @@
+# 本番環境設定
+# プロダクションで使用される設定
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+
+# --- 環境設定 ---
+env:
+  data_config: "data_unified" # data_paths.yamlのdata_unifiedを使用
+  simulation:
+    time_step_hours: 8
+    max_days: 365
+
+# --- 開発者数（本番用） ---
+num_developers: 5170 # 全開発者
+
+# --- 本番設定 ---
+production:
+  enabled: true
+  log_level: "INFO"
+  save_checkpoints: true
+  checkpoint_frequency: 10000
+
+# --- IRL設定 ---
+irl:
+  config: "large_scale_irl" # irl_settings.yamlのlarge_scale_irlを使用
+  expert_path: "data/expert_trajectories_all.pkl"
+  output_weights_path: "data/learned_weights_production.npy"
+  online_learning_config: "large_scale_online"
+
+# --- RL設定 ---
+rl:
+  config: "large_scale_ppo" # rl_settings.yamlのlarge_scale_ppoを使用
+  model_save_path: "models/production_ppo_model"
+
+# --- 評価設定 ---
+evaluation:
+  enabled: true
+  frequency: 50000 # より少ない頻度
+  metrics: ["accuracy", "precision", "recall", "f1", "auc"]
+
+# --- リソース制限 ---
+resources:
+  max_memory_gb: 32
+  max_cpu_cores: 16
+  gpu_enabled: true
