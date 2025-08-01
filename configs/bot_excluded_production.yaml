@@ -1,0 +1,91 @@
+# ボット除外版本格訓練設定
+# 時系列データ分割に準拠したシンプルな設定
+
+# === 実験情報 ===
+experiment:
+  name: "bot_excluded_production"
+  description: "ボット除外による高精度PPO訓練（時系列分割準拠）"
+  seed: 42
+
+# === 時系列データ分割（厳格遵守） ===
+temporal_split:
+  irl_end_date: "2021-12-31" # IRL用データの終了日
+  train_start_date: "2022-01-01" # RL訓練データの開始日
+  train_end_date: "2022-12-31" # RL訓練データの終了日
+  test_start_date: "2023-01-01" # テストデータの開始日
+
+# === データパス（時系列分割に対応） ===
+data:
+  # IRL用データ（2019-2021）
+  irl:
+    backlog_path: "data/backlog_irl.json"
+    dev_profiles_path: "configs/dev_profiles.yaml"
+    expert_trajectories_path: "data/expert_trajectories_bot_excluded.pkl"
+
+  # RL訓練用データ（2022）
+  rl_train:
+    backlog_path: "data/backlog_training_2022.json"
+    dev_profiles_path: "configs/dev_profiles_training_2022.yaml"
+
+  # テスト用データ（2023）
+  test:
+    backlog_path: "data/backlog_test_2023.json"
+    dev_profiles_path: "configs/dev_profiles_test_2023.yaml"
+
+# === 環境設定 ===
+env:
+  num_developers: 150
+  simulation:
+    time_step_hours: 2
+    max_days: 1095
+
+  # ボット除外設定
+  bot_filtering:
+    enabled: true
+    patterns: ["[bot]", "stale[bot]", "dependabot[bot]", "codecov[bot]"]
+
+# === IRL設定（2019-2021データ使用） ===
+irl:
+  epochs: 300
+  learning_rate: 0.0005
+  batch_size: 64
+  output_weights_path: "data/learned_weights_bot_excluded.npy"
+
+  early_stopping:
+    patience: 30
+    min_improvement: 0.0001
+
+# === RL設定（2022データで訓練） ===
+rl:
+  total_timesteps: 2000000
+  learning_rate: 0.0001
+
+  # PPOパラメータ
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  k_epochs: 10
+
+  # バッチ設定
+  rollout_len: 512
+  batch_size: 128
+  minibatch_size: 32
+
+  # 保存設定
+  save_freq: 50000
+  output_model_dir: "models/bot_excluded_production/"
+
+# === 評価設定（2023データでテスト） ===
+evaluation:
+  eval_episodes: 500
+  success_threshold: 0.3
+  metrics:
+    - "top_1_accuracy"
+    - "top_3_accuracy"
+    - "top_5_accuracy"
+
+# === ログ設定 ===
+logging:
+  level: "INFO"
+  tensorboard: true
+  log_freq: 2500

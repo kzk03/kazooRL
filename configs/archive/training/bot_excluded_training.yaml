@@ -1,0 +1,263 @@
+# ボット除外版本格訓練設定
+# Bot除外による高精度PPO訓練
+
+# 基本設定を継承
+base_configs:
+  - "base/common.yaml"
+  - "base/data_paths.yaml"
+  - "base/irl_settings.yaml"
+  - "base/rl_settings.yaml"
+
+# --- 環境設定 ---
+env:
+  backlog_path: "data/backlog_irl.json" # IRL用バックログ（2019-2021）
+  dev_profiles_path: "configs/dev_profiles.yaml" # IRL用開発者プロファイル
+  expert_trajectories_path: "data/expert_trajectories_bot_excluded.pkl"
+
+  simulation:
+    time_step_hours: 2 # 細かい時間刻み
+    max_days: 1095 # 3年間の訓練期間
+
+  # 改良された報酬システム
+  reward_system:
+    type: "improved"
+    components:
+      task_completion: 1.0
+      skill_match: 0.4
+      workload_balance: 0.3
+      collaboration: 0.2
+      learning: 0.15
+    normalization:
+      enabled: true
+      window_size: 1000
+      clip_range: [-2.0, 2.0]
+
+  # 行動空間設定
+  action_space:
+    type: "adaptive"
+    max_candidates: 30
+    min_candidates: 10
+    filtering:
+      skill_match: 0.3
+      activity_level: 0.25
+      workload: 0.25
+      collaboration: 0.2
+
+  # ボット除外設定
+  bot_filtering:
+    enabled: true
+    bot_patterns: ["[bot]", "stale[bot]", "dependabot[bot]", "codecov[bot]"]
+    exclude_from_recommendations: true
+    exclude_from_training: true
+
+# --- 開発者数 ---
+num_developers: 150 # 本格的な開発者数
+
+# --- 時系列分割設定 ---
+temporal_split:
+  irl_end_date: "2021-12-31"
+  train_start_date: "2022-01-01"
+  train_end_date: "2022-12-31"
+  test_start_date: "2023-01-01"
+
+# --- 特徴量設定 ---
+features:
+  recent_activity_window_days: 30
+  skill_categories:
+    - "python"
+    - "javascript"
+    - "debugging"
+    - "documentation"
+    - "testing"
+  complexity_factors:
+    - "comments_count"
+    - "labels_count"
+    - "participants_count"
+
+# --- IRL設定（ボット除外版データを使用） ---
+irl:
+  expert_path: "data/expert_trajectories_bot_excluded.pkl"
+  output_weights_path: "data/learned_weights_bot_excluded.npy"
+  use_existing_weights: false # 新しいボット除外データで再学習
+
+  # 訓練パラメータ
+  epochs: 300 # 本格的な訓練エポック数
+  learning_rate: 0.0005 # より慎重な学習率
+  batch_size: 64 # 大きなバッチサイズで安定性向上
+
+  # 早期停止
+  early_stopping:
+    enabled: true
+    patience: 30 # 30エポック改善なしで停止
+    min_improvement: 0.0001 # より細かい改善も検出
+
+  # 学習率スケジューリング
+  lr_scheduler:
+    enabled: true
+    type: "cosine" # コサイン減衰
+    warmup_epochs: 20 # ウォームアップ期間
+    min_lr: 0.00001 # 最小学習率
+
+# --- 改良されたPPO設定 ---
+rl:
+  # 本格的な訓練ステップ数
+  total_timesteps: 2000000 # 200万ステップ（本格訓練）
+
+  # 学習率スケジューリング
+  learning_rate: 0.0001 # 安定した初期学習率
+  lr_schedule: "linear" # 線形減衰
+  lr_final: 0.000001 # より低い最終学習率
+
+  # PPOハイパーパラメータ
+  gamma: 0.99 # 標準的な割引率
+  gae_lambda: 0.95 # 標準的なGAEパラメータ
+  eps_clip: 0.2 # 標準的なクリッピング範囲
+  k_epochs: 10 # より多くの更新エポック数
+
+  # バッチサイズとロールアウト
+  rollout_len: 512 # より長いロールアウト
+  batch_size: 128 # 大きなバッチサイズ
+  minibatch_size: 32 # 大きなミニバッチサイズ
+
+  # 価値関数とエントロピー
+  vf_coef: 0.5 # 価値関数の重みを上げる
+  ent_coef: 0.01 # 適度なエントロピーボーナス
+  ent_decay: 0.999 # ゆっくりとしたエントロピー減衰
+
+  # 勾配クリッピング
+  max_grad_norm: 0.5 # 勾配ノルムクリッピング
+
+  # 早期停止
+  early_stopping:
+    enabled: true
+    patience: 100 # 100回更新で改善なしなら停止
+    min_improvement: 0.001 # より細かい改善も検出
+
+  # 学習率適応
+  adaptive_lr:
+    enabled: true
+    factor: 0.9 # より緩やかな学習率削減
+    patience: 50 # より長い待機時間
+    min_lr: 0.000001 # より低い最小学習率
+
+  # カリキュラム学習
+  curriculum:
+    enabled: true
+    stages:
+      - name: "easy"
+        timesteps: 400000
+        num_developers: 30 # 少数の開発者から開始
+        max_candidates: 10 # 少ない候補数
+      - name: "medium"
+        timesteps: 800000
+        num_developers: 75 # 徐々に増加
+        max_candidates: 20
+      - name: "hard"
+        timesteps: 800000
+        num_developers: 150 # より多くの開発者
+        max_candidates: 30
+
+  # 正則化
+  regularization:
+    l2_coef: 0.0001 # L2正則化
+    dropout: 0.1 # ドロップアウト
+
+  # モデル保存
+  save_freq: 50000 # 5万ステップごとに保存
+  output_model_dir: "models/production_bot_excluded/"
+
+  # ログ設定
+  logging:
+    tensorboard: true
+    wandb: true # Weights & Biases統合
+    log_freq: 2500 # 2500ステップごとにログ
+    eval_freq: 25000 # 2.5万ステップごとに評価
+
+# --- ネットワークアーキテクチャ ---
+network:
+  # 深いネットワーク
+  actor:
+    hidden_layers: [256, 256, 128, 64] # 4層の隠れ層
+    activation: "relu"
+    dropout: 0.2
+    batch_norm: true
+    layer_norm: true
+
+  critic:
+    hidden_layers: [256, 256, 128, 64]
+    activation: "relu"
+    dropout: 0.2
+    batch_norm: true
+    layer_norm: true
+
+  # 特徴量抽出器
+  feature_extractor:
+    type: "deep_mlp"
+    hidden_dim: 128
+    num_layers: 3
+    residual_connections: true
+
+# --- 評価設定 ---
+evaluation:
+  eval_episodes: 500 # より多くの評価エピソード
+  eval_freq: 25000 # 評価頻度
+  success_threshold: 0.3 # より高い成功判定閾値（30%精度）
+
+  # メトリクス
+  metrics:
+    - "top_1_accuracy"
+    - "top_3_accuracy"
+    - "top_5_accuracy"
+    - "top_10_accuracy"
+    - "average_reward"
+    - "episode_length"
+    - "success_rate"
+    - "precision_at_k"
+    - "recall_at_k"
+    - "ndcg_at_k"
+
+# --- デバッグ設定 ---
+debug:
+  enabled: true
+  log_level: "INFO"
+  save_trajectories: true # 軌跡を保存
+  plot_learning_curves: true # 学習曲線をプロット
+
+  # 詳細ログ
+  detailed_logging:
+    reward_breakdown: true # 報酬の内訳をログ
+    action_distribution: true # 行動分布をログ
+    observation_stats: true # 観測統計をログ
+
+# --- 実験設定 ---
+experiment:
+  name: "production_bot_excluded_v1"
+  description: "ボット除外による本格的な高精度PPO訓練"
+  tags:
+    [
+      "ppo",
+      "bot_excluded",
+      "production",
+      "high_accuracy",
+      "curriculum_learning",
+    ]
+
+  # 再現性
+  seed: 42
+  deterministic: true
+
+  # 並列化
+  num_workers: 8 # より多くの並列ワーカー数
+
+  # チェックポイント
+  checkpoint:
+    enabled: true
+    save_best: true
+    save_last: true
+    save_freq: 100000 # 10万ステップごと
+
+  # 分散訓練
+  distributed:
+    enabled: false # 必要に応じて有効化
+    backend: "nccl"
+    world_size: 1
