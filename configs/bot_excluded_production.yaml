@@ -34,6 +34,8 @@ data:
 
 # === 環境設定 ===
 env:
+  backlog_path: "data/backlog_irl.json" # IRL用バックログ
+  dev_profiles_path: "configs/dev_profiles.yaml" # IRL用開発者プロファイル
   num_developers: 150
   simulation:
     time_step_hours: 2
@@ -44,8 +46,23 @@ env:
     enabled: true
     patterns: ["[bot]", "stale[bot]", "dependabot[bot]", "codecov[bot]"]
 
+# === 特徴量設定 ===
+features:
+  recent_activity_window_days: 30
+  skill_categories:
+    - "python"
+    - "javascript"
+    - "debugging"
+    - "documentation"
+    - "testing"
+  complexity_factors:
+    - "comments_count"
+    - "labels_count"
+    - "participants_count"
+
 # === IRL設定（2019-2021データ使用） ===
 irl:
+  expert_path: "data/expert_trajectories_bot_excluded.pkl" # 必須キー追加
   epochs: 300
   learning_rate: 0.0005
   batch_size: 64

@@ -23,6 +23,8 @@ data:
 
 # === 環境設定（軽量） ===
 env:
+  backlog_path: "data/backlog_irl.json" # IRL用バックログ
+  dev_profiles_path: "configs/dev_profiles.yaml" # IRL用開発者プロファイル
   num_developers: 20 # 少数で高速化
   simulation:
     time_step_hours: 4
@@ -32,8 +34,20 @@ env:
     enabled: true
     patterns: ["[bot]"]
 
+# === 特徴量設定 ===
+features:
+  recent_activity_window_days: 30
+  skill_categories:
+    - "python"
+    - "javascript"
+    - "debugging"
+  complexity_factors:
+    - "comments_count"
+    - "labels_count"
+
 # === IRL設定（高速） ===
 irl:
+  expert_path: "data/expert_trajectories_bot_excluded.pkl" # 必須キー追加
   epochs: 10 # 少ないエポック数
   learning_rate: 0.001
   batch_size: 32
