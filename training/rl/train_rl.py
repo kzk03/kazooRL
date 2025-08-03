@@ -11,7 +11,11 @@ from kazoo.features.feature_extractor import GATFeatureExtractorRL
 from kazoo.learners.independent_ppo_controller import IndependentPPOController
 
 
-@hydra.main(config_path="../../configs", config_name="bot_excluded_production", version_base=None)
+@hydra.main(
+    config_path="../../configs",
+    config_name="bot_excluded_production",
+    version_base=None,
+)
 def main(cfg: DictConfig):
     """
     強化学習（PPO）を使って、開発者エージェントを訓練する。
@@ -54,8 +58,10 @@ def main(cfg: DictConfig):
     try:
         print(f"Reward weights path: {cfg.irl.output_weights_path}")
         if not os.path.exists(cfg.irl.output_weights_path):
-            print(f"Warning: Reward weights file not found: {cfg.irl.output_weights_path}")
-        
+            print(
+                f"Warning: Reward weights file not found: {cfg.irl.output_weights_path}"
+            )
+
         env = OSSSimpleEnv(
             config=cfg,
             backlog=backlog,
@@ -66,6 +72,7 @@ def main(cfg: DictConfig):
     except Exception as e:
         print(f"Error initializing environment: {e}")
         import traceback
+
         traceback.print_exc()
         return
 
@@ -78,6 +85,7 @@ def main(cfg: DictConfig):
     except Exception as e:
         print(f"Error initializing PPO controller: {e}")
         import traceback
+
         traceback.print_exc()
         return
         return
@@ -102,6 +110,7 @@ def main(cfg: DictConfig):
     except Exception as e:
         print(f"Error during PPO learning: {e}")
         import traceback
+
         traceback.print_exc()
         return
 
@@ -113,6 +122,7 @@ def main(cfg: DictConfig):
     except Exception as e:
         print(f"Error saving models: {e}")
         import traceback
+
         traceback.print_exc()
 
 
