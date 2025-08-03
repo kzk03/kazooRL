@@ -22,9 +22,13 @@ from tqdm import tqdm
 # パス設定
 sys.path.append(str(Path(__file__).resolve().parents[1] / "src"))
 
-from kazoo.agents.multi_agent_system import MultiAgentSystem
-from kazoo.envs.oss_environment import OSSEnvironment
-from kazoo.features.feature_extractor import FeatureExtractor
+# 利用可能なモジュールのみインポート
+try:
+    from kazoo.envs.improved_oss_env import ImprovedOSSEnvironment
+    from kazoo.features.feature_extractor import FeatureExtractor
+except ImportError as e:
+    print(f"⚠️  モジュールインポート警告: {e}")
+    print("   基本的な評価機能のみ使用します")
 
 
 def load_test_data(test_data_path: str) -> List[Dict]:
@@ -69,8 +73,8 @@ def load_trained_agents(model_dir: str) -> Dict[str, torch.nn.Module]:
         model_path = os.path.join(model_dir, model_file)
         
         try:
-            # PyTorchモデルの読み込み
-            model_state = torch.load(model_path, map_location='cpu')
+            # PyTorchモデルの読み込み（weights_only=Falseで安全性を緩和）
+            model_state = torch.load(model_path, map_location='cpu', weights_only=False)
             agents[agent_name] = model_state
             
             if i < 3:  # 最初の3つだけ詳細表示
