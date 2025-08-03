@@ -1,0 +1,89 @@
+# 改良されたRL訓練用設定
+# train_improved_rl.py専用設定
+
+# === 実験情報 ===
+experiment:
+  name: "improved_rl_training"
+  description: "改良されたPPO訓練システム"
+  seed: 42
+
+# === デバイス設定 ===
+device: "cpu" # ローカル環境用
+
+# === 時系列データ分割 ===
+temporal_split:
+  irl_end_date: "2021-12-31"
+  train_start_date: "2022-01-01"
+  train_end_date: "2022-12-31"
+  test_start_date: "2023-01-01"
+
+# === 環境設定 ===
+env:
+  backlog_path: "data/backlog_irl.json"
+  dev_profiles_path: "configs/dev_profiles.yaml"
+  num_developers: 3 # 軽量テスト用
+  simulation:
+    time_step_hours: 2
+    max_days: 365 # 短縮
+  bot_filtering:
+    enabled: true
+    patterns: ["[bot]", "stale[bot]", "dependabot[bot]", "codecov[bot]"]
+
+# === 特徴量設定 ===
+features:
+  recent_activity_window_days: 30
+  skill_categories:
+    - "python"
+    - "javascript"
+    - "debugging"
+  complexity_factors:
+    - "comments_count"
+    - "labels_count"
+
+# === IRL設定 ===
+irl:
+  expert_path: "data/expert_trajectories_bot_excluded.pkl"
+  epochs: 100 # 軽量化
+  learning_rate: 0.001
+  batch_size: 32
+  output_weights_path: "data/learned_weights_bot_excluded.npy"
+  use_gat: true
+  gat_graph_path: "data/developer_collaboration_network.pt"
+  gat_model_path: "data/gat_model_collaborative.pt"
+
+# === 改良されたRL設定 ===
+rl:
+  total_timesteps: 1000 # 軽量テスト
+  learning_rate: 0.003
+  gamma: 0.99
+  gae_lambda: 0.95
+  eps_clip: 0.2
+  k_epochs: 4
+  rollout_len: 32
+  batch_size: 16
+  minibatch_size: 8
+  save_freq: 500
+  output_model_dir: "models/improved_rl/"
+
+  # 改良版固有設定
+  use_curriculum_learning: true
+  reward_shaping: true
+  adaptive_lr: true
+  early_stopping:
+    enabled: true
+    patience: 50
+    min_improvement: 0.001
+
+# === 評価設定 ===
+evaluation:
+  eval_episodes: 100
+  success_threshold: 0.1 # 低めに設定
+  metrics:
+    - "top_1_accuracy"
+    - "top_3_accuracy"
+
+# === ログ設定 ===
+logging:
+  level: "INFO"
+  tensorboard: false # 軽量化
+  log_freq: 100
