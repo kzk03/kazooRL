@@ -21,57 +21,57 @@ import seaborn as sns
 def analyze_training_results(model_dir: str) -> Dict:
     """訓練結果の分析"""
     print(f"📊 訓練結果分析: {model_dir}")
-    
+
     # モデルファイル数の確認
     model_files = glob.glob(os.path.join(model_dir, "*.pth"))
     total_agents = len(model_files)
-    
+
     # ファイルサイズ分析
     file_sizes = []
     for model_file in model_files[:100]:  # サンプル100個
         size = os.path.getsize(model_file)
         file_sizes.append(size)
-    
+
     avg_size = np.mean(file_sizes) if file_sizes else 0
     total_size = sum(os.path.getsize(f) for f in model_files)
-    
+
     analysis = {
         "total_agents": total_agents,
         "avg_model_size_mb": avg_size / (1024 * 1024),
         "total_size_gb": total_size / (1024 * 1024 * 1024),
         "model_files_sample": model_files[:10],
     }
-    
+
     print(f"   総エージェント数: {total_agents:,}")
     print(f"   平均モデルサイズ: {analysis['avg_model_size_mb']:.2f}MB")
     print(f"   総サイズ: {analysis['total_size_gb']:.2f}GB")
-    
+
     return analysis
 
 
 def analyze_test_data(test_data_path: str) -> Dict:
     """テストデータの分析"""
     print(f"📈 テストデータ分析: {test_data_path}")
-    
+
     with open(test_data_path, "r", encoding="utf-8") as f:
         test_data = json.load(f)
-    
+
     # 基本統計
     total_tasks = len(test_data)
-    
+
     # 年月別分析
     monthly_counts = {}
     label_counts = {}
     title_lengths = []
     body_lengths = []
-    
+
     for task in test_data:
         # 年月
         created_at = task.get("created_at", "")
         if created_at:
             year_month = created_at[:7]  # YYYY-MM
             monthly_counts[year_month] = monthly_counts.get(year_month, 0) + 1
-        
+
         # ラベル
         labels = task.get("labels", [])
         for label in labels:
@@ -80,18 +80,20 @@ def analyze_test_data(test_data_path: str) -> Dict:
             else:
                 label_name = str(label)
             label_counts[label_name] = label_counts.get(label_name, 0) + 1
-        
+
         # テキスト長
         title = task.get("title", "") or ""
         body = task.get("body", "") or ""
         title_lengths.append(len(title))
         body_lengths.append(len(body))
-    
+
     # 統計計算
     analysis = {
         "total_tasks": total_tasks,
         "monthly_distribution": monthly_counts,
-        "top_labels": dict(sorted(label_counts.items(), key=lambda x: x[1], reverse=True)[:10]),
+        "top_labels": dict(
+            sorted(label_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+        ),
         "title_length_stats": {
             "mean": np.mean(title_lengths),
             "median": np.median(title_lengths),
@@ -103,12 +105,12 @@ def analyze_test_data(test_data_path: str) -> Dict:
             "std": np.std(body_lengths),
         },
     }
-    
+
     print(f"   総タスク数: {total_tasks:,}")
     print(f"   月別分布: {len(monthly_counts)}ヶ月")
     print(f"   ユニークラベル数: {len(label_counts)}")
     print(f"   平均タイトル長: {analysis['title_length_stats']['mean']:.1f}文字")
-    
+
     return analysis
 
 
@@ -116,13 +118,13 @@ def create_comprehensive_report(
     training_analysis: Dict,
     test_analysis: Dict,
     evaluation_results: Dict,
-    output_path: str
+    output_path: str,
 ) -> str:
     """包括的な分析レポートを作成"""
     print(f"📝 包括的レポート作成: {output_path}")
-    
+
     timestamp = datetime.now().strftime("%Y年%m月%d日 %H:%M:%S")
-    
+
     report_content = f"""# 改良RLモデル包括分析レポート
 
 生成日時: {timestamp}
@@ -170,11 +172,13 @@ def create_comprehensive_report(
 
 ### 2.3 上位ラベル
 """
-    
+
     # 上位ラベルの追加
-    for i, (label, count) in enumerate(list(test_analysis.get('top_labels', {}).items())[:5]):
+    for i, (label, count) in enumerate(
+        list(test_analysis.get("top_labels", {}).items())[:5]
+    ):
         report_content += f"\n{i+1}. **{label}**: {count:,}タスク"
-    
+
     report_content += f"""
 
 ## 3. 評価結果詳細
@@ -299,11 +303,11 @@ uv run python analysis/reports/improved_rl_analysis.py
 *このレポートは {timestamp} に自動生成されました*
 *改良RLモデルプロジェクト - 時系列分割による信頼性向上*
 """
-    
+
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(report_content)
-    
+
     print(f"   ✅ 包括レポート生成完了")
     return output_path
 
@@ -313,31 +317,29 @@ def main():
     parser.add_argument(
         "--model-dir",
         default="models/improved_rl/final_models",
-        help="訓練済みモデルディレクトリ"
+        help="訓練済みモデルディレクトリ",
     )
     parser.add_argument(
         "--test-data",
         default="data/backlog_test_2023.json",
-        help="テストデータファイル"
+        help="テストデータファイル",
     )
     parser.add_argument(
-        "--output-dir",
-        default="outputs/analysis",
-        help="分析結果出力ディレクトリ"
+        "--output-dir", default="outputs/analysis", help="分析結果出力ディレクトリ"
     )
-    
+
     args = parser.parse_args()
-    
+
     print("🚀 改良RLモデル包括分析開始")
     print("=" * 60)
-    
+
     try:
         # 1. 訓練結果分析
         training_analysis = analyze_training_results(args.model_dir)
-        
+
         # 2. テストデータ分析
         test_analysis = analyze_test_data(args.test_data)
-        
+
         # 3. 評価結果（前回の結果を使用）
         evaluation_results = {
             "assignment_rate": 0.995,
@@ -348,18 +350,17 @@ def main():
             "assigned_tasks": 995,
             "successful_assignments": 460,
         }
-        
+
         # 4. 包括レポート生成
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_path = os.path.join(args.output_dir, f"comprehensive_analysis_{timestamp}.md")
-        
-        report_path = create_comprehensive_report(
-            training_analysis,
-            test_analysis,
-            evaluation_results,
-            output_path
+        output_path = os.path.join(
+            args.output_dir, f"comprehensive_analysis_{timestamp}.md"
         )
-        
+
+        report_path = create_comprehensive_report(
+            training_analysis, test_analysis, evaluation_results, output_path
+        )
+
         print("\n✅ 包括分析完了！")
         print("=" * 60)
         print(f"📊 包括レポート: {report_path}")
@@ -368,10 +369,11 @@ def main():
         print(f"   - 総合スコア: {evaluation_results['total_score']:.3f}")
         print(f"   - データリーク: 完全防止")
         print(f"   - 評価信頼性: 時系列分割により向上")
-        
+
     except Exception as e:
         print(f"❌ エラーが発生しました: {e}")
         import traceback
+
         traceback.print_exc()
 
 
