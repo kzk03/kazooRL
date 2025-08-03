@@ -5,28 +5,33 @@
 後方互換性を保ちながら、強化された特徴量エンジニアリング機能を既存システムに統合します。
 """
 
-import os
-import sys
 import json
-import yaml
-import pickle
 import logging
+import os
+import pickle
+import sys
+import time
+from dataclasses import asdict, dataclass
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple, Union
+
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Any, Optional, Tuple, Union
-from dataclasses import dataclass, asdict
-from pathlib import Path
-import time
-from datetime import datetime
+import yaml
 
 # 既存システムとの互換性のための相対インポート
 try:
-    from analysis.feature_pipeline.feature_pipeline import FeaturePipeline
-    from analysis.feature_analysis.feature_importance_analyzer import FeatureImportanceAnalyzer
+    from analysis.feature_analysis.feature_importance_analyzer import (
+        FeatureImportanceAnalyzer,
+    )
+    from analysis.feature_design.developer_feature_designer import (
+        DeveloperFeatureDesigner,
+    )
     from analysis.feature_design.task_feature_designer import TaskFeatureDesigner
-    from analysis.feature_design.developer_feature_designer import DeveloperFeatureDesigner
     from analysis.feature_optimization.feature_scaler import FeatureScaler
     from analysis.feature_optimization.feature_selector import FeatureSelector
+    from analysis.feature_pipeline.feature_pipeline import FeaturePipeline
     from analysis.gat_optimization.gat_optimizer import GATOptimizer
 except ImportError as e:
     logging.warning(f"新しい特徴量システムのインポートに失敗: {e}")
