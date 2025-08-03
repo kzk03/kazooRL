@@ -14,8 +14,4 @@ from .dimension_reducer import DimensionReducer
 from .feature_scaler import FeatureScaler
 from .feature_selector import FeatureSelector
 
-__all__ = [
-    "FeatureScaler",
-    "FeatureSelector", 
-    "DimensionReducer"
-]
+__all__ = ["FeatureScaler", "FeatureSelector", "DimensionReducer"]

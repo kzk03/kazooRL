@@ -14,8 +14,4 @@ from .gat_integrated_optimizer import GATIntegratedOptimizer
 from .gat_interpreter import GATInterpreter
 from .gat_optimizer import GATOptimizer
 
-__all__ = [
-    "GATOptimizer",
-    "GATInterpreter",
-    "GATIntegratedOptimizer"
-]
+__all__ = ["GATOptimizer", "GATInterpreter", "GATIntegratedOptimizer"]

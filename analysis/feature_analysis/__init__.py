@@ -16,6 +16,6 @@ from .feature_importance_analyzer import FeatureImportanceAnalyzer
 
 __all__ = [
     "FeatureImportanceAnalyzer",
-    "FeatureCorrelationAnalyzer", 
-    "FeatureDistributionAnalyzer"
+    "FeatureCorrelationAnalyzer",
+    "FeatureDistributionAnalyzer",
 ]

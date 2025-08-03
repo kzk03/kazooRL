@@ -14,8 +14,4 @@ from .developer_feature_designer import DeveloperFeatureDesigner
 from .matching_feature_designer import MatchingFeatureDesigner
 from .task_feature_designer import TaskFeatureDesigner
 
-__all__ = [
-    "TaskFeatureDesigner",
-    "DeveloperFeatureDesigner", 
-    "MatchingFeatureDesigner"
-]
+__all__ = ["TaskFeatureDesigner", "DeveloperFeatureDesigner", "MatchingFeatureDesigner"]
