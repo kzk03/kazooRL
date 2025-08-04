@@ -708,6 +708,12 @@ class AdvancedEnsembleSystem:
 
         # 各K値での評価
         results = {}
+        detailed_results = {  # 詳細分析用
+            "correct_predictions": [],
+            "incorrect_predictions": [],
+            "author_hit_rates": defaultdict(list),
+            "recommendation_patterns": []
+        }
 
         for k in [1, 3, 5]:
             correct_predictions = 0
@@ -738,8 +744,28 @@ class AdvancedEnsembleSystem:
                     all_recommendations.extend(recommended_agents)
 
                     # Top-K精度
-                    if actual_author in recommended_agents:
+                    is_correct = actual_author in recommended_agents
+                    if is_correct:
                         correct_predictions += 1
+                        
+                    # 詳細分析（Top-1のみ）
+                    if k == 1:
+                        task_info = {
+                            "task_title": task.get("title", "")[:50] + "...",
+                            "actual_author": actual_author,
+                            "recommended_agents": recommended_agents,
+                            "is_correct": is_correct,
+                            "contribution": self.author_contributions.get(actual_author, 0),
+                            "scores": [(agent, score) for agent, score in recommendations]
+                        }
+                        
+                        if is_correct:
+                            detailed_results["correct_predictions"].append(task_info)
+                        else:
+                            detailed_results["incorrect_predictions"].append(task_info)
+                            
+                        # 著者のヒット率記録
+                        detailed_results["author_hit_rates"][actual_author].append(is_correct)
 
                     # 貢献量分布
                     for agent in recommended_agents:
@@ -783,7 +809,80 @@ class AdvancedEnsembleSystem:
                     f"   推薦分布: 高{high_pct:.1f}% 中{medium_pct:.1f}% 低{low_pct:.1f}%"
                 )
 
+        # 詳細分析の表示（Top-1のみ）
+        if detailed_results["correct_predictions"]:
+            self._display_detailed_analysis(detailed_results)
+
         return results
+
+    def _display_detailed_analysis(self, detailed_results: Dict):
+        """詳細分析結果を表示"""
+        print(f"\n## 🔍 詳細分析 (Top-1精度)")
+        print("-" * 50)
+        
+        correct_count = len(detailed_results["correct_predictions"])
+        incorrect_count = len(detailed_results["incorrect_predictions"])
+        total_count = correct_count + incorrect_count
+        
+        print(f"   正解: {correct_count}件, 不正解: {incorrect_count}件")
+        print(f"   精度: {correct_count/total_count:.3f} ({correct_count/total_count*100:.1f}%)")
+        
+        # 正解した開発者の分析
+        print(f"\n### ✅ 正解した開発者 (上位10件)")
+        correct_authors = Counter()
+        for pred in detailed_results["correct_predictions"]:
+            correct_authors[pred["actual_author"]] += 1
+            
+        for author, count in correct_authors.most_common(10):
+            contribution = self.author_contributions.get(author, 0)
+            hit_rate = sum(detailed_results["author_hit_rates"][author]) / len(detailed_results["author_hit_rates"][author])
+            print(f"     {author}: {count}回正解 (貢献{contribution}, ヒット率{hit_rate:.1%})")
+        
+        # 正解事例のサンプル
+        print(f"\n### 🎯 正解事例 (上位5件)")
+        for i, pred in enumerate(detailed_results["correct_predictions"][:5]):
+            print(f"   {i+1}. タスク: {pred['task_title']}")
+            print(f"      実際: {pred['actual_author']} (貢献{pred['contribution']})")
+            print(f"      推薦: {pred['recommended_agents'][0]} (スコア{pred['scores'][0][1]:.3f})")
+            print()
+        
+        # 不正解した高貢献者の分析
+        print(f"\n### ❌ 不正解事例 (高貢献者)")
+        high_contrib_errors = [
+            pred for pred in detailed_results["incorrect_predictions"] 
+            if pred["contribution"] >= 50
+        ]
+        
+        if high_contrib_errors:
+            print(f"   高貢献者の不正解: {len(high_contrib_errors)}件")
+            for i, pred in enumerate(high_contrib_errors[:3]):
+                print(f"   {i+1}. タスク: {pred['task_title']}")
+                print(f"      実際: {pred['actual_author']} (貢献{pred['contribution']})")
+                print(f"      推薦: {pred['recommended_agents'][0]} (スコア{pred['scores'][0][1]:.3f})")
+                print()
+        
+        # 推薦パターン分析
+        print(f"\n### 📈 推薦パターン分析")
+        all_recommended = []
+        all_actual = []
+        
+        for pred in detailed_results["correct_predictions"] + detailed_results["incorrect_predictions"]:
+            all_recommended.append(pred["recommended_agents"][0])
+            all_actual.append(pred["actual_author"])
+        
+        recommended_counter = Counter(all_recommended)
+        actual_counter = Counter(all_actual)
+        
+        print(f"   最も推薦された開発者:")
+        for author, count in recommended_counter.most_common(5):
+            contribution = self.author_contributions.get(author, 0)
+            print(f"     {author}: {count}回推薦 (貢献{contribution})")
+            
+        print(f"   最も多く正解だった開発者:")
+        for author, count in actual_counter.most_common(5):
+            contribution = self.author_contributions.get(author, 0)
+            hit_rate = sum(detailed_results["author_hit_rates"][author]) / len(detailed_results["author_hit_rates"][author]) if author in detailed_results["author_hit_rates"] else 0
+            print(f"     {author}: {count}回出現 (貢献{contribution}, ヒット率{hit_rate:.1%})")
 
 
 def main():
