@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-高度なアンサンブル推薦システム
+高度なアンサンブル推薦システム (修正版)
 Top-1精度の劇的改善を目指す最先端手法
 """
 
@@ -13,7 +13,6 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import torch
 import torch.nn as nn
-import yaml
 from tqdm import tqdm
 
 
@@ -67,16 +66,8 @@ class PPOPolicyNetwork(nn.Module):
 def is_bot(username: str) -> bool:
     """ユーザー名がBotかどうか判定"""
     bot_indicators = [
-        "[bot]",
-        "bot",
-        "dependabot",
-        "renovate",
-        "greenkeeper",
-        "codecov",
-        "travis",
-        "circleci",
-        "github-actions",
-        "automated",
+        "[bot]", "bot", "dependabot", "renovate", "greenkeeper",
+        "codecov", "travis", "circleci", "github-actions", "automated",
     ]
     username_lower = username.lower()
     return any(indicator in username_lower for indicator in bot_indicators)
@@ -86,13 +77,14 @@ class AdvancedEnsembleSystem:
     """高度なアンサンブル推薦システム - Top-1精度特化"""
 
     def __init__(self, model_dir: str, test_data_path: str):
+        print("🔧 システム初期化開始...")
         self.model_dir = model_dir
         self.test_data_path = test_data_path
         self.models = {}
         self.author_contributions = {}
         self.author_task_history = defaultdict(list)
-        self.task_author_similarity = {}
         self.temporal_patterns = {}
+        self.author_features = {}
 
         # データ読み込み・分析
         self._load_test_data()
@@ -176,20 +168,16 @@ class AdvancedEnsembleSystem:
         print("⏰ 時間的パターン分析中...")
 
         for author, tasks in self.author_task_history.items():
-            # 月別活動パターン
             monthly_activity = defaultdict(int)
-            # 曜日別活動パターン
             weekday_activity = defaultdict(int)
 
             for task in tasks:
                 created_at = task.get("created_at", "")
                 if created_at:
                     try:
-                        # 月の抽出
                         month = int(created_at.split("-")[1])
                         monthly_activity[month] += 1
 
-                        # 曜日の計算（簡易版）
                         day = int(created_at.split("-")[2].split("T")[0])
                         weekday = day % 7
                         weekday_activity[weekday] += 1
@@ -207,14 +195,12 @@ class AdvancedEnsembleSystem:
         """タスク-開発者類似度マトリックス計算"""
         print("🔍 類似度マトリックス計算中...")
 
-        # 各開発者の特徴ベクトルを構築
         author_features = {}
 
         for author, tasks in self.author_task_history.items():
             if len(tasks) == 0:
                 continue
 
-            # キーワード頻度ベクトル
             keyword_counts = defaultdict(int)
             total_tasks = len(tasks)
 
@@ -223,53 +209,25 @@ class AdvancedEnsembleSystem:
                 body = (task.get("body", "") or "").lower()
                 labels = task.get("labels", [])
 
-                label_text = " ".join(
-                    [
-                        (
-                            str(label)
-                            if not isinstance(label, dict)
-                            else label.get("name", "")
-                        )
-                        for label in labels
-                    ]
-                ).lower()
+                label_text = " ".join([
+                    str(label) if not isinstance(label, dict) else label.get("name", "")
+                    for label in labels
+                ]).lower()
 
                 full_text = f"{title} {body} {label_text}"
 
-                # 重要キーワードのカウント
                 important_keywords = [
-                    "bug",
-                    "fix",
-                    "error",
-                    "feature",
-                    "enhancement",
-                    "new",
-                    "doc",
-                    "readme",
-                    "guide",
-                    "ui",
-                    "ux",
-                    "design",
-                    "performance",
-                    "optimize",
-                    "security",
-                    "auth",
-                    "api",
-                    "endpoint",
-                    "test",
-                    "spec",
-                    "docker",
-                    "compose",
-                    "build",
-                    "deploy",
-                    "config",
+                    "bug", "fix", "error", "feature", "enhancement", "new",
+                    "doc", "readme", "guide", "ui", "ux", "design",
+                    "performance", "optimize", "security", "auth", "api",
+                    "endpoint", "test", "spec", "docker", "compose",
+                    "build", "deploy", "config"
                 ]
 
                 for keyword in important_keywords:
                     if keyword in full_text:
                         keyword_counts[keyword] += 1
 
-            # 正規化された特徴ベクトル
             feature_vector = []
             for keyword in important_keywords:
                 feature_vector.append(keyword_counts[keyword] / total_tasks)
@@ -289,14 +247,8 @@ class AdvancedEnsembleSystem:
 
         # 基本特徴量
         basic_features = [
-            len(title),
-            len(body),
-            len(title.split()),
-            len(body.split()),
-            len(labels),
-            title.count("?"),
-            title.count("!"),
-            body.count("\n"),
+            len(title), len(body), len(title.split()), len(body.split()),
+            len(labels), title.count("?"), title.count("!"), body.count("\n"),
             len(set(title.lower().split())),
             1 if any(kw in title.lower() for kw in ["bug", "fix", "error"]) else 0,
         ]
@@ -308,46 +260,25 @@ class AdvancedEnsembleSystem:
             try:
                 date_parts = created_at.split("T")[0].split("-")
                 year, month, day = (
-                    int(date_parts[0]),
-                    int(date_parts[1]),
-                    int(date_parts[2]),
+                    int(date_parts[0]), int(date_parts[1]), int(date_parts[2])
                 )
-                features.extend([year - 2020, month, day, day % 7])  # 曜日追加
+                features.extend([year - 2020, month, day, day % 7])
             except:
                 features.extend([0, 0, 0, 0])
         else:
             features.extend([0, 0, 0, 0])
 
         # ラベル特徴量
-        label_text = " ".join(
-            [
-                str(label) if not isinstance(label, dict) else label.get("name", "")
-                for label in labels
-            ]
-        ).lower()
+        label_text = " ".join([
+            str(label) if not isinstance(label, dict) else label.get("name", "")
+            for label in labels
+        ]).lower()
 
-        # 拡張キーワード
         extended_keywords = [
-            "bug",
-            "feature",
-            "enhancement",
-            "documentation",
-            "help",
-            "question",
-            "performance",
-            "security",
-            "ui",
-            "api",
-            "docker",
-            "compose",
-            "build",
-            "deploy",
-            "config",
-            "test",
-            "spec",
-            "coverage",
-            "ci",
-            "cd",
+            "bug", "feature", "enhancement", "documentation", "help",
+            "question", "performance", "security", "ui", "api", "docker",
+            "compose", "build", "deploy", "config", "test", "spec",
+            "coverage", "ci", "cd"
         ]
 
         for keyword in extended_keywords:
@@ -362,7 +293,8 @@ class AdvancedEnsembleSystem:
 
         # 正規化
         features = np.array(features, dtype=np.float32)
-        features = (features - np.mean(features)) / (np.std(features) + 1e-8)
+        if np.std(features) != 0:
+            features = (features - np.mean(features)) / (np.std(features) + 1e-8)
 
         return torch.tensor(features, dtype=torch.float32)
 
@@ -371,47 +303,23 @@ class AdvancedEnsembleSystem:
         if author not in self.author_features:
             return 0.0
 
-        # タスクの特徴ベクトル抽出
         title = (task.get("title", "") or "").lower()
         body = (task.get("body", "") or "").lower()
         labels = task.get("labels", [])
 
-        label_text = " ".join(
-            [
-                str(label) if not isinstance(label, dict) else label.get("name", "")
-                for label in labels
-            ]
-        ).lower()
+        label_text = " ".join([
+            str(label) if not isinstance(label, dict) else label.get("name", "")
+            for label in labels
+        ]).lower()
 
         full_text = f"{title} {body} {label_text}"
 
-        # タスクのキーワードベクトル
         important_keywords = [
-            "bug",
-            "fix",
-            "error",
-            "feature",
-            "enhancement",
-            "new",
-            "doc",
-            "readme",
-            "guide",
-            "ui",
-            "ux",
-            "design",
-            "performance",
-            "optimize",
-            "security",
-            "auth",
-            "api",
-            "endpoint",
-            "test",
-            "spec",
-            "docker",
-            "compose",
-            "build",
-            "deploy",
-            "config",
+            "bug", "fix", "error", "feature", "enhancement", "new",
+            "doc", "readme", "guide", "ui", "ux", "design",
+            "performance", "optimize", "security", "auth", "api",
+            "endpoint", "test", "spec", "docker", "compose",
+            "build", "deploy", "config"
         ]
 
         task_vector = []
@@ -430,12 +338,12 @@ class AdvancedEnsembleSystem:
             return 0.0
 
         similarity = dot_product / (task_norm * author_norm)
-        return max(0.0, similarity)  # 負の値を0にクリップ
+        return max(0.0, similarity)
 
     def _calculate_temporal_match(self, task: Dict, author: str) -> float:
         """時間的パターンマッチング"""
         if author not in self.temporal_patterns:
-            return 0.5  # デフォルト値
+            return 0.5
 
         created_at = task.get("created_at", "")
         if not created_at:
@@ -448,19 +356,16 @@ class AdvancedEnsembleSystem:
 
             patterns = self.temporal_patterns[author]
 
-            # 月別活動度
             monthly_activity = patterns.get("monthly", {})
             total_monthly = sum(monthly_activity.values()) if monthly_activity else 1
             month_score = monthly_activity.get(month, 0) / total_monthly
 
-            # 曜日別活動度
             weekday_activity = patterns.get("weekday", {})
             total_weekday = sum(weekday_activity.values()) if weekday_activity else 1
             weekday_score = weekday_activity.get(weekday, 0) / total_weekday
 
-            # 重み付き平均
             temporal_score = 0.6 * month_score + 0.4 * weekday_score
-            return min(1.0, temporal_score * 2)  # スケール調整
+            return min(1.0, temporal_score * 2)
 
         except:
             return 0.5
@@ -501,44 +406,33 @@ class AdvancedEnsembleSystem:
                 # 5. 専門性集中度スコア
                 author_tasks = self.author_task_history.get(agent_name, [])
                 if len(author_tasks) > 0:
-                    # タスクタイプの多様性を計算（低いほど専門性が高い）
                     task_types = set()
                     for t in author_tasks:
                         title_lower = (t.get("title", "") or "").lower()
                         if any(kw in title_lower for kw in ["bug", "fix", "error"]):
                             task_types.add("bug")
-                        elif any(
-                            kw in title_lower for kw in ["feature", "enhancement"]
-                        ):
+                        elif any(kw in title_lower for kw in ["feature", "enhancement"]):
                             task_types.add("feature")
                         elif any(kw in title_lower for kw in ["doc", "readme"]):
                             task_types.add("doc")
                         else:
                             task_types.add("other")
 
-                    # 専門性スコア（タスクタイプが少ないほど高い）
                     specialization_score = max(0.3, 1.0 - (len(task_types) - 1) * 0.2)
                 else:
                     specialization_score = 0.5
 
                 # 6. 相対的ランキングスコア
-                # 他の候補と比較した相対的な強さ
-                relative_strength = contribution / max(
-                    self.author_contributions.values()
-                )
+                relative_strength = contribution / max(self.author_contributions.values())
 
-                # 7. 信頼度スコア（一貫性）
-                confidence_score = min(1.0, ppo_score * 2)  # PPOスコアベース
-
-                # 🎯 超高度重み付け（Top-1特化）
+                # 🎯 重み付け
                 weights = {
-                    "ppo": 0.25,
-                    "contribution": 0.20,
+                    "ppo": 0.30,
+                    "contribution": 0.25,
                     "similarity": 0.20,
                     "temporal": 0.10,
                     "specialization": 0.10,
-                    "relative_strength": 0.10,
-                    "confidence": 0.05,
+                    "relative_strength": 0.05,
                 }
 
                 # 最終スコア計算
@@ -549,11 +443,9 @@ class AdvancedEnsembleSystem:
                     + weights["temporal"] * temporal_score
                     + weights["specialization"] * specialization_score
                     + weights["relative_strength"] * relative_strength
-                    + weights["confidence"] * confidence_score
                 )
 
                 # 🚀 Top-1特化ブースト
-                # 最高貢献者への特別ブースト
                 if contribution >= 200:
                     final_score *= 1.15
                 elif contribution >= 100:
@@ -561,25 +453,20 @@ class AdvancedEnsembleSystem:
                 elif contribution >= 50:
                     final_score *= 1.05
 
-                # 類似度が非常に高い場合の追加ブースト
                 if similarity_score > 0.8:
                     final_score *= 1.1
                 elif similarity_score > 0.6:
                     final_score *= 1.05
 
-                # 時間的パターンが強く一致する場合
                 if temporal_score > 0.8:
                     final_score *= 1.05
 
-                # スコア上限設定
                 final_score = min(final_score, 1.0)
-
                 agent_scores[agent_name] = final_score
 
-            except Exception as e:
+            except Exception:
                 agent_scores[agent_name] = 0.0
 
-        # スコア順にソート
         sorted_agents = sorted(agent_scores.items(), key=lambda x: x[1], reverse=True)
         return sorted_agents[:k]
 
@@ -588,7 +475,6 @@ class AdvancedEnsembleSystem:
     ) -> List[Tuple[str, float]]:
         """🎯 メタアンサンブル推薦 - 複数手法の動的統合"""
 
-        # 複数の推薦手法を実行
         methods_results = {}
 
         # 1. 基本アンサンブル
@@ -637,7 +523,6 @@ class AdvancedEnsembleSystem:
         final_scores = {}
 
         for agent_name in self.models.keys():
-            # 各手法のスコア取得
             basic_score = methods_results["basic"].get(agent_name, 0.0)
             contrib_score = methods_results["contribution"].get(agent_name, 0.0)
             sim_score = methods_results["similarity"].get(agent_name, 0.0)
@@ -649,17 +534,13 @@ class AdvancedEnsembleSystem:
             full_text = f"{title_lower} {body_lower}"
 
             if any(kw in full_text for kw in ["bug", "fix", "error", "issue"]):
-                # バグ修正: 経験重視
-                weights = [0.2, 0.4, 0.2, 0.2]
+                weights = [0.2, 0.4, 0.2, 0.2]  # バグ修正: 経験重視
             elif any(kw in full_text for kw in ["feature", "enhancement", "new"]):
-                # 新機能: 類似度重視
-                weights = [0.3, 0.2, 0.4, 0.1]
+                weights = [0.3, 0.2, 0.4, 0.1]  # 新機能: 類似度重視
             elif any(kw in full_text for kw in ["doc", "readme", "guide"]):
-                # ドキュメント: 類似度最重視
-                weights = [0.2, 0.2, 0.5, 0.1]
+                weights = [0.2, 0.2, 0.5, 0.1]  # ドキュメント: 類似度最重視
             else:
-                # 一般: バランス
-                weights = [0.35, 0.25, 0.25, 0.15]
+                weights = [0.35, 0.25, 0.25, 0.15]  # 一般: バランス
 
             # メタスコア計算
             meta_score = (
@@ -680,14 +561,11 @@ class AdvancedEnsembleSystem:
 
             final_scores[agent_name] = min(meta_score, 1.0)
 
-        # スコア順にソート
         sorted_agents = sorted(final_scores.items(), key=lambda x: x[1], reverse=True)
         return sorted_agents[:k]
 
-    def evaluate_advanced_system(
-        self, method: str = "ultra_advanced", sample_size: int = 500
-    ):
-        """高度システムの評価"""
+    def evaluate_system(self, method: str = "ultra_advanced", sample_size: int = 200):
+        """システム評価（軽量版）"""
         print(f"🎯 {method}推薦システムの評価開始")
         print("-" * 50)
 
@@ -698,27 +576,19 @@ class AdvancedEnsembleSystem:
         eval_ground_truth = []
 
         for task, author in zip(
-            self.tasks[:sample_size], self.ground_truth[:sample_size]
+            self.tasks[:sample_size * 3], self.ground_truth[:sample_size * 3]
         ):
-            if author in available_agents:
+            if author in available_agents and len(eval_tasks) < sample_size:
                 eval_tasks.append(task)
                 eval_ground_truth.append(author)
 
         print(f"   評価タスク数: {len(eval_tasks)}")
 
-        # 各K値での評価
         results = {}
-        detailed_results = {  # 詳細分析用
-            "correct_predictions": [],
-            "incorrect_predictions": [],
-            "author_hit_rates": defaultdict(list),
-            "recommendation_patterns": [],
-        }
 
         for k in [1, 3, 5]:
             correct_predictions = 0
             all_recommendations = []
-            contribution_distribution = {"high": 0, "medium": 0, "low": 0}
 
             for task, actual_author in tqdm(
                 zip(eval_tasks, eval_ground_truth),
@@ -728,7 +598,6 @@ class AdvancedEnsembleSystem:
                 try:
                     task_features = self._extract_task_features(task)
 
-                    # 推薦方法の選択
                     if method == "ultra_advanced":
                         recommendations = self.ultra_advanced_ensemble_recommendation(
                             task_features, task, k
@@ -743,243 +612,95 @@ class AdvancedEnsembleSystem:
                     recommended_agents = [agent for agent, _ in recommendations]
                     all_recommendations.extend(recommended_agents)
 
-                    # Top-K精度
-                    is_correct = actual_author in recommended_agents
-                    if is_correct:
+                    if actual_author in recommended_agents:
                         correct_predictions += 1
-
-                    # 詳細分析（Top-1のみ）
-                    if k == 1:
-                        task_info = {
-                            "task_title": task.get("title", "")[:50] + "...",
-                            "actual_author": actual_author,
-                            "recommended_agents": recommended_agents,
-                            "is_correct": is_correct,
-                            "contribution": self.author_contributions.get(
-                                actual_author, 0
-                            ),
-                            "scores": [
-                                (agent, score) for agent, score in recommendations
-                            ],
-                        }
-
-                        if is_correct:
-                            detailed_results["correct_predictions"].append(task_info)
-                        else:
-                            detailed_results["incorrect_predictions"].append(task_info)
-
-                        # 著者のヒット率記録
-                        detailed_results["author_hit_rates"][actual_author].append(
-                            is_correct
-                        )
-
-                    # 貢献量分布
-                    for agent in recommended_agents:
-                        contribution = self.author_contributions.get(agent, 0)
-                        if contribution >= 50:
-                            contribution_distribution["high"] += 1
-                        elif contribution >= 10:
-                            contribution_distribution["medium"] += 1
-                        else:
-                            contribution_distribution["low"] += 1
 
                 except Exception:
                     continue
 
-            # 結果計算
             accuracy = correct_predictions / len(eval_tasks) if eval_tasks else 0
             diversity_score = (
                 len(set(all_recommendations)) / len(all_recommendations)
-                if all_recommendations
-                else 0
+                if all_recommendations else 0
             )
 
             results[f"top_{k}"] = {
                 "accuracy": accuracy,
                 "diversity_score": diversity_score,
-                "contribution_distribution": contribution_distribution,
-                "total_recommendations": len(all_recommendations),
             }
 
             print(f"   Top-{k}精度: {accuracy:.3f} ({accuracy*100:.1f}%)")
             print(f"   多様性スコア: {diversity_score:.3f}")
 
-            # 貢献量分布
-            total_recs = sum(contribution_distribution.values())
-            if total_recs > 0:
-                high_pct = contribution_distribution["high"] / total_recs * 100
-                medium_pct = contribution_distribution["medium"] / total_recs * 100
-                low_pct = contribution_distribution["low"] / total_recs * 100
-
-                print(
-                    f"   推薦分布: 高{high_pct:.1f}% 中{medium_pct:.1f}% 低{low_pct:.1f}%"
-                )
-
-        # 詳細分析の表示（Top-1のみ）
-        if detailed_results["correct_predictions"]:
-            self._display_detailed_analysis(detailed_results)
-
         return results
-
-    def _display_detailed_analysis(self, detailed_results: Dict):
-        """詳細分析結果を表示"""
-        print(f"\n## 🔍 詳細分析 (Top-1精度)")
-        print("-" * 50)
-
-        correct_count = len(detailed_results["correct_predictions"])
-        incorrect_count = len(detailed_results["incorrect_predictions"])
-        total_count = correct_count + incorrect_count
-
-        print(f"   正解: {correct_count}件, 不正解: {incorrect_count}件")
-        print(
-            f"   精度: {correct_count/total_count:.3f} ({correct_count/total_count*100:.1f}%)"
-        )
-
-        # 正解した開発者の分析
-        print(f"\n### ✅ 正解した開発者 (上位10件)")
-        correct_authors = Counter()
-        for pred in detailed_results["correct_predictions"]:
-            correct_authors[pred["actual_author"]] += 1
-
-        for author, count in correct_authors.most_common(10):
-            contribution = self.author_contributions.get(author, 0)
-            hit_rate = sum(detailed_results["author_hit_rates"][author]) / len(
-                detailed_results["author_hit_rates"][author]
-            )
-            print(
-                f"     {author}: {count}回正解 (貢献{contribution}, ヒット率{hit_rate:.1%})"
-            )
-
-        # 正解事例のサンプル
-        print(f"\n### 🎯 正解事例 (上位5件)")
-        for i, pred in enumerate(detailed_results["correct_predictions"][:5]):
-            print(f"   {i+1}. タスク: {pred['task_title']}")
-            print(f"      実際: {pred['actual_author']} (貢献{pred['contribution']})")
-            print(
-                f"      推薦: {pred['recommended_agents'][0]} (スコア{pred['scores'][0][1]:.3f})"
-            )
-            print()
-
-        # 不正解した高貢献者の分析
-        print(f"\n### ❌ 不正解事例 (高貢献者)")
-        high_contrib_errors = [
-            pred
-            for pred in detailed_results["incorrect_predictions"]
-            if pred["contribution"] >= 50
-        ]
-
-        if high_contrib_errors:
-            print(f"   高貢献者の不正解: {len(high_contrib_errors)}件")
-            for i, pred in enumerate(high_contrib_errors[:3]):
-                print(f"   {i+1}. タスク: {pred['task_title']}")
-                print(
-                    f"      実際: {pred['actual_author']} (貢献{pred['contribution']})"
-                )
-                print(
-                    f"      推薦: {pred['recommended_agents'][0]} (スコア{pred['scores'][0][1]:.3f})"
-                )
-                print()
-
-        # 推薦パターン分析
-        print(f"\n### 📈 推薦パターン分析")
-        all_recommended = []
-        all_actual = []
-
-        for pred in (
-            detailed_results["correct_predictions"]
-            + detailed_results["incorrect_predictions"]
-        ):
-            all_recommended.append(pred["recommended_agents"][0])
-            all_actual.append(pred["actual_author"])
-
-        recommended_counter = Counter(all_recommended)
-        actual_counter = Counter(all_actual)
-
-        print(f"   最も推薦された開発者:")
-        for author, count in recommended_counter.most_common(5):
-            contribution = self.author_contributions.get(author, 0)
-            print(f"     {author}: {count}回推薦 (貢献{contribution})")
-
-        print(f"   最も多く正解だった開発者:")
-        for author, count in actual_counter.most_common(5):
-            contribution = self.author_contributions.get(author, 0)
-            hit_rate = (
-                sum(detailed_results["author_hit_rates"][author])
-                / len(detailed_results["author_hit_rates"][author])
-                if author in detailed_results["author_hit_rates"]
-                else 0
-            )
-            print(
-                f"     {author}: {count}回出現 (貢献{contribution}, ヒット率{hit_rate:.1%})"
-            )
 
 
 def main():
     """メイン実行関数"""
-    print("🚀 超高度アンサンブル推薦システムの実行")
+    print("🚀 高度アンサンブル推薦システム (修正版)")
     print("=" * 60)
 
-    # システム初期化
-    system = AdvancedEnsembleSystem(
-        model_dir="models/improved_rl/final_models",
-        test_data_path="data/backlog_test_2023.json",
-    )
+    try:
+        # システム初期化
+        system = AdvancedEnsembleSystem(
+            model_dir="models/improved_rl/final_models",
+            test_data_path="data/backlog_test_2023.json",
+        )
 
-    print(f"\n## 超高度システム初期化完了")
-    print(f"   読み込みモデル数: {len(system.models)}")
-    print(f"   タスク履歴構築: {len(system.author_task_history)}開発者")
-    print(f"   時間的パターン: {len(system.temporal_patterns)}開発者")
-    print(f"   類似度マトリックス: {len(system.author_features)}開発者")
+        print(f"\n## システム初期化完了")
+        print(f"   読み込みモデル数: {len(system.models)}")
+        print(f"   タスク履歴構築: {len(system.author_task_history)}開発者")
+        print(f"   時間的パターン: {len(system.temporal_patterns)}開発者")
+        print(f"   類似度マトリックス: {len(system.author_features)}開発者")
 
-    # 超高度手法の評価
-    methods = [
-        ("ultra_advanced", "超高度アンサンブル推薦"),
-        ("meta_ensemble", "メタアンサンブル推薦"),
-    ]
+        # 手法の評価
+        methods = [
+            ("ultra_advanced", "超高度アンサンブル推薦"),
+            ("meta_ensemble", "メタアンサンブル推薦"),
+        ]
 
-    all_results = {}
+        all_results = {}
 
-    for method_key, method_name in methods:
-        print(f"\n## {method_name}の評価")
-        results = system.evaluate_advanced_system(method_key, sample_size=300)
-        all_results[method_key] = results
+        for method_key, method_name in methods:
+            print(f"\n## {method_name}の評価")
+            results = system.evaluate_system(method_key, sample_size=150)
+            all_results[method_key] = results
 
-    # 最良の結果を特定
-    best_method = max(
-        all_results.keys(), key=lambda x: all_results[x]["top_1"]["accuracy"]
-    )
+        # 最良の結果を特定
+        best_method = max(
+            all_results.keys(), key=lambda x: all_results[x]["top_1"]["accuracy"]
+        )
 
-    print(f"\n🎉 超高度評価完了！")
-    print("=" * 60)
-    print(f"🏆 最優秀手法: {best_method}")
+        print(f"\n🎉 評価完了！")
+        print("=" * 60)
+        print(f"🏆 最優秀手法: {best_method}")
 
-    # 主要結果の表示
-    for method_key, method_name in methods:
-        results = all_results[method_key]
-        top1_accuracy = results["top_1"]["accuracy"]
-        top3_accuracy = results["top_3"]["accuracy"]
-        top5_accuracy = results["top_5"]["accuracy"]
-        print(f"   {method_name}:")
-        print(f"     Top-1精度: {top1_accuracy*100:.1f}%")
-        print(f"     Top-3精度: {top3_accuracy*100:.1f}%")
-        print(f"     Top-5精度: {top5_accuracy*100:.1f}%")
+        # 主要結果の表示
+        for method_key, method_name in methods:
+            results = all_results[method_key]
+            top1_accuracy = results["top_1"]["accuracy"]
+            top3_accuracy = results["top_3"]["accuracy"]
+            top5_accuracy = results["top_5"]["accuracy"]
+            print(f"   {method_name}:")
+            print(f"     Top-1精度: {top1_accuracy*100:.1f}%")
+            print(f"     Top-3精度: {top3_accuracy*100:.1f}%")
+            print(f"     Top-5精度: {top5_accuracy*100:.1f}%")
 
-    # 改善度の計算
-    best_top1 = max(all_results[m]["top_1"]["accuracy"] for m in all_results.keys())
-    print(f"\n🎯 Top-1精度の最高値: {best_top1*100:.1f}%")
+        # 改善度の計算
+        best_top1 = max(all_results[m]["top_1"]["accuracy"] for m in all_results.keys())
+        print(f"\n🎯 Top-1精度の最高値: {best_top1*100:.1f}%")
 
-    if best_top1 > 0.037:  # 前回の3.7%と比較
-        improvement = (best_top1 - 0.037) / 0.037 * 100
-        print(f"🚀 前回からの改善: +{improvement:.1f}%")
+        if best_top1 > 0.037:
+            improvement = (best_top1 - 0.037) / 0.037 * 100
+            print(f"🚀 基本手法からの改善: +{improvement:.1f}%")
+            print(f"   ✅ 改善成功！")
+        else:
+            print(f"   📊 基本手法と同等の性能")
 
-    print(f"\n## 🎯 Top-1精度向上への挑戦結果")
-    print(f"   基本手法: 3.7%")
-    print(f"   超高度手法: {best_top1*100:.1f}%")
-
-    if best_top1 > 0.037:
-        print(f"   ✅ 改善成功！ (+{((best_top1 - 0.037) / 0.037 * 100):.1f}%)")
-    else:
-        print(f"   📊 同等の性能を維持")
+    except Exception as e:
+        print(f"❌ エラー発生: {e}")
+        import traceback
+        traceback.print_exc()
 
 
 if __name__ == "__main__":
