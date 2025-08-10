@@ -66,8 +66,16 @@ class PPOPolicyNetwork(nn.Module):
 def is_bot(username: str) -> bool:
     """ユーザー名がBotかどうか判定"""
     bot_indicators = [
-        "[bot]", "bot", "dependabot", "renovate", "greenkeeper",
-        "codecov", "travis", "circleci", "github-actions", "automated",
+        "[bot]",
+        "bot",
+        "dependabot",
+        "renovate",
+        "greenkeeper",
+        "codecov",
+        "travis",
+        "circleci",
+        "github-actions",
+        "automated",
     ]
     username_lower = username.lower()
     return any(indicator in username_lower for indicator in bot_indicators)
@@ -209,19 +217,45 @@ class AdvancedEnsembleSystem:
                 body = (task.get("body", "") or "").lower()
                 labels = task.get("labels", [])
 
-                label_text = " ".join([
-                    str(label) if not isinstance(label, dict) else label.get("name", "")
-                    for label in labels
-                ]).lower()
+                label_text = " ".join(
+                    [
+                        (
+                            str(label)
+                            if not isinstance(label, dict)
+                            else label.get("name", "")
+                        )
+                        for label in labels
+                    ]
+                ).lower()
 
                 full_text = f"{title} {body} {label_text}"
 
                 important_keywords = [
-                    "bug", "fix", "error", "feature", "enhancement", "new",
-                    "doc", "readme", "guide", "ui", "ux", "design",
-                    "performance", "optimize", "security", "auth", "api",
-                    "endpoint", "test", "spec", "docker", "compose",
-                    "build", "deploy", "config"
+                    "bug",
+                    "fix",
+                    "error",
+                    "feature",
+                    "enhancement",
+                    "new",
+                    "doc",
+                    "readme",
+                    "guide",
+                    "ui",
+                    "ux",
+                    "design",
+                    "performance",
+                    "optimize",
+                    "security",
+                    "auth",
+                    "api",
+                    "endpoint",
+                    "test",
+                    "spec",
+                    "docker",
+                    "compose",
+                    "build",
+                    "deploy",
+                    "config",
                 ]
 
                 for keyword in important_keywords:
@@ -247,8 +281,14 @@ class AdvancedEnsembleSystem:
 
         # 基本特徴量
         basic_features = [
-            len(title), len(body), len(title.split()), len(body.split()),
-            len(labels), title.count("?"), title.count("!"), body.count("\n"),
+            len(title),
+            len(body),
+            len(title.split()),
+            len(body.split()),
+            len(labels),
+            title.count("?"),
+            title.count("!"),
+            body.count("\n"),
             len(set(title.lower().split())),
             1 if any(kw in title.lower() for kw in ["bug", "fix", "error"]) else 0,
         ]
@@ -260,7 +300,9 @@ class AdvancedEnsembleSystem:
             try:
                 date_parts = created_at.split("T")[0].split("-")
                 year, month, day = (
-                    int(date_parts[0]), int(date_parts[1]), int(date_parts[2])
+                    int(date_parts[0]),
+                    int(date_parts[1]),
+                    int(date_parts[2]),
                 )
                 features.extend([year - 2020, month, day, day % 7])
             except:
@@ -269,16 +311,34 @@ class AdvancedEnsembleSystem:
             features.extend([0, 0, 0, 0])
 
         # ラベル特徴量
-        label_text = " ".join([
-            str(label) if not isinstance(label, dict) else label.get("name", "")
-            for label in labels
-        ]).lower()
+        label_text = " ".join(
+            [
+                str(label) if not isinstance(label, dict) else label.get("name", "")
+                for label in labels
+            ]
+        ).lower()
 
         extended_keywords = [
-            "bug", "feature", "enhancement", "documentation", "help",
-            "question", "performance", "security", "ui", "api", "docker",
-            "compose", "build", "deploy", "config", "test", "spec",
-            "coverage", "ci", "cd"
+            "bug",
+            "feature",
+            "enhancement",
+            "documentation",
+            "help",
+            "question",
+            "performance",
+            "security",
+            "ui",
+            "api",
+            "docker",
+            "compose",
+            "build",
+            "deploy",
+            "config",
+            "test",
+            "spec",
+            "coverage",
+            "ci",
+            "cd",
         ]
 
         for keyword in extended_keywords:
@@ -307,19 +367,41 @@ class AdvancedEnsembleSystem:
         body = (task.get("body", "") or "").lower()
         labels = task.get("labels", [])
 
-        label_text = " ".join([
-            str(label) if not isinstance(label, dict) else label.get("name", "")
-            for label in labels
-        ]).lower()
+        label_text = " ".join(
+            [
+                str(label) if not isinstance(label, dict) else label.get("name", "")
+                for label in labels
+            ]
+        ).lower()
 
         full_text = f"{title} {body} {label_text}"
 
         important_keywords = [
-            "bug", "fix", "error", "feature", "enhancement", "new",
-            "doc", "readme", "guide", "ui", "ux", "design",
-            "performance", "optimize", "security", "auth", "api",
-            "endpoint", "test", "spec", "docker", "compose",
-            "build", "deploy", "config"
+            "bug",
+            "fix",
+            "error",
+            "feature",
+            "enhancement",
+            "new",
+            "doc",
+            "readme",
+            "guide",
+            "ui",
+            "ux",
+            "design",
+            "performance",
+            "optimize",
+            "security",
+            "auth",
+            "api",
+            "endpoint",
+            "test",
+            "spec",
+            "docker",
+            "compose",
+            "build",
+            "deploy",
+            "config",
         ]
 
         task_vector = []
@@ -411,7 +493,9 @@ class AdvancedEnsembleSystem:
                         title_lower = (t.get("title", "") or "").lower()
                         if any(kw in title_lower for kw in ["bug", "fix", "error"]):
                             task_types.add("bug")
-                        elif any(kw in title_lower for kw in ["feature", "enhancement"]):
+                        elif any(
+                            kw in title_lower for kw in ["feature", "enhancement"]
+                        ):
                             task_types.add("feature")
                         elif any(kw in title_lower for kw in ["doc", "readme"]):
                             task_types.add("doc")
@@ -423,7 +507,9 @@ class AdvancedEnsembleSystem:
                     specialization_score = 0.5
 
                 # 6. 相対的ランキングスコア
-                relative_strength = contribution / max(self.author_contributions.values())
+                relative_strength = contribution / max(
+                    self.author_contributions.values()
+                )
 
                 # 🎯 重み付け
                 weights = {
@@ -576,7 +662,7 @@ class AdvancedEnsembleSystem:
         eval_ground_truth = []
 
         for task, author in zip(
-            self.tasks[:sample_size * 3], self.ground_truth[:sample_size * 3]
+            self.tasks[: sample_size * 3], self.ground_truth[: sample_size * 3]
         ):
             if author in available_agents and len(eval_tasks) < sample_size:
                 eval_tasks.append(task)
@@ -621,7 +707,8 @@ class AdvancedEnsembleSystem:
             accuracy = correct_predictions / len(eval_tasks) if eval_tasks else 0
             diversity_score = (
                 len(set(all_recommendations)) / len(all_recommendations)
-                if all_recommendations else 0
+                if all_recommendations
+                else 0
             )
 
             results[f"top_{k}"] = {
@@ -700,6 +787,7 @@ def main():
     except Exception as e:
         print(f"❌ エラー発生: {e}")
         import traceback
+
         traceback.print_exc()
 
 

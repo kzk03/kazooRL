@@ -12,7 +12,8 @@ from typing import Dict, List, Tuple
 import numpy as np
 import torch
 import torch.nn as nn
-from advanced_ensemble_system import AdvancedEnsembleSystem, PPOPolicyNetwork, is_bot
+from advanced_ensemble_system import (AdvancedEnsembleSystem, PPOPolicyNetwork,
+                                      is_bot)
 from tqdm import tqdm
 
 
@@ -36,7 +37,7 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
             try:
                 ppo_score = model.get_action_score(task_features)
                 contribution = self.author_contributions.get(agent_name, 0)
-                
+
                 # 改良された貢献量スコア（より細かい段階）
                 if contribution >= 500:
                     contribution_score = 1.0
@@ -54,14 +55,14 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
                     contribution_score = 0.35
                 else:
                     contribution_score = 0.2
-                
+
                 similarity_score = self._calculate_task_similarity(task, agent_name)
-                
+
                 # 改良された基本スコア重み
                 basic_score = (
-                    0.35 * ppo_score + 
-                    0.3 * contribution_score + 
-                    0.35 * similarity_score
+                    0.35 * ppo_score
+                    + 0.3 * contribution_score
+                    + 0.35 * similarity_score
                 )
                 basic_scores[agent_name] = basic_score
             except:
@@ -73,11 +74,11 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
         enhanced_similarity_scores = {}
         for agent_name in self.models.keys():
             base_similarity = self._calculate_task_similarity(task, agent_name)
-            
+
             # タスク特徴との詳細マッチング
             title_lower = (task.get("title", "") or "").lower()
             body_lower = (task.get("body", "") or "").lower()
-            
+
             # 追加の類似度ブースト
             author_tasks = self.author_task_history.get(agent_name, [])
             if len(author_tasks) > 0:
@@ -86,24 +87,28 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
                 for i, past_task in enumerate(author_tasks[-10:]):  # 最新10件
                     past_title = (past_task.get("title", "") or "").lower()
                     past_body = (past_task.get("body", "") or "").lower()
-                    
+
                     # 簡易文字列類似度
-                    title_overlap = len(set(title_lower.split()) & set(past_title.split()))
+                    title_overlap = len(
+                        set(title_lower.split()) & set(past_title.split())
+                    )
                     body_overlap = len(set(body_lower.split()) & set(past_body.split()))
-                    
-                    task_similarity = (title_overlap + body_overlap) / (len(title_lower.split()) + len(body_lower.split()) + 1)
-                    
+
+                    task_similarity = (title_overlap + body_overlap) / (
+                        len(title_lower.split()) + len(body_lower.split()) + 1
+                    )
+
                     # 時間重み（新しいほど重要）
                     time_weight = (i + 1) / 10
                     recent_similarity += task_similarity * time_weight
-                
+
                 recent_similarity /= min(len(author_tasks), 10)
-                
+
                 # 基本類似度と最近タスク類似度を統合
                 enhanced_similarity = 0.7 * base_similarity + 0.3 * recent_similarity
             else:
                 enhanced_similarity = base_similarity
-            
+
             enhanced_similarity_scores[agent_name] = enhanced_similarity
 
         methods_results["enhanced_similarity"] = enhanced_similarity_scores
@@ -131,49 +136,65 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
             if len(author_tasks) > 0:
                 # より詳細なタスクタイプ分類
                 task_type_counts = defaultdict(int)
-                
+
                 for t in author_tasks:
                     title_lower = (t.get("title", "") or "").lower()
                     body_lower = (t.get("body", "") or "").lower()
                     full_text = f"{title_lower} {body_lower}"
-                    
+
                     if any(kw in full_text for kw in ["bug", "fix", "error", "issue"]):
                         task_type_counts["bug"] += 1
-                    elif any(kw in full_text for kw in ["feature", "enhancement", "new"]):
+                    elif any(
+                        kw in full_text for kw in ["feature", "enhancement", "new"]
+                    ):
                         task_type_counts["feature"] += 1
-                    elif any(kw in full_text for kw in ["doc", "readme", "guide", "documentation"]):
+                    elif any(
+                        kw in full_text
+                        for kw in ["doc", "readme", "guide", "documentation"]
+                    ):
                         task_type_counts["doc"] += 1
                     elif any(kw in full_text for kw in ["test", "spec", "coverage"]):
                         task_type_counts["test"] += 1
-                    elif any(kw in full_text for kw in ["ui", "ux", "design", "frontend"]):
+                    elif any(
+                        kw in full_text for kw in ["ui", "ux", "design", "frontend"]
+                    ):
                         task_type_counts["ui"] += 1
                     elif any(kw in full_text for kw in ["api", "backend", "server"]):
                         task_type_counts["api"] += 1
                     else:
                         task_type_counts["other"] += 1
-                
+
                 # 現在のタスクのタイプを判定
                 current_title = (task.get("title", "") or "").lower()
                 current_body = (task.get("body", "") or "").lower()
                 current_full = f"{current_title} {current_body}"
-                
+
                 current_type = "other"
                 if any(kw in current_full for kw in ["bug", "fix", "error", "issue"]):
                     current_type = "bug"
-                elif any(kw in current_full for kw in ["feature", "enhancement", "new"]):
+                elif any(
+                    kw in current_full for kw in ["feature", "enhancement", "new"]
+                ):
                     current_type = "feature"
-                elif any(kw in current_full for kw in ["doc", "readme", "guide", "documentation"]):
+                elif any(
+                    kw in current_full
+                    for kw in ["doc", "readme", "guide", "documentation"]
+                ):
                     current_type = "doc"
                 elif any(kw in current_full for kw in ["test", "spec", "coverage"]):
                     current_type = "test"
-                elif any(kw in current_full for kw in ["ui", "ux", "design", "frontend"]):
+                elif any(
+                    kw in current_full for kw in ["ui", "ux", "design", "frontend"]
+                ):
                     current_type = "ui"
                 elif any(kw in current_full for kw in ["api", "backend", "server"]):
                     current_type = "api"
-                
+
                 # 該当タイプでの経験値
                 type_experience = task_type_counts[current_type] / len(author_tasks)
-                specialization_scores[agent_name] = min(type_experience * 2, 1.0)  # 2倍にして上限1.0
+                specialization_scores[agent_name] = min(
+                    type_experience * 2, 1.0
+                )  # 2倍にして上限1.0
             else:
                 specialization_scores[agent_name] = 0.0
 
@@ -184,7 +205,9 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
 
         for agent_name in self.models.keys():
             basic_score = methods_results["basic"].get(agent_name, 0.0)
-            enhanced_sim_score = methods_results["enhanced_similarity"].get(agent_name, 0.0)
+            enhanced_sim_score = methods_results["enhanced_similarity"].get(
+                agent_name, 0.0
+            )
             contrib_score = methods_results["contribution"].get(agent_name, 0.0)
             temp_score = methods_results["temporal"].get(agent_name, 0.0)
             spec_score = methods_results["specialization"].get(agent_name, 0.0)
@@ -212,11 +235,11 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
 
             # 超最適化スコア計算
             ultra_score = (
-                weights[0] * basic_score +
-                weights[1] * enhanced_sim_score +
-                weights[2] * contrib_score +
-                weights[3] * temp_score +
-                weights[4] * spec_score
+                weights[0] * basic_score
+                + weights[1] * enhanced_sim_score
+                + weights[2] * contrib_score
+                + weights[3] * temp_score
+                + weights[4] * spec_score
             )
 
             # 強化ブースト（段階的）
@@ -262,7 +285,7 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
         eval_ground_truth = []
 
         for task, author in zip(
-            self.tasks[:sample_size * 3], self.ground_truth[:sample_size * 3]
+            self.tasks[: sample_size * 3], self.ground_truth[: sample_size * 3]
         ):
             if author in available_agents and len(eval_tasks) < sample_size:
                 eval_tasks.append(task)
@@ -299,7 +322,8 @@ class OptimizedEnsembleSystem(AdvancedEnsembleSystem):
             accuracy = correct_predictions / len(eval_tasks) if eval_tasks else 0
             diversity_score = (
                 len(set(all_recommendations)) / len(all_recommendations)
-                if all_recommendations else 0
+                if all_recommendations
+                else 0
             )
 
             results[f"top_{k}"] = {
@@ -335,15 +359,15 @@ def main():
 
         print(f"\n🎉 比較結果")
         print("=" * 60)
-        
+
         ultra_top1 = ultra_results["top_1"]["accuracy"]
         meta_top1 = meta_results["top_1"]["accuracy"]
-        
+
         print(f"🏆 超最適化手法:")
         print(f"   Top-1精度: {ultra_top1*100:.1f}%")
         print(f"   Top-3精度: {ultra_results['top_3']['accuracy']*100:.1f}%")
         print(f"   Top-5精度: {ultra_results['top_5']['accuracy']*100:.1f}%")
-        
+
         print(f"📊 従来メタアンサンブル:")
         print(f"   Top-1精度: {meta_top1*100:.1f}%")
         print(f"   Top-3精度: {meta_results['top_3']['accuracy']*100:.1f}%")
@@ -353,7 +377,7 @@ def main():
             improvement = (ultra_top1 - meta_top1) / meta_top1 * 100
             print(f"\n🚀 改善達成: +{improvement:.1f}%")
             print(f"🎯 最終Top-1精度: {ultra_top1*100:.1f}%")
-            
+
             if ultra_top1 >= 0.5:
                 print(f"🎉 50%突破達成！")
             elif ultra_top1 >= 0.47:
@@ -364,6 +388,7 @@ def main():
     except Exception as e:
         print(f"❌ エラー発生: {e}")
         import traceback
+
         traceback.print_exc()
 
 

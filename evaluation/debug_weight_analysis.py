@@ -64,8 +64,16 @@ class PPOPolicyNetwork(nn.Module):
 def is_bot(username: str) -> bool:
     """ユーザー名がBotかどうか判定"""
     bot_indicators = [
-        "[bot]", "bot", "dependabot", "renovate", "greenkeeper",
-        "codecov", "travis", "circleci", "github-actions", "automated",
+        "[bot]",
+        "bot",
+        "dependabot",
+        "renovate",
+        "greenkeeper",
+        "codecov",
+        "travis",
+        "circleci",
+        "github-actions",
+        "automated",
     ]
     username_lower = username.lower()
     return any(indicator in username_lower for indicator in bot_indicators)
@@ -80,7 +88,7 @@ class LightweightWeightAnalyzer:
         self.test_data_path = test_data_path
         self.models = {}
         self.author_contributions = {}
-        
+
         self._load_data()
         self._load_models()
         print(f"   初期化完了: {len(self.models)}モデル, {len(self.tasks)}タスク")
@@ -117,7 +125,9 @@ class LightweightWeightAnalyzer:
         for agent_name in list(overlapping_agents)[:20]:  # 最初の20人だけ
             model_path = os.path.join(self.model_dir, f"agent_{agent_name}.pth")
             try:
-                model_data = torch.load(model_path, map_location="cpu", weights_only=False)
+                model_data = torch.load(
+                    model_path, map_location="cpu", weights_only=False
+                )
                 policy_network = PPOPolicyNetwork()
                 policy_network.load_state_dict(model_data["policy_state_dict"])
                 policy_network.eval()
@@ -128,42 +138,49 @@ class LightweightWeightAnalyzer:
     def _extract_task_features(self, task: Dict) -> torch.Tensor:
         """簡易タスク特徴量抽出"""
         features = []
-        
+
         title = task.get("title", "") or ""
         body = task.get("body", "") or ""
-        
+
         # 基本特徴量
-        features.extend([
-            len(title), len(body), len(title.split()), len(body.split()),
-            1 if "bug" in title.lower() else 0,
-            1 if "feature" in title.lower() else 0,
-            1 if "doc" in title.lower() else 0,
-        ])
-        
+        features.extend(
+            [
+                len(title),
+                len(body),
+                len(title.split()),
+                len(body.split()),
+                1 if "bug" in title.lower() else 0,
+                1 if "feature" in title.lower() else 0,
+                1 if "doc" in title.lower() else 0,
+            ]
+        )
+
         # パディング
         while len(features) < 64:
             features.append(0.0)
         features = features[:64]
-        
+
         return torch.tensor(features, dtype=torch.float32)
 
     def simple_weight_test(self, sample_size: int = 50):
         """シンプルな重み分析テスト"""
         print(f"\n🔍 シンプル重み分析開始 (サンプル数: {sample_size})")
-        
+
         available_agents = set(self.models.keys())
-        
+
         # 評価用タスク選択
         eval_tasks = []
         eval_ground_truth = []
-        
-        for task, author in zip(self.tasks[:sample_size * 3], self.ground_truth[:sample_size * 3]):
+
+        for task, author in zip(
+            self.tasks[: sample_size * 3], self.ground_truth[: sample_size * 3]
+        ):
             if author in available_agents and len(eval_tasks) < sample_size:
                 eval_tasks.append(task)
                 eval_ground_truth.append(author)
-        
+
         print(f"   実際の評価タスク数: {len(eval_tasks)}")
-        
+
         # 重みパターン（シンプル版）
         weight_patterns = {
             "balanced": {"ppo": 0.5, "contribution": 0.5},
@@ -172,78 +189,82 @@ class LightweightWeightAnalyzer:
             "ppo_only": {"ppo": 1.0, "contribution": 0.0},
             "contribution_only": {"ppo": 0.0, "contribution": 1.0},
         }
-        
+
         results = {}
-        
+
         for pattern_name, weights in weight_patterns.items():
             print(f"\n   {pattern_name}パターン評価中...")
             correct_count = 0
-            
+
             # 修正: zip()を使って正しくペアにする
             for task, actual_author in zip(eval_tasks, eval_ground_truth):
                 try:
                     task_features = self._extract_task_features(task)
                     agent_scores = {}
-                    
+
                     for agent_name, model in self.models.items():
                         # PPOスコア
                         ppo_score = model.get_action_score(task_features)
-                        
+
                         # 貢献量スコア
                         contribution = self.author_contributions.get(agent_name, 0)
                         contribution_score = min(contribution / 100.0, 1.0)
-                        
+
                         # 重み付き最終スコア
                         final_score = (
-                            weights["ppo"] * ppo_score + 
-                            weights["contribution"] * contribution_score
+                            weights["ppo"] * ppo_score
+                            + weights["contribution"] * contribution_score
                         )
-                        
+
                         agent_scores[agent_name] = final_score
-                    
+
                     # Top-1推薦
                     if agent_scores:
                         top_agent = max(agent_scores.items(), key=lambda x: x[1])[0]
                         if top_agent == actual_author:
                             correct_count += 1
-                
+
                 except Exception as e:
                     print(f"     エラー: {e}")
                     continue
-            
+
             accuracy = correct_count / len(eval_tasks) if eval_tasks else 0
             results[pattern_name] = {
                 "accuracy": accuracy,
                 "correct_count": correct_count,
                 "total_count": len(eval_tasks),
-                "weights": weights
+                "weights": weights,
             }
-            
+
             print(f"     精度: {accuracy:.3f} ({accuracy*100:.1f}%)")
             print(f"     正解数: {correct_count}/{len(eval_tasks)}")
-        
+
         # 結果表示
         print(f"\n## 📊 結果サマリー")
         print("=" * 40)
-        
-        sorted_results = sorted(results.items(), key=lambda x: x[1]["accuracy"], reverse=True)
-        
+
+        sorted_results = sorted(
+            results.items(), key=lambda x: x[1]["accuracy"], reverse=True
+        )
+
         print("| パターン名 | 精度 | PPO重み | 貢献量重み |")
         print("|------------|------|---------|------------|")
-        
+
         for pattern_name, result in sorted_results:
             accuracy = result["accuracy"]
             ppo_weight = result["weights"]["ppo"]
             contrib_weight = result["weights"]["contribution"]
-            print(f"| {pattern_name} | {accuracy:.3f} ({accuracy*100:.1f}%) | {ppo_weight:.1f} | {contrib_weight:.1f} |")
-        
+            print(
+                f"| {pattern_name} | {accuracy:.3f} ({accuracy*100:.1f}%) | {ppo_weight:.1f} | {contrib_weight:.1f} |"
+            )
+
         # 最高精度パターン
         best_pattern_name, best_result = sorted_results[0]
         print(f"\n🏆 最高精度: {best_pattern_name}")
         print(f"   精度: {best_result['accuracy']*100:.1f}%")
         print(f"   PPO重み: {best_result['weights']['ppo']}")
         print(f"   貢献量重み: {best_result['weights']['contribution']}")
-        
+
         return results
 
 
@@ -251,22 +272,23 @@ def main():
     """メイン実行"""
     print("🚀 軽量版重み分析システム")
     print("=" * 40)
-    
+
     try:
         # システム初期化
         analyzer = LightweightWeightAnalyzer(
             model_dir="models/improved_rl/final_models",
             test_data_path="data/backlog_test_2023.json",
         )
-        
+
         # 重み分析実行
         results = analyzer.simple_weight_test(sample_size=30)
-        
+
         print(f"\n✅ 分析完了！")
-        
+
     except Exception as e:
         print(f"❌ エラー発生: {e}")
         import traceback
+
         traceback.print_exc()
 
 
