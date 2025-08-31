@@ -29,8 +29,19 @@ class ActorCritic(nn.Module):
             nn.Linear(64, 1),
         )
 
-    def forward(self):
-        raise NotImplementedError
+    def forward(self, state):
+        """
+        状態を受け取り、行動確率と状態価値を返す
+        
+        Args:
+            state (torch.Tensor): 入力状態
+            
+        Returns:
+            tuple: (行動確率, 状態価値)
+        """
+        action_probs = self.actor(state)
+        state_value = self.critic(state)
+        return action_probs, state_value
 
     def act(self, state):
         action_probs = self.actor(state)
